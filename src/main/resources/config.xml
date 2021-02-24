@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration></configuration>
+<configuration>
+	<!-- Alias 설정 -->
+	<typeAliases>
+		<typeAlias alias="users" type="com.koco.project.biz.user.UserVO"></typeAlias>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mapper/userMapper.xml"></mapper>
+	</mappers>
+</configuration>
