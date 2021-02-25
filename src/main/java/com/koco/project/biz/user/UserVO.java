@@ -8,7 +8,24 @@ public class UserVO {
 	private String userEmail;
 	private int userStatus;
 	private int userCase;
-	private String userRegdate;
+	private String userRegdate;	
+	
+	public UserVO() {
+		super();
+	}
+
+	public UserVO(int userNo, String userId, String userPw, String userNickname, String userEmail, int userStatus,
+			int userCase, String userRegdate) {
+		super();
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userPw = userPw;
+		this.userNickname = userNickname;
+		this.userEmail = userEmail;
+		this.userStatus = userStatus;
+		this.userCase = userCase;
+		this.userRegdate = userRegdate;
+	}
 
 	public int getUserNo() {
 		return userNo;

@@ -2,25 +2,25 @@ package com.koco.project.biz.user.impl;
 
 import java.util.Map;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import com.koco.project.biz.user.UserService;
 import com.koco.project.biz.user.UserVO;
 
-@Repository
-public class UserDAOImpl implements UserDAO {
+@Service
+public class UserServiceImpl implements UserService {
 	@Autowired
-	private SqlSessionTemplate sql;
+	private UserDAO dao;
 
 	@Override
 	public void userRegister(UserVO userVo) throws Exception {
-		sql.insert("userMapper.register", userVo);
+		dao.userRegister(userVo);
 	}
 
 	@Override
 	public Map<String, UserVO> login(UserVO userVo) throws Exception {
-		return sql.selectOne("userMapper.loginCheck", userVo);
+		return dao.login(userVo);
 	}
 
 }

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="userRegister.do" method="post">
+	<form action="/userRegister" method="post">
 		<ul>
 			<li><label for="userId">아이디</label><input type="text" name="userId"></li>
 			<li><label for="userPw">비밀번호</label><input type="password" name="userPw"></li>
