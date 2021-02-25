@@ -5,6 +5,9 @@ import java.util.Map;
 import com.koco.project.biz.user.UserVO;
 
 public interface UserDAO {
+	// 아이디 중복검사
+	public String userIdExist(String userId);
+	
 	// 회원가입
 	public void userRegister(UserVO userVo) throws Exception;
 	

@@ -14,6 +14,11 @@ public class UserDAOImpl implements UserDAO {
 	private SqlSessionTemplate sql;
 
 	@Override
+	public String userIdExist(String userId) {
+		return sql.selectOne("userMapper.userIdExist", userId);
+	}
+
+	@Override
 	public void userRegister(UserVO userVo) throws Exception {
 		sql.insert("userMapper.register", userVo);
 	}

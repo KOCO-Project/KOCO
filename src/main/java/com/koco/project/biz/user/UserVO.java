@@ -1,17 +1,39 @@
 package com.koco.project.biz.user;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class UserVO {
 	private int userNo;
+	
+	@NotBlank
+	@Size(min = 4)
+	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String userId;
+	
+	@NotBlank
+	@Size(min = 8)
+	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String userPw;
+	
+	@NotBlank
+	@Size(min = 1)
 	private String userNickname;
+	
+	@NotBlank
+	@Email
 	private String userEmail;
+	
 	private int userStatus;
 	private int userCase;
 	private String userRegdate;	
 	
+	private boolean userIdExist;
+	
 	public UserVO() {
-		super();
+		this.userIdExist = false;
 	}
 
 	public UserVO(int userNo, String userId, String userPw, String userNickname, String userEmail, int userStatus,
@@ -89,6 +111,14 @@ public class UserVO {
 
 	public void setUserRegdate(String userRegdate) {
 		this.userRegdate = userRegdate;
+	}
+
+	public boolean isUserIdExist() {
+		return userIdExist;
+	}
+
+	public void setUserIdExist(boolean userIdExist) {
+		this.userIdExist = userIdExist;
 	}
 
 }

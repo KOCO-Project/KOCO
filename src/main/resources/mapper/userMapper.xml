@@ -8,6 +8,14 @@
 		<result property="userEmail" column="USER_EMAIL" />
 		<result property="userNickname" column="USER_NICKNAME" />
 	</resultMap>
+	
+	<!-- 아이디 중복검사 -->
+	<select id="userIdExist" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT USER_ID
+		FROM KOCO_USERS
+		WHERE USER_ID = #{userId}
+	</select>
+	
 	<!-- 회원가입 -->
 	<insert id="register">
 		INSERT INTO KOCO_USERS(USER_ID, USER_PW, USER_EMAIL,
