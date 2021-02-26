@@ -15,36 +15,36 @@ import co.kr.koco.vo.BoardVO;
 
 @Controller
 @SessionAttributes("board")
-public class freeBoardController {
+public class FreeBoardController {
 	@Autowired
 	private FreeBoardService freeBoardService; 
 
 	//글 등록
 	@RequestMapping("/boardRegister.do")
-	public String boardRegister(BoardVO vo) {
-		freeBoardService.boardRegister(vo);
+	public String boardRegister(BoardVO freeBoardVO) {
+		freeBoardService.boardRegister(freeBoardVO);
 		
 		return "freeBoardList.do";
 	}
 	
 	//글 수정
 	@RequestMapping("/boardUpdate.do")
-	public String boardUpdate(@ModelAttribute("board") BoardVO vo) {
-		freeBoardService.boardUpdate(vo);
+	public String boardUpdate(@ModelAttribute("board") BoardVO freeBoardVO) {
+		freeBoardService.boardUpdate(freeBoardVO);
 		
 		return "freeBoardList.do";
 	}
 	
 	// 글 삭제 
 	@RequestMapping("/boardDelete.do")
-	public String boardDelete(BoardVO vo) {
-		freeBoardService.boardDelete(vo);
+	public String boardDelete(BoardVO freeBoardVO) {
+		freeBoardService.boardDelete(freeBoardVO);
 		
 		return "freeBoardList.do";
 	}
 	
 	// 글 상세 조회
-	public String getFreeBoard(BoardVO vo, Model model) {
+	public String getFreeBoard(BoardVO freeBoardVO, Model model) {
 		model.addAttribute("board");
 		
 		return "getFreeBoard.jsp";
@@ -61,12 +61,12 @@ public class freeBoardController {
 	}
 	
 	// 글 목록 검색
-	public String freeBoardList(BoardVO vo, Model model) {
+	public String freeBoardList(BoardVO freeBoardVO, Model model) {
 		
-		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
-		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
+		if(freeBoardVO.getSearchCondition() == null) freeBoardVO.setSearchCondition("TITLE");
+		if(freeBoardVO.getSearchKeyword() == null) freeBoardVO.setSearchKeyword("");
 		
-		model.addAttribute("boardList", freeBoardService.freeBoardList(vo));
+		model.addAttribute("boardList", freeBoardService.freeBoardList(freeBoardVO));
 		
 		return "freeBoardList.jsp";
 	}

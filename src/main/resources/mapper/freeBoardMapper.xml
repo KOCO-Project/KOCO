@@ -4,11 +4,11 @@
 
 <mapper namespace="freeBoardMapper">
 
-	<select id="getFreeBoard" resultType="freeBoard">
+	<select id="getFreeBoard" resultType="board">
 		SELECT * FROM KOCO_BOARD WHERE BOARD_NO = #{boardNo}
 	</select>
 
-	<select id="freeBoardList" resultType="freeBoard">
+	<select id="freeBoardList" resultType="board">
 		SELECT * FROM KOCO_BOARD WHERE BOARD_TITLE LIKE '%' || #{searchKeyword} || '%'
 		ORDER BY BOARD_NO DESC
 	</select>
