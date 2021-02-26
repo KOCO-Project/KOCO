@@ -8,28 +8,35 @@
 		<result property="userEmail" column="USER_EMAIL" />
 		<result property="userNickname" column="USER_NICKNAME" />
 	</resultMap>
-	
+
 	<!-- 아이디 중복검사 -->
-	<select id="userIdExist" parameterType="java.lang.String" resultType="java.lang.String">
+	<select id="userIdExist" parameterType="java.lang.String"
+		resultType="java.lang.String">
 		SELECT USER_ID
 		FROM KOCO_USERS
 		WHERE USER_ID = #{userId}
 	</select>
-	
+
 	<!-- 회원가입 -->
 	<insert id="register">
 		INSERT INTO KOCO_USERS(USER_ID, USER_PW, USER_EMAIL,
 		USER_NICKNAME)
-		VALUES(#{userId}, #{userPw}, #{userEmail},
-		#{userNickname})
+		VALUES(#{userId}, #{userPw}, #{userEmail}, #{userNickname})
 	</insert>
 
 	<!-- 로그인 -->
 	<select id="loginCheck" resultType="map">
-		<![CDATA[
-			SELECT USER_ID, USER_PW, USER_NICKNAME, USER_EMAIL
-			FROM KOCO_USERS	
-			WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
-		]]>
+		SELECT *
+		FROM KOCO_USERS
+		WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
 	</select>
+	
+	<!-- 마이페이지 -->
+	<!--  
+	<select id="mypage" resultType="co.kr.koco.vo.UserVO">
+		SELECT *
+		FROM KOCO_USERS
+		WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
+	</select>
+	-->
 </mapper>

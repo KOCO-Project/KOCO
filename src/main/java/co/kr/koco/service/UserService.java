@@ -13,4 +13,7 @@ public interface UserService {
 
 	// 로그인
 	public Map<String, UserVO> login(UserVO userVo) throws Exception;
+	
+	// 마이페이지
+	//public UserVO mypage(String userId, String userPw) throws Exception;
 }

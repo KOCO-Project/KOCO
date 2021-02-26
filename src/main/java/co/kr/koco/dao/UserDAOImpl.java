@@ -28,4 +28,14 @@ public class UserDAOImpl implements UserDAO {
 		return sql.selectOne("userMapper.loginCheck", userVo);
 	}
 
+//	@Override
+//	public UserVO mypage(String userId, String userPw) throws Exception {
+//		Map<String, Object> userInfo = new HashMap<String, Object>();
+//		
+//		userInfo.put("userId", userId);
+//		userInfo.put("userPw", userPw);
+//		
+//		return sql.selectOne("userMapper.mypage", userInfo);
+//	}
+
 }

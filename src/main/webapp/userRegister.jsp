@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <script>
@@ -30,12 +30,12 @@
 	}
 </script>
 <body>
-	<form action="/userRegister" method="post">
+	<form action="userRegister" method="post">
 		<ul>
 			<li><label for="userId">아이디</label><input type="text" name="userId" id="userId" onblur="userIdExist()">
 			<span id="idCheck"></span></li>
 			<li><label for="userPw">비밀번호</label><input type="password"	name="userPw"></li>
-			<li><label for="userNickname">닉네임</label><input type="text" 	name="userNickname"></li>
+			<li><label for="userNickname">닉네임</label><input type="text" name="userNickname"></li>
 			<li><label for="userEmail">이메일</label><input type="email" name="userEmail"></li>
 			<li><input type="submit" value="회원가입"></li>
 		</ul>
