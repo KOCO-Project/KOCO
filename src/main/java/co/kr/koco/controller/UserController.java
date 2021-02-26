@@ -1,4 +1,4 @@
-package com.koco.project.view.user;
+package co.kr.koco.controller;
 
 import java.util.Map;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.koco.project.biz.user.UserService;
-import com.koco.project.biz.user.UserVO;
+import co.kr.koco.service.UserService;
+import co.kr.koco.vo.UserVO;
 
 @Controller
 public class UserController {

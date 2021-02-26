@@ -1,6 +1,8 @@
-package com.koco.project.biz.user;
+package co.kr.koco.service;
 
 import java.util.Map;
+
+import co.kr.koco.vo.UserVO;
 
 public interface UserService {
 	// 아이디 중복검사

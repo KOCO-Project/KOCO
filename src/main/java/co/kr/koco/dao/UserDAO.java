@@ -1,8 +1,8 @@
-package com.koco.project.biz.user.impl;
+package co.kr.koco.dao;
 
 import java.util.Map;
 
-import com.koco.project.biz.user.UserVO;
+import co.kr.koco.vo.UserVO;
 
 public interface UserDAO {
 	// 아이디 중복검사

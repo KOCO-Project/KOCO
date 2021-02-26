@@ -1,4 +1,4 @@
-package com.koco.project.biz.user;
+package co.kr.koco.vo;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

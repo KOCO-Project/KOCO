@@ -1,12 +1,12 @@
-package com.koco.project.biz.user.impl;
+package co.kr.koco.service;
 
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.koco.project.biz.user.UserService;
-import com.koco.project.biz.user.UserVO;
+import co.kr.koco.dao.UserDAO;
+import co.kr.koco.vo.UserVO;
 
 @Service
 public class UserServiceImpl implements UserService {
