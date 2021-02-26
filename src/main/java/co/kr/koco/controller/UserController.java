@@ -1,16 +1,17 @@
 package co.kr.koco.controller;
 
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.kr.koco.service.UserService;
 import co.kr.koco.vo.UserVO;
@@ -20,11 +21,32 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
-	@GetMapping("/userIdExist/{userId}")
-	public String userIdExist(@PathVariable String userId) {
+	@PostMapping("/userIdExist")
+	public void userIdExist(@RequestParam(value = "userId") String userId, HttpServletResponse response)
+			throws Exception {
+		PrintWriter out = response.getWriter();
+
 		boolean check = service.userIdExist(userId);
 
-		return check + "";
+		if (check) {
+			out.println("1"); // 아이디 사용 가능
+		} else {
+			out.println("0"); // 아이디 중복
+		}
+	}
+
+	@PostMapping("/userNicknameExist")
+	public void userNicknameExist(@RequestParam(value = "userNickname") String userNickname,
+			HttpServletResponse response) throws Exception {
+		PrintWriter out = response.getWriter();
+		
+		boolean check = service.userIdExist(userNickname);
+
+		if (check) {
+			out.println("1"); // 닉네임 사용 가능
+		} else {
+			out.println("0"); // 닉네임 중복
+		}
 	}
 
 	@PostMapping("/userRegister")
@@ -48,11 +70,11 @@ public class UserController {
 
 		return "logintest.jsp";
 	}
-	
+
 	@RequestMapping("/userLogout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		
+
 		return "login.jsp";
 	}
 

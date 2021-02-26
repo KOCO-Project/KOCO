@@ -17,6 +17,11 @@ public class UserDAOImpl implements UserDAO {
 	public String userIdExist(String userId) {
 		return sql.selectOne("userMapper.userIdExist", userId);
 	}
+	
+	@Override
+	public String userNicknameExist(String userNickname) {		
+		return sql.selectOne("userMapper.userNicknameExist", userNickname);
+	}
 
 	@Override
 	public void userRegister(UserVO userVo) throws Exception {
@@ -26,7 +31,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public Map<String, UserVO> login(UserVO userVo) throws Exception {
 		return sql.selectOne("userMapper.loginCheck", userVo);
-	}
+	}	
 
 //	@Override
 //	public UserVO mypage(String userId, String userPw) throws Exception {
