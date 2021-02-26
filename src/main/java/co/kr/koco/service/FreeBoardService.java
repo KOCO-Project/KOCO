@@ -17,7 +17,7 @@ public interface FreeBoardService {
 	void boardDelete(FreeBoardVO vo);
 	
 	// 글 상세 조회
-	void getFreeBoard(FreeBoardVO vo);
+	FreeBoardVO getFreeBoard(FreeBoardVO vo);
 	
 	// 글 목록 조회
 	List<FreeBoardVO> freeBoardList(FreeBoardVO vo);

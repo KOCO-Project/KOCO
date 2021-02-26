@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import co.kr.koco.dao.FreeBoardDAO;
 import co.kr.koco.vo.FreeBoardVO;
 
-@Service("freeBoardService")
+@Service
 public class FreeBoardServiceImpl implements FreeBoardService {
 
 	@Autowired
