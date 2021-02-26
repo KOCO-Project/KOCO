@@ -30,5 +30,5 @@
 		<constructor-arg ref="sqlSession"></constructor-arg>
 	</bean>
 	
-	<context:component-scan base-package="com.koco.project.biz"></context:component-scan>
+	<context:component-scan base-package="co.kr.koco"></context:component-scan>
 </beans>
