@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qnaBoard">
+	<insert parameterType="kr.co.koco.vo.BoardVO" id="getQnaBoardRegister">
+	<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="boardNo">
+		<!-- select content_seq.nextval from dual  -->
+	</selectKey>
+	<![CDATA[
+		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO)
+		VALUES(#{boardCategory}, #{boardTitle}, #{boardContent}, NOW(), #{readcount}, #{fileName}, NULL, #{userNo})
+	]]>
+	</insert>
+	
+	<select parameterType="java.lang.Integer" id="getBoardInfoName" resultType="java.lang.String">
+	<![CDATA[
+		
+	]]>
+	</select>
+	
+	<select parameterType="java.lang.Integer" id="getQnaBoardList" resultType="kr.co.koco.vo.BoardVO">
+	<![CDATA[
+	
+	]]>
+	</select>
+	
+	<select parameterType="java.lang.Integer" id="getQnaBoard" resultType="kr.co.koco.vo.BoardVO">
+	<![CDATA[
+	
+	]]>
+	</select>
+	
+	<update parameterType="kr.co.koco.vo.BoardVO" id="updateQnaBoard">
+	<![CDATA[
+		
+	]]>
+	</update>
+	
+	
+	<select parameterType="java.lang.Integer" id="deleteQnaBoard">
+	<![CDATA[
+		DELET FROM KOCO_BOARD WHERE BOARD_NO = #{boardNo}
+	]]>
+	</select>
+	
+	<select parameterType="java.lang.Integer" id="getQnaBoardCnt" resultType="java.lang.Integer">
+	<![CDATA[
+		
+	]]>
+	</select>
+	
+</mapper>

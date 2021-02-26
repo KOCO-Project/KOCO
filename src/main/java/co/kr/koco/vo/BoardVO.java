@@ -1,14 +1,27 @@
 package co.kr.koco.vo;
 
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
-	private int boardNo;
-	private int boardCategory;
+	private int boardNo; // 게시글 번호
+	private int boardCategory; // 게시판 번호
+	
+	@NotBlank
 	private String boardTitle;
+	@NotBlank
 	private String boardContent;
+	
 	private String boardRegdate;
 	private String boardReadcount;
+//	클라에서 보내는 파일 데이터
+	private MultipartFile uploadFile;
+//	서버에있는 파일이름
 	private String fileName;
 	private String thumbnail;
+	private int userNo;
+	private int readcount;
 	private String searchCondition;
 	private String searchKeyword;
 	
@@ -71,6 +84,24 @@ public class BoardVO {
 	}
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public int getUserNo() {
+		return userNo;
+	}
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
 	}
 	
 	
