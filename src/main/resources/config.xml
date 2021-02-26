@@ -4,7 +4,7 @@
 	<!-- Alias 설정 -->
 	<typeAliases>
 		<typeAlias alias="users" type="co.kr.koco.vo.UserVO"></typeAlias>
-		<typeAlias alias="freeBoard" type="co.kr.koco.vo.FreeBoardVO"></typeAlias>
+		<typeAlias alias="board" type="co.kr.koco.vo.BoardVO"></typeAlias>
 	</typeAliases>
 	
 	<mappers>

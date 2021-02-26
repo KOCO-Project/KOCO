@@ -15,33 +15,33 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	private FreeBoardDAO freeBoardDAO;
 	
 	@Override
-	public void boardRegister(BoardVO vo) {
+	public void boardRegister(BoardVO freeBoardVO) {
 		
-		freeBoardDAO.boardRegister(vo);
+		freeBoardDAO.boardRegister(freeBoardVO);
 	}
 
 	@Override
-	public void boardUpdate(BoardVO vo) {
+	public void boardUpdate(BoardVO freeBoardVO) {
 		
-		freeBoardDAO.boardUpdate(vo);
+		freeBoardDAO.boardUpdate(freeBoardVO);
 	}
 
 	@Override
-	public void boardDelete(BoardVO vo) {
+	public void boardDelete(BoardVO freeBoardVO) {
 	
-		freeBoardDAO.boardDelete(vo);
+		freeBoardDAO.boardDelete(freeBoardVO);
 	}
 
 	@Override
-	public BoardVO getFreeBoard(BoardVO vo) {
+	public BoardVO getFreeBoard(BoardVO freeBoardVO) {
 		
-		return freeBoardDAO.getFreeBoard(vo);
+		return freeBoardDAO.getFreeBoard(freeBoardVO);
 	}
 
 	@Override
-	public List<BoardVO> freeBoardList(BoardVO vo) {
+	public List<BoardVO> freeBoardList(BoardVO freeBoardVO) {
 		
-		return freeBoardDAO.freeBoardList(vo);
+		return freeBoardDAO.freeBoardList(freeBoardVO);
 	}
 
 }
