@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import co.kr.koco.service.FreeBoardService;
-import co.kr.koco.vo.FreeBoardVO;
+import co.kr.koco.vo.BoardVO;
 
 @Controller
 @SessionAttributes("board")
@@ -21,7 +21,7 @@ public class freeBoardController {
 
 	//글 등록
 	@RequestMapping("/boardRegister.do")
-	public String boardRegister(FreeBoardVO vo) {
+	public String boardRegister(BoardVO vo) {
 		freeBoardService.boardRegister(vo);
 		
 		return "freeBoardList.do";
@@ -29,7 +29,7 @@ public class freeBoardController {
 	
 	//글 수정
 	@RequestMapping("/boardUpdate.do")
-	public String boardUpdate(@ModelAttribute("board") FreeBoardVO vo) {
+	public String boardUpdate(@ModelAttribute("board") BoardVO vo) {
 		freeBoardService.boardUpdate(vo);
 		
 		return "freeBoardList.do";
@@ -37,14 +37,14 @@ public class freeBoardController {
 	
 	// 글 삭제 
 	@RequestMapping("/boardDelete.do")
-	public String boardDelete(FreeBoardVO vo) {
+	public String boardDelete(BoardVO vo) {
 		freeBoardService.boardDelete(vo);
 		
 		return "freeBoardList.do";
 	}
 	
 	// 글 상세 조회
-	public String getFreeBoard(FreeBoardVO vo, Model model) {
+	public String getFreeBoard(BoardVO vo, Model model) {
 		model.addAttribute("board");
 		
 		return "getFreeBoard.jsp";
@@ -61,7 +61,7 @@ public class freeBoardController {
 	}
 	
 	// 글 목록 검색
-	public String freeBoardList(FreeBoardVO vo, Model model) {
+	public String freeBoardList(BoardVO vo, Model model) {
 		
 		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
 		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");

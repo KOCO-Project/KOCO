@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.kr.koco.dao.FreeBoardDAO;
-import co.kr.koco.vo.FreeBoardVO;
+import co.kr.koco.vo.BoardVO;
 
 @Service
 public class FreeBoardServiceImpl implements FreeBoardService {
@@ -15,31 +15,31 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	private FreeBoardDAO freeBoardDAO;
 	
 	@Override
-	public void boardRegister(FreeBoardVO vo) {
+	public void boardRegister(BoardVO vo) {
 		
 		freeBoardDAO.boardRegister(vo);
 	}
 
 	@Override
-	public void boardUpdate(FreeBoardVO vo) {
+	public void boardUpdate(BoardVO vo) {
 		
 		freeBoardDAO.boardUpdate(vo);
 	}
 
 	@Override
-	public void boardDelete(FreeBoardVO vo) {
+	public void boardDelete(BoardVO vo) {
 	
 		freeBoardDAO.boardDelete(vo);
 	}
 
 	@Override
-	public FreeBoardVO getFreeBoard(FreeBoardVO vo) {
+	public BoardVO getFreeBoard(BoardVO vo) {
 		
 		return freeBoardDAO.getFreeBoard(vo);
 	}
 
 	@Override
-	public List<FreeBoardVO> freeBoardList(FreeBoardVO vo) {
+	public List<BoardVO> freeBoardList(BoardVO vo) {
 		
 		return freeBoardDAO.freeBoardList(vo);
 	}

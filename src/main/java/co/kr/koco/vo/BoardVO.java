@@ -1,15 +1,29 @@
 package co.kr.koco.vo;
 
-public class FreeBoardVO {
+public class BoardVO {
 	private int boardNo;
 	private int boardCategory;
 	private String boardTitle;
 	private String boardContent;
 	private String boardRegdate;
 	private String boardReadcount;
+	private String fileName;
+	private String thumbnail;
 	private String searchCondition;
 	private String searchKeyword;
 	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 	public int getBoardNo() {
 		return boardNo;
 	}
