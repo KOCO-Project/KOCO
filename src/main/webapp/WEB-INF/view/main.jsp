@@ -9,7 +9,7 @@
 </head>
 <body>
 
-홈
+홈<a href="loginView">로그인</a><a href="registerView">회원가입</a>
 <header>
 	<%-- <c:import url="/WEB-INF/views/include/top_menu.jsp"/> --%>
 </header>

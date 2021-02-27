@@ -20,7 +20,16 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		
-		return "redirect:/main";
+		return "main";
 	}
 	
+	@RequestMapping(value = "/loginView")
+	public String loginView() {
+		return "users/login";
+	}
+	
+	@RequestMapping(value = "/registerView")
+	public String registerView() {
+		return "users/userRegister";
+	}
 }
