@@ -33,9 +33,11 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/servlet-context.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>/</url-pattern>
-	</servlet-mapping>
+		
+	
 </web-app>

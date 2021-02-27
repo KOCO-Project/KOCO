@@ -14,14 +14,14 @@ public class BoardVO {
 	private String boardContent;
 	
 	private String boardRegdate;
-	private String boardReadcount;
+
 //	클라에서 보내는 파일 데이터
 	private MultipartFile uploadFile;
 //	서버에있는 파일이름
 	private String fileName;
 	private String thumbnail;
 	private int userNo;
-	private int readcount;
+	private int boardReadcount;
 	private String searchCondition;
 	private String searchKeyword;
 	

@@ -8,14 +8,16 @@
 <title>KOCO</title>
 </head>
 <body>
+
+홈
 <header>
-	<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
+	<%-- <c:import url="/WEB-INF/views/include/top_menu.jsp"/> --%>
 </header>
 <main>
 	<%-- <c:import url="/WEB-INF/views/${ }.jsp"/> --%>
 </main>
 <footer>
-	<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+	<%-- <c:import url="/WEB-INF/views/include/bottom_info.jsp"/> --%>
 </footer>
 </body>
 </html>
