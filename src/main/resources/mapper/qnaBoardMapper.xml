@@ -18,19 +18,19 @@
 	]]>
 	</select>
 	
-	<select parameterType="java.lang.Integer" id="getQnaBoardList" resultType="kr.co.koco.vo.BoardVO">
+	<select parameterType="java.lang.Integer" id="getQnaBoardList" resultType="co.kr.koco.vo.BoardVO">
 	<![CDATA[
 	
 	]]>
 	</select>
 	
-	<select parameterType="java.lang.Integer" id="getQnaBoard" resultType="kr.co.koco.vo.BoardVO">
+	<select parameterType="java.lang.Integer" id="getQnaBoard" resultType="co.ko.koco.vo.BoardVO">
 	<![CDATA[
 	
 	]]>
 	</select>
 	
-	<update parameterType="kr.co.koco.vo.BoardVO" id="updateQnaBoard">
+	<update parameterType="co.ko.koco.vo.BoardVO" id="updateQnaBoard">
 	<![CDATA[
 		
 	]]>
