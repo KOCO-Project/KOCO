@@ -67,10 +67,10 @@ public class BoardVO {
 	public void setBoardRegdate(String boardRegdate) {
 		this.boardRegdate = boardRegdate;
 	}
-	public String getBoardReadcount() {
+	public int getBoardReadcount() {
 		return boardReadcount;
 	}
-	public void setBoardReadcount(String boardReadcount) {
+	public void setBoardReadcount(int boardReadcount) {
 		this.boardReadcount = boardReadcount;
 	}
 	public String getSearchCondition() {
@@ -97,12 +97,7 @@ public class BoardVO {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-	public int getReadcount() {
-		return readcount;
-	}
-	public void setReadcount(int readcount) {
-		this.readcount = readcount;
-	}
+	
 	
 	
 }
