@@ -32,8 +32,8 @@ public class QnaBoardController {
 	@Lazy
 	private UserVO userVO;
 	
-	@GetMapping("/qnaBoardList")
-	public String qnaBoardList(@RequestParam("boardInfo") int boardInfo,
+	@GetMapping("/qnaList")
+	public String qnaList(@RequestParam("boardInfo") int boardInfo,
 							   @RequestParam(value = "page", defaultValue = "1") int page,
 							   Model model) {
 		model.addAttribute("boardInfo", boardInfo);
@@ -47,7 +47,7 @@ public class QnaBoardController {
 		PageVO pageVO = qnaBoardService.getQnaBoardCnt(boardInfo, page);
 		model.addAttribute("pageBean", pageVO);
 		model.addAttribute("page", page);
-		return "qna/qnaBoardList";
+		return "qna/qnaList";
 	}
 	
 	@GetMapping("/getQnaBoard")
@@ -67,25 +67,25 @@ public class QnaBoardController {
 		return "qna/getQnaBoard";
 	}
 	
-	@GetMapping("/qnaBoardRegister")
-	public String qnaBoardRegister(@ModelAttribute("qnaBoardVO")BoardVO regQnaBoardVO,
+	@GetMapping("/qnaRegister")
+	public String qnaRegister(@ModelAttribute("qnaBoardVO")BoardVO regQnaBoardVO,
 						   @RequestParam("boardInfo")int boardInfo) {
 		regQnaBoardVO.setBoardCategory(boardInfo);
-		return "qna/qnaBoardRegister";
+		return "qna/qnaRegister";
 	}
 	
-	@GetMapping("/registerPro")
-	public String registerPro(@Valid @ModelAttribute("qnaBoardVO") BoardVO regQnaBoardVO, BindingResult result) {
+	@GetMapping("/qnaRegisterPro")
+	public String qnaRegisterPro(@Valid @ModelAttribute("qnaBoardVO") BoardVO regQnaBoardVO, BindingResult result) {
 		if(result.hasErrors()) {
 			System.out.println("글쓰기 에러");
-			return "qna/qnaBoardRegister";
+			return "qna/qnaRegister";
 		}
 		qnaBoardService.getQnaBoardRegister(regQnaBoardVO);
-		return "qna/qnaBoardRegister_success";
+		return "qna/qnaRegister_pro";
 	}
 	
-	@GetMapping("/qnaBoardUpdate")
-	public String update(@RequestParam("boardInfo") int boardInfo,
+	@GetMapping("/qnaUpdate")
+	public String qnaUpdate(@RequestParam("boardInfo") int boardInfo,
 						 @RequestParam("boardNo") int boardNo,
 						 @ModelAttribute("qnaUpdateBoardVO") BoardVO qnaUpdateBoardVO,
 						 @RequestParam("page") int page,
@@ -105,35 +105,35 @@ public class QnaBoardController {
 		qnaUpdateBoardVO.setBoardNo(boardNo);
 		qnaUpdateBoardVO.setBoardCategory(boardInfo);
 		
-		return "qna/qnaBoardUpdate";
+		return "qna/qnaUpdate";
 	}
 	
-	@PostMapping("/updatePro")
-	public String updatePro(@Valid @ModelAttribute("qnaUpdateBoardVO") BoardVO qnaUpdateBoardVO,
+	@PostMapping("/qnaUpdatePro")
+	public String qnaUpdatePro(@Valid @ModelAttribute("qnaUpdateBoardVO") BoardVO qnaUpdateBoardVO,
 							BindingResult result,
 							@RequestParam("page") int page,
 							Model model) {
 		model.addAttribute("page", page);
 		if(result.hasErrors()) {
 			System.out.println("수정 에러");
-			return "qna/qnaBoardUpdate";
+			return "qna/qnaUpdate";
 		}
 		qnaBoardService.updateQnaBoard(qnaUpdateBoardVO);
-		return "qna/qnaBoardUpdate_success";
+		return "qna/qnaUpdate_pro";
 	}
 	
-	@GetMapping("/qnaBoardDelete")
-	public String delete(@RequestParam("boardInfo") int boardInfo,
+	@GetMapping("/qnaDelete")
+	public String qnaDelete(@RequestParam("boardInfo") int boardInfo,
 					 	 @RequestParam("boardNo") int boardNo,
 					 	 Model model) {
 		qnaBoardService.deleteQnaBoard(boardNo);
 		model.addAttribute("boardInfo", boardInfo);
-		return "qna/qnaBoardDelete";
+		return "qna/qnaDelete";
 	}
 	
 	@GetMapping("/regFail")
 	public String regFail() {
-		return "board/qnaBoardRegister_fail";
+		return "qna/qnaRegister_fail";
 	}
 	
 }

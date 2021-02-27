@@ -39,7 +39,7 @@
 	
 	<select parameterType="java.lang.Integer" id="deleteQnaBoard">
 	<![CDATA[
-		DELET FROM KOCO_BOARD WHERE BOARD_NO = #{boardNo}
+		DELETE FROM KOCO_BOARD WHERE BOARD_NO = #{boardNo}
 	]]>
 	</select>
 	

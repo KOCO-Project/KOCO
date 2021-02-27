@@ -30,7 +30,7 @@ public class BoardInterceptor implements HandlerInterceptor{
 		
 		if(currentQnaBoardVO.getUserNo() != userVO.getUserNo()) {
 			String contextPath = request.getContextPath();
-			response.sendRedirect(contextPath + "/board/not_writer");
+			response.sendRedirect(contextPath + "/qna/qnaBoardRegister_fail");
 			return false;
 		}
 		return true;
