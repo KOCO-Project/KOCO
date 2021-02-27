@@ -10,7 +10,7 @@
 <body>
 	<h1>${user.USER_ID}님</h1>
 	<input type="button" value="마이페이지"
-		onclick="location.href='/project/mypage.jsp'">
+		onclick="location.href='mypage.jsp'">
 	<a href="/project/userLogout">로그아웃</a>
 </body>
 </html>

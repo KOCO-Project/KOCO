@@ -10,6 +10,9 @@ public interface UserService {
 	
 	// 닉네임 중복검사
 	public boolean userNicknameExist(String userNickname);
+	
+	// 이메일 중복검사
+	public boolean userEmailExist(String userEmail);
 
 	// 회원가입
 	public void userRegister(UserVO userVo) throws Exception;

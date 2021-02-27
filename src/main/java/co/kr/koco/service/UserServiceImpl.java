@@ -26,7 +26,18 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public boolean userNicknameExist(String userNickname) {
-		String exist = dao.userIdExist(userNickname);
+		String exist = dao.userNicknameExist(userNickname);
+		
+		if (exist == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean userEmailExist(String userEmail) {
+		String exist = dao.userEmailExist(userEmail);
 		
 		if (exist == null) {
 			return true;
@@ -43,7 +54,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Map<String, UserVO> login(UserVO userVo) throws Exception {
 		return dao.login(userVo);
-	}	
+	}		
 
 //	@Override
 //	public UserVO mypage(String userId, String userPw) throws Exception {

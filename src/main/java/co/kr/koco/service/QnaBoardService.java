@@ -9,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.kr.koco.dao.QnaBoardDAO;
@@ -16,15 +17,16 @@ import co.kr.koco.vo.BoardVO;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
+@Service
 public class QnaBoardService {
 	
-	@Value("${path.upload}")
+//	@Value("${path.upload}")
 	private String pathUpload;
 	
-	@Value("${page.listcnt}")
+//	@Value("${page.listcnt}")
 	private int pageListcnt; // 페이지당 글 개수
 	
-	@Value("${page.paginationcnt}")
+//	@Value("${page.paginationcnt}")
 	private int pagePaginationcnt;
 	
 	@Autowired

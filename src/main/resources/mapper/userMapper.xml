@@ -24,6 +24,14 @@
 		FROM KOCO_USERS
 		WHERE USER_NICKNAME = #{userNickname}
 	</select>
+	
+	<!-- 이메일 중복검사 -->
+	<select id="userEmailExist" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		SELECT USER_EMAIL
+		FROM KOCO_USERS
+		WHERE USER_EMAIL = #{userEmail}
+	</select>
 
 	<!-- 회원가입 -->
 	<insert id="register">
