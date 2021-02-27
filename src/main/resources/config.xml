@@ -3,10 +3,12 @@
 <configuration>
 	<!-- Alias 설정 -->
 	<typeAliases>
-		<typeAlias alias="users" type="com.koco.project.biz.user.UserVO"></typeAlias>
+		<typeAlias alias="users" type="co.kr.koco.vo.UserVO"></typeAlias>
+		<typeAlias alias="board" type="co.kr.koco.vo.BoardVO"></typeAlias>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/userMapper.xml"></mapper>
+		<mapper resource="mapper/freeBoardMapper.xml"></mapper>
 	</mappers>
 </configuration>
