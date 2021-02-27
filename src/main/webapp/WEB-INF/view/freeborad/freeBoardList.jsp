@@ -11,8 +11,8 @@
 <title>KOCO</title>
 </head>
 <body>
-	<center>
-		<h1>게시글 목록</h1>
+	
+		<h1>자유 게시판</h1>
 		
 		<!-- 검색 시작 -->
 		<form action="freeBoardList.do" method="post">
@@ -34,22 +34,22 @@
 				<th bgcolor="orange" width="100">번호</th>
 				<th bgcolor="orange" width="200">제목</th>
 				<th bgcolor="orange" width="150">작성자</th>
-				<th bgcolor="orange" width="150">등록일</th>
+				<th bgcolor="orange" width="150">작성일</th>
 				<th bgcolor="orange" width="100">조회수</th>
 			</tr>
 			
-			<c:forEach items="${boardList }" var="board">
+			<c:forEach items="${freeBoardList }" var="freeBoard">
 			<tr>
-				<td>${board.seq }
-				<td align="left"><a href="getFreeBoard.do?seq=${board.seq}">${board.title }</a></td>
-				<td>${board.writer }</td>
-				<td>${board.regDate }</td>
-				<td>${board.cnt }</td>
+				<td>${freeBoard.boardNo }
+				<td align="left"><a href="getFreeBoard.do?boardNo=${freeBoard.boardNo}}">${freeBoard.boardTitle}</a></td>
+				<td>${freeBoard.userNo }</td>
+				<td>${freeBoard.boardRegdate }</td>
+				<td>${freeBoard.boardReadcount }</td>
 			</tr>
 			</c:forEach>
 			
 		</table>
 		<br> <a href="boardRegister.jsp">글쓰기</a>
-	</center>
+	
 </body>
 </html>

@@ -18,7 +18,7 @@
 						required="required" class="write_title"></li>
 				</ul>
 				<ul>
-					<li><textarea name="content" id="editor"></textarea></li>
+					<li><textarea name="content" id="editor4"></textarea></li>
 				</ul>
 				<ul class="btns">
 					<li><input type="submit" value="작성"></li>
@@ -26,8 +26,8 @@
 				</ul>
 			</form>
 			<script>
-				CKEDITOR.replace('content',{
-					filebrowserImageUploadUrl:'imageUpload.do'
+				CKEDITOR.replace('editor4',{
+					filebrowserUploadUrl:'/mine/imageUpload.do'
 				});
 			</script>
 		</div>

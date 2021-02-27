@@ -1,5 +1,7 @@
 package co.kr.koco.dao;
 
+
+
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,36 +12,37 @@ import co.kr.koco.vo.BoardVO;
 
 @Repository
 public class FreeBoardDAO {
+	
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
 	// 글 등록
-	public void boardRegister(BoardVO vo) {
-		mybatis.insert("freeBoardMapper.boardRegister", vo);
-		mybatis.commit();
+	public void freeBoardRegister(BoardVO freeBoardVO) {
+	
+		mybatis.insert("freeBoardMapper.freeBoardRegister", freeBoardVO);
 	}
 	
 	// 글 수정
-	public void boardUpdate(BoardVO vo) {
-		mybatis.update("freeBoardMapper.boardUpdate", vo);
-		mybatis.commit();
+	public void freeBoardUpdate(BoardVO freeBoardVO) {
+		
+		mybatis.update("freeBoardMapper.freeBoardUpdate", freeBoardVO);
 	}
 	
 	// 글 삭제
-	public void boardDelete(BoardVO vo) {
-		mybatis.delete("freeBoardMapper.boardDelete", vo);
-		mybatis.commit();
+	public void freeBoardDelete(BoardVO freeBoardVO) {
+		
+		mybatis.delete("freeBoardMapper.freeBoardDelete", freeBoardVO);
 	}
 	
 	// 글 상세 조회
-	public BoardVO getFreeBoard(BoardVO vo) {
+	public BoardVO getFreeBoard(BoardVO freeBoardVO) {
 		
-		return (BoardVO) mybatis.selectOne("freeBoardMapper.getFreeBoard", vo);
+		return (BoardVO) mybatis.selectOne("freeBoardMapper.getFreeBoard", freeBoardVO);
 	}
 	
 	//  글 목록 조회
-	public List<BoardVO> freeBoardList(BoardVO vo) {
+	public List<BoardVO> freeBoardList(BoardVO freeBoardVO) {
 		
-		return mybatis.selectList("freeBoardMapper.freeBoardList", vo);
+		return mybatis.selectList("freeBoardMapper.freeBoardList", freeBoardVO);
 	}
 }

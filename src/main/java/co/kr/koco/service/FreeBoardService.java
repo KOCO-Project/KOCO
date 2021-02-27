@@ -8,17 +8,17 @@ public interface FreeBoardService {
 
 	//CRUD 기능의 메소드 구현
 	// 글 등록
-	void boardRegister(BoardVO vo);
+	void freeBoardRegister(BoardVO freeBoardVO);
 	
 	// 글 수정
-	void boardUpdate(BoardVO vo);
+	void freeBoardUpdate(BoardVO freeBoardVO);
 	
 	// 글 삭제
-	void boardDelete(BoardVO vo);
+	void freeBoardDelete(BoardVO freeBoardVO);
 	
 	// 글 상세 조회
-	BoardVO getFreeBoard(BoardVO vo);
+	BoardVO getFreeBoard(BoardVO freeBoardVO);
 	
 	// 글 목록 조회
-	List<BoardVO> freeBoardList(BoardVO vo);
+	List<BoardVO> freeBoardList(BoardVO freeBoardVO);
 }

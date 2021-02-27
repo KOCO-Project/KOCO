@@ -15,21 +15,21 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	private FreeBoardDAO freeBoardDAO;
 	
 	@Override
-	public void boardRegister(BoardVO freeBoardVO) {
+	public void freeBoardRegister(BoardVO freeBoardVO) {
+		// TODO Auto-generated method stub
 		
-		freeBoardDAO.boardRegister(freeBoardVO);
 	}
 
 	@Override
-	public void boardUpdate(BoardVO freeBoardVO) {
+	public void freeBoardUpdate(BoardVO freeBoardVO) {
+		// TODO Auto-generated method stub
 		
-		freeBoardDAO.boardUpdate(freeBoardVO);
 	}
 
 	@Override
-	public void boardDelete(BoardVO freeBoardVO) {
-	
-		freeBoardDAO.boardDelete(freeBoardVO);
+	public void freeBoardDelete(BoardVO freeBoardVO) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -43,5 +43,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		
 		return freeBoardDAO.freeBoardList(freeBoardVO);
 	}
+
+	
 
 }
