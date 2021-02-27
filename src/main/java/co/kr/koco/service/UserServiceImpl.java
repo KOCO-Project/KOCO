@@ -56,9 +56,4 @@ public class UserServiceImpl implements UserService {
 		return dao.login(userVo);
 	}		
 
-//	@Override
-//	public UserVO mypage(String userId, String userPw) throws Exception {
-//		return dao.mypage(userId, userPw);
-//	}
-
 }

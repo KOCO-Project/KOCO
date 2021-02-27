@@ -1,7 +1,6 @@
 package co.kr.koco.controller;
 
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -104,15 +104,8 @@ public class UserController {
 		return "users/login";
 	}
 
-//	@GetMapping("/mypage")
-//	public String mypage(HttpSession session, Model model) throws Exception {
-//		String userId = (String) session.getAttribute("userId");
-//		String userPw = (String) session.getAttribute("userPw");
-//		
-//		UserVO userVo = service.mypage(userId, userPw);
-//		
-//		model.addAttribute("userInfo", userVo);
-//		
-//		return "mypage.jsp";
-//	}
+	@GetMapping("/mypage")
+	public String mypage() throws Exception {		
+		return "users/mypage";
+	}
 }
