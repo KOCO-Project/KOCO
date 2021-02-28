@@ -15,4 +15,5 @@ public interface QnaBoardDAO {
 	public void deleteQnaBoard(int boardNo);
 	public String getBoardInfoName(int boardNo);
 	public int getQnaBoardCnt(int boardCategory);
+	public void setQnaBoardRcnt(int boardNo);
 }

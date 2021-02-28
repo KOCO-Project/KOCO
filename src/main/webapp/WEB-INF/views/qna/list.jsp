@@ -18,7 +18,7 @@
 <div class="container" style="margin-top:100px">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title">${infoName }</h4>
+			<h4 class="card-title">${boardInfoName }</h4>
 			<table class="table table-hover" id='board_list'>
 				<thead>
 					<tr>
@@ -33,7 +33,7 @@
 					<c:forEach var='obj' items="${qnaList }">
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.boardNo }</td>
-						<td><a href='${root }qna/getQna?infoNo=${infoNo }&boardNo=${boardNo }'>${obj.boardTitle }</a></td>
+						<td><a href='${root }qna/getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a></td>
 						<td class="text-center d-none d-md-table-cell">${obj.writer }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardRegdate }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardReadcount }</td>

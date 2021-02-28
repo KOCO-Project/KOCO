@@ -76,5 +76,11 @@
 		SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = #{infoNo}
 	]]>
 	</select>
-	
+	<update parameterType="board" id="updateRcnt">
+	<![CDATA[
+		UPDATE KOCO_BOARD
+		SET READCOUNT = READCOUNT+1
+		WHERE BOARD_NO = #{boardNo}
+	]]>
+	</update>
 </mapper>

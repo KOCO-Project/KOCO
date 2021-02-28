@@ -56,5 +56,10 @@ public class QnaBoardDAOImpl implements QnaBoardDAO{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public void setQnaBoardRcnt(int boardNo) {
+		sqlSessionTemplate.selectOne("qnaBoard.updateRcnt",boardNo);
+	}
 
 }

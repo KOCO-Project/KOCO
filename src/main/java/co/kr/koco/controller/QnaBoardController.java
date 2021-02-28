@@ -34,8 +34,9 @@ public class QnaBoardController {
 	
 	@GetMapping("/list")
 	public String qnaList(@RequestParam("infoNo") int infoNo,
-							   @RequestParam(value = "page", defaultValue = "1") int page,
-							   Model model) {
+						  @RequestParam(value = "page", defaultValue = "1") int page,
+						   Model model) {
+		
 		model.addAttribute("infoNo", infoNo);
 		
 		String boardInfoName = qnaBoardService.getBoardInfoName(infoNo);
@@ -44,13 +45,13 @@ public class QnaBoardController {
 		List<BoardVO> qnaBoardList = qnaBoardService.getQnaBoardList(infoNo, page);
 		model.addAttribute("qnaList",qnaBoardList);
 		
-//		PageVO pageVO = qnaBoardService.getQnaBoardCnt(infoNo, page);
-//		model.addAttribute("pageBean", pageVO);
-//		model.addAttribute("page", page);
+		PageVO pageVO = qnaBoardService.getQnaBoardCnt(infoNo, page);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("page", page);
 		return "qna/list";
 	}
 	
-	@GetMapping("/getQnaBoard")
+	@GetMapping("/getQna")
 	public String getQnaBoard(@RequestParam("infoNo") int infoNo,
 					   @RequestParam("boardNo") int boardNo,
 					   @RequestParam("page") int page,
@@ -58,8 +59,8 @@ public class QnaBoardController {
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);
 		
-		BoardVO readContentBean = qnaBoardService.getQnaBoard(boardNo);
-		model.addAttribute("readContentBean", readContentBean);
+		BoardVO readContent = qnaBoardService.getQnaBoard(boardNo);
+		model.addAttribute("readContentBean", readContent);
 		
 		model.addAttribute("userVO", userVO);
 		model.addAttribute("page", page);

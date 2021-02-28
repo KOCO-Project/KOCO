@@ -20,14 +20,9 @@ import co.kr.koco.vo.UserVO;
 @Service
 public class QnaBoardService {
 	
-//	@Value("${path.upload}")
 	private String pathUpload;
-	
-//	@Value("${page.listcnt}")
-	private int pageListcnt; // 페이지당 글 개수
-	
-//	@Value("${page.paginationcnt}")
-	private int pagePaginationcnt;
+	private int pageListcnt = 10; // 페이지당 글 개수
+	private int pagePaginationcnt = 10;
 	
 	@Autowired
 	private QnaBoardDAO qnaBoardDAO;
@@ -71,6 +66,7 @@ public class QnaBoardService {
 	}
 	
 	public BoardVO getQnaBoard(int boardNo) {
+		qnaBoardDAO.setQnaBoardRcnt(boardNo);
 		return qnaBoardDAO.getQna(boardNo);
 	}
 	
