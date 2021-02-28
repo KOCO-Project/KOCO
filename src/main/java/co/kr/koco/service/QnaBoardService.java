@@ -71,7 +71,7 @@ public class QnaBoardService {
 	}
 	
 	public BoardVO getQnaBoard(int boardNo) {
-		return qnaBoardDAO.getQnaBoard(boardNo);
+		return qnaBoardDAO.getQna(boardNo);
 	}
 	
 	public void updateQnaBoard(BoardVO boardVO) {

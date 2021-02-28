@@ -20,18 +20,12 @@ public class BoardVO {
 //	서버에있는 파일이름
 	private String fileName;
 	private String thumbnail;
+	private String writer;
 	private int userNo;
 	private int boardReadcount;
 	private String searchCondition;
 	private String searchKeyword;
 	
-	@Override
-	public String toString() {
-		return "BoardVO [boardNo=" + boardNo + ", boardCategory=" + boardCategory + ", boardTitle=" + boardTitle
-				+ ", boardContent=" + boardContent + ", boardRegdate=" + boardRegdate + ", uploadFile=" + uploadFile
-				+ ", fileName=" + fileName + ", thumbnail=" + thumbnail + ", userNo=" + userNo + ", boardReadcount="
-				+ boardReadcount + ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + "]";
-	}
 	public String getFileName() {
 		return fileName;
 	}
@@ -103,6 +97,12 @@ public class BoardVO {
 	}
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	
 	

@@ -33,7 +33,7 @@
 					<c:forEach var='obj' items="${qnaList }">
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.boardNo }</td>
-						<td><a href='${root }qna/getQna?infoNo=2'>${obj.boardTitle }</a></td>
+						<td><a href='${root }qna/getQna?infoNo=${infoNo }&boardNo=${boardNo }'>${obj.boardTitle }</a></td>
 						<td class="text-center d-none d-md-table-cell">${obj.writer }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardRegdate }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardReadcount }</td>
@@ -52,7 +52,7 @@
 					</c:when>
 					<c:otherwise>
 					<li class="page-item">
-						<a href="${root }qna/qnaList?boardInfo=2&page=${pageVO.prevPage}" class="page-link">이전</a>
+						<a href="${root }qna/list?infoNo=${infoNo }&page=${pageVO.prevPage}" class="page-link">이전</a>
 					</li>
 					</c:otherwise>
 					</c:choose>
@@ -62,12 +62,12 @@
 					<c:choose>
 					<c:when test="${idx == pageVO.currentPage }">
 					<li class="page-item active">
-						<a href="${root }qna/qnaList?boardInfo=2&page=${idx}" class="page-link">${idx }</a>
+						<a href="${root }qna/list?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
 					</li>
 					</c:when>
 					<c:otherwise>
 					<li class="page-item">
-						<a href="${root }qna/qnaList?boardInfo=2&page=${idx}" class="page-link">${idx }</a>
+						<a href="${root }qna/list?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
 					</li>
 					</c:otherwise>
 					</c:choose>
@@ -82,7 +82,7 @@
 					</c:when>
 					<c:otherwise>
 					<li class="page-item">
-						<a href="${root }board/main?boardInfo=2&page=${pageVO.nextPage}" class="page-link">다음</a>
+						<a href="${root }qna/list?infoNo=${infoNo }&page=${pageVO.nextPage}" class="page-link">다음</a>
 					</li>
 					</c:otherwise>
 					</c:choose>
@@ -91,7 +91,7 @@
 			</div>
 			
 			<div class="text-right">
-				<a href="${root }qna/registerQna?infoNo=2" class="btn btn-primary">글쓰기</a>
+				<a href="${root }qna/registerQna?infoNo=${infoNo }" class="btn btn-primary">글쓰기</a>
 			</div>
 			
 		</div>

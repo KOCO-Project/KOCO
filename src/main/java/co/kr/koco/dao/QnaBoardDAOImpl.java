@@ -2,6 +2,7 @@ package co.kr.koco.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,13 +16,13 @@ public class QnaBoardDAOImpl implements QnaBoardDAO{
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public void register(BoardVO boardVO) {
+	public void getQnaBoardRegister(BoardVO qnaBoardVO) {
 		// TODO Auto-generated method stub
-		sqlSessionTemplate.insert("qnaBoard.getQnaBoardRegister",boardVO);
+		sqlSessionTemplate.insert("qnaBoard.getQnaBoardRegister",qnaBoardVO);
 	}
 
 	@Override
-	public List<BoardVO> getQnaList(int infoNo) {
+	public List<BoardVO> getQnaBoardList(int infoNo, RowBounds rowBounds) {
 		List<BoardVO> list = sqlSessionTemplate.selectList("qnaBoard.getQnaBoardList", infoNo);
 		System.out.println(list);
 		return list;
@@ -33,17 +34,27 @@ public class QnaBoardDAOImpl implements QnaBoardDAO{
 	}
 
 	@Override
-	public void update(int boardNo) {
+	public void updateQnaBoard(BoardVO boardVO) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(int boardNo) {
+	public void deleteQnaBoard(int boardNo) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	
+	@Override
+	public String getBoardInfoName(int boardNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getQnaBoardCnt(int boardCategory) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
