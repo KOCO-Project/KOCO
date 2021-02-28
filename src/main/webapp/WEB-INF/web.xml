@@ -10,9 +10,9 @@
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-		<init-param>
+	<!-- 	<init-param>
 			<param-value>UTF-8</param-value>
-		</init-param>
+		</init-param> -->
 	</listener>	
 
 	<servlet>

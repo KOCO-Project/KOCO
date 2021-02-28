@@ -21,6 +21,7 @@ public class BoardVO {
 	private String fileName;
 	private String thumbnail;
 	private int userNo;
+	private String writer;
 	private int boardReadcount;
 	private String searchCondition;
 	private String searchKeyword;
@@ -103,6 +104,12 @@ public class BoardVO {
 	}
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	
 	

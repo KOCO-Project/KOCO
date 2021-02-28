@@ -23,16 +23,8 @@ public class BoardInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String str1 = request.getParameter("boardNo");
-		int boardNo = Integer.parseInt(str1);
-		
-		BoardVO currentQnaBoardVO = qnaBoardService.getQnaBoard(boardNo);
-		
-		if(currentQnaBoardVO.getUserNo() != userVO.getUserNo()) {
-			String contextPath = request.getContextPath();
-			response.sendRedirect(contextPath + "/qna/qnaBoardRegister_fail");
-			return false;
-		}
+	
+
 		return true;
 	}
 }

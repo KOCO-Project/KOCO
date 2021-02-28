@@ -27,9 +27,12 @@
 		<property name="configLocation" value="classpath:config.xml"></property>
 	</bean>
 	
-	<bean class="org.mybatis.spring.SqlSessionTemplate">
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSessionTemplate">
 		<constructor-arg ref="sqlSession"></constructor-arg>
 	</bean>
 	
 	<context:component-scan base-package="co.kr.koco"></context:component-scan>
+
+	
+	
 </beans>
