@@ -25,6 +25,13 @@ public class BoardVO {
 	private String searchCondition;
 	private String searchKeyword;
 	
+	@Override
+	public String toString() {
+		return "BoardVO [boardNo=" + boardNo + ", boardCategory=" + boardCategory + ", boardTitle=" + boardTitle
+				+ ", boardContent=" + boardContent + ", boardRegdate=" + boardRegdate + ", uploadFile=" + uploadFile
+				+ ", fileName=" + fileName + ", thumbnail=" + thumbnail + ", userNo=" + userNo + ", boardReadcount="
+				+ boardReadcount + ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + "]";
+	}
 	public String getFileName() {
 		return fileName;
 	}
