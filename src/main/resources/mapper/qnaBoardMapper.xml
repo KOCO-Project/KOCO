@@ -2,37 +2,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qnaBoard">
-	<insert parameterType="co.kr.koco.vo.BoardVO" id="getQnaBoardRegister">
-	<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="boardNo">
-		<!-- select content_seq.nextval from dual  -->
-	</selectKey>
+	<resultMap type="board" id="boardResult">
+		<id property="boardNo" column="BOARD_NO"></id>
+		<result property="boardCategory" column="BOARD_CATEGORY" />
+		<result property="boardTitle" column="BOARD_TITLE" />
+		<result property="boardContent" column="BOARD_CONTENT" />
+		<result property="boardRegdate" column="BOARD_REGDATE" />
+		<result property="boardReadcount" column="READCOUNT" />
+		<result property="fileName" column="FILE_NAME" />
+		<result property="thumbnail" column="THUMBNAIL" />
+		<result property="userNo" column="USER_NO" />
+	</resultMap>
+
+	<insert parameterType="board" id="getQnaBoardRegister">
+	<!-- <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="boardNo">
+		select content_seq.nextval from dual 
+	</selectKey> -->
 	<![CDATA[
 		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO)
-		VALUES(#{boardCategory}, #{boardTitle}, #{boardContent}, NOW(), #{readcount}, #{fileName}, NULL, #{userNo})
+		VALUES(#{boardCategory}, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo})
 	]]>
 	</insert>
 	
 	<select parameterType="java.lang.Integer" id="getBoardInfoName" resultType="java.lang.String">
 	<![CDATA[
-		
+		SELECT INFO_NAME 
+		FROM KOCO_BOARD_INFO 
+		WHERE INFO_NO = #{infoNo}
 	]]>
 	</select>
 	
 	<select parameterType="java.lang.Integer" id="getQnaBoardList" resultType="co.kr.koco.vo.BoardVO">
 	<![CDATA[
-	
+		SELECT a1.BOARD_NO , a1.BOARD_TITLE, a2.USER_NICKNAME  AS WRITER, 
+			DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE , READCOUNT 
+		FROM KOCO_BOARD a1, KOCO_USERS a2
+		WHERE a1.USER_NO = a2.USER_NO
+		AND a1.BOARD_CATEGORY = #{infoNo}
+		ORDER BY a1.BOARD_NO DESC
 	]]>
 	</select>
 	
 	<select parameterType="java.lang.Integer" id="getQnaBoard" resultType="co.kr.koco.vo.BoardVO">
 	<![CDATA[
-	
+		SELECT a2.USER_NICKNAME AS WRITER, 
+		DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE, 
+	     	  a1.BOARD_TITLE, a1.BOARD_CONTENT, a1.FILE_NAME, READCOUNT 
+		FROM KOCO_BOARD a1, KOCO_USERS a2
+		WHERE a1.USER_NO = a2.USER_NO 
+		AND BOARD_NO = #{boardNo}
+		
 	]]>
 	</select>
 	
-	<update parameterType="co.kr.koco.vo.BoardVO" id="updateQnaBoard">
+	<update parameterType="board" id="updateQnaBoard">
 	<![CDATA[
-		
+		UPDATE KOCO_BOARD
+		SET BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent},
+			FILE_NAME = #{fileName, jdbcType=VARCHAR}
+		WHERE BOARD_NO = #{boardNo}
 	]]>
 	</update>
 	
@@ -45,7 +73,7 @@
 	
 	<select parameterType="java.lang.Integer" id="getQnaBoardCnt" resultType="java.lang.Integer">
 	<![CDATA[
-		
+		SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = 2
 	]]>
 	</select>
 	
