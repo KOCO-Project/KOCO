@@ -24,7 +24,7 @@
 	]]>
 	</insert>
 	
-	<select parameterType="java.lang.Integer" id="getBoardInfoName" resultType="java.lang.String">
+	<select parameterType="java.lang.Integer" id="getBoardInfoName" resultType="java.lang.String" resultMap="boardResult">
 	<![CDATA[
 		SELECT INFO_NAME 
 		FROM KOCO_BOARD_INFO 
@@ -32,9 +32,9 @@
 	]]>
 	</select>
 	
-	<select parameterType="java.lang.Integer" id="getQnaBoardList" resultType="co.kr.koco.vo.BoardVO">
+	<select parameterType="java.lang.Integer" id="getQnaBoardList" resultType="board" resultMap="boardResult">
 	<![CDATA[
-		SELECT a1.BOARD_NO , a1.BOARD_TITLE, a2.USER_NICKNAME  AS WRITER, 
+		SELECT a1.BOARD_NO , a1.BOARD_TITLE, a2.USER_NICKNAME AS writer, 
 			DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE , READCOUNT 
 		FROM KOCO_BOARD a1, KOCO_USERS a2
 		WHERE a1.USER_NO = a2.USER_NO
@@ -43,9 +43,9 @@
 	]]>
 	</select>
 	
-	<select parameterType="java.lang.Integer" id="getQnaBoard" resultType="co.kr.koco.vo.BoardVO">
+	<select parameterType="java.lang.Integer" id="getQnaBoard" resultType="board" resultMap="boardResult">
 	<![CDATA[
-		SELECT a2.USER_NICKNAME AS WRITER, 
+		SELECT a2.USER_NICKNAME AS writer, 
 		DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE, 
 	     	  a1.BOARD_TITLE, a1.BOARD_CONTENT, a1.FILE_NAME, READCOUNT 
 		FROM KOCO_BOARD a1, KOCO_USERS a2
@@ -65,15 +65,15 @@
 	</update>
 	
 	
-	<select parameterType="java.lang.Integer" id="deleteQnaBoard">
+	<select parameterType="java.lang.Integer" id="deleteQnaBoard" resultMap="boardResult">
 	<![CDATA[
 		DELETE FROM KOCO_BOARD WHERE BOARD_NO = #{boardNo}
 	]]>
 	</select>
 	
-	<select parameterType="java.lang.Integer" id="getQnaBoardCnt" resultType="java.lang.Integer">
+	<select parameterType="java.lang.Integer" id="getQnaBoardCnt" resultType="java.lang.Integer" resultMap="boardResult">
 	<![CDATA[
-		SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = 2
+		SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = #{infoNo}
 	]]>
 	</select>
 	

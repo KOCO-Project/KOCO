@@ -33,8 +33,8 @@
 					<c:forEach var='obj' items="${qnaList }">
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.boardNo }</td>
-						<td><a href='${root }qna/getQnaBoard?boardInfo=2'>${obj.boardTitle }</a></td>
-						<td class="text-center d-none d-md-table-cell">${obj.userNickname }</td>
+						<td><a href='${root }qna/getQna?infoNo=2'>${obj.boardTitle }</a></td>
+						<td class="text-center d-none d-md-table-cell">${obj.writer }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardRegdate }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardReadcount }</td>
 					</tr>
