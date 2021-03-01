@@ -91,7 +91,7 @@
 			</div>
 			
 			<div class="text-right">
-				<a href="${root }qna/registerQna?infoNo=${infoNo }" class="btn btn-primary">글쓰기</a>
+				<a href="${root }qna/qnaRegister?infoNo=${infoNo }" class="btn btn-primary">글쓰기</a>
 			</div>
 			
 		</div>

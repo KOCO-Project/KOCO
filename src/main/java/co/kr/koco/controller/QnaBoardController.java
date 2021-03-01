@@ -75,13 +75,13 @@ public class QnaBoardController {
 		return "qna/register";
 	}
 	
-	@GetMapping("/qnaRegisterPro")
-	public String qnaRegisterPro(@Valid @ModelAttribute("qnaBoardVO") BoardVO regQnaBoardVO, BindingResult result) {
+	@PostMapping("/regQna_pro")
+	public String qnaRegisterPro(@Valid @ModelAttribute("qnaBoardVO") BoardVO qnaBoardVO, BindingResult result) {
 		if(result.hasErrors()) {
 			System.out.println("글쓰기 에러");
 			return "qna/register";
 		}
-		qnaBoardService.getQnaBoardRegister(regQnaBoardVO);
+		qnaBoardService.getQnaBoardRegister(qnaBoardVO);
 		return "qna/qnaRegister_pro";
 	}
 	
