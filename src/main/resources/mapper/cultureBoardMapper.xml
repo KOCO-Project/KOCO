@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CultureDAO">
+
+	<resultMap id="cultureResult" type="culture">
+		<id property="cultureNo" column="CULTURE_NO" />
+		<result property="cultureTitle" column="CULTURE_TITLE" />
+		<result property="cultureContent" column="CULTURE_CONTENT" />
+		<result property="cultureRegdate" column="CULTURE_REGDATE" />
+		<result property="userNo" column="USER_NO" />
+	</resultMap>
+
+	<select id="getCultureList" resultMap="cultureResult"
+		resultType="culture">
+		<![CDATA[
+		SELECT *
+		FROM KOCO_CULTURE
+		ORDER BY CULTURE_NO DESC
+		]]>
+	</select>
+
+	<insert id="cultureRegister" parameterType="culture">
+		<![CDATA[
+		INSERT INTO KOCO_CULTURE(CULTURE_TITLE,CULTURE_CONTENT,USER_NO) 
+		VALUES(#{cultureTitle}, #{cultureContent}, #{userNo})
+		]]>
+	</insert>
+
+	<select id="getCultureBoard" resultType="culture"
+		resultMap="cultureResult">
+		<![CDATA[
+		SELECT *
+		FROM KOCO_CULTURE
+		WHERE CULTURE_NO = #{cultureNo}
+		]]>
+	</select>
+</mapper>

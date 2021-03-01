@@ -10,14 +10,13 @@ import co.kr.koco.vo.BoardInfoVO;
 
 @Service
 public class TopMenuService {
-	
+
 	@Autowired
 	private TopMenuDao topMenuDao;
-	
-	public List<BoardInfoVO> getTopMenuList(){
+
+	public List<BoardInfoVO> getTopMenuList() {
 		List<BoardInfoVO> topMenuList = topMenuDao.getTopMenuList();
 //		System.out.println(topMenuList+"Service");
 		return topMenuList;
 	}
-	
 }

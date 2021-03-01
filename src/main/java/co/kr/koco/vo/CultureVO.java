@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 public class CultureVO {
 
-	private int cultureNO;
+	private int cultureNo;
 
 	@NotBlank
 	private String cultureTitle;
@@ -21,17 +21,17 @@ public class CultureVO {
 
 	@Override
 	public String toString() {
-		return "CultureVO [cultureNO=" + cultureNO + ", cultureTitle=" + cultureTitle + ", cultureContent="
+		return "CultureVO [cultureNo=" + cultureNo + ", cultureTitle=" + cultureTitle + ", cultureContent="
 				+ cultureContent + ", cultureRegdate=" + cultureRegdate + ", userNo=" + userNo + ", userNickname="
 				+ userNickname + "]";
 	}
 
-	public int getCultureNO() {
-		return cultureNO;
+	public int getCultureNo() {
+		return cultureNo;
 	}
 
-	public void setCultureNO(int cultureNO) {
-		this.cultureNO = cultureNO;
+	public void setCultureNO(int cultureNo) {
+		this.cultureNo = cultureNo;
 	}
 
 	public String getCultureTitle() {
