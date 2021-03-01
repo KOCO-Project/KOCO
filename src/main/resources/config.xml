@@ -5,10 +5,12 @@
 	<typeAliases>
 		<typeAlias alias="users" type="co.kr.koco.vo.UserVO"></typeAlias>
 		<typeAlias alias="board" type="co.kr.koco.vo.BoardVO"></typeAlias>
+		<typeAlias alias="info" type="co.kr.koco.vo.BoardInfoVO"></typeAlias>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/userMapper.xml"></mapper>
 		<mapper resource="mapper/freeBoardMapper.xml"></mapper>
+		<mapper resource="mapper/top_menu_mapper.xml"></mapper>
 	</mappers>
 </configuration>
