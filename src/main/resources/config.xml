@@ -13,6 +13,7 @@
 		<mapper resource="mapper/userMapper.xml"></mapper>
 		<mapper resource="mapper/freeBoardMapper.xml"></mapper>
 		<mapper resource="mapper/top_menu_mapper.xml"></mapper>
+		<mapper resource="mapper/qnaBoardMapper.xml"></mapper>
 		<mapper resource="mapper/cultureBoardMapper.xml"></mapper>
 	</mappers>
 </configuration>
