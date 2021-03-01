@@ -28,4 +28,16 @@ public class CultureDAO {
 		System.out.println(vo);
 		return (CultureVO) mybatis.selectOne("CultureDAO.getCultureBoard", cultureNo);
 	}
+	
+	//테스트 삭제
+	public void deleteCultureBoard(int cultureNo) {
+		mybatis.delete("CultureDAO.deleteCultureBoard",cultureNo);
+	}
+	
+	public void cultureUpdate(CultureVO vo) {
+		System.out.println(vo.getCultureNo());
+		System.out.println(vo.getCultureTitle());
+		System.out.println(vo.getCultureContent());
+		mybatis.update("CultureDAO.cultureUpdate",vo);
+	}
 }

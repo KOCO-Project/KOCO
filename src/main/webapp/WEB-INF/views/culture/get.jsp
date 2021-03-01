@@ -7,7 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QnA</title>
+<title>Culture getBoard</title>
+
+
 <!-- Bootstrap CDN -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -52,8 +54,9 @@
 
 						<div class="form-group">
 							<div class="text-right">
-								<a href="" class="btn btn-primary">목록보기</a> <a href=""
-									class="btn btn-info">수정하기</a> <a href="" class="btn btn-danger">삭제하기</a>
+									<a href="cultureList" class="btn btn-primary">목록보기</a> 
+									<a href="cultureUpdateBoardForm?cultureNo=${culture.cultureNo}" class="btn btn-info">수정하기</a> 
+									<a href="deleteCultureBoard?cultureNo=${culture.cultureNo}" class="btn btn-danger" >삭제하기</a>
 							</div>
 						</div>
 					</div>

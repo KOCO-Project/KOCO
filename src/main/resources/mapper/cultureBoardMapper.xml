@@ -36,4 +36,21 @@
 		WHERE CULTURE_NO = #{cultureNo}
 		]]>
 	</select>
+	
+	<delete id="deleteCultureBoard">
+		<![CDATA[
+		DELETE FROM KOCO_CULTURE
+		WHERE CULTURE_NO = #{cultureNo}
+		]]>
+	</delete>
+	
+	<update id="cultureUpdate">
+		<![CDATA[
+		UPDATE KOCO_CULTURE SET
+		CULTURE_TITLE = #{cultureTitle},
+		CULTURE_CONTENT = #{cultureContent}
+		WHERE CULTURE_NO = #{cultureNo}
+		]]>
+		
+	</update>
 </mapper>

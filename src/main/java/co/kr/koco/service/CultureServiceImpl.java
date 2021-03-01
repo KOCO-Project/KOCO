@@ -25,4 +25,12 @@ public class CultureServiceImpl implements CultureService {
 	public CultureVO getCultureBoard(int cultureNo) {
 		return cultureDAO.getCultureBoard(cultureNo);
 	}
+	
+	public void deleteCultureBoard(int cultureNo) {
+		cultureDAO.deleteCultureBoard(cultureNo);
+	}
+	
+	public void cultureUpdate(CultureVO vo) {
+		cultureDAO.cultureUpdate(vo);
+	}
 }
