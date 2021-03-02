@@ -2,16 +2,19 @@ package co.kr.koco.controller;
 
 import java.io.PrintWriter;
 import java.util.Map;
+import java.util.Random;
 
+import javax.annotation.Resource;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +27,13 @@ import co.kr.koco.vo.UserVO;
 public class UserController {
 	@Autowired
 	private UserService service;
+
+	@Autowired
+	private JavaMailSenderImpl mailSender;
+
+	@Resource(name = "userVO")
+	@Lazy
+	private UserVO userVO;
 
 	@PostMapping("/userIdExist")
 	public void userIdExist(@RequestParam(value = "userId") String userId, HttpServletResponse response)
@@ -43,7 +53,7 @@ public class UserController {
 	public void userNicknameExist(@RequestParam(value = "userNickname") String userNickname,
 			HttpServletResponse response) throws Exception {
 		PrintWriter out = response.getWriter();
-		
+
 		boolean check = service.userNicknameExist(userNickname);
 
 		if (check) {
@@ -52,12 +62,12 @@ public class UserController {
 			out.println("0"); // 닉네임 중복
 		}
 	}
-	
+
 	@PostMapping("/userEmailExist")
-	public void userEmailExist(@RequestParam(value = "userEmail") String userEmail,
-			HttpServletResponse response) throws Exception {
+	public void userEmailExist(@RequestParam(value = "userEmail") String userEmail, HttpServletResponse response)
+			throws Exception {
 		PrintWriter out = response.getWriter();
-		
+
 		boolean check = service.userEmailExist(userEmail);
 
 		if (check) {
@@ -68,16 +78,17 @@ public class UserController {
 	}
 
 	@PostMapping("/userRegister")
-	public String userRegister(@Valid UserVO vo, BindingResult result) throws Exception {
-//		if(result.hasErrors()) {
+	public String userRegister(UserVO userVo)
+			throws Exception {
+//		if (result.hasErrors()) {
 //			List<ObjectError> list = result.getAllErrors();
 //			for(ObjectError error : list) {
 //				System.out.println(error);
 //			}
-//			return "userRegister";
+//			return "users/userRegister";
 //		}
-		
-		service.userRegister(vo);
+
+		service.userRegister(userVo);
 
 		return "users/login";
 	}
@@ -105,7 +116,39 @@ public class UserController {
 	}
 
 	@GetMapping("/mypage")
-	public String mypage() throws Exception {		
+	public String mypage() throws Exception {
 		return "users/mypage";
+	}
+
+	@RequestMapping("/findUserInfo")
+	public String findUserInfo() {
+		return "users/findUserInfo";
+	}
+
+	@RequestMapping("/sendAuthMail")
+	public String sendAuthMail(@RequestParam(value = "userEmail") String email) throws Exception {
+		Random random = new Random();
+		int num = random.nextInt(888888) + 111111;
+
+		String setFrom = "kocomuzi@gmail.com";
+		String setTo = email;
+		String mailTitle = "KOCO에서 보내드리는 인증번호입니다.";
+		String mailContent = "인증번호: " + num;
+		
+		try	{
+			MimeMessage mail = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(mail, true, "utf-8");
+
+			helper.setFrom(setFrom);
+			helper.setTo(setTo);
+			helper.setSubject(mailTitle);
+			helper.setText(mailContent);
+			mailSender.send(mail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String authKey = Integer.toString(num);
+		
+		return "users/findUserInfo";
 	}
 }
