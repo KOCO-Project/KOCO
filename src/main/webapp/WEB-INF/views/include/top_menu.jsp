@@ -36,7 +36,7 @@
 				<a href="#" class="nav-link">회원정보</a>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="nav-link">로그아웃</a>
+				<a href="userLogout" class="nav-link">로그아웃</a>
 			</li>
 		</ul>
 	</div>

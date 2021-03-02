@@ -27,15 +27,15 @@ input {
 </style>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+	<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 	<div class="container" style="margin-top: 100px">
-		<div class="card-body" style="text-align: left; margin-left: 100px;">
+		<div class="card-body" style="text-align: left; margin-left: 350px;">
 			<h5 style="margin-left: 40px">KOCO sign in.</h5>
 				<form action="userLogin" method="post">
 					<ul>
 						<li><input type="text" name="userId" placeholder="ID"></li>
 						<li><input type="password" name="userPw" placeholder="Password"></li>
-						<li><input type="submit" value="Sign In"></li>
+						<li><input type="submit" value="Sign In" class="btn btn-primary"></li>
 					</ul>
 				</form>
 			<a href="findUserInfo" class="user">ID 혹은 Password가 기억이 안나십니까?</a><br>

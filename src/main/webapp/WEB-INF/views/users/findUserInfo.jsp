@@ -108,7 +108,7 @@ input[type="email"], input[type="text"] {
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div class="container" style="margin-top: 100px">
-		<div class="card-body" style="text-align: left; margin-left: 100px;">
+		<div class="card-body" style="text-align: left; margin-left: 350px;">
 			<h6 style="margin-left: 40px">가입시 등록한 Email을 입력해주세요</h6>
 			<form id="form1" action="findIdPwd">
 				<ul>

@@ -14,7 +14,7 @@
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div class="container" style="margin-top: 100px">
-		<div class="card-body" style="text-align: left; margin-left: 100px;">
+		<div class="card-body" style="text-align: left; margin-left: 350px;">
 			아이디: ${findUser.userId }<br> 
 			비밀번호: ${findUser.userPw }
 		</div>

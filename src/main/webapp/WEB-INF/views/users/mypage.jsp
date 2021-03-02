@@ -14,30 +14,32 @@
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div class="container" style="margin-top: 100px">
-		<div class="card-body" style="text-align: left; margin-left: 100px;">
-			<h2>마이페이지</h2>
-			<table border="1">
-				<tr>
-					<td>아이디</td>
-					<td>${user.userId }</td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td>${user.userPw }</td>
-				</tr>
-				<tr>
-					<td>닉네임</td>
-					<td>${user.userNickname }</td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td>${user.userEmail }</td>
-				</tr>
-				<tr>
-					<td>가입일</td>
-					<td>${user.userRegDate }</td>
-				</tr>
-			</table>
+		<div class="card-body" style="text-align: center;">
+			<h2>${user.userNickname }</h2><br>
+			<input type="button" value="개인정보수정" class="btn btn-primary"><br><br>
+			<strong>팔로워</strong>&emsp;&emsp;&emsp;&emsp;&emsp;<strong>팔로우</strong>
+<!-- 			<table border="1"> -->
+<!-- 				<tr> -->
+<!-- 					<td>아이디</td> -->
+<%-- 					<td>${user.userId }</td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td>비밀번호</td> -->
+<%-- 					<td>${user.userPw }</td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td>닉네임</td> -->
+<%-- 					<td>${user.userNickname }</td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td>이메일</td> -->
+<%-- 					<td>${user.userEmail }</td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td>가입일</td> -->
+<%-- 					<td>${user.userRegDate }</td> --%>
+<!-- 				</tr> -->
+<!-- 			</table> -->
 		</div>
 	</div>
 </body>

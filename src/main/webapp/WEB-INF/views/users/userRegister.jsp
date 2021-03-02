@@ -24,8 +24,8 @@ input[type="text"], input[type="password"], input[type="email"] {
 	margin-bottom: 10px;
 }
 input[type="submit"], input[type="button"] {
-	border: 1px solid gray;
-	border-radius: 10px;
+/* 	border: 1px solid gray; */
+/* 	border-radius: 10px; */
 	width: 140px;
 	margin-right: 20px; 
 }
@@ -154,7 +154,7 @@ input[type="submit"], input[type="button"] {
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div class="container" style="margin-top: 100px">
-		<div class="card-body" style="text-align: left; margin-left: 100px;">
+		<div class="card-body" style="text-align: left; margin-left: 350px;">
 		<h5 style="margin-left: 40px">Create Your KOCO ID.</h5>
 			<form action="userRegister" method="post">
 				<ul>
@@ -168,7 +168,7 @@ input[type="submit"], input[type="button"] {
 					<span id="emailCheck"></span></li>
 					<li><input type="text" name="userNickname" id="userNickname" onblur="userNicknameExist()" placeholder="NickName">
 					<span id="nickCheck"></span></li>					
-					<li><input type="submit" value="회원가입"><input type="button" value="Cancel" onclick="history.back()"></li>
+					<li><input type="submit" value="회원가입" class="btn btn-primary"><input type="button" value="Cancel" onclick="history.back()" class="btn btn-primary"></li>
 				</ul>
 			</form>
 		</div>

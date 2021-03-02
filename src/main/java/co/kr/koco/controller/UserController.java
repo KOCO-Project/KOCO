@@ -79,34 +79,25 @@ public class UserController {
 	}
 
 	@PostMapping("/userRegister")
-	public String userRegister(UserVO userVo)
-			throws Exception {
-//		if (result.hasErrors()) {
-//			List<ObjectError> list = result.getAllErrors();
-//			for(ObjectError error : list) {
-//				System.out.println(error);
-//			}
-//			return "users/userRegister";
-//		}
-
+	public String userRegister(UserVO userVo) throws Exception {
 		service.userRegister(userVo);
 
 		return "users/login";
 	}
 
 	@PostMapping("/userLogin")
-	public String login(UserVO userVo, HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
+	public String login(UserVO userVo, HttpServletRequest request, HttpSession session) throws Exception {
+		session = request.getSession();
 
 		Map<String, UserVO> login = service.login(userVo);
 
 		if (login != null) {
 			session.setAttribute("user", login);
+			return "users/logintest";
 		} else {
-			session.setAttribute("user", null);
+			session.setAttribute("user", null);			
+			return "users/login";
 		}
-
-		return "users/logintest";
 	}
 
 	@RequestMapping("/userLogout")
@@ -116,7 +107,7 @@ public class UserController {
 		return "users/login";
 	}
 
-	@GetMapping("/mypage")
+	@RequestMapping("/mypage")
 	public String mypage() throws Exception {
 		return "users/mypage";
 	}
@@ -127,7 +118,8 @@ public class UserController {
 	}
 
 	@RequestMapping("/sendAuthMail")
-	public void sendAuthMail(@RequestParam(value = "userEmail") String email, HttpServletResponse response) throws Exception {
+	public void sendAuthMail(@RequestParam(value = "userEmail") String email, HttpServletResponse response)
+			throws Exception {
 		PrintWriter out = response.getWriter();
 		Random random = new Random();
 		int num = random.nextInt(888888) + 111111;
@@ -136,8 +128,8 @@ public class UserController {
 		String setTo = email;
 		String mailTitle = "KOCO에서 보내드리는 인증번호입니다.";
 		String mailContent = "인증번호: " + num;
-		
-		try	{
+
+		try {
 			MimeMessage mail = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(mail, true, "utf-8");
 
@@ -150,16 +142,16 @@ public class UserController {
 			e.printStackTrace();
 		}
 		String authKey = Integer.toString(num);
-		
+
 		out.println(authKey);
 	}
-	
+
 	@GetMapping("/findIdPwd")
-	public ModelAndView findIdPw(@RequestParam(value = "userEmail") String userEmail) throws Exception {		
+	public ModelAndView findIdPw(@RequestParam(value = "userEmail") String userEmail) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("users/findIdPw");
 		mav.addObject("findUser", service.findIdPw(userEmail));
-		
+
 		return mav;
 	}
 }
