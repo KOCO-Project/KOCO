@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,8 @@ import co.kr.koco.vo.UserVO;
 
 @Service
 public class QnaBoardService {
-	
-	private String pathUpload;
+
+//	String pathUpload="context.getRealPath(path)";
 	private int pageListcnt = 10; // 페이지당 글 개수
 	private int pagePaginationcnt = 10;
 	
@@ -31,15 +33,15 @@ public class QnaBoardService {
 	@Lazy
 	private UserVO userVO;
 
-	private String saveUploadFile(MultipartFile uploadFile) {
-		String file_name = System.currentTimeMillis() + "_" + uploadFile.getOriginalFilename();
-		try {
-			uploadFile.transferTo(new File(pathUpload + "/" + file_name));
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return file_name;
-	}
+//	private String saveUploadFile(MultipartFile uploadFile) {
+//		String file_name = System.currentTimeMillis() + "_" + uploadFile.getOriginalFilename();
+//		try {
+//			uploadFile.transferTo(new File(pathUpload + "/" + file_name));
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return file_name;
+//	}
 	
 	public void getQnaBoardRegister(BoardVO writerBoardVO) {
 //		System.out.println(writerBoardVO.getBoardTitle());
@@ -48,21 +50,21 @@ public class QnaBoardService {
 		
 		MultipartFile uploadFile = writerBoardVO.getUploadFile();
 		if(uploadFile.getSize()>0) {
-			String fileName = saveUploadFile(uploadFile);
-			writerBoardVO.setFileName(fileName);;
+//			String fileName = saveUploadFile(uploadFile);
+//			writerBoardVO.setFileName(fileName);
 		}
 		writerBoardVO.setUserNo(userVO.getUserNo());
 		qnaBoardDAO.getQnaBoardRegister(writerBoardVO);
 	}
 	
-	public String getBoardInfoName(int boardNo) {
-		return qnaBoardDAO.getBoardInfoName(boardNo);
+	public String getBoardInfoName(int infoNo) {
+		return qnaBoardDAO.getBoardInfoName(infoNo);
 	}
 	
-	public List<BoardVO> getQnaBoardList(int boardNo, int page) {
+	public List<BoardVO> getQnaBoardList(int infoNo, int page) {
 		int start = (page-1)*pageListcnt;
-		RowBounds rowBounds = new RowBounds(start, pageListcnt);
-		return qnaBoardDAO.getQnaBoardList(boardNo, rowBounds);
+		RowBounds rowBounds = new RowBounds(start, pageListcnt);//pageListcnt-페이지당 글 개수
+		return qnaBoardDAO.getQnaBoardList(infoNo, rowBounds);
 	}
 	
 	public BoardVO getQnaBoard(int boardNo) {
@@ -73,8 +75,8 @@ public class QnaBoardService {
 	public void updateQnaBoard(BoardVO boardVO) {
 		MultipartFile uploadFile = boardVO.getUploadFile();
 		if(uploadFile.getSize() > 0) {
-			String fileName = saveUploadFile(uploadFile);
-			boardVO.setFileName(fileName);
+//			String fileName = saveUploadFile(uploadFile);
+//			boardVO.setFileName(fileName);
 		}
 		qnaBoardDAO.updateQnaBoard(boardVO);
 	}
@@ -83,9 +85,14 @@ public class QnaBoardService {
 		qnaBoardDAO.deleteQnaBoard(boardNo);
 	}
 	
-	public PageVO getQnaBoardCnt(int boardCategory, int currentPage) {
-		int boardNo = qnaBoardDAO.getQnaBoardCnt(boardCategory);
-		PageVO pageVO = new PageVO(boardNo, currentPage, pageListcnt, pagePaginationcnt);
+	public PageVO getQnaBoardCnt(int infoNo, int currentPage) {
+		int contentCnt = qnaBoardDAO.getQnaBoardCnt(infoNo);//전체글 갯수
+		PageVO pageVO = new PageVO(contentCnt, currentPage, pageListcnt, pagePaginationcnt);
 		return pageVO;
 	}
 }
+
+
+
+
+

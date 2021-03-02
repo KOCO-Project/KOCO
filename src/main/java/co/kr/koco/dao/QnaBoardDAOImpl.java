@@ -1,6 +1,8 @@
 package co.kr.koco.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,15 +19,12 @@ public class QnaBoardDAOImpl implements QnaBoardDAO{
 	
 	@Override
 	public void getQnaBoardRegister(BoardVO qnaBoardVO) {
-		// TODO Auto-generated method stub
 		sqlSessionTemplate.insert("qnaBoard.getQnaBoardRegister",qnaBoardVO);
 	}
 
 	@Override
 	public List<BoardVO> getQnaBoardList(int infoNo, RowBounds rowBounds) {
-		List<BoardVO> list = sqlSessionTemplate.selectList("qnaBoard.getQnaBoardList", infoNo);
-		System.out.println(list);
-		return list;
+		return sqlSessionTemplate.selectList("qnaBoard.getQnaBoardList", infoNo, rowBounds);
 	}
 
 	@Override
@@ -35,31 +34,28 @@ public class QnaBoardDAOImpl implements QnaBoardDAO{
 
 	@Override
 	public void updateQnaBoard(BoardVO boardVO) {
-		// TODO Auto-generated method stub
-		
+		sqlSessionTemplate.selectOne("qnaBoard.updateQnaBoard",boardVO);
 	}
 
 	@Override
 	public void deleteQnaBoard(int boardNo) {
-		// TODO Auto-generated method stub
-		
+		sqlSessionTemplate.selectOne("qnaBoard.deleteQnaBoard", boardNo);
 	}
 
 	@Override
-	public String getBoardInfoName(int boardNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getBoardInfoName(int infoNo) {
+		return sqlSessionTemplate.selectOne("qnaBoard.getBoardInfoName", infoNo);
 	}
 
 	@Override
-	public int getQnaBoardCnt(int boardCategory) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getQnaBoardCnt(int infoNo) {
+		return sqlSessionTemplate.selectOne("qnaBoard.getQnaBoardCnt", infoNo);
 	}
 	
 	@Override
 	public void setQnaBoardRcnt(int boardNo) {
 		sqlSessionTemplate.selectOne("qnaBoard.updateRcnt",boardNo);
 	}
+	
 
 }

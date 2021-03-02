@@ -38,16 +38,16 @@ public class QnaBoardController {
 						   Model model) {
 		
 		model.addAttribute("infoNo", infoNo);
+		String infoName = qnaBoardService.getBoardInfoName(infoNo);
+		model.addAttribute("infoName", infoName);
 		
-		String boardInfoName = qnaBoardService.getBoardInfoName(infoNo);
-		model.addAttribute("boardInfoName", boardInfoName);
-		
-		List<BoardVO> qnaBoardList = qnaBoardService.getQnaBoardList(infoNo, page);
-		model.addAttribute("qnaList",qnaBoardList);
-		
+		List<BoardVO> qnaList = qnaBoardService.getQnaBoardList(infoNo, page);
+		model.addAttribute("qnaList",qnaList);
+
 		PageVO pageVO = qnaBoardService.getQnaBoardCnt(infoNo, page);
 		model.addAttribute("pageVO", pageVO);
 		model.addAttribute("page", page);
+
 		return "qna/list";
 	}
 	

@@ -14,14 +14,14 @@ public class PageVO {
 	private int pageCnt;
 	// 현재 페이지 번호
 	private int currentPage;
-	
+//	contentCnt:전체 글 개수, currentPage:현재 글 번호, contentPageCnt:페이지당 글 개수=10, paginationCnt:페이지 버튼 개수=10
 	public PageVO(int contentCnt, int currentPage, int contentPageCnt, int paginationCnt) {
-		
+//		DB,page파라미터,서비스,서비스(프로퍼티에서 설정하려했으나 value어노테이션 문제,,)
 		// 현재 페이지 번호
 		this.currentPage = currentPage;
 		
-		// 전체 페이지 개수
-		pageCnt = contentCnt / contentPageCnt;
+		// 전체 페이지 개수 = 전체글/페이지당글(나머지부분을 넣을 추가 페이지+1)
+		pageCnt = contentCnt / contentPageCnt; 
 		if(contentCnt % contentPageCnt > 0) {
 			pageCnt++;
 		}

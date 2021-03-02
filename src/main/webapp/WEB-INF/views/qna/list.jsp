@@ -18,7 +18,7 @@
 <div class="container" style="margin-top:100px">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title">${boardInfoName }</h4>
+			<h4 class="card-title">${infoName }</h4>
 			<table class="table table-hover" id='board_list'>
 				<thead>
 					<tr>
@@ -45,46 +45,44 @@
 			<div class="d-none d-md-block">
 				<ul class="pagination justify-content-center">
 					<c:choose>
-					<c:when test="${pageVO.prevPage <= 0 }">
-					<li class="page-item disabled">
-						<a href="#" class="page-link">이전</a>
-					</li>
-					</c:when>
-					<c:otherwise>
-					<li class="page-item">
-						<a href="${root }qna/list?infoNo=${infoNo }&page=${pageVO.prevPage}" class="page-link">이전</a>
-					</li>
-					</c:otherwise>
+						<c:when test="${pageVO.prevPage <= 0 }">
+							<li class="page-item disabled">
+								<a href="#" class="page-link">이전</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+								<a href="${root }qna/list?infoNo=${infoNo }&page=${pageVO.prevPage}" class="page-link">이전</a>
+							</li>
+						</c:otherwise>
 					</c:choose>
-					
-					
+
 					<c:forEach var='idx' begin="${pageVO.min }" end='${pageVO.max }'>
-					<c:choose>
-					<c:when test="${idx == pageVO.currentPage }">
-					<li class="page-item active">
-						<a href="${root }qna/list?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
-					</li>
-					</c:when>
-					<c:otherwise>
-					<li class="page-item">
-						<a href="${root }qna/list?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
-					</li>
-					</c:otherwise>
+						<c:choose>
+							<c:when test="${idx == pageVO.currentPage }">
+							<li class="page-item active">
+								<a href="${root }qna/list?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+								<a href="${root }qna/list?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
+							</li>
+						</c:otherwise>
 					</c:choose>
-					
 					</c:forEach>
 					
 					<c:choose>
-					<c:when test="${pageVO.max >= pageVO.pageCnt }">
-					<li class="page-item disabled">
-						<a href="#" class="page-link">다음</a>
-					</li>
-					</c:when>
-					<c:otherwise>
-					<li class="page-item">
-						<a href="${root }qna/list?infoNo=${infoNo }&page=${pageVO.nextPage}" class="page-link">다음</a>
-					</li>
-					</c:otherwise>
+						<c:when test="${pageVO.max >= pageVO.pageCnt }">
+							<li class="page-item disabled">
+								<a href="#" class="page-link">다음</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+								<a href="${root }qna/list?infoNo=${infoNo }&page=${pageVO.nextPage}" class="page-link">다음</a>
+							</li>
+						</c:otherwise>
 					</c:choose>
 					
 				</ul>
@@ -92,6 +90,7 @@
 			
 			<div class="text-right">
 				<a href="${root }qna/qnaRegister?infoNo=${infoNo }" class="btn btn-primary">글쓰기</a>
+				
 			</div>
 			
 		</div>

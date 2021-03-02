@@ -49,10 +49,10 @@
 					<div class="form-group">
 						<div class="text-right">
 							<a href="${root }qna/list?infoNo=${infoNo }&page=${page}" class="btn btn-primary">목록보기</a>
-						<c:if test="${loginUser.userNo==readContentBean.userNo }">
+						<%-- <c:if test="${loginUser.userNo==readContentBean.userNo }"> --%>
 							<a href="${root }qna/update?infoNo=${infoNo }&boardNo=${boardNo }&page=${page}" class="btn btn-info">수정하기</a>
 							<a href="${root }qna/delete?infoNo=${infoNo }&boardNo=${boardNo }" class="btn btn-danger">삭제하기</a>
-						</c:if>
+						<%-- </c:if> --%>
 						</div>
 					</div>
 				</div>
