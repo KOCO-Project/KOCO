@@ -9,17 +9,17 @@ public class UserVO {
 	private int userNo;
 	
 	@NotBlank
-	@Size(min = 4)
+	@Size(min = 4, max = 20)
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String userId;
 	
 	@NotBlank
-	@Size(min = 8)
+	@Size(min = 8, max = 20)
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String userPw;
 	
 	@NotBlank
-	@Size(min = 1)
+	@Size(min = 1, max = 20)
 	private String userNickname;
 	
 	@NotBlank

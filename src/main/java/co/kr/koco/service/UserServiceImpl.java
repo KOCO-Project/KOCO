@@ -2,7 +2,10 @@ package co.kr.koco.service;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import co.kr.koco.dao.UserDAO;
@@ -12,6 +15,10 @@ import co.kr.koco.vo.UserVO;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO dao;
+	
+	@Resource(name = "userVO")
+	@Lazy
+	private UserVO userVO;
 
 	@Override
 	public boolean userIdExist(String userId) {
