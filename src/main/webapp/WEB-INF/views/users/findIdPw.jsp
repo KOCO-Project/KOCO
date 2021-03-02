@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>ID & Password</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -15,29 +15,8 @@
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div class="container" style="margin-top: 100px">
 		<div class="card-body" style="text-align: left; margin-left: 100px;">
-			<h2>마이페이지</h2>
-			<table border="1">
-				<tr>
-					<td>아이디</td>
-					<td>${user.userId }</td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td>${user.userPw }</td>
-				</tr>
-				<tr>
-					<td>닉네임</td>
-					<td>${user.userNickname }</td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td>${user.userEmail }</td>
-				</tr>
-				<tr>
-					<td>가입일</td>
-					<td>${user.userRegDate }</td>
-				</tr>
-			</table>
+			아이디: ${findUser.userId }<br> 
+			비밀번호: ${findUser.userPw }
 		</div>
 	</div>
 </body>

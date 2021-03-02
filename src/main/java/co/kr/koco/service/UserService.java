@@ -20,4 +20,6 @@ public interface UserService {
 	// 로그인
 	public Map<String, UserVO> login(UserVO userVo) throws Exception;
 	
+	// id, password 찾기
+	public UserVO findIdPw(String userEmail) throws Exception;
 }

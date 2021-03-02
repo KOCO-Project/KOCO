@@ -36,6 +36,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public Map<String, UserVO> login(UserVO userVo) throws Exception {
 		return sql.selectOne("userMapper.loginCheck", userVo);
+	}
+
+	@Override
+	public UserVO findIdPw(String userEmail) throws Exception {
+		return (UserVO) sql.selectOne("userMapper.findIdPw", userEmail);
 	}	
 
 }

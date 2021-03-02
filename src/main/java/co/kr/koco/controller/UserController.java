@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import co.kr.koco.service.UserService;
 import co.kr.koco.vo.UserVO;
@@ -126,7 +127,8 @@ public class UserController {
 	}
 
 	@RequestMapping("/sendAuthMail")
-	public String sendAuthMail(@RequestParam(value = "userEmail") String email) throws Exception {
+	public void sendAuthMail(@RequestParam(value = "userEmail") String email, HttpServletResponse response) throws Exception {
+		PrintWriter out = response.getWriter();
 		Random random = new Random();
 		int num = random.nextInt(888888) + 111111;
 
@@ -149,6 +151,15 @@ public class UserController {
 		}
 		String authKey = Integer.toString(num);
 		
-		return "users/findUserInfo";
+		out.println(authKey);
+	}
+	
+	@GetMapping("/findIdPwd")
+	public ModelAndView findIdPw(@RequestParam(value = "userEmail") String userEmail) throws Exception {		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("users/findIdPw");
+		mav.addObject("findUser", service.findIdPw(userEmail));
+		
+		return mav;
 	}
 }

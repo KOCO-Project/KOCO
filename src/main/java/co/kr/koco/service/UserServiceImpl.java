@@ -61,6 +61,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Map<String, UserVO> login(UserVO userVo) throws Exception {
 		return dao.login(userVo);
+	}
+
+	@Override
+	public UserVO findIdPw(String userEmail) throws Exception {
+		return dao.findIdPw(userEmail);
 	}		
 
 }

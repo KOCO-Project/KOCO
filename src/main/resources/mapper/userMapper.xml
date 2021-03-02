@@ -42,17 +42,15 @@
 
 	<!-- 로그인 -->
 	<select id="loginCheck" resultType="map">
-		SELECT *
+		SELECT USER_ID AS userId, USER_PW AS userPw, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, USER_REGDATE AS userRegDate
 		FROM KOCO_USERS
 		WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
 	</select>
 	
-	<!-- 마이페이지 -->
-	<!--  
-	<select id="mypage" resultType="co.kr.koco.vo.UserVO">
-		SELECT *
+	<!-- id, password 찾기 -->
+	<select id="findIdPw" parameterType="java.lang.String" resultType="users">
+		SELECT USER_ID AS userId, USER_PW AS userPw
 		FROM KOCO_USERS
-		WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
+		WHERE USER_EMAIL = #{userEmail}
 	</select>
-	-->
 </mapper>

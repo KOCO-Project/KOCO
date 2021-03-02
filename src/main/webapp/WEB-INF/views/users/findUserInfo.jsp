@@ -14,6 +14,7 @@
 ul {
 	list-style: none;
 }
+
 input[type="email"], input[type="text"] {
 	border: 1px solid gray;
 	border-radius: 10px;
@@ -27,6 +28,7 @@ input[type="email"], input[type="text"] {
 	width: 140px;
 	margin-right: 20px;
 }
+
 .btn2 {
 	border: 1px solid gray;
 	border-radius: 10px;
@@ -35,53 +37,72 @@ input[type="email"], input[type="text"] {
 }
 </style>
 <script>
-	function findUserEmail(){
-		var userEmail = $('#userEmail').val();
-
-		$.ajax({
-			url: 'userEmailExist',
-			type: 'post',
-			data: {
-				'userEmail': userEmail
-			},
-			dataType: 'text',
-			success: function(data){
-				console.log(data);
-				if(data == 1){
-					alert('등록되지 않은 E-mail입니다.');
-					return false;
-				} else {
-					//sendAuthMail();
-				}
-			},
-			error: function(data){
-				console.log('error');
-			},
-			failure: function(data){
-				console.log('fail');
-			}
-		});
-	}
-	
-	function sendAuthMail() {
-		var userEmail = $('#userEmail').val();
+	$(function() {
 		var code = "";
-		$.ajax({
-			type: 'get',
-			url: 'sendAuthMail?email=' + userEmail,
-			success: function(data){
-				console.log(data);
-			},
-			error: function(data){
-				console.log('error');
-			},
-			failure: function(data){
-				console.log('fail');
-				console.log(data);
+		
+		$('#findUserEmail').on('click', function findUserEmail() {
+			var userEmail = $('#userEmail').val();
+
+			$.ajax({
+				url : 'userEmailExist',
+				type : 'post',
+				data : {
+					'userEmail' : userEmail
+				},
+				dataType : 'text',
+				success : function(data) {
+					if (data == 1) {
+						alert('등록되지 않은 E-mail입니다.');
+						return false;
+					} else {
+						sendAuthMail();
+					}
+				},
+				error : function(data) {
+					console.log('error');
+				},
+				failure : function(data) {
+					console.log('fail');
+				}
+			});
+		});		
+		
+		function sendAuthMail() {
+			var userEmail = $('#userEmail').val();
+			
+			$.ajax({
+				type : 'post',
+				url : 'sendAuthMail',
+				data : {
+					'userEmail' : userEmail
+				},
+				dataType : 'text',
+				success : function(data) {
+					alert('인증번호를 발송하였습니다.');
+					code = data;
+				},
+				error : function(data) {
+					alert('발송이 실패하였습니다.');
+				},
+				failure : function(data) {
+					alert('발송이 실패하였습니다.');
+				}
+			});
+		}
+		
+		$('#checkAuthKey').on('click', function checkAuthKey() {
+			//var userEmail = $('#userEmail').val();
+			var inputCode = $('#inputCode').val();
+			//console.log(code);
+			//console.log(inputCode);
+			if(code.trim() == inputCode.trim()){
+				$('#form1').submit();
+			} else {
+				alert('인증번호가 일치하지 않습니다.');
 			}
 		});
-		alert('인증번호를 발송하였습니다.');
-	}
+		
+	});
 </script>
 </head>
 <body>
@@ -89,12 +110,13 @@ input[type="email"], input[type="text"] {
 	<div class="container" style="margin-top: 100px">
 		<div class="card-body" style="text-align: left; margin-left: 100px;">
 			<h6 style="margin-left: 40px">가입시 등록한 Email을 입력해주세요</h6>
-			<form action="sendAuthMail" method="post">
+			<form id="form1" action="findIdPwd">
 				<ul>
-					<li><input type="email" name="userEmail" id="userEmail" placeholder="E-Mail"><input type="button" value="인증번호 발송" onclick="findUserEmail()" class="btn2"></li>
+					<li><input type="email" name="userEmail" id="userEmail"
+						placeholder="E-Mail"><input type="button" value="인증번호 발송" class="btn2" id="findUserEmail"></li>
 					<li><input type="text" name="inputCode" id="inputCode" placeholder="인증번호 입력"></li>
-					<li><input type="submit" value="Continue" class="btn1">
-					<input type="button" value="Cancel" onclick="history.back()" class="btn1"></li>
+					<li><input type="button" value="Continue" class="btn1" id="checkAuthKey">
+						<input type="button" value="Cancel" onclick="history.back()" class="btn1"></li>
 				</ul>
 			</form>
 		</div>
