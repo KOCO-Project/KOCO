@@ -26,7 +26,8 @@
 	</interceptors>
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
-	<!-- 업로드 파일 경로 -->
-	<resources mapping="/**" location="/resources/upload"/>
+	<!-- 정적 파일 경로 -->
+	<resources mapping="/**" location="/resources/"/>
+
 	
 </beans:beans>
