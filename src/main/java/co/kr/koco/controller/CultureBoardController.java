@@ -39,34 +39,39 @@ public class CultureBoardController {
 	public String cultureRegisterForm() {
 		return "culture/register";
 	}
-	
+
 	@RequestMapping("/cultureRegister")
 	public String cultureRegister(CultureVO vo) {
 		cultureService.cultureRegister(vo);
 		return "redirect:cultureList";
 	}
-	
+
 	@RequestMapping("/getCultureBoard")
 	public String getCultureBoard(int cultureNo, Model model) {
 		model.addAttribute("culture", cultureService.getCultureBoard(cultureNo));
 		return "culture/get";
 	}
-	
+
 	@RequestMapping("/deleteCultureBoard")
 	public String deleteCultureBoard(int cultureNo) {
 		cultureService.deleteCultureBoard(cultureNo);
 		return "redirect:cultureList";
 	}
-	
+
 	@RequestMapping("cultureUpdateBoardForm")
 	public String cultureUpdateBoard(int cultureNo, Model model) {
 		model.addAttribute("culture", cultureService.getCultureBoard(cultureNo));
 		return "culture/updateForm";
 	}
-	
+
 	@RequestMapping("/cultureUpdateBoard")
 	public String cultureUpdateBoard(@ModelAttribute("culture") CultureVO vo) {
 		cultureService.cultureUpdate(vo);
 		return "redirect:cultureList";
+	}
+
+	@RequestMapping("/cultureTestForm")
+	public String cultureTestForm() {
+		return "culture/test";
 	}
 }
