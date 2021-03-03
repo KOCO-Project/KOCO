@@ -44,7 +44,7 @@
 				</table>
 				<div class="text-right">
 					<br> <a href="cultureRegisterForm">글 등록</a>
-					<br> <a href="cultureTestForm">테스트 페이지</a>
+					
 				</div>
 			</div>
 		</div>

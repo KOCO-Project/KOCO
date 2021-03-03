@@ -42,8 +42,10 @@ public class HomeController {
 	public String registerView() {
 		return "users/userRegister";
 	}
-	
 
-
+	@RequestMapping("/adminTest")
+	public String adminTest() {
+		return "culture/test";
+	}
 
 }

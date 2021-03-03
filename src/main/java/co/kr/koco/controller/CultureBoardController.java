@@ -70,8 +70,4 @@ public class CultureBoardController {
 		return "redirect:cultureList";
 	}
 
-	@RequestMapping("/cultureTestForm")
-	public String cultureTestForm() {
-		return "culture/test";
-	}
 }
