@@ -43,9 +43,9 @@ public class HomeController {
 		return "users/userRegister";
 	}
 
-	@RequestMapping("/adminTest")
-	public String adminTest() {
-		return "culture/test";
+	@RequestMapping("/adminMain")
+	public String adminMain() {
+		return "admin/adminMain";
 	}
 
 }
