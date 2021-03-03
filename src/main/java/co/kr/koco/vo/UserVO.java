@@ -26,8 +26,8 @@ public class UserVO {
 	@Email
 	private String userEmail;
 	
-	private int userStatus;
-	private int userCase;
+	private String userStatus;
+	private String userCase;
 	private String userRegdate;	
 	
 	private boolean userIdExist;
@@ -36,8 +36,8 @@ public class UserVO {
 		this.userIdExist = false;
 	}
 
-	public UserVO(int userNo, String userId, String userPw, String userNickname, String userEmail, int userStatus,
-			int userCase, String userRegdate) {
+	public UserVO(int userNo, String userId, String userPw, String userNickname, String userEmail, String userStatus,
+			String userCase, String userRegdate) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -89,19 +89,19 @@ public class UserVO {
 		this.userEmail = userEmail;
 	}
 
-	public int getUserStatus() {
+	public String getUserStatus() {
 		return userStatus;
 	}
 
-	public void setUserStatus(int userStatus) {
+	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
 	}
 
-	public int getUserCase() {
+	public String getUserCase() {
 		return userCase;
 	}
 
-	public void setUserCase(int userCase) {
+	public void setUserCase(String userCase) {
 		this.userCase = userCase;
 	}
 

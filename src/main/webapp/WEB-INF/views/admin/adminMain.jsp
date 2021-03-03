@@ -36,13 +36,15 @@
 							<th scope="col">Case</th>
 						</tr>
 					</thead>
+					<c:forEach items="${userList }" var="user">
 					<tr class="table-light">
-						<th scope="row">Light</th>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
+						<th scope="row">${user.userNo }</th>
+						<td>${user.userNickname }</td>
+						<td>${user.userEmail }</td>
+						<td>${user.userStatus }</td>
+						<td>${user.userCase }</td>
 					</tr>
+					</c:forEach>
 				</table>
 			</div>
 			<div class="col-md-1"></div>

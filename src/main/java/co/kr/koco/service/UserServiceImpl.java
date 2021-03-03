@@ -1,5 +1,6 @@
 package co.kr.koco.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -66,6 +67,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVO findIdPw(String userEmail) throws Exception {
 		return dao.findIdPw(userEmail);
+	}
+
+	@Override
+	public List<UserVO> userList(UserVO userVo) throws Exception {
+		return dao.userList(userVo);
 	}		
 
 }

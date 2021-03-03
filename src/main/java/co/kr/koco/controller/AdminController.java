@@ -15,26 +15,32 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import co.kr.koco.service.CultureService;
 import co.kr.koco.service.QnaBoardService;
+import co.kr.koco.service.UserService;
 import co.kr.koco.vo.BoardVO;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
 @Controller
 @SessionAttributes("admin")
-public class adminController {
+public class AdminController {
 
 	@Autowired
 	private CultureService cultureService;
 
 	@Autowired
 	private QnaBoardService qnaBoardService;
+	
+	@Autowired
+	private UserService userService;
 
 	@Resource(name = "userVO")
 	@Lazy
 	private UserVO userVO;
 
 	@RequestMapping("/adminMain")
-	public String adminMain() {
+	public String adminMain(UserVO userVo, Model model) throws Exception {
+		model.addAttribute("userList", userService.userList(userVo));
+		
 		return "admin/adminMain";
 	}
 

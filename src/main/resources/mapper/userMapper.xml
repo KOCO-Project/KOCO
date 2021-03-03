@@ -53,4 +53,23 @@
 		FROM KOCO_USERS
 		WHERE USER_EMAIL = #{userEmail}
 	</select>
+	
+	<!-- 관리자페이지 유저리스트 -->
+	<select id="userList" resultType="users">
+		SELECT USER_NO AS userNo, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, 
+		(
+			CASE
+			WHEN USER_STATUS = '1' THEN '활성계정'
+			WHEN USER_STATUS = '2' THEN '휴면계정'
+			ELSE '정지계정'
+			END
+		) AS userStatus, 
+		(
+			CASE 
+			WHEN USER_CASE = '1' THEN '일반회원'
+			ELSE '관리자'
+			END
+		) AS userCase 
+		FROM KOCO_USERS
+	</select>
 </mapper>

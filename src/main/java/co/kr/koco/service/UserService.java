@@ -1,5 +1,6 @@
 package co.kr.koco.service;
 
+import java.util.List;
 import java.util.Map;
 
 import co.kr.koco.vo.UserVO;
@@ -22,4 +23,7 @@ public interface UserService {
 	
 	// id, password 찾기
 	public UserVO findIdPw(String userEmail) throws Exception;
+	
+	// 관리자페이지 유저리스트
+	public List<UserVO> userList(UserVO userVo) throws Exception;
 }

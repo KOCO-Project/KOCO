@@ -1,5 +1,6 @@
 package co.kr.koco.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -41,6 +42,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public UserVO findIdPw(String userEmail) throws Exception {
 		return (UserVO) sql.selectOne("userMapper.findIdPw", userEmail);
+	}
+
+	@Override
+	public List<UserVO> userList(UserVO userVo) throws Exception {
+		return sql.selectList("userMapper.userList", userVo);
 	}	
 
 }
