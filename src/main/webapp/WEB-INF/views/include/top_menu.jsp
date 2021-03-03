@@ -38,7 +38,7 @@
 			</li>
 			</c:when>
 			<c:otherwise>
-				<a href="mypage" class="nav-link">${sessionScope.user.userNickname }</a>
+				<a href="myPageTest" class="nav-link">${sessionScope.user.userNickname }</a>
 			</c:otherwise>
 			</c:choose>			
 			
