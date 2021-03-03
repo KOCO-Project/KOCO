@@ -10,39 +10,44 @@
 <meta charset="EUC-KR">
 <title>Season List</title>
 
-<!-- Bootstrap CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	<div class="container" style="margin-top: 100px">
-		<div class="card shadow">
-			<div class="card-body">
-				<h4 class="card-title">계절 게시판</h4>
-				<table class="table table-hover" id='board_list'>
+	<c:import url="/WEB-INF/views/include/admin_top.jsp" />
+	
+	<br>
+	<br>
+	<br>
+		<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h1>계절게시판</h1>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th class="text-center d-none d-md-table-cell">번호</th>
-							<th class="w-50">제목</th>
-							<th class="text-center d-none d-md-table-cell">계절</th>
-							<th class="text-center d-none d-md-table-cell">작성자</th>
-							<th class="text-center d-none d-md-table-cell">등록일</th>
+							<th scope="col">번호</th>
+							<th scope="col">제목</th>
+							<th scope="col">계절</th>
+							<th scope="col">작성자</th>
+							<th scope="col">등록일</th>
+							<th scope="col">관리</th>
 						</tr>
 					</thead>
 					<c:forEach items="${seasonList}" var="season">
-						<tr>
-							<td class="text-center d-none d-md-table-cell">${season.seasonNo}</td>
+						<tr class="table-light">
+							<th scope="row">${season.seasonNo}</th>
 							<td><a href="getSeasonBoard?seasonNo=${season.seasonNo}">${season.seasonTitle}</a></td>
-							
-							<td class="text-center d-none d-md-table-cell">
+							<td>
 							<c:set var="seasonNumber" value="${season.seasonStatus}"/>
 							<c:choose>
 								<c:when test="${seasonNumber eq 1}">
@@ -59,13 +64,17 @@
 								</c:when>
 							</c:choose>
 							</td>
-							<td class="text-center d-none d-md-table-cell">${season.userNo}</td>
-							<td class="text-center d-none d-md-table-cell">${season.seasonRegdate}</td>
+							<td>${season.userNo}</td>
+							<td>${season.seasonRegdate}</td>
+							<td style="color: red; font-weight: bold;"><a
+								href="deleteSeasonBoard?seasonNo=${season.seasonNo}"
+								style="color: red;">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</table>
 				<div class="text-right">
-					<br> <a href="seasonRegisterForm">글 등록</a>
+					<br> <a href="seasonRegisterForm" class="btn btn-secondary">글
+						등록</a>
 				</div>
 			</div>
 		</div>

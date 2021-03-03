@@ -25,8 +25,9 @@
 						<p class="card-text">내용</p>
 						<div class="form-group">
 							<div class="text-right">
-								<a href="adminTest" class="btn btn-primary">목록보기</a> <a href=""
-									class="btn btn-info">수정하기</a> <a href="" class="btn btn-danger">삭제하기</a>
+								<a href="adminTest" class="btn btn-primary">목록보기</a> 
+								<a href="" class="btn btn-info">수정하기</a> 
+								<a href="" class="btn btn-danger">삭제하기</a>
 							</div>
 						</div>
 					</div>
