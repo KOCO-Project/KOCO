@@ -93,7 +93,7 @@ public class UserController {
 
 		if (login != null) {
 			session.setAttribute("user", login);
-			return "users/logintest";
+			return "main";
 		} else {
 			session.setAttribute("user", null);			
 			return "users/login";

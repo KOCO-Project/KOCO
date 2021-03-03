@@ -27,15 +27,24 @@
 		</ul>
 		
 		<ul class="navbar-nav ml-auto">
+			
+			<c:choose>
+			<c:when test="${sessionScope.user == null }">
 			<li class="nav-item">
 				<a href="loginView" class="nav-link">로그인</a>
 			</li>
 			<li class="nav-item">
 				<a href="registerView" class="nav-link">회원가입</a>
 			</li>
-			<li class="nav-item">
-				<a href="#" class="nav-link">회원정보</a>
-			</li>
+			</c:when>
+			<c:otherwise>
+				<a href="mypage" class="nav-link">${sessionScope.user.userNickname }</a>
+			</c:otherwise>
+			</c:choose>			
+			
+<!-- 			<li class="nav-item"> -->
+<!-- 				<a href="#" class="nav-link">회원정보</a> -->
+<!-- 			</li> -->
 			<li class="nav-item">
 				<a href="userLogout" class="nav-link">로그아웃</a>
 			</li>
