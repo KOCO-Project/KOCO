@@ -32,25 +32,25 @@
             </div>
             <div class="row">
                <div class="col-md-12" style="height: 60px;">
-                  <input type="text" value="현재pw" style="width: 100%; height: 50px;">
+                  <input type="password" placeholder="현재 비밀번호" style="width: 100%; height: 50px;">
                </div>
             </div>
             <br>
             <div class="row">
                <div class="col-md-12" style="height: 60px;">
-                  <input type="text" value="바꿀pw" style="width: 100%; height: 50px;">
+                  <input type="password" placeholder="새 비밀번호" style="width: 100%; height: 50px;">
                </div>
             </div>
             <br>
             <div class="row">
                <div class="col-md-12" style="height: 60px;">
-                  <input type="text" value="어쩔pw" style="width: 100%; height: 50px;">
+                  <input type="password" placeholder="새 비밀번호 확인" style="width: 100%; height: 50px;">
                </div>
             </div>
             <br>
             <div class="row">
                <div class="col-md-6">
-                  <button type="button" class="btn btn-success" style="float: right;">수정완료</button>
+                  <button type="button" class="btn btn-success" style="float: right;">수정</button>
                </div>
                <div class="col-md-6">
                   <button type="button" class="btn btn-success">취소</button>
