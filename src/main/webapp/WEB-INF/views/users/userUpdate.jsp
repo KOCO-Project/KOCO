@@ -19,10 +19,10 @@
          <div class="col-md-8" style="margin-top: 150px;">
             <div class="row">
                <div class="col-md-6" style="height: 60px;">
-                  <a href="myPageTest" class="btn btn-success" style="float: right;">개인정보 변경</a>
+                  <a href="userUpdateView" class="btn btn-success" style="float: right;">개인정보 변경</a>
                </div>
                <div class="col-md-6">
-                  <a href="myPagePwTest" class="btn btn-success">비밀번호 변경</a>
+                  <a href="pwUpdateView" class="btn btn-success">비밀번호 변경</a>
                </div>
             </div>
             <div class="row">
