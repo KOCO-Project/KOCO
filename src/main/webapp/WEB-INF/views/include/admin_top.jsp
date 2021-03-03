@@ -62,8 +62,10 @@
 				<a href="cultureList" class="btn btn-secondary" style="width: 100%;">문화게시판</a>
 			</div>
 			<div class="col-md-1">
-
 				<button type="button" class="btn btn-secondary" style="width: 100%;">계절게시판</button>
+			</div>
+			<div class="col-md-1">
+				<a href="adminTest" class="btn btn-secondary" style="width: 100%;">test</a>
 			</div>
 
 		</div>

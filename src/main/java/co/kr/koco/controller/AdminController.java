@@ -29,7 +29,7 @@ public class AdminController {
 
 	@Autowired
 	private QnaBoardService qnaBoardService;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -40,7 +40,6 @@ public class AdminController {
 	@RequestMapping("/adminMain")
 	public String adminMain(UserVO userVo, Model model) throws Exception {
 		model.addAttribute("userList", userService.userList(userVo));
-		
 		return "admin/adminMain";
 	}
 
@@ -62,5 +61,15 @@ public class AdminController {
 	@RequestMapping("/adminNotiList")
 	public String adminNotiList() {
 		return "admin/adminNotiList";
+	}
+
+	@RequestMapping("/adminTest")
+	public String adminTest() {
+		return "admin/adminTest";
+	}
+
+	@RequestMapping("/getAdminTest")
+	public String getAdminTest() {
+		return "admin/getAdminTest";
 	}
 }

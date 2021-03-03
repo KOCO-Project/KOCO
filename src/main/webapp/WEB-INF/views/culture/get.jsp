@@ -19,8 +19,7 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<div class="card border-light mb-12"
-					style="max-width: 100%;">
+				<div class="card border-light mb-12" style="max-width: 100%;">
 					<div class="card-header" style="font-weight: bold;">CultureBoard</div>
 					<div class="card-body">
 						<h4 class="card-title">${culture.cultureTitle}</h4>
