@@ -43,9 +43,4 @@ public class HomeController {
 		return "users/userRegister";
 	}
 
-	@RequestMapping("/adminMain")
-	public String adminMain() {
-		return "admin/adminMain";
-	}
-
 }

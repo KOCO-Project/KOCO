@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,27 +38,25 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="navbar navbar-expand-lg navbar-dark bg-primary">
 			<div class="col-md-1">
-
-				<button type="button" class="btn btn-secondary" style="width: 100%;">회원관리</button>
+				<a href="adminMain" class="btn btn-secondary" style="width: 100%;">회원관리</a>
 			</div>
 			<div class="col-md-1">
-
-				<button type="button" class="btn btn-secondary" style="width: 100%;">자유게시판</button>
+				<a href="adminFreeList" class="btn btn-secondary"
+					style="width: 100%;">자유게시판</a>
 			</div>
 			<div class="col-md-1">
-
-				<button type="button" class="btn btn-secondary" style="width: 100%;">질문게시판</button>
+				<a href="adminQnaList" class="btn btn-secondary"
+					style="width: 100%;">질문게시판</a>
 			</div>
 			<div class="col-md-1">
-
-				<button type="button" class="btn btn-secondary" style="width: 100%;">이벤트게시판</button>
+				<a href="adminEventList" class="btn btn-secondary"
+					style="width: 100%;">이벤트게시판</a>
 			</div>
 			<div class="col-md-1">
-
-				<button type="button" class="btn btn-secondary" style="width: 100%;">공지사항</button>
+				<a href="adminNotiList" class="btn btn-secondary"
+					style="width: 100%;">공지사항</a>
 			</div>
 			<div class="col-md-1">
 				<a href="cultureList" class="btn btn-secondary" style="width: 100%;">문화게시판</a>
@@ -65,26 +65,7 @@
 
 				<button type="button" class="btn btn-secondary" style="width: 100%;">계절게시판</button>
 			</div>
-			<div class="col-md-1">
 
-				<!--<button type="button" class="btn btn-secondary" style="width: 100%;">Button</button> -->
-			</div>
-			<div class="col-md-1">
-
-				<!--<button type="button" class="btn btn-secondary" style="width: 100%;">Button</button> -->
-			</div>
-			<div class="col-md-1">
-
-				<!--<button type="button" class="btn btn-secondary" style="width: 100%;">Button</button> -->
-			</div>
-			<div class="col-md-1">
-
-				<!--<button type="button" class="btn btn-secondary" style="width: 100%;">Button</button> -->
-			</div>
-			<div class="col-md-1">
-
-				<!--<button type="button" class="btn btn-secondary" style="width: 100%;">Button</button> -->
-			</div>
 		</div>
 	</div>
 </body>
