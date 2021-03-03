@@ -8,26 +8,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Culture getBoard</title>
-
-
-<!-- Bootstrap CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+	<c:import url="/WEB-INF/views/include/admin_top.jsp" />
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="card border-light mb-12"
+					style="max-width: 100%; margin-top: 10px;">
+					<div class="card-header" style="font-weight: bold;">CultureBoard</div>
+					<div class="card-body">
+						<h4 class="card-title">${culture.cultureTitle}/
+							${culture.cultureRegdate }</h4>
+						<p class="card-text">${culture.cultureContent }</p>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="container" style="margin-top: 100px">
 		<div class="row">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
+			<div class="col-md-12">
 				<div class="card shadow">
 					<div class="card-body">
 						<div class="form-group">
@@ -54,18 +60,17 @@
 
 						<div class="form-group">
 							<div class="text-right">
-									<a href="cultureList" class="btn btn-primary">목록보기</a> 
-									<a href="cultureUpdateBoardForm?cultureNo=${culture.cultureNo}" class="btn btn-info">수정하기</a> 
-									<a href="deleteCultureBoard?cultureNo=${culture.cultureNo}" class="btn btn-danger" >삭제하기</a>
+								<a href="cultureList" class="btn btn-primary">목록보기</a> <a
+									href="cultureUpdateBoardForm?cultureNo=${culture.cultureNo}"
+									class="btn btn-info">수정하기</a> <a
+									href="deleteCultureBoard?cultureNo=${culture.cultureNo}"
+									class="btn btn-danger">삭제하기</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-3"></div>
 		</div>
 	</div>
-
-
 </body>
 </html>
