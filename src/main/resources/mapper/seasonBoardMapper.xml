@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SeasonDAO">
+
+	<resultMap type="season" id="seasonResult">
+		<id property="seasonNo" column="SEASON_NO" />
+		<result property="seasonTitle" column="SEASON_TITLE" />
+		<result property="seasonContent" column="SEASON_CONTENT" />
+		<result property="seasonStatus" column="SEASON_STATUS" />
+		<result property="seasonRegdate" column="SEASON_REGDATE" />
+		<result property="userNo" column="USER_NO" />
+	</resultMap>
+
+	<select id="getSeasonList" resultMap="seasonResult"
+		resultType="season">
+		<![CDATA[
+		SELECT *
+		FROM KOCO_SEASON
+		ORDER BY SEASON_NO DESC
+		]]>
+	</select>
+
+
+	<select id="getSeasonBoard" resultType="season"
+		resultMap="seasonResult">
+		<![CDATA[
+		SELECT *
+		FROM KOCO_SEASON
+		WHERE SEASON_NO = #{seasonNo}
+		]]>
+	</select>
+
+
+	<insert id="seasonRegister" parameterType="season">
+		<![CDATA[
+		INSERT INTO KOCO_SEASON(SEASON_TITLE,SEASON_CONTENT,SEASON_STATUS,USER_NO) 
+		VALUES(#{seasonTitle}, #{seasonContent}, #{seasonStatus}, #{userNo})
+		]]>
+	</insert>
+
+	<delete id="deleteSeasonBoard">
+		<![CDATA[
+		DELETE FROM KOCO_SEASON
+		WHERE SEASON_NO = #{seasonNo}
+		]]>
+	</delete>
+	
+	<update id="seasonUpdate">
+		<![CDATA[
+		UPDATE KOCO_SEASON SET
+		SEASON_TITLE = #{seasonTitle},
+		SEASON_CONTENT = #{seasonContent},
+		SEASON_STATUS = #{seasonStatus}
+		WHERE SEASON_NO = #{seasonNo}
+		]]>	
+	</update>
+	
+</mapper>
+

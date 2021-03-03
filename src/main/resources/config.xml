@@ -7,6 +7,8 @@
 		<typeAlias alias="board" type="co.kr.koco.vo.BoardVO"></typeAlias>
 		<typeAlias alias="info" type="co.kr.koco.vo.BoardInfoVO"></typeAlias>
 		<typeAlias alias="culture" type="co.kr.koco.vo.CultureVO"></typeAlias>
+		<typeAlias alias="season" type="co.kr.koco.vo.SeasonVO"></typeAlias>
+		<typeAlias alias="comment" type="co.kr.koco.vo.CommentVO"></typeAlias>
 	</typeAliases>
 	
 	<mappers>
@@ -15,5 +17,7 @@
 		<mapper resource="mapper/top_menu_mapper.xml"></mapper>
 		<mapper resource="mapper/qnaBoardMapper.xml"></mapper>
 		<mapper resource="mapper/cultureBoardMapper.xml"></mapper>
+		<mapper resource="mapper/seasonBoardMapper.xml"></mapper>
+		<mapper resource="mapper/commentMapper.xml"></mapper>
 	</mappers>
 </configuration>
