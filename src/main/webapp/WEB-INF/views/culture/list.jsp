@@ -45,13 +45,14 @@
 							<td>${culture.userNo}</td>
 							<td>${culture.cultureRegdate}</td>
 							<td style="color: red; font-weight: bold;"><a
-								href="deleteCultureBoard?cultureNo=${culture.cultureNo}">삭제</a></td>
+								href="deleteCultureBoard?cultureNo=${culture.cultureNo}"
+								style="color: red;">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</table>
 				<div class="text-right">
-					<br>
-					<a href="cultureRegisterForm" class="btn btn-secondary">글 등록</a>
+					<br> <a href="cultureRegisterForm" class="btn btn-secondary">글
+						등록</a>
 				</div>
 			</div>
 		</div>
