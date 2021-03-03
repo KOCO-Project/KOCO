@@ -73,14 +73,4 @@ public class AdminController {
 		return "admin/getAdminTest";
 	}
 
-	// 민석이꺼
-	@RequestMapping("/myPageTest")
-	public String myPageTest() {
-		return "users/myPageTest";
-	}
-
-	@RequestMapping("/myPagePwTest")
-	public String myPagePwTest() {
-		return "users/myPagePwTest";
-	}
 }

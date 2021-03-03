@@ -15,9 +15,24 @@
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div class="container" style="margin-top: 100px">
 		<div class="card-body" style="text-align: left; margin-left: 350px;">
-			<h1>${user.userId}님안녕하세요.</h1>
-			<input type="button" value="마이페이지" onclick="location.href='mypage'">
-			<a href="userLogout">로그아웃</a>
+			<table border="1">
+				<tr>
+					<td>아이디</td>
+					<td>${user.userId }</td>
+				</tr>				
+				<tr>
+					<td>닉네임</td>
+					<td><input type="text" value="${user.userNickname }" name="userNickname"></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td><input type="email" value="${user.userEmail }" name="userEmail"></td>
+				</tr>
+				<tr>
+					<td>가입일</td>
+					<td>${user.userRegDate }</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </body>

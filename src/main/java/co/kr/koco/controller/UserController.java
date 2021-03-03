@@ -111,6 +111,16 @@ public class UserController {
 	public String mypage() throws Exception {
 		return "users/mypage";
 	}
+	
+	@RequestMapping("/userUpdateView")
+	public String userUpdateView() throws Exception {
+		return "users/userUpdate";
+	}
+	
+	@RequestMapping("/pwUpdateView")
+	public String pwUpdateView() {
+		return "users/pwUpdate";
+	}
 
 	@RequestMapping("/findUserInfo")
 	public String findUserInfo() {
