@@ -35,5 +35,87 @@
 			</div>
 		</div>
 	</div>
+
+	<!--댓글 관련 css -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12" style="top: 30px;">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
+						<div class="row">
+							<div class="col-md-11" style="height: 100px;">
+								<input type="text" value="댓글을 입력해주세요"
+									style="width: 100%; height: 100%;">
+							</div>
+							<div class="col-md-1">
+								<button type="button" class="btn btn-success">작성완료</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
+						<div class="row">
+							<div class="col-md-12" style="top: 30px;">
+								<div class="row">
+									<div class="col-md-3">
+										<h3>부모댓글 이름 / 날짜</h3>
+									</div>
+									<div>
+										<button type="button" class="btn btn-info">수정</button>
+									</div>
+									<div>
+										<button type="button" class="btn btn-danger">삭제</button>
+									</div>
+									<div>
+										<button type="button" class="btn btn-success">대댓글</button>
+									</div>
+								</div>
+								<p style="font-size: 20px;">부모댓글 내용</p>
+								<div class="row">
+									<div class="col-md-1"></div>
+									<div class="col-md-11">
+										<div class="row">
+											<div class="col-md-12">대댓글 입력창</div>
+										</div>
+										<div class="row">
+											<div class="col-md-11" style="height: 80px;">
+												<input type="text" value="대댓글 입력창"
+													style="height: 60px; width: 100%;">
+											</div>
+											<div class="col-md-1">
+												<button type="button" class="btn btn-success">작성완료</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-1"></div>
+									<div class="col-md-11">
+										<div class="row">
+											<div class="col-md-3">
+												<h3>자식댓글 이름 / 날짜</h3>
+											</div>
+											<div>
+												<button type="button" class="btn btn-info">수정</button>
+											</div>
+											<div>
+												<button type="button" class="btn btn-danger">삭제</button>
+											</div>
+										</div>
+										<p style="font-size: 20px;">작식 댓글 내용</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
