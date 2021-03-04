@@ -6,6 +6,55 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.reg{	
+	background-image: url('images/reg.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 15rem;
+	}
+.reg h1{
+    background: #fff;
+    opacity: 90%;
+    padding-bottom: 4rem;
+    }
+.reg h2{
+text-align: center;
+color: #fff;
+}
+.form-group ul.mail {
+padding-left:inherit;
+list-style:none;
+display: flex;
+justify-content: space-between;
+}
+.form-group ul.mail li {width: 100%;}
+ul.btn {
+padding:inherit;
+list-style:none;
+display: flex;
+justify-content: space-evenly;
+}
+footer {
+	text-align: center;
+	padding: 3rem;
+	color: #8e8c84 !important;
+	background-color: #3e3f3a;
+}
+footer ul{
+	list-style: none;
+    padding-left:0px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 40%;
+    margin: 1rem auto;
+}
+
+footer ul li a>img{
+width: 30px; height: 30px;
+}
+
+</style>
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -212,68 +261,78 @@ $(function(){
 	
 </script>
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	<form action="userRegister" method="post" id="form1">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2"></div>
-				<div class="col-md-8" style="margin-top: 150px;">
-					<div class="row">
-						<div class="col-md-12" style="height: 60px;">
-							<h3>Create Your KOCO ID.</h3>
-						</div>						
-					</div>
-					<div class="row">
-						<div class="col-md-12" style="height: 60px;">
-							<input type="text" name="userId" id="userId" placeholder="ID" required="required" style="width: 80%; height: 50px;">
-							<br><span id="idCheck"></span>
-						</div>
-					</div>
-					<br>
-					<div class="row">					
-						<div class="col-md-12" style="height: 60px;">
-							<input type="password" name="userPw" id="userPw" placeholder="Password" required="required" style="width: 80%; height: 50px;">
-							<br><span id="pwCheck"></span>
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-md-12" style="height: 60px;">
-							<input type="password" name="userPw2" id="userPw2" placeholder="Password Check" required="required" style="width: 80%; height: 50px;">
-							<br><span id="pw2Check"></span>
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-md-12" style="height: 60px;">
-							<input type="text" name="userNickname" id="userNickname" placeholder="NickName" required="required" style="width: 80%; height: 50px;">
-							<br><span id="nickCheck"></span>
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-md-12" style="height: 60px;">
-							<input type="email" name="userEmail" id="userEmail" placeholder="E-Mail" style="width: 65%; height: 50px;">&nbsp;
-							<input type="button" value="인증번호 발송" id="findUserEmail" style="width: 100px; height: 45px;" class="btn btn-success">
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-md-12" style="height: 60px;">
-							<input type="text" name="inputCode" id="inputCode" placeholder="인증번호 입력" style="width: 80%; height: 50px;">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-5">					
-							<input type="button" value="회원가입" class="btn btn-success" id="checkAuthKey" style="float: right; width:100px;">
-						</div>
-						<div class="col-md-5">
-							<input type="button" value="Cancel" onclick="history.back()" class="btn btn-success" style="width:100px;">
-						</div>	
-					</div>
+<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+
+
+
+
+
+<div class="reg"><h1></h1><br><br><br><h2>Create Your KOCO ID</h2></div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8">
+		<br>
+			<p>KOCO ID를 가지고 계십니까? <a class="btn cc_pointer" href="#" style="color: #29abe0">찾아보기 »</a></p>
+		<br>
+			<form action="userRegister" method="post" id="form1">
+				<div class="form-group">
+				<label for="userId" style="display: none;">Id</label>
+					<input type="text" name="userId" id="userId" placeholder="ID" required="required" class="form-control">
+					<span id="idCheck"></span>
 				</div>
-		 </div>
+				<div class="form-group">
+					<label for="userPw" style="display: none;">Password</label>
+						<input type="password" name="userPw" id="userPw" placeholder="Password" required="required" class="form-control">
+						<span id="pwCheck"></span>
+				</div>
+				<div class="form-group">
+					 
+					<label for="userPw2" style="display: none;">Password Check</label>
+					<input type="password" name="userPw2" id="userPw2" placeholder="Password Check" required="required" class="form-control">
+					<span id="pw2Check"></span>
+				</div>
+				<div class="form-group"> 
+					<label for="userNickname" style="display: none;">Nickname</label>
+					<input type="text" name="userNickname" id="userNickname" placeholder="NickName" required="required" class="form-control">
+					<span id="nickCheck"></span>
+				</div>
+				<div class="form-group"> 
+					<label for="userEmail" style="display: none;">Email</label>
+					<ul class="mail">
+						<li><input type="email" name="userEmail" id="userEmail" placeholder="E-Mail" class="form-control"></li>
+						<li style="width: auto; margin-left: 1rem;"><input type="button" value="인증번호 발송" id="findUserEmail" class="btn btn-success"></li>	
+					</ul>
+				</div>
+				
+				<div class="form-group"> 
+					<label for="inputCode" style="display: none;">Verification Code</label>
+				<input type="text" name="inputCode" id="inputCode" placeholder="인증번호 입력" class="form-control">
+				</div>
+				<br>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox"style="margin-right: .5rem;"/>
+						<a href="#" style="color: #29abe0">KOCO의 개인정보 처리방침</a>에 따라 개인 정보를 수집, 사용, 타사에 대한 제공 및 처리하는 데 동의합니다.
+					</label>
+				</div> 
+				<br><hr><br>
+				<p>KOCO ID 정보를 사용해 안전하게 계정에 로그인하고 데이터에 액세스합니다. KOCO은 보안, 지원 및 보고의 목적으로 특정 사용 데이터를 기록합니다.
+				<a class="btn" href="#" style="color: #29abe0">데이터가 어떻게 관리되는지 알아보기 »</a></p><br><hr><br>
+				<ul class="btn">
+					<li><input type="button" class="btn btn-primary" id="checkAuthKey" style="width:100px;" value="Submit"></li>
+					<li><input type="button" value="Cancel" onclick="history.back()" class="btn btn-danger" style="width:100px;"></li>
+				</ul><br><br>
+				</form>
+			</div>	
+	
+		</div>
+		<div class="col-md-2">
+		</div>
 	</div>
-	</form>
+<footer>
+<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+</footer>
 </body>
 </html>

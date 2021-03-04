@@ -33,7 +33,7 @@
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.noticeNo }</td>
 						<td><a
-							href='${root }getQna?noticeNo=${obj.noticeNo }&page=${page}'>${obj.noticeTitle }</a></td>
+							href='${root }getNotice?noticeNo=${obj.noticeNo }&page=${page}'>${obj.noticeTitle }</a></td>
 						<td class="text-center d-none d-md-table-cell"
 							style="color: #325d88; font-weight: 500;">${obj.userNickname }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.noticeRegDate }</td>
