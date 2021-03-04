@@ -2,10 +2,12 @@ package co.kr.koco.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.kr.koco.vo.BoardVO;
 import co.kr.koco.vo.CultureVO;
 
 @Repository
@@ -39,5 +41,12 @@ public class CultureDAO {
 		System.out.println(vo.getCultureTitle());
 		System.out.println(vo.getCultureContent());
 		mybatis.update("CultureDAO.cultureUpdate",vo);
+	}
+	
+	public List<CultureVO> getCultureBoardList(CultureVO vo, RowBounds rowBounds) {
+		return mybatis.selectList("CultureDAO.getCultureBoardList", vo, rowBounds);
+	}
+	public int getCultureBoardCnt(CultureVO vo) {
+		return mybatis.selectOne("CultureDAO.getCultureBoardCnt", vo);
 	}
 }

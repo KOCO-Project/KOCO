@@ -2,7 +2,11 @@ package co.kr.koco.service;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+
+import co.kr.koco.vo.BoardVO;
 import co.kr.koco.vo.CultureVO;
+import co.kr.koco.vo.PageVO;
 
 public interface CultureService {
 
@@ -16,4 +20,8 @@ public interface CultureService {
 	void deleteCultureBoard(int cultureNo);
 
 	void cultureUpdate(CultureVO vo);
+	
+	List<CultureVO> getCultureBoardList(CultureVO vo, int page);
+	
+	PageVO getCultureBoardCnt(CultureVO vo,int currentPage);
 }

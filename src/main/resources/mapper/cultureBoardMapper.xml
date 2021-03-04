@@ -12,6 +12,26 @@
 		<result property="userNo" column="USER_NO" />
 	</resultMap>
 
+
+	<select parameterType="java.lang.Integer"
+		id="getCultureBoardList" resultType="culture"
+		resultMap="cultureResult">
+		
+	<![CDATA[
+		SELECT 
+		a1.CULTURE_NO , a1.CULTURE_TITLE, a2.USER_NICKNAME AS userNickname,CULTURE_REGDATE 
+		FROM KOCO_CULTURE a1, KOCO_USERS a2
+		WHERE a1.USER_NO = a2.USER_NO
+		ORDER BY a1.CULTURE_NO DESC
+	]]>
+	</select>
+
+	<select id="getCultureBoardCnt" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(*) FROM KOCO_CULTURE
+	]]>
+	</select>
+
 	<select id="getCultureList" resultMap="cultureResult"
 		resultType="culture">
 		<![CDATA[
@@ -36,14 +56,14 @@
 		WHERE CULTURE_NO = #{cultureNo}
 		]]>
 	</select>
-	
+
 	<delete id="deleteCultureBoard">
 		<![CDATA[
 		DELETE FROM KOCO_CULTURE
 		WHERE CULTURE_NO = #{cultureNo}
 		]]>
 	</delete>
-	
+
 	<update id="cultureUpdate">
 		<![CDATA[
 		UPDATE KOCO_CULTURE SET
@@ -51,6 +71,6 @@
 		CULTURE_CONTENT = #{cultureContent}
 		WHERE CULTURE_NO = #{cultureNo}
 		]]>
-		
+
 	</update>
 </mapper>
