@@ -3,33 +3,76 @@ package co.kr.koco.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+
+import co.kr.koco.dao.UserDAO;
 import co.kr.koco.vo.UserVO;
 
-public interface UserService {
-	// 아이디 중복검사
-	public boolean userIdExist(String userId);
+@Service
+public class UserService {
+	@Autowired
+	private UserDAO dao;
 	
-	// 닉네임 중복검사
-	public boolean userNicknameExist(String userNickname);
-	
-	// 이메일 중복검사
-	public boolean userEmailExist(String userEmail);
+	@Resource(name = "userVO")
+	@Lazy
+	private UserVO userVO;
 
-	// 회원가입
-	public void userRegister(UserVO userVo) throws Exception;
+	public boolean userIdExist(String userId) {
+		String exist = dao.userIdExist(userId);
 
-	// 로그인
-	public Map<String, UserVO> login(UserVO userVo) throws Exception;
+		if (exist == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
-	// id, password 찾기
-	public UserVO findIdPw(String userEmail) throws Exception;
+	public boolean userNicknameExist(String userNickname) {
+		String exist = dao.userNicknameExist(userNickname);
+		
+		if (exist == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
-	// 회원 정보 수정
-	public void userUpdate(UserVO userVo) throws Exception;
+	public boolean userEmailExist(String userEmail) {
+		String exist = dao.userEmailExist(userEmail);
+		
+		if (exist == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void userRegister(UserVO userVo) throws Exception {
+		dao.userRegister(userVo);
+	}
+
+	public Map<String, UserVO> login(UserVO userVo) throws Exception {
+		return dao.login(userVo);
+	}
+
+	public UserVO findIdPw(String userEmail) throws Exception {
+		return dao.findIdPw(userEmail);
+	}
 	
-	// 비밀번호 수정
-	public void pwUpdate(UserVO userVo) throws Exception;
+	public void userUpdate(UserVO userVo) throws Exception {
+		dao.userUpdate(userVo);
+	}
 	
-	// 관리자페이지 유저리스트
-	public List<UserVO> userList(UserVO userVo) throws Exception;
+	public void pwUpdate(UserVO userVo) throws Exception {
+		dao.pwUpdate(userVo);
+	}
+
+	public List<UserVO> userList(UserVO userVo) throws Exception {
+		return dao.userList(userVo);
+	}				
+
 }
