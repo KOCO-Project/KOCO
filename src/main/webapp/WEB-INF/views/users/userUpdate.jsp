@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>myPagePwTest</title>
+<title>개인정보수정</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -14,8 +14,10 @@
 </head>
 <script>
 $(function(){
-	var nickCheck = "";
-	var emailCheck = "";
+	var nickCheck = "true";
+	var emailCheck = "true";
+	var nickname = $('#currentNick').val();
+	var email = $('#currentEmail').val();
 	
 	$('#userNickname').on('blur', function userNicknameExist(){
 		var userNickname = $('#userNickname').val();
@@ -40,9 +42,13 @@ $(function(){
 					$('#nickCheck').css('color', '#55B836');
 					nickCheck = "true";
 				} else {
-					$('#nickCheck').text('이미 존재하는 NickName 입니다.');
-					$('#nickCheck').css('color', 'red');
-					nickCheck = "false";
+					if(nickname == userNickname){
+						nickCheck = "true";
+					} else {
+						$('#nickCheck').text('이미 존재하는 NickName 입니다.');
+						$('#nickCheck').css('color', 'red');
+						nickCheck = "false";
+					}
 				}
 			},
 			error: function(data){
@@ -77,9 +83,13 @@ $(function(){
 					$('#emailCheck').css('color', '#55B836');
 					emailCheck = "true";
 				} else {
-					$('#emailCheck').text('이미 존재하는 E-Mail 입니다.');
-					$('#emailCheck').css('color', 'red');
-					emailCheck = "false";
+					if(email == userEmail){
+						emailCheck = "true";
+					} else {
+						$('#emailCheck').text('이미 존재하는 E-Mail 입니다.');
+						$('#emailCheck').css('color', 'red');
+						emailCheck = "false";
+					}
 				}
 			},
 			error: function(data){
@@ -105,6 +115,8 @@ $(function(){
    <c:import url="/WEB-INF/views/include/top_menu.jsp" />
    <fmt:formatDate value="${user.userRegDate }" pattern="yyyy-MM-dd" var="userDate"></fmt:formatDate>
    <form action="userUpdate" method="post" id="form1">
+   <input type="hidden" id="currentNick" value="${user.userNickname }">
+   <input type="hidden" id="currentEmail" value="${user.userEmail }">
    <div class="container">
       <div class="row">
          <div class="col-md-2"></div>
