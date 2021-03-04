@@ -10,8 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Update QnA</title>
 <!-- Bootstrap CDN -->
-<link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/qna.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/qna.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -27,7 +27,7 @@
 			<div class="card border-light mb-3 cc_cursor">
 			  <!-- <div class="card-header">Update QnA</div> -->
 				<div class="card-body">
-					<form:form action='${root }qna/qnaUpdate_pro' method='post' modelAttribute="qnaUpdateBoardVO" enctype="multipart/form-data">
+					<form:form action='${root }qnaUpdate_pro' method='post' modelAttribute="qnaUpdateBoardVO" enctype="multipart/form-data">
 						<form:hidden path="boardNo"/><!-- 글 번호 -->
 						<form:hidden path="boardCategory"/> <!-- 게시판 번호 -->
 						<input type="hidden" name ="page" value="${page }">
@@ -60,7 +60,7 @@
 						<div class="form-group">
 							<div class="text-right">
 								<button type="submit" class="btn btn-primary">수정완료</button>
-								<a href="${root }qna/getQna?infoNo=${infoNo}&boardNo=${boardNo}&page=${page}" class="btn btn-info">취소</a>
+								<a href="${root }getQna?infoNo=${infoNo}&boardNo=${boardNo}&page=${page}" class="btn btn-info">취소</a>
 							</div>
 						</div>
 					</form:form>
@@ -70,5 +70,8 @@
 		<div class="col-sm-1"></div>
 	</div>
 </div>
+<footer>
+<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+</footer>
 </body>
 </html>

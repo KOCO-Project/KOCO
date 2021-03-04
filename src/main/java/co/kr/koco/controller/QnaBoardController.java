@@ -24,7 +24,7 @@ import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
 @Controller
-@RequestMapping("/qna")
+//@RequestMapping("/qna")
 public class QnaBoardController {
 	
 	@Autowired
@@ -37,7 +37,7 @@ public class QnaBoardController {
 	@Lazy
 	private UserVO loginUser;
 	
-	@GetMapping("/list")
+	@GetMapping("/qnalist")
 	public String qnaList(@RequestParam("infoNo") int infoNo,
 						  @RequestParam(value = "page", defaultValue = "1") int page,
 						   Model model) {
@@ -92,7 +92,7 @@ public class QnaBoardController {
 		return "qna/qnaRegister_pro";
 	}
 	
-	@GetMapping("/update")
+	@GetMapping("/qnaupdate")
 	public String qnaUpdate(@RequestParam("infoNo") int infoNo,
 						 @RequestParam("boardNo") int boardNo,
 						 @ModelAttribute("qnaUpdateBoardVO") BoardVO qnaUpdateBoardVO,
@@ -130,7 +130,7 @@ public class QnaBoardController {
 		return "qna/qnaUpdate_pro";
 	}
 	
-	@GetMapping("/delete")
+	@GetMapping("/qnadelete")
 	public String qnaDelete(@RequestParam("infoNo") int infoNo,
 					 	 @RequestParam("boardNo") int boardNo,
 					 	 Model model) {

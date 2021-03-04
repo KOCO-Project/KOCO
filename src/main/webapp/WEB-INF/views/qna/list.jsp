@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>QnA</title>
 <!-- Bootstrap CDN -->
-<link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/qna.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/qna.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -33,7 +33,7 @@
 					<c:forEach var='obj' items="${qnaList }">
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.boardNo }</td>
-						<td><a href='${root }qna/getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a></td>
+						<td><a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a></td>
 						<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;">${obj.writer }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardRegdate }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardReadcount }</td>
@@ -52,7 +52,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item">
-								<a href="${root }qna/list?infoNo=${infoNo }&page=${pageVO.prevPage}" class="page-link">이전</a>
+								<a href="${root }qnalist?infoNo=${infoNo }&page=${pageVO.prevPage}" class="page-link">이전</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -61,12 +61,12 @@
 						<c:choose>
 							<c:when test="${idx == pageVO.currentPage }">
 							<li class="page-item active">
-								<a href="${root }qna/list?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
+								<a href="${root }qnalist?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
 							</li>
 						</c:when>
 						<c:otherwise>
 							<li class="page-item">
-								<a href="${root }qna/list?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
+								<a href="${root }qnalist?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -80,7 +80,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item">
-								<a href="${root }qna/list?infoNo=${infoNo }&page=${pageVO.nextPage}" class="page-link">다음</a>
+								<a href="${root }qnalist?infoNo=${infoNo }&page=${pageVO.nextPage}" class="page-link">다음</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -89,11 +89,13 @@
 			</div>
 			
 			<div class="text-right">
-				<a href="${root }qna/qnaRegister?infoNo=${infoNo }" class="btn btn-primary btn-lg">Write</a>
+				<a href="${root }qnaRegister?infoNo=${infoNo }" class="btn btn-primary btn-lg">Write</a>
 				
 			</div>
 		</div>
-
+<footer>
+<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+</footer>
 
 </body>
 </html>

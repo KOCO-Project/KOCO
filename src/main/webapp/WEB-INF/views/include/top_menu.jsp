@@ -28,7 +28,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
         <div class="dropdown-menu" aria-labelledby="dropdown08">
           <a class="dropdown-item" href="freeBoardList">Board</a>
-          <a class="dropdown-item" href="${root }qna/list?infoNo=2">QnA</a>
+          <a class="dropdown-item" href="${root }qnalist?infoNo=2">QnA</a>
           <a class="dropdown-item" href="#">Event</a>
         </div>
       </li>

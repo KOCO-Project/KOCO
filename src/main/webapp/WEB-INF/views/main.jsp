@@ -17,13 +17,14 @@ html, body {
 	height: 100%;
 	width: 100%;
 }
-
+ 
 footer {
 	text-align: center;
 	padding: 3rem;
 	color: #8e8c84 !important;
 	background-color: #3e3f3a;
 }
+
 footer ul{
 	list-style: none;
     padding-left:0px;
@@ -32,9 +33,11 @@ footer ul{
     width: 40%;
     margin: 1rem auto;
 }
-footer ul li a img{
+
+footer ul li a>img{
 width: 30px; height: 30px;
 }
+ 
 </style>
 <title>KOCO</title>
 <!-- Bootstrap CDN -->
