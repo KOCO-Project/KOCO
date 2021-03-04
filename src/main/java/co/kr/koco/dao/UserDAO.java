@@ -45,6 +45,10 @@ public class UserDAO {
 	public void pwUpdate(UserVO userVo) throws Exception {
 		sql.update("userMapper.pwUpdate", userVo);
 	}
+	
+	public UserVO userPage(UserVO userVo) throws Exception{
+		return (UserVO) sql.selectOne("userMapper.userPage", userVo);
+	}
 
 	public List<UserVO> userList(UserVO userVo) throws Exception {
 		return sql.selectList("userMapper.userList", userVo);

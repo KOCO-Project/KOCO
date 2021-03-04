@@ -70,6 +70,10 @@ public class UserService {
 	public void pwUpdate(UserVO userVo) throws Exception {
 		dao.pwUpdate(userVo);
 	}
+	
+	public UserVO userPage(UserVO userVo) throws Exception {
+		return dao.userPage(userVo);
+	}
 
 	public List<UserVO> userList(UserVO userVo) throws Exception {
 		return dao.userList(userVo);

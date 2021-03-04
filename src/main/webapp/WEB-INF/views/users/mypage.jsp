@@ -15,9 +15,13 @@
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div class="container" style="margin-top: 100px">
 		<div class="card-body" style="text-align: center;">
+		<c:choose>
+		<c:when test="${sessionScope.user.userNickname == user.userNickname }">
 			<h2>${user.userNickname }</h2><br>
 			<a href="userUpdateView" class="btn btn-primary">개인정보수정</a><br><br>
-			<strong>팔로워</strong>&emsp;&emsp;&emsp;&emsp;&emsp;<strong>팔로우</strong>			
+			<strong>팔로워</strong>&emsp;&emsp;&emsp;&emsp;&emsp;<strong>팔로우</strong>
+		</c:when>
+		</c:choose>			
 		</div>
 	</div>
 </body>

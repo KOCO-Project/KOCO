@@ -9,6 +9,7 @@
 		<typeAlias alias="culture" type="co.kr.koco.vo.CultureVO"></typeAlias>
 		<typeAlias alias="season" type="co.kr.koco.vo.SeasonVO"></typeAlias>
 		<typeAlias alias="comment" type="co.kr.koco.vo.CommentVO"></typeAlias>
+		<typeAlias alias="notice" type="co.kr.koco.vo.NoticeVO"></typeAlias>
 	</typeAliases>
 
 	<mappers>
@@ -20,5 +21,6 @@
 		<mapper resource="mapper/seasonBoardMapper.xml"></mapper>
 		<mapper resource="mapper/commentMapper.xml"></mapper>
 		<mapper resource="mapper/EventBoardMapper.xml"></mapper>
+		<mapper resource="mapper/noticeBoardMapper.xml"></mapper>
 	</mappers>
 </configuration>

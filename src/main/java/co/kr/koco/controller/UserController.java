@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -151,6 +152,13 @@ public class UserController {
 		session.invalidate();
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/userPage")
+	public String userPage(@RequestParam(value = "userId") String userId, UserVO userVo, Model model) throws Exception {		
+		model.addAttribute("selectUser", service.userPage(userVo));
+		
+		return "users/mypage";
 	}
 
 	@RequestMapping("/sendAuthMail")
