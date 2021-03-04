@@ -17,6 +17,7 @@
 					<a href="${root }qna/list?infoNo=${obj.infoNo }" class="nav-link">${obj.infoName }</a>
 				</li>
 			</c:forEach>
+			<li class="nav-item"><a href="freeBoardList" class="nav-link">자유게시판</a>
 			<li class="nav-item"><a href="cultureList" class="nav-link">문화게시판</li>
 			<li class="nav-item"><a href="adminMain" class="nav-link">admin test</li>
 			<li class="nav-item"><a href="csstest.jsp" class="btn btn-primary">글쓰기</a></li>
