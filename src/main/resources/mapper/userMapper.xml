@@ -66,6 +66,13 @@
 		WHERE USER_ID = #{userId} AND USER_PW = #{currentPw}
 	</update>
 	
+	<!-- 유저페이지 -->
+	<select id="userPage" resultType="users">
+		SELECT USER_NICKNAME AS userNickname
+		FROM KOCO_USERS
+		WHERE USER_ID = #{userId}
+	</select>
+	
 	<!-- 관리자페이지 유저리스트 -->
 	<select id="userList" resultType="users">
 		SELECT USER_NO AS userNo, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeBoardMapper">
+	<resultMap type="notice" id="noticeResult">
+		<id property="noticeNo" column="NOTICE_NO"/>
+		<result property="noticeTitle" column="NOTICE_TITLE"/>
+		<result property="noticeContent" column="NOTICE_CONTENT"/>
+		<result property="noticeRegDate" column="NOTICE_REGDATE"/>
+		<result property="readcount" column="READCOUNT"/>
+		<result property="fileName" column="FILE_NAME"/>
+		<result property="userNo" column="USER_NO"/>
+	</resultMap>
+	
+	<select id="noticeList" resultMap="noticeResult" resultType="notice">
+		SELECT N.NOTICE_NO, N.NOTICE_TITLE, U.USER_NICKNAME AS userNickname, N.NOTICE_REGDATE, N.READCOUNT
+		FROM KOCO_NOTICE N
+		LEFT JOIN KOCO_USERS U
+		ON N.USER_NO = U.USER_NO
+		ORDER BY NOTICE_NO DESC
+	</select>
+	
+	<select id="getNoticeCnt" resultType="java.lang.Integer">
+		SELECT COUNT(*)	FROM KOCO_NOTICE
+	</select>
+</mapper>

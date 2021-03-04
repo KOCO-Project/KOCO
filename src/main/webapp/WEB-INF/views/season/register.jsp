@@ -9,9 +9,8 @@
 <meta charset="UTF-8">
 <title>Season Register Form</title>
 </head>
-<!-- Bootstrap CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -19,7 +18,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+	<c:import url="/WEB-INF/views/include/top_menu2.jsp" />
 
 
 	<div class="container" style="margin-top: 100px">

@@ -8,10 +8,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Culture getBoard</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
 </head>
 <body>
 
-	<c:import url="/WEB-INF/views/include/admin_top.jsp" />
+	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
 	<br>
 	<br>
 	<br>
@@ -20,11 +29,10 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<div class="card border-light mb-12" style="max-width: 100%;">
-					<div class="card-header" style="font-weight: bold;">CultureBoard</div>
+					<div class="card-header" style="font-weight: bold;">[culturePick] &nbsp;CultureBoard</div>
 					<div class="card-body">
 						<h4 class="card-title">${culture.cultureTitle}</h4>
-						<h4 class="card-title" style="font-size: 15px;">${culture.userNo}
-							${culture.cultureRegdate }</h4>
+						<h4 class="card-title" style="font-size: 12px;">${culture.userNo} &nbsp; ${culture.cultureRegdate }</h4>
 						<p class="card-text">${culture.cultureContent }</p>
 						<div class="form-group">
 							<div class="text-right">
