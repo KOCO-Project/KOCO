@@ -21,4 +21,8 @@ public interface FreeBoardService {
 	
 	// 글 목록 조회
 	List<BoardVO> freeBoardList(BoardVO freeBoardVO);
+	
+	//infoName
+	String getBoardInfoName(int infoNo);
+	
 }

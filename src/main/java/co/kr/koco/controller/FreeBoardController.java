@@ -12,12 +12,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;*/
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 /*import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,47 +29,51 @@ import co.kr.koco.service.FreeBoardService;
 import co.kr.koco.vo.BoardVO;
 
 @Controller
+@SessionAttributes("freeBoard") 
 public class FreeBoardController {
 	@Autowired
 	private FreeBoardService freeBoardService; 
 	
-	@Autowired 
-	private SqlSession sqlSession;
-	 
-	
 	//글 등록
-	@RequestMapping("/freeBoardRegister.do")
+	@RequestMapping("/freeBoardRegister")
 	public String freeBoardRegister(BoardVO freeBoardVO) {
 		freeBoardService.freeBoardRegister(freeBoardVO);
 		
-		return "freeBoardList.do";
+		return "redirect:freeboard/freeBoardList";
 	}
 	
 	//글 수정
-	@RequestMapping("/freeBoardUpdate.do")
-	public String freeBoardUpdate(@ModelAttribute("board") BoardVO freeBoardVO) {
+	@RequestMapping("/freeBoardUpdate")
+	public String freeBoardUpdate(@ModelAttribute("freeBoard") BoardVO freeBoardVO) {
 		freeBoardService.freeBoardUpdate(freeBoardVO);
 		
-		return "freeBoardList.do";
+		return "redirect:freeboard/freeBoardList";
 	}
 	
 	// 글 삭제 
-	@RequestMapping("/freeBoardDelete.do")
+	@RequestMapping("/freeBoardDelete")
 	public String freeBoardDelete(BoardVO freeBoardVO) {
 		freeBoardService.freeBoardDelete(freeBoardVO);
 		
-		return "freeBoardList.do";
+		return "redirect:freeboard/freeBoardList";
 	}
 	
 	// 글 상세 조회
-	public String getFreeBoard(BoardVO freeBoardVO, Model model) {
-		model.addAttribute("board");
+	@RequestMapping("/getFreeBoard")
+	public String getFreeBoard(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO, Model model) {
+		model.addAttribute("infoNo", infoNo);
+		model.addAttribute("boardNo", boardNo);
 		
-		return "getFreeBoard.jsp";
+		BoardVO readContent = freeBoardService.getFreeBoard(freeBoardVO);
+		model.addAttribute("readContentBean", readContent);
+		
+		model.addAttribute("freeBoard", freeBoardService.getFreeBoard(freeBoardVO));
+		
+		return "freeboard/getFreeBoard";
 	}
 	
 	// 검색 조건 목록 설정
-	@ModelAttribute("conditionMap")
+	@ModelAttribute("conditionMap") //2가지 기능이 있는데 그 중 하나가 RequestMapping보다 먼저 실행!
 	public Map<String, String> searchConditionMap(){
 		Map<String, String> conditionMap = new HashMap<String, String>();
 		conditionMap.put("제목", "TITLE");
@@ -77,14 +83,20 @@ public class FreeBoardController {
 	}
 	
 	// 글 목록 검색
-	public String freeBoardList(BoardVO freeBoardVO, Model model) {
+	@RequestMapping("/freeBoardList")
+	public String freeBoardList(@RequestParam("infoNo") int infoNo, BoardVO freeBoardVO, Model model) {
 		
+		//null check
 		if(freeBoardVO.getSearchCondition() == null) freeBoardVO.setSearchCondition("TITLE");
 		if(freeBoardVO.getSearchKeyword() == null) freeBoardVO.setSearchKeyword("");
 		
-		model.addAttribute("boardList", freeBoardService.freeBoardList(freeBoardVO));
+		model.addAttribute("infoNo", infoNo);
+		String infoName = freeBoardService.getBoardInfoName(infoNo);
+		model.addAttribute("infoName", infoName);
 		
-		return "freeBoardList.jsp";
+		model.addAttribute("freeBoardList", freeBoardService.freeBoardList(freeBoardVO));
+		
+		return "freeboard/freeBoardList";
 	}
 	
 	/*

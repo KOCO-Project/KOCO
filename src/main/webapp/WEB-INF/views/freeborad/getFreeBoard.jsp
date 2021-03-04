@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>KOCO</title>
+<title>자유게시판</title>
 
 <script type="text/javascript">
 	function del() {
@@ -25,7 +25,7 @@
 
 	<h1>자유 게시판</h1>
 	<hr>
-	<form action="freeBoardUpdate.do" method="post">
+	<form action="freeBoardUpdate" method="post">
 		<input name="no" type="hidden" value="${freeBoard.boardNo }" />
 		<table border="1" cellpadding="0" cellspacing="0">
 			<tr>
@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<td bgcolor="orange">작성자</td>
-				<td align="left">${freeBoard.userNo }</td>
+				<td align="left">${freeBoard.writer }</td>
 			</tr>
 			<tr>
 				<td bgcolor="orange">작성일</td>
@@ -69,8 +69,8 @@
 		</table>
 	</form>
 	<hr>
-	<a href="freeBoardRegister.jsp">글쓰기</a>&nbsp;&nbsp;&nbsp;
-	<a href="freeBoardList.do">글목록</a>
+	<a href="freeboard/freeBoardRegister.jsp">글쓰기</a>&nbsp;&nbsp;&nbsp;
+	<a href="freeBoardList">글목록</a>
 
 </body>
 </html>

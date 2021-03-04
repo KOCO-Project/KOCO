@@ -8,15 +8,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>KOCO</title>
+<title>자유게시판</title>
+
 </head>
 <body>
 	
-		<h1>자유 게시판</h1>
+		<h4 class="card-title">${infoName }</h4>
 		
 		<!-- 검색 시작 -->
-		<form action="freeBoardList.do" method="post">
-			<table border="1" cellpadding="0" cellspacing="0" width="700">
+		<form action="freeBoardList" method="post">
+			<table>
 				<tr>
 					<td align="right"><select name="searchCondition">
 							<c:forEach items = "${conditionMap }" var="option">
@@ -29,27 +30,29 @@
 		</form>
 		<!-- 검색 종료 -->
 
-		<table border="1" cellpadding="0" cellspacing="0" width="700">
+		<table>
 			<tr>
-				<th bgcolor="orange" width="100">번호</th>
-				<th bgcolor="orange" width="200">제목</th>
-				<th bgcolor="orange" width="150">작성자</th>
-				<th bgcolor="orange" width="150">작성일</th>
-				<th bgcolor="orange" width="100">조회수</th>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>조회수</th>
 			</tr>
 			
 			<c:forEach items="${freeBoardList }" var="freeBoard">
 			<tr>
 				<td>${freeBoard.boardNo }
 				<td align="left"><a href="getFreeBoard.do?boardNo=${freeBoard.boardNo}}">${freeBoard.boardTitle}</a></td>
-				<td>${freeBoard.userNo }</td>
+				<td>${freeBoard.writer }</td>
 				<td>${freeBoard.boardRegdate }</td>
 				<td>${freeBoard.boardReadcount }</td>
 			</tr>
-			</c:forEach>
-			
+			</c:forEach>		
 		</table>
-		<br> <a href="boardRegister.jsp">글쓰기</a>
+		<br> 
+		<div>
+				<a href="freeboard/freeBoardRegister?infoNo=${infoNo }">글쓰기</a>					
+		</div>
 	
 </body>
 </html>

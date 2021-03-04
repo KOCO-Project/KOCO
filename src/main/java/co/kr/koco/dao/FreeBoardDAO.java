@@ -45,4 +45,18 @@ public class FreeBoardDAO {
 		
 		return mybatis.selectList("freeBoardMapper.freeBoardList", freeBoardVO);
 	}
+	
+	public String getBoardInfoName(int infoNo) {
+		
+		return mybatis.selectOne("freeBoardMapper.getBoardInfoName", infoNo);
+	}
+	
+	public int getFreeBoardCnt(int infoNo) {
+		
+		return mybatis.selectOne("freeBoardMapper.getFreeBoardCnt", infoNo);
+	}
+	
+	public void setFreeBoardRcnt(int boardNo) {
+		mybatis.selectOne("freeBoardMapper.updateRcnt", boardNo);
+	}
 }

@@ -1,5 +1,3 @@
-<%@page import="co.kr.koco.vo.BoardVO"%>
-<%@page import="java.io.PrintWriter"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -15,23 +13,20 @@
 </script>
 
 <meta charset="UTF-8">
-<title>KOCO</title>
+<title>자유게시판</title>
 </head>
 <body>
-	<%
-		BoardVO freeBoardVO = (BoardVO) request.getAttribute("freeBoardVO");
-	%>
-	
-		<form action="freeBoardUpdate.do" method="get">
+
+		<form action="freeBoardUpdate" method="post">
 			<ul>
-				<li><label for="제목">제목</label> <input type="text" name="title"
-					required="required" class="write_title" value="<%=freeBoardVO.getBoardTitle()%>">
-					<input type="hidden" name="no" value="<%=freeBoardVO.getBoardNo()%>"></li>
+				<li><label for="제목">제목</label> 
+				<input type="text" name="title" required="required" class="write_title" value="${freeBoard.boardTitle }">
+				<input type="hidden" name="no" value="${freeBoard.boardNo }"></li>
 			</ul>
 			<hr>
 			<ul>
 				<li><label for="내용">내용</label>
-				<textarea name="content" required="required" id="editor"><%=freeBoardVO.getBoardContent()%></textarea></li>
+				<textarea name="content" required="required" id="editor4">${freeBoard.boardContent }</textarea></li>
 			</ul>
 			<ul>
 					<li><input type="submit" value="수정"></li>
@@ -40,7 +35,9 @@
 		</form>
 
 	<script>
-		CKEDITOR.replace('content');
+		CKEDITOR.replace('editor4',{
+			filebrowserUploadUrl:'/mine/imageUpload.do'
+		});
 	</script>
 	
 </body>

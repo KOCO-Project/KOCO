@@ -16,20 +16,20 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	
 	@Override
 	public void freeBoardRegister(BoardVO freeBoardVO) {
-		// TODO Auto-generated method stub
 		
+		freeBoardDAO.freeBoardRegister(freeBoardVO);
 	}
 
 	@Override
 	public void freeBoardUpdate(BoardVO freeBoardVO) {
-		// TODO Auto-generated method stub
 		
+		freeBoardDAO.freeBoardUpdate(freeBoardVO);
 	}
 
 	@Override
 	public void freeBoardDelete(BoardVO freeBoardVO) {
-		// TODO Auto-generated method stub
 		
+		freeBoardDAO.freeBoardDelete(freeBoardVO);
 	}
 
 	@Override
@@ -44,6 +44,12 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return freeBoardDAO.freeBoardList(freeBoardVO);
 	}
 
-	
+	@Override
+	public String getBoardInfoName(int infoNo) {
+		
+		return freeBoardDAO.getBoardInfoName(infoNo);
+		
+	//페이지
+	}
 
 }
