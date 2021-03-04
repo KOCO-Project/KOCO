@@ -12,14 +12,14 @@ import org.springframework.stereotype.Repository;
 import co.kr.koco.vo.BoardVO;
 
 @Repository
-public class QnaBoardDAOImpl implements QnaBoardDAO{
+public class QnaBoardDAOImpl implements QnaBoardDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
+
 	@Override
 	public void getQnaBoardRegister(BoardVO qnaBoardVO) {
-		sqlSessionTemplate.insert("qnaBoard.getQnaBoardRegister",qnaBoardVO);
+		sqlSessionTemplate.insert("qnaBoard.getQnaBoardRegister", qnaBoardVO);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class QnaBoardDAOImpl implements QnaBoardDAO{
 
 	@Override
 	public void updateQnaBoard(BoardVO boardVO) {
-		sqlSessionTemplate.selectOne("qnaBoard.updateQnaBoard",boardVO);
+		sqlSessionTemplate.selectOne("qnaBoard.updateQnaBoard", boardVO);
 	}
 
 	@Override
@@ -51,11 +51,10 @@ public class QnaBoardDAOImpl implements QnaBoardDAO{
 	public int getQnaBoardCnt(int infoNo) {
 		return sqlSessionTemplate.selectOne("qnaBoard.getQnaBoardCnt", infoNo);
 	}
-	
+
 	@Override
 	public void setQnaBoardRcnt(int boardNo) {
-		sqlSessionTemplate.selectOne("qnaBoard.updateRcnt",boardNo);
+		sqlSessionTemplate.selectOne("qnaBoard.updateRcnt", boardNo);
 	}
-	
 
 }
