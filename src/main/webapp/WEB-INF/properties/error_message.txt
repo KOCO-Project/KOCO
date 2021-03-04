@@ -1,0 +1,2 @@
+NotBlank.regQnaBoardVO.boardTitle = 제목을 입력해 주세요
+NotBlank.regQnaBoardVO.boardContent = 내용을 입력해 주세요

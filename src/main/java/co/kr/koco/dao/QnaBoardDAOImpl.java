@@ -1,8 +1,6 @@
 package co.kr.koco.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,8 +16,8 @@ public class QnaBoardDAOImpl implements QnaBoardDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public void getQnaBoardRegister(BoardVO qnaBoardVO) {
-		sqlSessionTemplate.insert("qnaBoard.getQnaBoardRegister", qnaBoardVO);
+	public void getQnaBoardRegister(BoardVO regQnaBoardVO) {
+		sqlSessionTemplate.insert("qnaBoard.getQnaBoardRegister", regQnaBoardVO);
 	}
 
 	@Override

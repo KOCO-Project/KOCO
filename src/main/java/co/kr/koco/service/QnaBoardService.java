@@ -22,39 +22,39 @@ import co.kr.koco.vo.UserVO;
 @Service
 public class QnaBoardService {
 
-//	String pathUpload="context.getRealPath(path)";
+	String pathUpload="C:/Users/PC/Documents/workspace-sts-3.9.15.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/KOCO/resources/upload";
 	private int pageListcnt = 10; // 페이지당 글 개수
 	private int pagePaginationcnt = 10;
 	
 	@Autowired
 	private QnaBoardDAO qnaBoardDAO;
 	
-	@Resource(name="userVO")
+	@Resource(name="loginUser")
 	@Lazy
-	private UserVO userVO;
+	private UserVO loginUser;
 
-//	private String saveUploadFile(MultipartFile uploadFile) {
-//		String file_name = System.currentTimeMillis() + "_" + uploadFile.getOriginalFilename();
-//		try {
-//			uploadFile.transferTo(new File(pathUpload + "/" + file_name));
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return file_name;
-//	}
-	
-	public void getQnaBoardRegister(BoardVO writerBoardVO) {
-//		System.out.println(writerBoardVO.getBoardTitle());
-//		System.out.println(writerBoardVO.getBoardContent());
-//		System.out.println(writerBoardVO.getUploadFile().getSize());
-		
-		MultipartFile uploadFile = writerBoardVO.getUploadFile();
-		if(uploadFile.getSize()>0) {
-//			String fileName = saveUploadFile(uploadFile);
-//			writerBoardVO.setFileName(fileName);
+	private String saveUploadFile(MultipartFile uploadFile) {
+		String file_name = System.currentTimeMillis() + "_" + uploadFile.getOriginalFilename();
+		try {
+			uploadFile.transferTo(new File(pathUpload + "/" + file_name));
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		writerBoardVO.setUserNo(userVO.getUserNo());
-		qnaBoardDAO.getQnaBoardRegister(writerBoardVO);
+		return file_name;
+	}
+	
+	public void getQnaBoardRegister(BoardVO regQnaBoardVO) {
+		System.out.println(regQnaBoardVO.getBoardTitle());
+		System.out.println(regQnaBoardVO.getBoardContent());
+		System.out.println(regQnaBoardVO.getUploadFile().getSize());
+		
+		MultipartFile uploadFile = regQnaBoardVO.getUploadFile();
+		if(uploadFile.getSize()>0) {
+			String fileName = saveUploadFile(uploadFile);
+			regQnaBoardVO.setFileName(fileName);
+		}
+		regQnaBoardVO.setUserNo(loginUser.getUserNo());
+		qnaBoardDAO.getQnaBoardRegister(regQnaBoardVO);
 	}
 	
 	public String getBoardInfoName(int infoNo) {
@@ -75,8 +75,8 @@ public class QnaBoardService {
 	public void updateQnaBoard(BoardVO boardVO) {
 		MultipartFile uploadFile = boardVO.getUploadFile();
 		if(uploadFile.getSize() > 0) {
-//			String fileName = saveUploadFile(uploadFile);
-//			boardVO.setFileName(fileName);
+			String fileName = saveUploadFile(uploadFile);
+			boardVO.setFileName(fileName);
 		}
 		qnaBoardDAO.updateQnaBoard(boardVO);
 	}

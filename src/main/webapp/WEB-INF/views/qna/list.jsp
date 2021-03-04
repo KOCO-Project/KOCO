@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>QnA</title>
 <!-- Bootstrap CDN -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -16,9 +16,8 @@
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 <div class="container" style="margin-top:100px">
-	<div class="card shadow">
-		<div class="card-body">
-			<h4 class="card-title">${infoName }</h4>
+
+			<h1 class="card-title">  QnA</h1>
 			<table class="table table-hover" id='board_list'>
 				<thead>
 					<tr>
@@ -89,13 +88,11 @@
 			</div>
 			
 			<div class="text-right">
-				<a href="${root }qna/qnaRegister?infoNo=${infoNo }" class="btn btn-primary">글쓰기</a>
+				<a href="${root }qna/qnaRegister?infoNo=${infoNo }" class="btn btn-primary btn-lg">Write</a>
 				
 			</div>
-			
 		</div>
-	</div>
-</div>
+
 
 </body>
 </html>

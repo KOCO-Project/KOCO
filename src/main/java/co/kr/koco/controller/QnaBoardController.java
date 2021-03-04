@@ -33,9 +33,9 @@ public class QnaBoardController {
 	@Resource(name = "CommentService")
 	private CommentService commentService;
 	
-	@Resource(name="userVO")
+	@Resource(name="loginUser")
 	@Lazy
-	private UserVO userVO;
+	private UserVO loginUser;
 	
 	@GetMapping("/list")
 	public String qnaList(@RequestParam("infoNo") int infoNo,
@@ -67,7 +67,7 @@ public class QnaBoardController {
 		BoardVO readContent = qnaBoardService.getQnaBoard(boardNo);
 		model.addAttribute("readContentBean", readContent);
 		
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("page", page);
 		
 		List<CommentVO> commentList = commentService.commentList(vo);
@@ -76,7 +76,7 @@ public class QnaBoardController {
 	}
 	
 	@GetMapping("/qnaRegister")
-	public String qnaRegister(@ModelAttribute("qnaBoardVO")BoardVO regQnaBoardVO,
+	public String qnaRegister(@ModelAttribute("regQnaBoardVO")BoardVO regQnaBoardVO,
 						   @RequestParam("infoNo")int infoNo) {
 		regQnaBoardVO.setBoardCategory(infoNo);
 		return "qna/register";
@@ -85,14 +85,14 @@ public class QnaBoardController {
 	@PostMapping("/regQna_pro")
 	public String qnaRegisterPro(@Valid @ModelAttribute("qnaBoardVO") BoardVO qnaBoardVO, BindingResult result) {
 		if(result.hasErrors()) {
-			System.out.println("湲��벐湲� �뿉�윭");
+			System.out.println("글쓰기 에러");
 			return "qna/register";
 		}
 		qnaBoardService.getQnaBoardRegister(qnaBoardVO);
 		return "qna/qnaRegister_pro";
 	}
 	
-	@GetMapping("/qnaUpdate")
+	@GetMapping("/update")
 	public String qnaUpdate(@RequestParam("infoNo") int infoNo,
 						 @RequestParam("boardNo") int boardNo,
 						 @ModelAttribute("qnaUpdateBoardVO") BoardVO qnaUpdateBoardVO,
@@ -109,22 +109,22 @@ public class QnaBoardController {
 		qnaUpdateBoardVO.setBoardTitle(tempBoardVO.getBoardTitle());
 		qnaUpdateBoardVO.setBoardContent(tempBoardVO.getBoardContent());
 		qnaUpdateBoardVO.setUploadFile(tempBoardVO.getUploadFile());
-		qnaUpdateBoardVO.setUserNo(tempBoardVO.getUserNo());
+		qnaUpdateBoardVO.setWriter(tempBoardVO.getWriter());
 		qnaUpdateBoardVO.setBoardNo(boardNo);
 		qnaUpdateBoardVO.setBoardCategory(infoNo);
 		
-		return "qna/qnaUpdate";
+		return "qna/update";
 	}
 	
-	@PostMapping("/qnaUpdatePro")
+	@PostMapping("/qnaUpdate_pro")
 	public String qnaUpdatePro(@Valid @ModelAttribute("qnaUpdateBoardVO") BoardVO qnaUpdateBoardVO,
 							BindingResult result,
 							@RequestParam("page") int page,
 							Model model) {
 		model.addAttribute("page", page);
 		if(result.hasErrors()) {
-			System.out.println("�닔�젙 �뿉�윭");
-			return "qna/qnaUpdate";
+			System.out.println("수정 에러");
+			return "qna/update";
 		}
 		qnaBoardService.updateQnaBoard(qnaUpdateBoardVO);
 		return "qna/qnaUpdate_pro";

@@ -5,12 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.list-group p {
+	margin: 0px;
+	padding: 0px;
+}
+</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>QnA</title>
 <!-- Bootstrap CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -22,39 +27,78 @@
 
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-	<div class="container" style="margin-top: 100px">
+	<div class="container" style="margin-top: 50px">
 		<div class="row">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
-				<div class="card shadow">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10">
+
+				<div class="card  border-light mb-3 cc_cursor">
+					<div class="card-header">QnA</div>
 					<div class="card-body">
-						<div class="form-group">
-							<label for="writer">작성자</label> <input type="text" id="writer"
-								name="writer" class="form-control"
-								value="${readContentBean.writer }" disabled="disabled" />
+						<div class="row">
+							<div class="col-md-4">
+
+								<div class="form-group">
+									<label for="writer">WRITER</label> <input type="text"
+										id="writer" name="writer" class="form-control"
+										value="${readContentBean.writer }" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="boardRegdate">DATE</label> <input type="text"
+										id="boardRegdate" name="boardRegdate" class="form-control"
+										value="${readContentBean.boardRegdate }" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<label for="boardReadcount">조회수</label> <input type="text"
+									id="boardReadcount" name="boardReadcount" class="form-control"
+									value="${readContentBean.boardReadcount }" disabled="disabled" />
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="boardRegdate">작성날짜</label> <input type="text"
-								id="boardRegdate" name="boardRegdate" class="form-control"
-								value="${readContentBean.boardRegdate }" disabled="disabled" />
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="boardTitle">TITLE</label> <input type="text"
+										id="boardTitle" name="boardTitle" class="form-control"
+										value="${readContentBean.boardTitle }" disabled="disabled" />
+								</div>
+							</div>
 						</div>
+
 						<div class="form-group">
-							<label for="boardTitle">제목</label> <input type="text"
-								id="boardTitle" name="boardTitle" class="form-control"
-								value="${readContentBean.boardTitle }" disabled="disabled" />
-						</div>
-						<div class="form-group">
-							<label for="boardContent">내용</label>
+							<label for="boardContent">CONTENT</label>
 							<textarea id="boardContent" name="boardContent"
 								class="form-control" rows="10" style="resize: none"
 								disabled="disabled">${readContentBean.boardContent }</textarea>
 						</div>
 						<c:if test="${readContentBean.fileName !=null }">
 							<div class="form-group">
-								<label for="board_file">첨부 이미지</label> <img
+								<label for="board_file">IMAGE</label> <img
 									src="${root }upload/${readContentBean.fileName }" width="100%" />
 							</div>
 						</c:if>
+
+
+						<!-- 댓글 -->
+						<div id="comment">
+							<!-- <ol class="commentList"> -->
+							<ul class="list-group">
+								<c:forEach items="${commentList}" var="comment">
+									<li
+										class="list-group-item d-flex justify-content-between align-items-center">
+										<p>유저번호 : ${comment.userNo}</p>
+										<p>댓글 내용 : ${comment.commentContent}</p>
+										<p>작성 날짜 : ${comment.commentRegdate}</p>
+									</li>
+								</c:forEach>
+							</ul>
+							<!-- 	</ol> -->
+						</div>
+						<br>
+						<br>
+
 						<div class="form-group">
 							<div class="text-right">
 								<a href="${root }qna/list?infoNo=${infoNo }&page=${page}"
@@ -68,30 +112,12 @@
 								<%-- </c:if> --%>
 							</div>
 						</div>
-
-						<!-- 댓글 -->
-						<div id="comment">
-							<ol class="commentList">
-								<c:forEach items="${commentList}" var="comment">
-									<li>
-										<p>
-											유저번호 : ${comment.userNo}<br> 
-											작성 날짜 :	 ${comment.commentRegdate}
-										</p>
-
-										<p>댓글 내용 : ${comment.commentContent}</p>
-									</li>
-								</c:forEach>
-
-							</ol>
-						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-3"></div>
 		</div>
 	</div>
 
-
+	<div class="col-sm-1"></div>
 </body>
 </html>

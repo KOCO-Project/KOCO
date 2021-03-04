@@ -2,53 +2,98 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var='root' value="${pageContext.request.contextPath }/"/>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<!-- 상단 메뉴 부분 -->
-<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top shadow-lg">
-	<a class="navbar-brand" href="${root }main">KOCO</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-	        data-target="#navMenu">
-		<span class="navbar-toggler-icon"></span>        
-	</button>
-	<div class="collapse navbar-collapse" id="navMenu">
-		<ul class="navbar-nav">
-			<c:forEach var="obj" items='${topMenuList }'>
-				<li class="nav-item">
-					<a href="${root }qna/list?infoNo=${obj.infoNo }" class="nav-link">${obj.infoName }</a>
-				</li>
-			</c:forEach>
-			<li class="nav-item"><a href="freeBoardList" class="nav-link">자유게시판</a>
-			<li class="nav-item"><a href="cultureList" class="nav-link">문화게시판</li>
-			<li class="nav-item"><a href="adminMain" class="nav-link">admin test</li>
-			<li class="nav-item"><a href="csstest.jsp" class="btn btn-primary">글쓰기</a></li>
-			<%-- <li class="nav-item">
-				<a href="${root }qna/list?infoNo=2&boardNo=1" class="nav-link">QnA게시판</a>
-			</li> --%>
-			
-		</ul>
-		
-		<ul class="navbar-nav ml-auto">
-			
-			<c:choose>
-			<c:when test="${sessionScope.user == null }">
-			<li class="nav-item">
-				<a href="loginView" class="nav-link">로그인</a>
-			</li>
-			<li class="nav-item">
-				<a href="registerView" class="nav-link">회원가입</a>
-			</li>
-			</c:when>
-			<c:otherwise>
-				<a href="mypage" class="nav-link">${sessionScope.user.userNickname }</a>
-			</c:otherwise>
-			</c:choose>			
-			
-<!-- 			<li class="nav-item"> -->
-<!-- 				<a href="#" class="nav-link">회원정보</a> -->
-<!-- 			</li> -->
-			<li class="nav-item">
-				<a href="userLogout" class="nav-link">로그아웃</a>
-			</li>
-		</ul>
-	</div>
+  <div class="collapse navbar-collapse justify-content-md-center cc_cursor" id="navbarsExample08">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="${root }main"><b>KOCO</b> <span class="sr-only">(current)</span></a>
+      </li>
+      
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown08">
+          <a class="dropdown-item" href="freeBoardList">Culture</a>
+          <a class="dropdown-item" href="#">Seasons</a>
+        </div>
+      </li>
+
+      <li class="nav-item">  
+        <a class="nav-link" href="#">Support</a>
+      </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown08">
+          <a class="dropdown-item" href="freeBoardList">Board</a>
+          <a class="dropdown-item" href="${root }qna/list?infoNo=2">QnA</a>
+          <a class="dropdown-item" href="#">Event</a>
+        </div>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown08">
+          <a class="dropdown-item" href="#">Account</a>
+          <a class="dropdown-item" href="#">Sign Up</a>
+          <a class="dropdown-item" href="#">Blah blah</a>
+        </div>
+      </li>
+      
+      <li class="nav-item"><a href="adminMain" class="nav-link">admin test</a></li>
+      
+    </ul> 
+  </div>
 </nav>
+<style>
+@media (min-width: 992px){
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 2rem;
+    padding-left: 2rem;
+}}
+.dropdown-menu{
+background-color:#3e3f3a;
+
+}
+.dropdown-menu a{color:white; font-size: 1rem;}
+.dropdown-toggle::after {display: none;}
+
+</style>
+
+
+<script>
+var $dropdown = $(".navbar-nav .dropdown");
+var $dropdownToggle = $(".dropdown-toggle");
+var $dropdownMenu = $(".dropdown-menu");
+var showClass = "show";
+
+$(window).on("load resize", function() {
+  if (this.matchMedia("(min-width: 768px)").matches) {
+    $dropdown.hover(
+      function() {
+        var $this = $(this);
+        $this.addClass(showClass);
+        $this.find($dropdownToggle).attr("aria-expanded", "true");
+        $this.find($dropdownMenu).addClass(showClass);
+      },
+
+      function() {
+        var $this = $(this);
+        $this.removeClass(showClass);
+        $this.find($dropdownToggle).attr("aria-expanded", "false");
+        $this.find($dropdownMenu).removeClass(showClass);
+      }
+    );
+  } else {
+    $dropdown.off("mouseenter mouseleave");
+  }
+});
+
+
+</script>
+
+
