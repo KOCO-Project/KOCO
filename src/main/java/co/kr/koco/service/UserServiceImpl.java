@@ -68,10 +68,20 @@ public class UserServiceImpl implements UserService {
 	public UserVO findIdPw(String userEmail) throws Exception {
 		return dao.findIdPw(userEmail);
 	}
+	
+	@Override
+	public void userUpdate(UserVO userVo) throws Exception {
+		dao.userUpdate(userVo);
+	}
+	
+	@Override
+	public void pwUpdate(UserVO userVo) throws Exception {
+		dao.pwUpdate(userVo);
+	}
 
 	@Override
 	public List<UserVO> userList(UserVO userVo) throws Exception {
 		return dao.userList(userVo);
-	}		
+	}				
 
 }

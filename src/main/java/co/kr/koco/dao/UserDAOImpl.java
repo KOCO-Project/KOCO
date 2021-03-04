@@ -43,10 +43,20 @@ public class UserDAOImpl implements UserDAO {
 	public UserVO findIdPw(String userEmail) throws Exception {
 		return (UserVO) sql.selectOne("userMapper.findIdPw", userEmail);
 	}
+	
+	@Override
+	public void userUpdate(UserVO userVo) throws Exception {
+		sql.update("userMapper.userUpdate", userVo);
+	}
+	
+	@Override
+	public void pwUpdate(UserVO userVo) throws Exception {
+		sql.update("userMapper.pwUpdate", userVo);
+	}
 
 	@Override
 	public List<UserVO> userList(UserVO userVo) throws Exception {
 		return sql.selectList("userMapper.userList", userVo);
-	}	
+	}			
 
 }

@@ -24,6 +24,12 @@ public interface UserService {
 	// id, password 찾기
 	public UserVO findIdPw(String userEmail) throws Exception;
 	
+	// 회원 정보 수정
+	public void userUpdate(UserVO userVo) throws Exception;
+	
+	// 비밀번호 수정
+	public void pwUpdate(UserVO userVo) throws Exception;
+	
 	// 관리자페이지 유저리스트
 	public List<UserVO> userList(UserVO userVo) throws Exception;
 }
