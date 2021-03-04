@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<div class="container" style="margin-top:100px;padding-top:30px;padding-bottom:30px">
-	<p>내이름은 코코</p>
-	<p>나이는 한살</p>
-	<p>꿈은 우주정복</p>
+	pageEncoding="UTF-8"%>
+
+<ul>
+	<li><a href="https://github.com/KOCO-Project/KOCO"> 
+	<img src="images/github.png"></a></li>
+	<li><a href="https://open.kakao.com/o/si5LysLc">
+	<img src="images/kakao-talk.png"></a></li>
+	<li><a href="https://www.instagram.com/">
+	<img src="images/instagram.png"></a></li>
+</ul>
+<div class="copyright">
+© 2021 by KOCO of Site. Proudly created with Korea Ippeu-Jo
 </div>
