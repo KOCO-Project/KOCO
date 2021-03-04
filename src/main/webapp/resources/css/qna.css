@@ -1,0 +1,18 @@
+#qna {
+	background-color: #fff;
+	margin-top: 100px;
+	padding: 3rem 7rem;
+}
+
+body {
+	background-image: url('../images/bg_qna.png');
+	width: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.list-group p {
+	margin: 0px;
+	padding: 0px;
+}
+#qna table a{color: #3e3f3a;}

@@ -5,38 +5,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-.list-group p {
-	margin: 0px;
-	padding: 0px;
-}
-</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>QnA</title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="../css/bootstrap.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../css/qna.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-	<div class="container" style="margin-top: 50px">
+	<div id="qna" class="container" style="margin-top: 100px">
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10">
-
+			<h2>QnA</h2><br>
 				<div class="card  border-light mb-3 cc_cursor">
-					<div class="card-header">QnA</div>
 					<div class="card-body">
 						<div class="row">
-							<div class="col-md-4">
+							<div class="col-md-7">
 
 								<div class="form-group">
 									<label for="writer">WRITER</label> <input type="text"
@@ -44,14 +34,14 @@
 										value="${readContentBean.writer }" disabled="disabled" />
 								</div>
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-3">
 								<div class="form-group">
 									<label for="boardRegdate">DATE</label> <input type="text"
 										id="boardRegdate" name="boardRegdate" class="form-control"
 										value="${readContentBean.boardRegdate }" disabled="disabled" />
 								</div>
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-2">
 								<label for="boardReadcount">조회수</label> <input type="text"
 									id="boardReadcount" name="boardReadcount" class="form-control"
 									value="${readContentBean.boardReadcount }" disabled="disabled" />

@@ -9,15 +9,16 @@
 <title>QnA</title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/qna.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
-<div class="container" style="margin-top:100px">
+<div id="qna" class="container" style="margin-top:100px">
 
-			<h1 class="card-title">  QnA</h1>
+			<h1 class="card-title">QnA</h1><br>
 			<table class="table table-hover" id='board_list'>
 				<thead>
 					<tr>
@@ -33,13 +34,13 @@
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.boardNo }</td>
 						<td><a href='${root }qna/getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a></td>
-						<td class="text-center d-none d-md-table-cell">${obj.writer }</td>
+						<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;">${obj.writer }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardRegdate }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.boardReadcount }</td>
 					</tr>
 					</c:forEach>
 				</tbody>
-			</table>
+			</table><br><br><br>
 			
 			<div class="d-none d-md-block">
 				<ul class="pagination justify-content-center">
