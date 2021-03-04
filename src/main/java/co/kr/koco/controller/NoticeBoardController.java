@@ -17,7 +17,7 @@ public class NoticeBoardController {
 	
 	@RequestMapping("/noticeList")
 	public String getNoticeList(@RequestParam(value = "page", defaultValue = "1") int page, NoticeVO noticeVo, Model model) {
-		model.addAttribute("noticeList", service.getNoticeList(noticeVo));
+		model.addAttribute("noticeList", service.getNoticeList(noticeVo, page));
 		
 		PageVO pageVO = service.getNoticeCnt(page);
 		model.addAttribute("pageVO", pageVO);
