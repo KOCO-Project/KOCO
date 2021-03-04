@@ -19,5 +19,6 @@
 		<mapper resource="mapper/cultureBoardMapper.xml"></mapper>
 		<mapper resource="mapper/seasonBoardMapper.xml"></mapper>
 		<mapper resource="mapper/commentMapper.xml"></mapper>
+		<mapper resource="mapper/EventBoardMapper.xml"></mapper>
 	</mappers>
 </configuration>
