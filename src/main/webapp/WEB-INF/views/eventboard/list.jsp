@@ -6,20 +6,20 @@
 <%@include file="../includes/header.jsp"%>
 
 <div class="row">
-	<div class="col-lg-12">
+	<!-- <div class="col-lg-12">
 		<h1 class="page-header">Tables</h1>
-	</div>
+	</div> -->
 </div>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel-heading">
-			EventBoard List Page
-			<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Event</button>
+			<!-- Event Board !! -->
+			<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Event</button><br>
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">EventBoard List Page</div>
+		<!-- <div class="panel panel-default">
+			<div class="panel-heading">List</div> -->
 			<div class="panel-body">
-				<table class="table table-striped table-bordered table-hover">
+				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
 							<th>번호</th>
@@ -32,14 +32,13 @@
 					<c:forEach items="${list}" var="event">
 						<!-- 조회페이지 이동 수정 후 -->
 						<tr>
-							<td><c:out value="${event.bno}" /></td>
-							<td>
-							<a class='move' href='<c:out value="${event.bno}"/>'>
-									<c:out value="${event.title}" />
+							<td><c:out value="${event.boardNo}" /></td>
+							<td><a class='move' href='<c:out value="${event.boardNo}"/>'>
+									<c:out value="${event.boardTitle}" />
 							</a></td>
-							<td><c:out value="${event.writer}" /></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${event.regDate}" /></td>
-							<td><c:out value="${event.readCount}" /></td>
+							<td><c:out value="${event.userNo}" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${event.boardRegdate}" /></td>
+							<td><c:out value="${event.boardReadcount}" /></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -62,15 +61,15 @@
 						</c:if>
 					</ul>
 				</div>
-				<%-- <form id="actionForm" action="/board/list" method="get">
+				<form id="actionForm" action="/eventboard/list" method="get">
 					<input type="hidden" name="pageNum"
 						value="${pageMaker.cri.pageNum }"> <input type="hidden"
 						name="amount" value="${pageMaker.cri.amount }">
-				</form> --%>
+				</form>
 			</div>
 		</div>
 	</div>
-</div>
+<!-- </div> -->
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -113,7 +112,7 @@ function checkModal(result) {
 		$("#myModal").modal("show");
 		}
 	$("#regBtn").on("click", function() {
-		self.location = "/board/register";
+		self.location = "/eventboard/register";
 		});
 	
 	var actionForm = $("#actionForm");
@@ -129,8 +128,8 @@ function checkModal(result) {
 		});
 	$(".move").on("click",function(e) {
 		e.preventDefault();
-		actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
-		actionForm.attr("action","/board/get");
+		actionForm.append("<input type='hidden' name='boardNo' value='"+ $(this).attr("href")+ "'>");
+		actionForm.attr("action","/eventboard/get");
 		actionForm.submit();
 		});
 	
