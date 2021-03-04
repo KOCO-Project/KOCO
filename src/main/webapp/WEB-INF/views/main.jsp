@@ -19,7 +19,7 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
 
-홈<a href="loginView">로그인</a><a href="registerView">회원가입</a>
+<!-- 홈<a href="loginView">로그인</a><a href="registerView">회원가입</a> -->
 
 
 <header>
