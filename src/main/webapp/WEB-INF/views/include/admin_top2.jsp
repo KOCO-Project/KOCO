@@ -10,53 +10,32 @@
   <div class="collapse navbar-collapse justify-content-md-center cc_cursor" id="navbarsExample08">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="${root }main"><b>KOCO</b> <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="${root }main"><b>KOCO ADMIN</b> <span class="sr-only">(current)</span></a>
       </li>
       
        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
-          <a class="dropdown-item" href="freeBoardList">Culture</a>
-          <a class="dropdown-item" href="#">Seasons</a>
-        </div>
-      </li>
-
-      <li class="nav-item">  
-        <a class="nav-link" href="#">Support</a>
+        <a class="nav-link dropdown-toggle" href="adminMain" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USER</a>
       </li>
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;"> 
-          <a class="dropdown-item" href="freeBoardList">Board</a>
-          <a class="dropdown-item" href="${root }qnalist?infoNo=2">QnA</a>
-          <a class="dropdown-item" href="#">Event</a>
+          <a class="dropdown-item" href="adminFreeList">Board</a>
+          <a class="dropdown-item" href="adminQnaList">QnA</a>
+          <a class="dropdown-item" href="adminEventList">Event</a>
         </div>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li> -->
-      <li class="nav-item dropdown"> 
-      <c:choose>
-	  <c:when test="${sessionScope.user == null }">     
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">      
-          <a class="dropdown-item" href="loginView">Sign In</a>
-          <a class="dropdown-item" href="registerView">Sign Up</a>
-<!--           <a class="dropdown-item" href="#">Blah blah</a>       -->
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;"> 
+          <a class="dropdown-item" href="cultureList">Culture</a>
+          <a class="dropdown-item" href="seasonList">Season</a>
+          <a class="dropdown-item" href="adminNotiList">Noti</a>
         </div>
-      </c:when>
-      <c:otherwise>
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.user.userNickname }</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
-          <a class="dropdown-item" href="mypage">Mypage</a>
-          <a class="dropdown-item" href="userLogout">Logout</a>
-        </div>
-	  </c:otherwise>
-	  </c:choose>      
       </li>
-      
-      <li class="nav-item"><a href="adminMain" class="nav-link">admin test</a></li>
-      
+      <li class="nav-item active">
+        <h9 class="nav-link"><b>${sessionScope.user.userNickname }  관리자님 환영합니다.</b> <span class="sr-only">(current)</span></h9>
+      </li>
     </ul> 
   </div>
 </nav>
@@ -106,5 +85,6 @@ $(window).on("load resize", function() {
 
 
 </script>
+
 
 

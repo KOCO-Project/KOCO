@@ -33,10 +33,15 @@ public class CultureBoardController {
 
 	// 글 목록 검색
 	@RequestMapping("/cultureList")
-	public String getCultureList(@ModelAttribute CultureVO vo, Model model) {
+	public String getCultureList(@ModelAttribute CultureVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 
-		// Model 정보 저장
-		model.addAttribute("cultureList", cultureService.getCultureList(vo));
+		List<CultureVO> cultureList = cultureService.getCultureBoardList(vo, page);
+		model.addAttribute("cultureList",cultureList);
+
+		PageVO pageVO = cultureService.getCultureBoardCnt(vo, page);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("page", page);
+		
 		return "culture/list"; // View 이름 리턴
 	}
 
@@ -75,16 +80,17 @@ public class CultureBoardController {
 		return "redirect:cultureList";
 	}
 	
-	@GetMapping("/listTest")
-	public String qnaList(@ModelAttribute CultureVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-
-		List<CultureVO> cultureList = cultureService.getCultureBoardList(vo, page);
-		model.addAttribute("cultureList",cultureList);
-
-		PageVO pageVO = cultureService.getCultureBoardCnt(vo, page);
-		model.addAttribute("pageVO", pageVO);
-		model.addAttribute("page", page);
-
-		return "culture/listTest";
-	}
+// 페이징 테스트	
+//	@GetMapping("/listTest")
+//	public String qnaList(@ModelAttribute CultureVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+//
+//		List<CultureVO> cultureList = cultureService.getCultureBoardList(vo, page);
+//		model.addAttribute("cultureList",cultureList);
+//
+//		PageVO pageVO = cultureService.getCultureBoardCnt(vo, page);
+//		model.addAttribute("pageVO", pageVO);
+//		model.addAttribute("page", page);
+//
+//		return "culture/listTest";
+//	}
 }
