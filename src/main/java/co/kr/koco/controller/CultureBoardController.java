@@ -1,14 +1,19 @@
 package co.kr.koco.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import co.kr.koco.service.CultureService;
 import co.kr.koco.vo.CultureVO;
+import co.kr.koco.vo.PageVO;
 
 @Controller
 @SessionAttributes("culture")
@@ -69,5 +74,17 @@ public class CultureBoardController {
 		cultureService.cultureUpdate(vo);
 		return "redirect:cultureList";
 	}
+	
+	@GetMapping("/listTest")
+	public String qnaList(@ModelAttribute CultureVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 
+		List<CultureVO> cultureList = cultureService.getCultureBoardList(vo, page);
+		model.addAttribute("cultureList",cultureList);
+
+		PageVO pageVO = cultureService.getCultureBoardCnt(vo, page);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("page", page);
+
+		return "culture/listTest";
+	}
 }

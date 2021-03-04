@@ -67,7 +67,9 @@
 			<div class="col-md-1">
 				<a href="adminTest" class="btn btn-secondary" style="width: 100%;">test</a>
 			</div>
-
+			<div class="col-md-1">
+				<a href="listTest" class="btn btn-secondary" style="width: 100%;">listTest</a>
+			</div>
 		</div>
 	</div>
 </body>

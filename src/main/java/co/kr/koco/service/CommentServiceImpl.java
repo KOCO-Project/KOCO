@@ -9,7 +9,7 @@ import co.kr.koco.dao.CommentDAO;
 import co.kr.koco.vo.CommentVO;
 
 @Service("CommentService")
-public class CommentServiceImpl {
+public class CommentServiceImpl implements CommentService{
 	@Autowired
 	private CommentDAO commentDAO;
 	
