@@ -95,7 +95,7 @@ public class UserController {
 			session.setAttribute("user", login);
 			return "redirect:main";
 		} else {
-			session.setAttribute("user", null);			
+			session.setAttribute("user", null);
 			return "users/login";
 		}
 	}
@@ -106,7 +106,7 @@ public class UserController {
 
 		return "main";
 	}
-	
+
 	@RequestMapping("/loginView")
 	public String loginView() {
 		return "users/login";
@@ -121,12 +121,12 @@ public class UserController {
 	public String mypage() throws Exception {
 		return "users/mypage";
 	}
-	
+
 	@RequestMapping("/userUpdateView")
 	public String userUpdateView() throws Exception {
 		return "users/userUpdate";
 	}
-	
+
 	@RequestMapping("/pwUpdateView")
 	public String pwUpdateView() {
 		return "users/pwUpdate";
@@ -135,6 +135,22 @@ public class UserController {
 	@RequestMapping("/findUserInfo")
 	public String findUserInfo() {
 		return "users/findUserInfo";
+	}
+
+	@RequestMapping("/userUpdate")
+	public String userUpdate(UserVO userVo, HttpSession session) throws Exception {
+		service.userUpdate(userVo);
+		session.invalidate();
+
+		return "redirect:/";
+	}
+
+	@RequestMapping("/pwUpdate")
+	public String pwUpdate(@RequestParam(value = "currentPw") String currentPw, @RequestParam(value = "newPw") String newPw, UserVO userVo, HttpSession session) throws Exception {
+		service.pwUpdate(userVo);
+		session.invalidate();
+		
+		return "redirect:/";
 	}
 
 	@RequestMapping("/sendAuthMail")

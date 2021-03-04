@@ -42,7 +42,7 @@
 
 	<!-- 로그인 -->
 	<select id="loginCheck" resultType="map">
-		SELECT USER_ID AS userId, USER_PW AS userPw, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, USER_REGDATE AS userRegDate
+		SELECT USER_NO AS userNo, USER_ID AS userId, USER_PW AS userPw, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, USER_REGDATE AS userRegDate, USER_STATUS AS userStatus, USER_CASE AS userCase
 		FROM KOCO_USERS
 		WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
 	</select>
@@ -53,6 +53,18 @@
 		FROM KOCO_USERS
 		WHERE USER_EMAIL = #{userEmail}
 	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="userUpdate">
+		UPDATE KOCO_USERS SET USER_NICKNAME = #{userNickname}, USER_EMAIL = #{userEmail}
+		WHERE USER_ID = #{userId}
+	</update>
+	
+	<!-- 비밀번호 수정 -->
+	<update id="pwUpdate">
+		UPDATE KOCO_USERS SET USER_PW = #{newPw}
+		WHERE USER_ID = #{userId} AND USER_PW = #{currentPw}
+	</update>
 	
 	<!-- 관리자페이지 유저리스트 -->
 	<select id="userList" resultType="users">

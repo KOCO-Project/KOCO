@@ -15,7 +15,7 @@
       
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown08">
+        <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="freeBoardList">Culture</a>
           <a class="dropdown-item" href="#">Seasons</a>
         </div>
@@ -26,7 +26,7 @@
       </li>
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown08">
+        <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="freeBoardList">Board</a>
           <a class="dropdown-item" href="${root }qnalist?infoNo=2">QnA</a>
           <a class="dropdown-item" href="#">Event</a>
@@ -39,7 +39,7 @@
       <c:choose>
 	  <c:when test="${sessionScope.user == null }">     
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown08">      
+        <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">      
           <a class="dropdown-item" href="loginView">Sign In</a>
           <a class="dropdown-item" href="registerView">Sign Up</a>
 <!--           <a class="dropdown-item" href="#">Blah blah</a>       -->
@@ -47,7 +47,7 @@
       </c:when>
       <c:otherwise>
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.user.userNickname }</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown08">
+        <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="mypage">Mypage</a>
           <a class="dropdown-item" href="userLogout">Logout</a>
         </div>
