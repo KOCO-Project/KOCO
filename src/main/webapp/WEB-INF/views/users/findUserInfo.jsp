@@ -6,36 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>ID & Password 찾기</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<style type="text/css">
-ul {
-	list-style: none;
-}
-
-input[type="email"], input[type="text"] {
-	border: 1px solid gray;
-	border-radius: 10px;
-	width: 300px;
-	margin-bottom: 10px;
-}
-
-.btn1 {
-	border: 1px solid gray;
-	border-radius: 10px;
-	width: 140px;
-	margin-right: 20px;
-}
-
-.btn2 {
-	border: 1px solid gray;
-	border-radius: 10px;
-	margin-left: 10px;
-	font-size: 13px;
-}
-</style>
 <script>
 	$(function() {
 		var code = "";
@@ -107,19 +81,39 @@ input[type="email"], input[type="text"] {
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	<div class="container" style="margin-top: 100px">
-		<div class="card-body" style="text-align: left; margin-left: 350px;">
-			<h6 style="margin-left: 40px">가입시 등록한 Email을 입력해주세요</h6>
-			<form id="form1" action="findIdPwd">
-				<ul>
-					<li><input type="email" name="userEmail" id="userEmail"
-						placeholder="E-Mail"><input type="button" value="인증번호 발송" class="btn2" id="findUserEmail"></li>
-					<li><input type="text" name="inputCode" id="inputCode" placeholder="인증번호 입력"></li>
-					<li><input type="button" value="Continue" class="btn1" id="checkAuthKey">
-						<input type="button" value="Cancel" onclick="history.back()" class="btn1"></li>
-				</ul>
-			</form>
+	<form id="form1" action="findIdPwd">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+				<div class="col-md-8" style="margin-top: 150px;">
+					<div class="row">
+						<div class="col-md-12" style="height: 60px;">							
+							<h3>가입시 등록한 Email을 입력해주세요</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="height: 60px;">
+							<input type="email" name="userEmail" id="userEmail"	placeholder="E-Mail" required="required" style="width: 65%; height: 50px;">&emsp;
+							<input type="button" value="인증번호 발송" id="findUserEmail" style="width: 130px; height: 45px;" class="btn btn-success">
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-12" style="height: 60px;">	
+							<input type="text" name="inputCode" id="inputCode" placeholder="인증번호 입력" style="width: 80%; height: 50px;">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<input type="button" value="Continue" class="btn btn-success" id="checkAuthKey" style="float: right; width:100px;">
+						</div>
+						<div class="col-md-5">
+							<input type="button" value="Cancel" onclick="history.back()" class="btn btn-success" style="width:100px;">
+						</div>
+					</div>			
+				</div>
 		</div>
 	</div>
+	</form>
 </body>
 </html>

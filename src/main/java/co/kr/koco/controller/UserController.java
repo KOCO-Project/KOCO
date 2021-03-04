@@ -93,7 +93,7 @@ public class UserController {
 
 		if (login != null) {
 			session.setAttribute("user", login);
-			return "main";
+			return "redirect:main";
 		} else {
 			session.setAttribute("user", null);			
 			return "users/login";
@@ -104,7 +104,17 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 
+		return "main";
+	}
+	
+	@RequestMapping("/loginView")
+	public String loginView() {
 		return "users/login";
+	}
+
+	@RequestMapping("/registerView")
+	public String registerView() {
+		return "users/userRegister";
 	}
 
 	@RequestMapping("/mypage")

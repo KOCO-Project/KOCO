@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -214,7 +214,7 @@ $(function(){
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<form action="userRegister" method="post" id="form1">
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-2"></div>
 				<div class="col-md-8" style="margin-top: 150px;">
@@ -253,8 +253,8 @@ $(function(){
 					<br>
 					<div class="row">
 						<div class="col-md-12" style="height: 60px;">
-							<input type="email" name="userEmail" id="userEmail" placeholder="E-Mail" style="width: 65%; height: 50px;">&emsp;
-							<input type="button" value="인증번호 발송" id="findUserEmail" style="width: 130px; height: 45px;" class="btn btn-success">
+							<input type="email" name="userEmail" id="userEmail" placeholder="E-Mail" style="width: 65%; height: 50px;">&nbsp;
+							<input type="button" value="인증번호 발송" id="findUserEmail" style="width: 100px; height: 45px;" class="btn btn-success">
 						</div>
 					</div>
 					<br>

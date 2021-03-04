@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>myPagePwTest</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -75,7 +75,7 @@ function userEmailExist(){
 <body>
    <c:import url="/WEB-INF/views/include/top_menu.jsp" />
    <fmt:formatDate value="${user.userRegDate }" pattern="yyyy-MM-dd" var="userDate"></fmt:formatDate>
-   <div class="container-fluid">
+   <div class="container">
       <div class="row">
          <div class="col-md-2"></div>
          <div class="col-md-8" style="margin-top: 150px;">

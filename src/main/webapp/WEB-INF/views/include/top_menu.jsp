@@ -35,13 +35,24 @@
       <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li> -->
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown"> 
+      <c:choose>
+	  <c:when test="${sessionScope.user == null }">     
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown08">
-          <a class="dropdown-item" href="#">Account</a>
-          <a class="dropdown-item" href="#">Sign Up</a>
-          <a class="dropdown-item" href="#">Blah blah</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown08">      
+          <a class="dropdown-item" href="loginView">Sign In</a>
+          <a class="dropdown-item" href="registerView">Sign Up</a>
+<!--           <a class="dropdown-item" href="#">Blah blah</a>       -->
         </div>
+      </c:when>
+      <c:otherwise>
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.user.userNickname }</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown08">
+          <a class="dropdown-item" href="mypage">Mypage</a>
+          <a class="dropdown-item" href="userLogout">Logout</a>
+        </div>
+	  </c:otherwise>
+	  </c:choose>      
       </li>
       
       <li class="nav-item"><a href="adminMain" class="nav-link">admin test</a></li>

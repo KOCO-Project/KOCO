@@ -31,16 +31,6 @@ public class HomeController {
 	public String main(Model model) {
 		return "main";
 
-	}
-
-	@RequestMapping(value = "/loginView")
-	public String loginView() {
-		return "users/login";
-	}
-
-	@RequestMapping(value = "/registerView")
-	public String registerView() {
-		return "users/userRegister";
-	}
+	}	
 
 }
