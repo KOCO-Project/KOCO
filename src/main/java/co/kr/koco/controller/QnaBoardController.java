@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.kr.koco.service.CommentService;
 import co.kr.koco.service.QnaBoardService;
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.CommentVO;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
@@ -27,6 +29,9 @@ public class QnaBoardController {
 	
 	@Autowired
 	private QnaBoardService qnaBoardService;
+	
+	@Resource(name = "CommentService")
+	private CommentService commentService;
 	
 	@Resource(name="userVO")
 	@Lazy
@@ -52,7 +57,7 @@ public class QnaBoardController {
 	}
 	
 	@GetMapping("/getQna")
-	public String getQnaBoard(@RequestParam("infoNo") int infoNo,
+	public String getQnaBoard(@ModelAttribute CommentVO vo,@RequestParam("infoNo") int infoNo,
 					   @RequestParam("boardNo") int boardNo,
 					   @RequestParam("page") int page,
 					   Model model) {
@@ -65,6 +70,8 @@ public class QnaBoardController {
 		model.addAttribute("userVO", userVO);
 		model.addAttribute("page", page);
 		
+		List<CommentVO> commentList = commentService.commentList(vo);
+		model.addAttribute("commentList", commentList);
 		return "qna/getQnaBoard";
 	}
 	
@@ -78,7 +85,7 @@ public class QnaBoardController {
 	@PostMapping("/regQna_pro")
 	public String qnaRegisterPro(@Valid @ModelAttribute("qnaBoardVO") BoardVO qnaBoardVO, BindingResult result) {
 		if(result.hasErrors()) {
-			System.out.println("글쓰기 에러");
+			System.out.println("湲��벐湲� �뿉�윭");
 			return "qna/register";
 		}
 		qnaBoardService.getQnaBoardRegister(qnaBoardVO);
@@ -116,7 +123,7 @@ public class QnaBoardController {
 							Model model) {
 		model.addAttribute("page", page);
 		if(result.hasErrors()) {
-			System.out.println("수정 에러");
+			System.out.println("�닔�젙 �뿉�윭");
 			return "qna/qnaUpdate";
 		}
 		qnaBoardService.updateQnaBoard(qnaUpdateBoardVO);

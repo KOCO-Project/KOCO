@@ -15,11 +15,11 @@
 	</resultMap>
 	
 	
-	<select id="commentList" resultType="comment">
+	<select id="commentList" resultMap="commentResult" resultType="comment">
 		<![CDATA[
-		SELECT COMMENT_CONTENT,COMMENT_REGDATE
+		SELECT *
 		FROM KOCO_COMMENT
-		ORDER BY GROUT_NO DESC
+		ORDER BY GROUP_NO DESC
 		]]>
 	</select>
 
