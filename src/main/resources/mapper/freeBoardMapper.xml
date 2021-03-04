@@ -20,15 +20,14 @@
 		]]>
 	</select>
 
-	<select id="freeBoardList" parameterType="board" resultMap="freeboardResult">
-		<![CDATA[
-		SELECT * FROM KOCO_BOARD WHERE 1 = 1 
-		<IF TEST = "searchCondition == 'TITLE'">
-		AND TITLE LIKE '%' || #{searchKeyword} || '%' </IF>
-		<IF TEST = "searchCondition == 'CONTENT'">
-		AND CONTENT LIKE '%'|| #{searchKeyword} || '%' </IF>
-		ORDER BY BOARD_NO DESC
-		]]>
+	<select id="freeBoardList" parameterType="java.lang.String" resultMap="freeboardResult" resultType="board">
+		SELECT BOARD_NO AS boardNo, BOARD_TITLE AS boardTitle, USER_NO AS writer, BOARD_REGDATE AS boardRegdate, READCOUNT AS boardReadcount  
+		FROM KOCO_BOARD WHERE 1 = 1 
+		<if test = 'searchCondition == "TITLE"'>
+		AND BOARD_TITLE LIKE CONCAT('%', #{searchKeyword},'%')</if>
+		<if test = 'searchCondition == "CONTENT"'>
+		AND BOARD_CONTENT LIKE CONCAT('%', #{searchKeyword},'%')</if>
+		ORDER BY BOARD_NO DESC		
 	</select>
 	
 	<select id="getBoardInfoName" resultType="java.lang.String">
