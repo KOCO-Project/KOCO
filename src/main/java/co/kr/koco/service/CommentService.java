@@ -5,6 +5,7 @@ import java.util.List;
 import co.kr.koco.vo.CommentVO;
 
 public interface CommentService {
+	
 	List<CommentVO> commentList(CommentVO vo);
 	
 	
