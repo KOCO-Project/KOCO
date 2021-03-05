@@ -1,12 +1,14 @@
 package co.kr.koco.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -16,26 +18,30 @@ import co.kr.koco.vo.Criteria;
 import co.kr.koco.vo.PageDTO;
 
 @Controller		
-@RequestMapping("/eventboard/*")		
+@RequestMapping(value="/eventboard")		
 public class EventBoardController {
 
-	@Autowired(required=false)
+	@Autowired
+//	@Qualifier("EventBoardService")
 	private EventBoardService service;
 	
-//	@GetMapping("/register")
-//	public void register() {
-//	}
-//	
+	@GetMapping("/register")
+	public void register() {
+	}
+	
     @PostMapping("/register")	// 등록에 대한 처리
     public String register(BoardVO event, RedirectAttributes rttr) {
-    	service.register(event);
+    	service.eventBoardRegister(event);
     	rttr.addFlashAttribute("result", event.getBoardNo());
     	return "redirect:/eventboard/list";
     }
 
-	@GetMapping("/list")
+//	@GetMapping("/list")
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(Criteria cri, Model model) {
-		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("infoNo", 3);
+//		model.addAttribute("infoName", service.getBoardInfoName(infoNo));
+		model.addAttribute("list", service.getListWithPaging(cri));
 		int total = service.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		return "eventboard/list";
@@ -43,17 +49,17 @@ public class EventBoardController {
 
     @GetMapping({"/get"})
     public void get(@RequestParam("boardNo")int bno,@ModelAttribute("cri") Criteria cri,Model model) {
- 	   model.addAttribute("event",service.get(bno));
+ 	   model.addAttribute("event",service.getEventBoard(bno));
     }
     @GetMapping({"/getUpdate"})
     public void update(@RequestParam("boardNo")int bno,@ModelAttribute("cri") Criteria cri,Model model) {
- 	   model.addAttribute("event",service.getUpdate(bno));
+ 	   model.addAttribute("event",service.getEventBoardUpdate(bno));
     }
 
     @PostMapping("/postUpdate")
 	public String update(@RequestParam("pageNum")int pageNum,@RequestParam("amount")int amount,BoardVO event,Criteria cri, RedirectAttributes rttr) {
 		
-		int count = service.postUpdate(event);
+		int count = service.postEventBoardUpdate(event);
 		
 		if(count == 1) {
 			rttr.addFlashAttribute("result", "success");
@@ -68,7 +74,7 @@ public class EventBoardController {
     @PostMapping("/delete")
 	public String delete(@RequestParam("boardNo") int bno,Criteria cri, RedirectAttributes rttr) {
 		
-		int count = service.delete(bno);
+		int count = service.eventBoardDelete(bno);
 		
 		if(count == 1) {
 			rttr.addFlashAttribute("result", "success");

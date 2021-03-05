@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.kr.koco.dao.EventBoardDAO">
+<mapper namespace="evnetDAO">
 	<resultMap type="board" id="boardResult">
 		<id property="boardNo" column="BOARD_NO"></id>
 		<result property="boardCategory" column="BOARD_CATEGORY" />
@@ -15,7 +15,7 @@
 		<result property="thumbnail" column="THUMBNAIL" />
 		<result property="userNo" column="USER_NO" />
 	</resultMap>
-	<insert parameterType="board" id="boardRegister">
+	<insert parameterType="board" id="eventBoardRegister">
 		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO)
 		VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo})
 		<!-- VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName, jdbcType=VARCHAR}, NULL, 1) -->
@@ -25,34 +25,43 @@
 		FROM KOCO_BOARD_INFO 
 		WHERE INFO_NO = #{infoNo}
 	</select> -->
-	<select id="getBoard" resultType="board" resultMap="boardResult">
+	<select id="getEventBoard" resultType="board" resultMap="boardResult" parameterType="java.lang.Integer">
 		select *
 		from  KOCO_BOARD as board, KOCO_USERS as user  
 		where BOARD_NO=#{boardNo} and board.USER_NO=user.USER_NO
 	</select>
-	<select id="getUpdate" resultType="board" resultMap="boardResult">
+	<select id="getEventBoardUpdate" resultType="board" resultMap="boardResult" parameterType="java.lang.Integer">
 		select *
 		from  KOCO_BOARD as board, KOCO_USERS as user  
 		where BOARD_NO=#{boardNo} and board.USER_NO=user.USER_NO
 	</select>
-	<update id="postUpdate">
+	<update id="postEventBoardUpdate" parameterType="board" >
 		update KOCO_BOARD 
 		set BOARD_TITLE=#{boardTitle},BOARD_CONTENT=#{boardContent},BOARD_REGDATE=NOW(),FILE_NAME=#{fileName},THUMBNAIL=#{thumbnail},USER_NO=#{userNo} where BOARD_NO=#{boardNo}
 	</update>
-	<delete id="boardDelete">
+	<delete id="eventBoardDelete" parameterType="board">
 		delete from KOCO_BOARD where BOARD_NO=#{boardNo}
 	</delete>
 	<select id="getListWithPaging" resultType="board" resultMap="boardResult">
 		select BOARD_NO, BOARD_TITLE, user.USER_NICKNAME, BOARD_REGDATE, READCOUNT
-		from KOCO_BOARD as board, KOCO_USERS as user
-		where board.USER_NO=user.USER_NO and BOARD_CATEGORY=3
-		order by BOARD_NO desc
+		from KOCO_BOARD as board
+		join KOCO_USERS as user
+		where board.USER_NO=user.USER_NO and board.BOARD_CATEGORY=3
+		order by board.BOARD_NO desc
 		limit #{pageNum}, #{amount}
+		<!-- where board.USER_NO=user.USER_NO and board.BOARD_CATEGORY=info.INFO_NO and info.INFO_NO=3 -->
 		<!-- select BOARD_NO, BOARD_TITLE, USER_NO, BOARD_REGDATE, READCOUNT
 		from KOCO_BOARD
 		where BOARD_CATEGORY=3
 		order by BOARD_NO desc
 		limit #{pageNum}, #{amount} -->
+	</select>
+	<select id="getBoardInfoName" resultType="java.lang.String" parameterType="java.lang.Integer">
+	<![CDATA[
+		SELECT INFO_NAME as infoName
+		FROM KOCO_BOARD_INFO 
+		WHERE INFO_NO = #{infoNo}
+	]]>
 	</select>
 	<select id="getTotalCount" resultType="int">
 	<![CDATA[

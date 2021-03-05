@@ -17,22 +17,22 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="form-group">
-					<label>Bno</label> <input class="form-control" name='boardNo'
+					<label>번호</label> <input class="form-control" name='boardNo'
 						value='<c:out value="${event.boardNo}"/>' readonly="readonly">
 				</div>
 
 				<div class="form-group">
-					<label>Title</label> <input class="form-control" name='boardTitle'
+					<label>제목</label> <input class="form-control" name='boardTitle'
 						value='<c:out value="${event.boardTitle}"/>' readonly="readonly">
 				</div>
 
 				<div class="form-group">
-					<label>Text area</label>
+					<label>내용</label>
 					<textarea class="form-control" rows="3" name='boardContent'
 						readonly="readonly"><c:out value="${event.boardContent}" /></textarea>
 				</div>
 				<div class="form-group">
-					<label>Writer</label> <input class="form-control" name='userNo'
+					<label>작성자</label> <input class="form-control" name='userNo'
 						value='<c:out value="${event.userNo}"/>' readonly="readonly">
 				</div>
 				<button data-oper='update' class="btn btn-default">Modify</button>

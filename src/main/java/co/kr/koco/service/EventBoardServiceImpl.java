@@ -13,10 +13,11 @@ import co.kr.koco.vo.BoardVO;
 import co.kr.koco.vo.Criteria;
 import co.kr.koco.vo.UserVO;
 
+//@Repository
 @Service
 public class EventBoardServiceImpl implements EventBoardService {
 
-	@Autowired(required=false)
+	@Autowired
 	private EventBoardDAO eventBoardDAO;
 	
 	@Resource(name="userVO")
@@ -24,38 +25,42 @@ public class EventBoardServiceImpl implements EventBoardService {
 	private UserVO userVO;
 
 	@Override
-	public void register(BoardVO event) {
+	public void eventBoardRegister(BoardVO event) {
 //		String userNickname = userVO.getUserNickname();
 		event.setUserNo(userVO.getUserNo());
-		eventBoardDAO.boardRegister(event);
+		eventBoardDAO.eventBoardRegister(event);
 	}	
 
 	@Override
-	public BoardVO get(int bno) {
-		return eventBoardDAO.getBoard(bno);
+	public BoardVO getEventBoard(int bno) {
+		return eventBoardDAO.getEventBoard(bno);
 	}
 
 	@Override
-	public BoardVO getUpdate(int bno) {
-		return eventBoardDAO.getUpdate(bno);
+	public BoardVO getEventBoardUpdate(int bno) {
+		return eventBoardDAO.getEventBoardUpdate(bno);
 	}
 
 
 	@Override
-	public int postUpdate(BoardVO event) {
-		return eventBoardDAO.postUpdate(event);
+	public int postEventBoardUpdate(BoardVO event) {
+		return eventBoardDAO.postEventBoardUpdate(event);
 
 	}
 
 	@Override
-	public int delete(int bno) {
-		return eventBoardDAO.boardDelete(bno);
+	public int eventBoardDelete(int bno) {
+		return eventBoardDAO.eventBoardDelete(bno);
 
 	}
 	
 	@Override
-	public List<BoardVO> getList(Criteria cri) {
+	public List<BoardVO> getListWithPaging(Criteria cri) {
 		return eventBoardDAO.getListWithPaging(cri);
+	}
+	
+	public String getBoardInfoName(int infoNo) {
+		return eventBoardDAO.getBoardInfoName(infoNo);
 	}
 	
 	@Override

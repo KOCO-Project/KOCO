@@ -2,8 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-<%@include file="../includes/header.jsp"%>
+<%-- <%@include file="../includes/header.jsp"%> --%>
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
+<%-- <c:set var="root" value="${pageContext.request.contextPath }/"/> --%>
 
 <div class="row">
 	<!-- <div class="col-lg-12">
@@ -16,8 +17,6 @@
 			<!-- Event Board !! -->
 			<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Event</button><br>
 		</div>
-		<!-- <div class="panel panel-default">
-			<div class="panel-heading">List</div> -->
 			<div class="panel-body">
 				<table class="table table-striped table-hover">
 					<thead>
@@ -36,8 +35,8 @@
 							<td><a class='move' href='<c:out value="${event.boardNo}"/>'>
 									<c:out value="${event.boardTitle}" />
 							</a></td>
-							<td><c:out value="${event.userNo}" /></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${event.boardRegdate}" /></td>
+							<td><c:out value="${event.writer}" /></td>
+							<td><c:out value="${event.boardRegdate}" /></td>
 							<td><c:out value="${event.boardReadcount}" /></td>
 						</tr>
 					</c:forEach>
@@ -92,7 +91,7 @@
 	</div>
 </div>
 
-<%@include file="../includes/footer.jsp"%>
+<%@include file="../include/bottom_info.jsp"%>
 
 <script>
 $(document).ready(function() {

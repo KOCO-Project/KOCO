@@ -8,12 +8,13 @@ import co.kr.koco.vo.Criteria;
 import co.kr.koco.vo.EventVO;
 
 public interface EventBoardService {
-	public void register(BoardVO event);
-	public BoardVO get(int bno);
-	public BoardVO getUpdate(int bno);
-	public int postUpdate(BoardVO event);
-	public int delete(int bno);
-	public List<BoardVO> getList(Criteria cri);
+	public void eventBoardRegister(BoardVO event);
+	public BoardVO getEventBoard(int bno);
+	public BoardVO getEventBoardUpdate(int bno);
+	public int postEventBoardUpdate(BoardVO event);
+	public int eventBoardDelete(int bno);
+	public List<BoardVO> getListWithPaging(Criteria cri);
 	public int getTotal(Criteria cri);
+	public String getBoardInfoName(int infoNo);
 
 }
