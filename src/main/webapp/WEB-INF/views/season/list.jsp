@@ -16,7 +16,11 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
+<script type="text/javascript">
+	function delFun(){
+		return confirm("삭제하시겠습니까?");
+	}
+</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
@@ -72,9 +76,9 @@
 							</td>
 							<td>${season.userNo}</td>
 							<td>${season.seasonRegdate}</td>
-							<td style="color: red; font-weight: bold;"><a
-								href="deleteSeasonBoard?seasonNo=${season.seasonNo}"
-								style="color: red;">삭제</a></td>
+							<td style="color: red; font-weight: bold;">
+							<a href="deleteSeasonBoard?seasonNo=${season.seasonNo}" style="color: red;" onclick="return delFun();">삭제</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>

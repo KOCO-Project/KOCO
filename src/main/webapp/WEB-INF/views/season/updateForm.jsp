@@ -18,7 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu2.jsp" />
+	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 	<div class="container" style="margin-top: 100px">
 		<div class="row">

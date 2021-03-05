@@ -22,5 +22,20 @@
 		ORDER BY GROUP_NO DESC
 		]]>
 	</select>
+	
+	<insert id="commentRegister" parameterType="comment">
+		<![CDATA[
+		INSERT INTO KOCO_COMMENT(BOARD_CATEGORY,BOARD_NO,DEPTH,COMMENT_CONTENT,GROUP_NO,USER_NO) 
+		VALUES(#{boardCategory}, #{boardNo}, #{depth}, #{commentContent},#{groupNo},#{userNo})
+		]]>
+	</insert>
 
+
+	<delete id="commentDelete">
+		<![CDATA[
+		DELETE FROM KOCO_COMMENT
+		WHERE COMMENT_NO = #{commentNo}
+		]]>
+	</delete>
 </mapper>
+

@@ -13,7 +13,15 @@ public class CommentDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public List<CommentVO> CommentList(CommentVO vo){
+	public List<CommentVO> commentList(CommentVO vo){
 		return mybatis.selectList("commentMapper.commentList", vo);
+	}
+	
+	public void commentRegister(CommentVO vo) {
+		mybatis.insert("commentMapper.commentRegister", vo);
+	}
+	
+	public void commentDelete(int commentNo) {
+		mybatis.delete("commentMapper.commentDelete", commentNo);
 	}
 }

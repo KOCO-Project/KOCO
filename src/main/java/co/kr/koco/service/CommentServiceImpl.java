@@ -15,7 +15,15 @@ public class CommentServiceImpl implements CommentService{
 	
 	public List<CommentVO> commentList(CommentVO vo){
 		
-		return commentDAO.CommentList(vo);
+		return commentDAO.commentList(vo);
 		
 	}
+	public void commentRegister(CommentVO vo) {
+		commentDAO.commentRegister(vo);
+	}
+	
+	public void commentDelete(int commentNo) {
+		commentDAO.commentDelete(commentNo);
+	}
+	
 }

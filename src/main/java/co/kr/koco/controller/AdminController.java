@@ -9,14 +9,17 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import co.kr.koco.service.CommentService;
 import co.kr.koco.service.CultureService;
 import co.kr.koco.service.QnaBoardService;
 import co.kr.koco.service.UserService;
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.CommentVO;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
@@ -29,7 +32,10 @@ public class AdminController {
 
 	@Autowired
 	private QnaBoardService qnaBoardService;
-
+	
+	@Resource(name = "CommentService")
+	private CommentService commentService;
+	
 	@Autowired
 	private UserService userService;
 
@@ -69,8 +75,22 @@ public class AdminController {
 	}
 
 	@RequestMapping("/getAdminTest")
-	public String getAdminTest() {
+	public String getAdminTest(@ModelAttribute CommentVO vo,Model model) {
+		
+		List<CommentVO> commentList = commentService.commentList(vo);
+		model.addAttribute("commentList", commentList);
+		
 		return "admin/getAdminTest";
+	}
+	@RequestMapping("/commentRegister")
+	public String commentRegister(CommentVO vo) {
+		commentService.commentRegister(vo);
+		return "redirect:getAdminTest";
+	}
+	@RequestMapping("/commentDelete")
+	public String commentDelete(int commentNo) {
+		commentService.commentDelete(commentNo);
+		return "redirect:seasonList";
 	}
 
 }

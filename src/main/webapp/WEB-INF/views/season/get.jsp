@@ -68,9 +68,8 @@
 
 						<div class="form-group">
 							<div class="text-right">
-								<a href="seasonList" class="btn btn-primary">목록보기</a> <a
-									href="seasonUpdateBoardForm?seasonNo=${season.seasonNo}"
-									class="btn btn-info">수정하기</a>
+								<a href="seasonList" class="btn btn-primary">목록보기</a> 
+								<a href="seasonUpdateBoardForm?seasonNo=${season.seasonNo}"	class="btn btn-info">수정하기</a>
 								<button id="btn-remove" class="btn btn-danger">삭제하기</button>
 							</div>
 						</div>
