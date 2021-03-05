@@ -19,7 +19,7 @@
 </head>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu2.jsp" />
+	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
 
 	<div class="container" style="margin-top: 100px">
 		<div class="row">
