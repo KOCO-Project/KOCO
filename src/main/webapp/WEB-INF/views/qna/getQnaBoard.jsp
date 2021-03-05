@@ -18,7 +18,7 @@
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-	<div id="qna" class="container" style="margin-top: 100px">
+	<div id="qna" class="container" style="height: 90%;margin-top: 10%;">
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10">
@@ -92,13 +92,13 @@
 						<div class="form-group">
 							<div class="text-right">
 								<a href="${root }qnalist?infoNo=${infoNo }&page=${page}"
-									class="btn btn-primary">목록보기</a>
+									class="btn btn-primary" style="width: 100px;">목록보기</a>
 								<%-- <c:if test="${loginUser.userNo==readContentBean.userNo }"> --%>
 								<a
 									href="${root }qnaupdate?infoNo=${infoNo }&boardNo=${boardNo }&page=${page}"
-									class="btn btn-info">수정하기</a> <a
+									class="btn btn-success" style="width: 100px;">수정하기</a> <a
 									href="${root }qnadelete?infoNo=${infoNo }&boardNo=${boardNo }"
-									class="btn btn-danger">삭제하기</a>
+									class="btn btn-danger" style="width: 100px;">삭제하기</a>
 								<%-- </c:if> --%>
 							</div>
 						</div>

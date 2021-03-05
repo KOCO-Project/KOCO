@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Update QnA</title>
@@ -19,10 +20,10 @@
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
-<div id="qna" class="container" style="margin-top:100px">
+<div id="qna" class="container" style="height: 90%;margin-top: 10%;">
 	<div class="row">
 		<div class="col-sm-1"></div>
-		<div class="col-sm-9">
+		<div class="col-sm-10">
 		<h2>Update QnA</h2><br>
 			<div class="card border-light mb-3 cc_cursor">
 			  <!-- <div class="card-header">Update QnA</div> -->
@@ -59,15 +60,14 @@
 						</div>
 						<div class="form-group">
 							<div class="text-right">
-								<button type="submit" class="btn btn-primary">수정완료</button>
-								<a href="${root }getQna?infoNo=${infoNo}&boardNo=${boardNo}&page=${page}" class="btn btn-info">취소</a>
+								<button type="submit" class="btn btn-success" style="width: 100px;">수정완료</button>
+								<a href="${root }getQna?infoNo=${infoNo}&boardNo=${boardNo}&page=${page}" class="btn btn-danger" style="width: 100px;">취소</a>
 							</div>
 						</div>
 					</form:form>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-1"></div>
 	</div>
 </div>
 <footer>

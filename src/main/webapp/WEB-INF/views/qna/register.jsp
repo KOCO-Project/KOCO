@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>QnA</title>
 </head>
@@ -18,10 +19,10 @@
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
-<div id="qna" class="container" style="margin-top:100px">
+<div id="qna" class="container" style="height: 90%;margin-top: 10%;">
 	<div class="row">
 		<div class="col-sm-1"></div>
-		<div class="col-sm-9">
+		<div class="col-sm-10">
 			<h2>Write QnA</h2><br>
 			<div class="card border-light mb-3 cc_cursor">
 			<!--   <div class="card-header">Submit QnA</div> -->
@@ -44,15 +45,14 @@
 					</div>
 					<div class="form-group">
 						<div class="text-right">
-							<form:button type="submit" class="btn btn-primary">Submit</form:button>
-							<a href="${root }qnalist?infoNo=2&page=1" class="btn btn-info">취소</a>
+							<form:button type="submit" class="btn btn-primary" style="width: 100px;">Submit</form:button>
+							<a href="${root }qnalist?infoNo=2&page=1" class="btn btn-danger" style="width: 100px;">취소</a>
 						</div>
 					</div>
 					</form:form>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-1"></div>
 	</div>
 </div>
 <footer>

@@ -18,7 +18,7 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 <div id="qna" class="container" style="margin-top:100px">
 <h1 class="card-title">QnA</h1><br>
-	<table class="table table-hover" id='board_list'>
+	<table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca;">
 	<thead>
 	<tr>
 		<th class="text-center d-none d-md-table-cell">글번호</th>
@@ -88,8 +88,8 @@
 </div>
 			
 <div class="text-right">
-	<a href="${root }qnaRegister?infoNo=${infoNo }" class="btn btn-primary btn-lg">Write</a>		
-</div>
+	<a href="${root }qnaRegister?infoNo=${infoNo }" class="btn btn-primary btn-lg" style="width: 100px;">Write</a>		
+</div><br><br><br>
 
 </div>
 
