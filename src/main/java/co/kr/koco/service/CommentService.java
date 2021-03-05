@@ -11,4 +11,8 @@ public interface CommentService {
 	void commentRegister(CommentVO vo);
 	
 	void commentDelete(int commentNo);
+	
+	void commentUpdate(CommentVO vo);
+	
+	CommentVO commentGet(int commentNo);
 }

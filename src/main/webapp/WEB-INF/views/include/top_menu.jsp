@@ -18,7 +18,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="freeBoardList">Culture</a>
           <a class="dropdown-item" href="seasonList">Seasons</a>
-          <a class="dropdown-item" href="adminTest">Admin Test</a>
+          <a class="dropdown-item" href="getAdminTest">Admin Test</a>
         </div>
       </li>
 

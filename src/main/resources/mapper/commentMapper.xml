@@ -23,6 +23,14 @@
 		]]>
 	</select>
 	
+	<select id="commentGet" resultType="comment" resultMap="commentResult">
+		<![CDATA[
+			SELECT *
+			FROM KOCO_COMMENT
+			WHERE COMMENT_NO = #{commentNo}
+		]]>
+	</select>
+	
 	<insert id="commentRegister" parameterType="comment">
 		<![CDATA[
 		INSERT INTO KOCO_COMMENT(BOARD_CATEGORY,BOARD_NO,DEPTH,COMMENT_CONTENT,GROUP_NO,USER_NO) 
@@ -37,5 +45,14 @@
 		WHERE COMMENT_NO = #{commentNo}
 		]]>
 	</delete>
+	
+	<update id="commentUpdate">
+		<![CDATA[
+		UPDATE KOCO_COMMENT SET
+		COMMENT_CONTENT = #{commentContent},
+		COMMENT_REGDATE = NOW()
+		WHERE COMMENT_NO = #{commentNo}
+		]]>
+	</update>
 </mapper>
 

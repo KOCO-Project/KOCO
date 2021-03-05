@@ -90,7 +90,19 @@ public class AdminController {
 	@RequestMapping("/commentDelete")
 	public String commentDelete(int commentNo) {
 		commentService.commentDelete(commentNo);
-		return "redirect:seasonList";
+		return "redirect:getAdminTest";
 	}
 
+	
+	@RequestMapping("commentUpdateForm")
+	public String commentUpdateForm(int commentNo,Model model) {
+		model.addAttribute("comment", commentService.commentGet(commentNo));
+		return "admin/commentUpdateForm";
+	}
+	
+	@RequestMapping("commentUpdate")
+	public String commentUpdate(@ModelAttribute("comment") CommentVO vo) {
+		commentService.commentUpdate(vo);		
+		return "redirect:getAdminTest";
+	}
 }

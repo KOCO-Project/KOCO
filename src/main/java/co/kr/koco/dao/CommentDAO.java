@@ -16,6 +16,9 @@ public class CommentDAO {
 	public List<CommentVO> commentList(CommentVO vo){
 		return mybatis.selectList("commentMapper.commentList", vo);
 	}
+	public CommentVO commentGet(int commentNo) {
+		return mybatis.selectOne("commentMapper.commentGet",commentNo);
+	}
 	
 	public void commentRegister(CommentVO vo) {
 		mybatis.insert("commentMapper.commentRegister", vo);
@@ -23,5 +26,9 @@ public class CommentDAO {
 	
 	public void commentDelete(int commentNo) {
 		mybatis.delete("commentMapper.commentDelete", commentNo);
+	}
+	
+	public void commentUpdate(CommentVO vo) {
+		mybatis.update("commentMapper.commentUpdate", vo);
 	}
 }
