@@ -31,7 +31,7 @@ public class UserVO {
 	private String userRegdate;	
 	
 	private boolean userIdExist;
-	
+	private boolean userLogin;
 	private String currentPw;
 	private String newPw;
 	
@@ -138,6 +138,15 @@ public class UserVO {
 
 	public void setNewPw(String newPw) {
 		this.newPw = newPw;
+	}
+	
+	public boolean isUserLogin() {
+		return userLogin;
+	}
+	
+	public void setUserLogin(boolean userLogin) {
+		this.userLogin = userLogin;
+		
 	}
 
 }

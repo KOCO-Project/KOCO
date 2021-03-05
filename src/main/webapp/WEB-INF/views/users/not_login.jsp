@@ -3,5 +3,5 @@
 
 <script>
 	alert('로그인 해주세요')
-	location.href='${root}users/login'
+	location.href='${root}main'
 </script>

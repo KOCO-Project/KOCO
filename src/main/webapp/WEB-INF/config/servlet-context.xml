@@ -23,11 +23,12 @@
 		 	<mapping path="/**"/>
 		 	<beans:bean class="co.kr.koco.interceptor.TopMenuInterceptor" />
 		 </interceptor>
-		<!-- <interceptor>
-			<mapping path="/qna/qnaRegister"/>
-			<exclude-mapping path="/main"/>
+		<interceptor>
+			<mapping path="/qnaRegister"/>
+			<mapping path="/qnaupdate"/>
+			<mapping path="/qnadelete"/>
 			<beans:bean class="co.kr.koco.interceptor.CheckLoginInterceptor"/>
-		</interceptor> -->
+		</interceptor>
 	</interceptors>
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>

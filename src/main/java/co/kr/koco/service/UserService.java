@@ -56,7 +56,12 @@ public class UserService {
 	}
 
 	public Map<String, UserVO> login(UserVO userVo) throws Exception {
-		return dao.login(userVo);
+		Map<String, UserVO> loginUserVO = dao.login(userVo);
+		if(loginUserVO != null) {
+			userVO.setUserLogin(true);
+		}
+		System.out.println(loginUserVO);
+		return loginUserVO;
 	}
 
 	public UserVO findIdPw(String userEmail) throws Exception {

@@ -1,8 +1,11 @@
 package co.kr.koco.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 import co.kr.koco.service.CommentService;
 import co.kr.koco.service.QnaBoardService;
@@ -33,9 +38,9 @@ public class QnaBoardController {
 	@Resource(name = "CommentService")
 	private CommentService commentService;
 	
-	@Resource(name="loginUser")
+	@Resource(name="userVO")
 	@Lazy
-	private UserVO loginUser;
+	private UserVO userVO;
 	
 	@GetMapping("/qnalist")
 	public String qnaList(@RequestParam("infoNo") int infoNo,
@@ -67,7 +72,7 @@ public class QnaBoardController {
 		BoardVO readContent = qnaBoardService.getQnaBoard(boardNo);
 		model.addAttribute("readContentBean", readContent);
 		
-		model.addAttribute("loginUser", loginUser);
+		model.addAttribute("userVO", userVO);
 		model.addAttribute("page", page);
 		
 		List<CommentVO> commentList = commentService.commentList(vo);
@@ -83,12 +88,22 @@ public class QnaBoardController {
 	}
 	
 	@PostMapping("/regQna_pro")
-	public String qnaRegisterPro(@Valid @ModelAttribute("qnaBoardVO") BoardVO qnaBoardVO, BindingResult result) {
+	public String qnaRegisterPro(@Valid @ModelAttribute("regQnaBoardVO") BoardVO regQnaBoardVO, BindingResult result,
+			HttpServletRequest request,HttpSession session) {
 		if(result.hasErrors()) {
 			System.out.println("글쓰기 에러");
 			return "qna/register";
 		}
-		qnaBoardService.getQnaBoardRegister(qnaBoardVO);
+		@SuppressWarnings("unchecked")
+		Map<String, UserVO> map = (Map<String, UserVO>) session.getAttribute("user");
+		System.out.println("qna regQna_pro user: "+session.getAttribute("user"));
+		System.out.println("qna regQna_pro user: "+map.get("userNo"));
+		int userNo = Integer.parseInt(map.get("userNo").toString());
+		regQnaBoardVO.setUserNo(userNo);
+		System.out.println("UserNO : "+regQnaBoardVO.getUserNo());
+		System.out.println(userNo);
+		regQnaBoardVO.setUserNo(userNo);
+		qnaBoardService.getQnaBoardRegister(regQnaBoardVO);
 		return "qna/qnaRegister_pro";
 	}
 	
@@ -139,9 +154,9 @@ public class QnaBoardController {
 		return "qna/delete";
 	}
 	
-	@GetMapping("/regFail")
+	@GetMapping("/not_login")
 	public String regFail() {
-		return "qna/regFail";
+		return "users/not_login";
 	}
 	
 }

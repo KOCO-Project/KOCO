@@ -4,5 +4,5 @@
 <c:set var='root' value='${pageContext.request.contextPath}/'/>
 <script>
 	alert('수정되었습니다')
-	location.href = '${root}qna/getQna?infoNo=${qnaUpdateBoardVO.infoNo}&boardNo=${qnaUpdateBoardVO.boardNo}&page=${page}'
+	location.href = '${root}getQna?infoNo=${qnaUpdateBoardVO.boardCategory}&boardNo=${qnaUpdateBoardVO.boardNo}&page=${page}'
 </script> 

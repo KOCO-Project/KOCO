@@ -28,7 +28,8 @@
 			<!--   <div class="card-header">Submit QnA</div> -->
 				<div class="card-body">
 					<form:form action='${root }regQna_pro' method='post' modelAttribute="regQnaBoardVO" enctype="multipart/form-data">
-						<%-- <form:hidden path="${infoNo }"/> --%>
+						<form:hidden path="boardCategory"/>
+						<%-- <form:hidden path="${user.userNo }"/> --%>
 						<div class="form-group">
 						<form:label path="boardTitle">제목</form:label>
 						<form:input path="boardTitle" class="form-control"/>
@@ -46,7 +47,7 @@
 					<div class="form-group">
 						<div class="text-right">
 							<form:button type="submit" class="btn btn-primary" style="width: 100px;">Submit</form:button>
-							<a href="${root }qnalist?infoNo=2&page=1" class="btn btn-danger" style="width: 100px;">취소</a>
+							<a href="${root }qnalist?infoNo=2&page=1" class="btn btn-danger" style="width: 100px;">Cancel</a>
 						</div>
 					</div>
 					</form:form>
