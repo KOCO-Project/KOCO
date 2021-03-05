@@ -68,7 +68,7 @@ $(function(){
 	var idCheck = "";
 	var pwCheck = "";
 	var pwCheck2 = "";
-	var nickCheck = "";
+	var nickCheck = "";	
 	
 	$('#userId').on('blur', function userIdExist(){
 		var userId = $('#userId').val();
@@ -249,8 +249,13 @@ $(function(){
 	$('#checkAuthKey').on('click', function checkAuthKey() {
 		//var userEmail = $('#userEmail').val();
 		var inputCode = $('#inputCode').val();
-		//console.log(code);
-		//console.log(inputCode);
+		var checkyn = $('#checkyn').is(':checked');
+		
+		if(!checkyn){
+			alert('개인정보 처리방침에 동의해주세요.');
+			return false;
+		}
+		
 		if(idCheck == "true" && pwCheck == "true" && pwCheck2 == "true" && nickCheck == "true" && code.trim() == inputCode.trim()){
 			$('#form1').submit();
 		} else {
@@ -313,7 +318,7 @@ $(function(){
 				<br>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox"style="margin-right: .5rem;"/>
+						<input type="checkbox"style="margin-right: .5rem;" id="checkyn"/>
 						<a href="#" style="color: #29abe0">KOCO의 개인정보 처리방침</a>에 따라 개인 정보를 수집, 사용, 타사에 대한 제공 및 처리하는 데 동의합니다.
 					</label>
 				</div> 
