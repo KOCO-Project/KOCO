@@ -33,7 +33,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="freeBoardList">Board</a>
           <a class="dropdown-item" href="${root }qnalist?infoNo=2">QnA</a>
-          <a class="dropdown-item" href="#">Event</a>
+          <a class="dropdown-item" href="eventlist">Event</a>
         </div>
       </li>
       <!-- <li class="nav-item">
