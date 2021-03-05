@@ -20,7 +20,7 @@
 	</selectKey> -->
 	<![CDATA[
 		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO)
-		VALUES(2, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo})
+		VALUES(#{boardCategory}, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo})
 	]]>
 	</insert>
 	

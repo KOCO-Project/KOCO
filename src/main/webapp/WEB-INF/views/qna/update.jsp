@@ -20,7 +20,7 @@
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
-<div id="qna" class="container" style="height: 90%;margin-top: 10%;">
+<div id="qna" class="container">
 	<div class="row">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10">

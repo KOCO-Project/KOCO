@@ -49,6 +49,8 @@
             </props>
         </property>
     </bean>
-	
+    
+	<bean class="co.kr.koco.vo.UserVO" id='userVO' scope='session'/>	
 	<context:component-scan base-package="co.kr.koco"></context:component-scan>
+	
 </beans>

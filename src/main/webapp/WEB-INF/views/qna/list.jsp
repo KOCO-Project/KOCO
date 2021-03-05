@@ -16,7 +16,7 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
-<div id="qna" class="container" style="margin-top:100px">
+<div id="qna" class="container">
 <h1 class="card-title">QnA</h1><br>
 	<table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca;">
 	<thead>

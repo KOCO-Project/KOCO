@@ -2,6 +2,7 @@ package co.kr.koco.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -29,9 +30,9 @@ public class QnaBoardService {
 	@Autowired
 	private QnaBoardDAO qnaBoardDAO;
 	
-	@Resource(name="loginUser")
+	@Resource(name="userVO")
 	@Lazy
-	private UserVO loginUser;
+	private UserVO userVO;
 
 	private String saveUploadFile(MultipartFile uploadFile) {
 		String file_name = System.currentTimeMillis() + "_" + uploadFile.getOriginalFilename();
@@ -44,16 +45,17 @@ public class QnaBoardService {
 	}
 	
 	public void getQnaBoardRegister(BoardVO regQnaBoardVO) {
-		System.out.println(regQnaBoardVO.getBoardTitle());
-		System.out.println(regQnaBoardVO.getBoardContent());
-		System.out.println(regQnaBoardVO.getUploadFile().getSize());
-		
+//		System.out.println(regQnaBoardVO.getBoardTitle());
+//		System.out.println(regQnaBoardVO.getBoardContent());
+//		System.out.println(regQnaBoardVO.getUploadFile().getSize());
 		MultipartFile uploadFile = regQnaBoardVO.getUploadFile();
 		if(uploadFile.getSize()>0) {
 			String fileName = saveUploadFile(uploadFile);
 			regQnaBoardVO.setFileName(fileName);
 		}
-		regQnaBoardVO.setUserNo(loginUser.getUserNo());
+		
+		
+//		regQnaBoardVO.setUserNo(userVO.getUserNo());
 		qnaBoardDAO.getQnaBoardRegister(regQnaBoardVO);
 	}
 	
