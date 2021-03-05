@@ -17,32 +17,32 @@
     <meta name="author" content="">
 
     <title>KOCO - Korea Offer Culture Organizaion</title>
-<!-- 
-    Bootstrap Core CSS
+
+    <!-- Bootstrap Core CSS -->
     <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    MetisMenu CSS
+    <!-- MetisMenu CSS -->
     <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    DataTables CSS
+    <!-- DataTables CSS -->
     <link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
-    DataTables Responsive CSS
+    <!-- DataTables Responsive CSS -->
     <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
-    Custom CSS
+    <!-- Custom CSS -->
     <link href="/resources/dist/css/sb-admin-2.css" rel="stylesheet">
 
-    Custom Fonts
+    <!-- Custom Fonts -->
     <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
- -->
+
 	<title>QnA</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 <!-- Bootstrap CDN -->
 </head>
 
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+	<c:import url="/WEB-INF/views/include/event_top.jsp" />
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel-heading">
@@ -60,20 +60,18 @@
 							<th>작성자</th>
 							<th>작성일</th>
 							<th>조회수</th>
-							<th>마음</th>
 						</tr>
 					</thead>
 					<c:forEach items="${list}" var="event">
 						<!-- 조회페이지 이동 수정 후 -->
 						<tr>
 							<td><c:out value="${event.boardNo}" /></td>
-							<td><a class='move' href='eventboard/get?boardNo=<c:out value="${event.boardNo}"/>'>
+							<td><a class='move' href='<c:out value="${event.boardNo}"/>'>
 									<c:out value="${event.boardTitle}" />
 							</a></td>
 							<td><c:out value="${event.writer}" /></td>
 							<td><c:out value="${event.boardRegdate}" /></td>
 							<td><c:out value="${event.boardReadcount}" /></td>
-							<td><a href="users/mypage">마음</a></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -167,7 +165,7 @@ function checkModal(result) {
 	$(".move").on("click",function(e) {
 		e.preventDefault();
 		actionForm.append("<input type='hidden' name='boardNo' value='"+ $(this).attr("href")+ "'>");
-		actionForm.attr("action","/eventGet");	//컨트롤러 매핑
+		actionForm.attr("action","/eventboard/get");
 		actionForm.submit();
 		});
 	

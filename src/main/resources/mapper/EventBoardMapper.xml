@@ -43,7 +43,7 @@
 		delete from KOCO_BOARD where BOARD_NO=#{boardNo}
 	</delete>
 	<select id="getListWithPaging" resultType="board" resultMap="boardResult">
-		select BOARD_NO, BOARD_TITLE, user.USER_NICKNAME, BOARD_REGDATE, READCOUNT
+		select BOARD_NO, BOARD_TITLE, user.USER_NICKNAME as writer, BOARD_REGDATE, READCOUNT
 		from KOCO_BOARD as board
 		join KOCO_USERS as user
 		where board.USER_NO=user.USER_NO and board.BOARD_CATEGORY=3

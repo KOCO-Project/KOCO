@@ -18,18 +18,17 @@ import co.kr.koco.vo.Criteria;
 import co.kr.koco.vo.PageDTO;
 
 @Controller		
-@RequestMapping(value="/eventboard")		
+//@RequestMapping(value="/eventboard")		
 public class EventBoardController {
 
 	@Autowired
-//	@Qualifier("EventBoardService")
 	private EventBoardService service;
 	
-	@GetMapping("/register")
+	@GetMapping("/eventRegister")
 	public void register() {
 	}
 	
-    @PostMapping("/register")	// 등록에 대한 처리
+    @PostMapping("/eventRegister")	// 등록에 대한 처리
     public String register(BoardVO event, RedirectAttributes rttr) {
     	service.eventBoardRegister(event);
     	rttr.addFlashAttribute("result", event.getBoardNo());
@@ -37,7 +36,7 @@ public class EventBoardController {
     }
 
 //	@GetMapping("/list")
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	@RequestMapping(value="/eventlist", method=RequestMethod.GET)
 	public String list(Criteria cri, Model model) {
 		model.addAttribute("infoNo", 3);
 //		model.addAttribute("infoName", service.getBoardInfoName(infoNo));
@@ -47,9 +46,10 @@ public class EventBoardController {
 		return "eventboard/list";
 	}
 
-    @GetMapping({"/get"})
-    public void get(@RequestParam("boardNo")int bno,@ModelAttribute("cri") Criteria cri,Model model) {
+    @GetMapping({"/eventGet"})
+    public String get(@RequestParam("boardNo")int bno,@ModelAttribute("cri") Criteria cri,Model model) {
  	   model.addAttribute("event",service.getEventBoard(bno));
+ 	  return "eventboard/get";
     }
     @GetMapping({"/getUpdate"})
     public void update(@RequestParam("boardNo")int bno,@ModelAttribute("cri") Criteria cri,Model model) {

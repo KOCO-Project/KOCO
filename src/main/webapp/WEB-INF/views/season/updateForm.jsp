@@ -69,9 +69,8 @@
 							</div>
 							<div class="form-group">
 								<div class="text-right">
-									<input type="submit" class="btn btn-info" value="수정완료" /> <a
-										href="getSeasonBoard?seasonNo=${season.seasonNo}"
-										class="btn btn-danger">취소하기</a>
+									<input type="submit" class="btn btn-info" value="수정완료" /> 
+									<a href="getSeasonBoard?seasonNo=${season.seasonNo}" class="btn btn-danger">취소하기</a>
 								</div>
 							</div>
 						</form>
@@ -80,6 +79,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

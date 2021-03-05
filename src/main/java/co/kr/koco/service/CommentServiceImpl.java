@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import co.kr.koco.dao.CommentDAO;
 import co.kr.koco.vo.CommentVO;
+import co.kr.koco.vo.SeasonVO;
 
 @Service("CommentService")
 public class CommentServiceImpl implements CommentService{
@@ -18,6 +19,11 @@ public class CommentServiceImpl implements CommentService{
 		return commentDAO.commentList(vo);
 		
 	}
+	
+	public CommentVO commentGet(int commentNo) {
+			return commentDAO.commentGet(commentNo);
+	}
+
 	public void commentRegister(CommentVO vo) {
 		commentDAO.commentRegister(vo);
 	}
@@ -26,4 +32,8 @@ public class CommentServiceImpl implements CommentService{
 		commentDAO.commentDelete(commentNo);
 	}
 	
+	
+	public void commentUpdate(CommentVO vo) {
+		commentDAO.commentUpdate(vo);
+	}
 }
