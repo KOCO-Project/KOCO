@@ -93,6 +93,9 @@ public class UserController {
 
 		if (login != null) {
 			session.setAttribute("user", login);
+			session.setAttribute("from", login.getUserNickname());
+			session.setAttribute("userNo", login.getUserNo());
+			
 			return "redirect:main";
 		} else {
 			session.setAttribute("user", null);
@@ -153,9 +156,12 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/userPage")
-	public String userPage(@RequestParam(value = "userId") String userId, UserVO userVo, Model model) throws Exception {		
-		model.addAttribute("selectUser", service.userPage(userVo));
+	@GetMapping("/userPage")
+	public String userPage(@RequestParam(value = "userNickname", required = false) String userNickname, UserVO userVo, Model model) throws Exception {		
+		//model.addAttribute("selectUser", service.userPage(userNickname));
+		String nickname = service.userPage(userNickname);
+		model.addAttribute("selectUser", nickname);
+		System.out.println(nickname);
 		
 		return "users/mypage";
 	}
