@@ -23,5 +23,6 @@
 		<mapper resource="mapper/commentMapper.xml"></mapper>
 		<mapper resource="mapper/EventBoardMapper.xml"></mapper>
 		<mapper resource="mapper/noticeBoardMapper.xml"></mapper>
+		<mapper resource="mapper/followMapper.xml"></mapper>
 	</mappers>
 </configuration>

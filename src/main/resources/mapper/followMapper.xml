@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="followMapper">
+	<resultMap type="follow" id="followResult">
+		<id property="followNo" column="FOLLOW_NO"/>
+		<result property="fromFollow" column="FROM_FOLLOW"/>
+		<result property="toFollow" column="TO_FOLLOW"/>
+	</resultMap>
+	
+	<!-- 팔로우 -->
+	<insert id="follow">
+		INSERT INTO KOCO_FOLLOW(FROM_FOLLOW, TO_FOLLOW)
+		VALUES(#{fromFollow}, #{toFollow})
+	</insert>
+	
+	<!-- 팔로워 수 -->
+	<select id="followerCnt" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS follower
+		FROM KOCO_FOLLOW
+		WHERE TO_FOLLOW = #{toFollow}
+	</select>
+	
+	<!-- 팔로잉 수 -->
+	<select id="followingCnt" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS following
+		FROM KOCO_FOLLOW
+		WHERE FROM_FOLLOW = #{fromFollow}
+	</select>
+	
+	<!-- 팔로워 리스트 -->
+	<select id="followerList" resultType="java.lang.String" parameterType="java.lang.String">
+		SELECT FROM_FOLLOW
+		FROM KOCO_FOLLOW
+		WHERE TO_FOLLOW = #{toFollow}
+	</select>
+	
+	<!-- 팔로잉 리스트 -->
+	<select id="followingList" resultType="java.lang.String" parameterType="java.lang.String">
+		SELECT TO_FOLLOW
+		FROM KOCO_FOLLOW
+		WHERE FROM_FOLLOW = #{fromFollow}
+	</select>
+</mapper>
