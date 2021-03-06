@@ -87,6 +87,22 @@ line-height: inherit;
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
+<script>
+$(function(){
+	$('a[href^="#"]').on('click', function (e){
+		e.preventDefault();
+		
+		var target = this.hash;
+		var $target = $(target);
+		
+		$('html, body').stop().animate({
+            'scrollTop': $target.offset().top
+        }, 800, 'swing', function () {
+            window.location.hash = target;
+        });
+	});
+});
+</script>
 <body>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
@@ -103,7 +119,7 @@ line-height: inherit;
 
 <div id="about">
 <div class="col-md-12" id="welcome">
-	<h1 class="text-center">Hello, User</h1>
+	<h1 class="text-center">Hello, ${user.userNickname }</h1>
 </div>
 <div class="row">
 	<div class="col-md-3 cc_cursor"></div>
@@ -114,14 +130,15 @@ line-height: inherit;
 		</div>
 		<div class="col-md-7" style="height: 40%;">
 			<ul>
-			<li><strong>userName</strong></li>
-			<li>e-mail</li>
-			<li>reg Date</li>
+			<li><strong>${user.userNickname }</strong></li>
+			<li>${user.userEmail }</li>
+			<li>${user.userRegdate }</li>
 			</ul>
 		</div>
 		<div class="row"style="width: 100%;"><div class="col-md-12">
 		<button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로워수</button>&emsp;&emsp;&emsp;
-		<button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로잉수</button>
+		<button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로잉수</button><br>
+		<a href="followerList?toFollow=${selectUser }">${followerCnt }</a><a href="followingList?fromFollow=${selectUser }" style="margin-left:130px;">${followingCnt }</a>
 		</div></div>
 	</div>
 	</div>
@@ -205,11 +222,11 @@ line-height: inherit;
 <form role="form">
  	<div class="form-group">
       <label for="">Name</label>
-      <input type="password" class="form-control" id="" />
+      <input type="text" class="form-control" id="" placeholder="${user.userNickname }"/>
    </div>
    <div class="form-group">
       <label for="">Email address</label>
-      <input type="email" class="form-control" id="" />
+      <input type="email" class="form-control" id="" placeholder="${user.userEmail }"/>
    </div>
    <div class="form-group">
       <label for="">Password</label>
@@ -233,7 +250,7 @@ line-height: inherit;
 
 </div>
 
-
+</div>
 <footer>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 </footer>
