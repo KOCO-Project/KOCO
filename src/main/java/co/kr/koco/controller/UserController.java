@@ -161,7 +161,7 @@ public class UserController {
 		//model.addAttribute("selectUser", service.userPage(userNickname));
 		String nickname = service.userPage(userNickname);
 		model.addAttribute("selectUser", nickname);
-		System.out.println(nickname);
+		//System.out.println(nickname);
 		
 		return "users/mypage";
 	}

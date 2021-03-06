@@ -35,7 +35,7 @@
 						<td><a
 							href='${root }getNotice?noticeNo=${obj.noticeNo }&page=${page}'>${obj.noticeTitle }</a></td>
 						<td class="text-center d-none d-md-table-cell"
-							style="color: #325d88; font-weight: 500;">${obj.userNickname }</td>
+							style="color: #325d88; font-weight: 500;"><a href="${root }userPage?userNickname=${obj.userNickname }">${obj.userNickname }</a></td>
 						<td class="text-center d-none d-md-table-cell">${obj.noticeRegDate }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.readcount }</td>
 					</tr>
