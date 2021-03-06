@@ -31,7 +31,7 @@
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
-          <a class="dropdown-item" href="freeBoardList">Board</a>
+          <a class="dropdown-item" href="freeBoardList?infoNo=1">Board</a>
           <a class="dropdown-item" href="${root }qnalist?infoNo=2">QnA</a>
           <a class="dropdown-item" href="eventlist">Event</a>
         </div>
