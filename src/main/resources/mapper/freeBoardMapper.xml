@@ -8,67 +8,73 @@
 		<id property="boardNo" column="BOARD_NO"/>
 		<result property="boardCategory" column="BOARD_CATEGORY"/>
 		<result property="boardTitle" column="BOARD_TITLE"/>
-		<result property="userNo" column="USER_NO"/>
 		<result property="boardContent" column="BOARD_CONTENT"/>
 		<result property="boardRegdate" column="BOARD_REGDATE"/>
-		<result property="boardReadcount" column="READCOUNT"/>	
+		<result property="boardReadcount" column="READCOUNT"/>
+		<result property="userNo" column="USER_NO"/>	
 	</resultMap>
 
 	<select id="getFreeBoard" parameterType="board" resultType="board">
-		<![CDATA[
+		
 		SELECT * FROM KOCO_BOARD WHERE BOARD_NO = #{boardNo}
-		]]>
+		
 	</select>
 
-	<select id="freeBoardList" parameterType="java.lang.String" resultMap="freeboardResult" resultType="board">
-		SELECT BOARD_NO AS boardNo, BOARD_TITLE AS boardTitle, USER_NO AS writer, BOARD_REGDATE AS boardRegdate, READCOUNT AS boardReadcount  
+	<select id="freeBoardList" resultMap="freeboardResult" resultType="board">
+		<!-- SELECT *  
 		FROM KOCO_BOARD WHERE 1 = 1 
 		<if test = 'searchCondition == "TITLE"'>
-		AND BOARD_TITLE LIKE CONCAT('%', #{searchKeyword},'%')</if>
+		AND BOARD_TITLE LIKE CONCAT('%',#{searchKeyword},'%')</if>
 		<if test = 'searchCondition == "CONTENT"'>
-		AND BOARD_CONTENT LIKE CONCAT('%', #{searchKeyword},'%')</if>
-		ORDER BY BOARD_NO DESC		
+		AND BOARD_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		ORDER BY BOARD_NO DESC	 -->
+		SELECT a1.BOARD_NO, a1.BOARD_TITLE, a2.USER_NICKNAME AS writer,
+			DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE, READCOUNT
+		FROM KOCO_BOARD a1, KOCO_USERS a2
+		WHERE a1.BOARD_CATEGORY = #{infoNo}
+		ORDER BY a1.BOARD_NO DESC
+		
 	</select>
 	
 	<select id="getBoardInfoName" resultType="java.lang.String">
-		<![CDATA[
+	
 		SELECT INFO_NAME as infoName
 		FROM KOCO_BOARD_INFO
 		WHERE INFO_NO = #{infoNo}
-		]]>
+	
 	</select>
 	
-	<insert id="freeBoardRegister">
-		<![CDATA[
-		INSERT INTO KOCO_BOARD (BOARD_CATEGOFY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, USER_NO)
-		VALUES(#{boardCategofy}, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{userNo}) 
-		]]>
+	<insert id="freeBoardRegister" parameterType="board">
+		
+		INSERT INTO KOCO_BOARD (BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, USER_NO)
+		VALUES (1, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{userNo}) 
+	
 	</insert>
 
 	<update id="freeBoardUpdate">
-		<![CDATA[
+		
 		UPDATE KOCO_BOARD SET BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent} WHERE BOARD_NO = #{boardNo}
-		]]>	
+		
 	</update>
 
 	<delete id="freeBoardDelete">
-		<![CDATA[
+	
 		DELETE FROM KOCO_BOARD WHERE BOARD_NO = #{boardNo}
-		]]>
+	
 	</delete>
 	
 	<select id="getFreeBoardCnt" resultType="java.lang.Integer">
-		<![CDATA[
-			SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = #{infoNo}
-		]]>
+		
+		SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = #{infoNo}
+	
 	</select>
 	
 	<update id="updateRcnt">
-		<![CDATA[
+	
 			UPDATE KOCO_BOARD
 			SET READCOUNT = READCOUNT+1
 			WHERE BOARD_NO = #{boardNo}
-		]]>
+	
 	</update>
 	
 </mapper>

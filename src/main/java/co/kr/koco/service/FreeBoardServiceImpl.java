@@ -2,15 +2,19 @@ package co.kr.koco.service;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.kr.koco.dao.FreeBoardDAO;
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.PageVO;
 
 @Service
 public class FreeBoardServiceImpl implements FreeBoardService {
-
+	private int pageListcnt = 10;
+	private int pagePaginationcnt = 10;
+	
 	@Autowired
 	private FreeBoardDAO freeBoardDAO;
 	
@@ -39,9 +43,11 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	}
 
 	@Override
-	public List<BoardVO> freeBoardList(BoardVO freeBoardVO) {
+	public List<BoardVO> freeBoardList(int infoNo, int page) {
+		int start = (page-1)*pageListcnt;
+		RowBounds rowBounds = new RowBounds(start, pageListcnt);
 		
-		return freeBoardDAO.freeBoardList(freeBoardVO);
+		return freeBoardDAO.freeBoardList(infoNo, rowBounds);
 	}
 
 	@Override
@@ -49,7 +55,14 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		
 		return freeBoardDAO.getBoardInfoName(infoNo);
 		
-	//페이지
+	}
+
+	@Override
+	public PageVO getfreeBoardCnt(int infoNo, int currentPage) {
+		int contentCnt = freeBoardDAO.getFreeBoardCnt(infoNo);
+		PageVO pageVO = new PageVO(contentCnt, currentPage, pageListcnt, pagePaginationcnt);
+		
+		return pageVO;
 	}
 
 }

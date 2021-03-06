@@ -4,6 +4,7 @@ package co.kr.koco.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -41,9 +42,9 @@ public class FreeBoardDAO {
 	}
 	
 	//  글 목록 조회
-	public List<BoardVO> freeBoardList(BoardVO freeBoardVO) {
+	public List<BoardVO> freeBoardList(int infoNo, RowBounds rowBounds) {
 		
-		return mybatis.selectList("freeBoardMapper.freeBoardList", freeBoardVO);
+		return mybatis.selectList("freeBoardMapper.freeBoardList", infoNo, rowBounds);
 	}
 	
 	public String getBoardInfoName(int infoNo) {
