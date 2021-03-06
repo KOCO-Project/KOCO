@@ -23,7 +23,8 @@
 							<c:forEach items = "${conditionMap }" var="option">
 							<option value="${option.value }">${option.key }
 							</c:forEach> 
-					</select> <input name="serachKeyword" type="text" /> 
+					</select> 
+					<input name="searchKeyword" type="text" /> 
 					<input type="submit" value="검색" /></td>
 				</tr>
 			</table>
@@ -42,16 +43,61 @@
 			<c:forEach items="${freeBoardList }" var="freeBoard">
 			<tr>
 				<td>${freeBoard.boardNo }
-				<td align="left"><a href="getFreeBoard.do?boardNo=${freeBoard.boardNo}">${freeBoard.boardTitle}</a></td>
+				<td align="left"><a href='getFreeBoard?infoNo=${infoNo }&boardNo=${freeBoard.boardNo}'>${freeBoard.boardTitle}</a></td>
 				<td>${freeBoard.writer }</td>
 				<td>${freeBoard.boardRegdate }</td>
 				<td>${freeBoard.boardReadcount }</td>
 			</tr>
 			</c:forEach>		
 		</table>
-		<br> 
+		<br><br><br>
 		<div>
-				<a href="freeboard/freeBoardRegister?infoNo=${infoNo }">글쓰기</a>					
+			<ul>
+			<c:choose>
+				<c:when test="${pageVO.prevPage <=0 }">
+				<li>
+				<a href="#">이전</a>
+				</li>
+				</c:when>
+			<c:otherwise>
+			<li>
+			<a href="freeBoardList?infoNo=${infoNo }&page=${pageVO.prevPage }">이전</a>
+			</li>
+			</c:otherwise>
+			</c:choose>
+			
+			<c:forEach var='idx' begin="${pageVO.min }" end='${pageVO.max }'>
+			<c:choose>
+			<c:when test="${idx == pageVO.currentPage }">
+			<li>
+			<a href="freeBoardList?infoNo=${infoNo }&page=${idx }">${idx }</a>
+			</li>
+			</c:when>
+			<c:otherwise>
+			<li>
+			<a href="freeBoardList?infoNo=${infoNo }&page=${idx}">${idx }</a>
+			</li>
+			</c:otherwise>
+			</c:choose>
+			</c:forEach>
+			
+			<c:choose>
+			<c:when test="${pageVO.max >= pageVO.pageCnt }">
+			<li>
+			<a href="#">다음</a>
+			</li>
+			</c:when>
+			<c:otherwise>
+			<li>
+			<a href="freeBoardList?infoNo=${infoNo }&page=${pageVO.nextPage}">다음</a>
+			</li>
+			</c:otherwise>
+			</c:choose>
+			
+			</ul>
+		</div> 
+		<div>
+				<a href="freeBoardRegister?infoNo=1">글쓰기</a>					
 		</div>
 	
 </body>

@@ -3,6 +3,7 @@ package co.kr.koco.service;
 import java.util.List;
 
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.PageVO;
 
 public interface FreeBoardService {
 
@@ -20,9 +21,10 @@ public interface FreeBoardService {
 	BoardVO getFreeBoard(BoardVO freeBoardVO);
 	
 	// 글 목록 조회
-	List<BoardVO> freeBoardList(BoardVO freeBoardVO);
+	List<BoardVO> freeBoardList(int infoNo, int page);
 	
 	//infoName
 	String getBoardInfoName(int infoNo);
 	
+	PageVO getfreeBoardCnt(int infoNo, int currentPage);
 }

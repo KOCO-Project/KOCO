@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;*/
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 /*import java.util.UUID;
 
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -27,15 +29,26 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 */
 import co.kr.koco.service.FreeBoardService;
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.PageVO;
 
 @Controller
 @SessionAttributes("freeBoard") 
 public class FreeBoardController {
+	
 	@Autowired
 	private FreeBoardService freeBoardService; 
+		
+	//글 등록 폼
+	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.GET)
+	public String freeBoardRegisterView(@RequestParam("infoNo") int infoNo, BoardVO freeBoardVO) {
+		/* freeBoardService.freeBoardRegister(freeBoardVO); */
+		freeBoardVO.setBoardCategory(infoNo);
+		
+		return "freeboard/freeBoardRegister";
+	}
 	
 	//글 등록
-	@RequestMapping("/freeBoardRegister")
+	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.POST)
 	public String freeBoardRegister(BoardVO freeBoardVO) {
 		freeBoardService.freeBoardRegister(freeBoardVO);
 		
@@ -84,17 +97,24 @@ public class FreeBoardController {
 	
 	// 글 목록 검색
 	@RequestMapping("/freeBoardList")
-	public String freeBoardList(BoardVO freeBoardVO, Model model) {
+	public String freeBoardList(@RequestParam("infoNo") int infoNo, @RequestParam(value = "page", defaultValue = "1") int page, BoardVO freeBoardVO, Model model) {
+	
+		model.addAttribute("infoNo", infoNo);
+		String infoName = freeBoardService.getBoardInfoName(infoNo);
+		model.addAttribute("infoName", infoName);
 		
 		//null check
-		if(freeBoardVO.getSearchCondition() == null) freeBoardVO.setSearchCondition("TITLE");
-		if(freeBoardVO.getSearchKeyword() == null) freeBoardVO.setSearchKeyword("");
+		//if(freeBoardVO.getSearchCondition() == null) freeBoardVO.setSearchCondition("TITLE");
+		//if(freeBoardVO.getSearchKeyword() == null) freeBoardVO.setSearchKeyword("");
 		
-//		model.addAttribute("infoNo", infoNo);
-//		String infoName = freeBoardService.getBoardInfoName(infoNo);
-//		model.addAttribute("infoName", infoName);
+		//model.addAttribute("freeBoardList", freeBoardService.freeBoardList(freeBoardVO));
 		
-		model.addAttribute("freeBoardList", freeBoardService.freeBoardList(freeBoardVO));
+		List<BoardVO> freeBoardList = freeBoardService.freeBoardList(infoNo, page);
+		model.addAttribute("freeBoardList", freeBoardList);
+		
+		PageVO pageVO = freeBoardService.getfreeBoardCnt(infoNo, page);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("page", page);
 		
 		return "freeboard/freeBoardList";
 	}

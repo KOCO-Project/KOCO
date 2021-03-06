@@ -19,15 +19,16 @@
 		<div class="">
 	
 			<h1>자유게시판 글쓰기</h1>
+			
 			<form method="post" action="freeBoardRegister">
-			<input type="hidden" name="no" value="${boardInfoVO.infoNo }">
+		<%-- 	<input type="hidden" name="no" value="${boardInfoVO.infoNo }"> --%>
 				<hr>
 				<ul>
-					<li><input type="text" placeholder="글 제목" name="title"
+					<li><input type="text" placeholder="글 제목" name="boardTitle"
 						required="required" class="write_title"></li>
 				</ul>
 				<ul>
-					<li><textarea name="content" id="editor4"></textarea></li>
+					<li><textarea name="boardContent" id="editor4"></textarea></li>
 				</ul>
 				<ul class="btns">
 					<li><input type="submit" value="작성"></li>
