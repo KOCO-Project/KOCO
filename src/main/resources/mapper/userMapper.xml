@@ -11,6 +11,12 @@
 		<result property="userStatus" column="USER_STATUS"/>
 		<result property="userCase" column="USER_CASE"/>
 	</resultMap>
+	
+	<resultMap type="follow" id="followResult">
+		<id property="followNo" column="FOLLOW_NO"/>
+		<result property="fromFollow" column="FROM_FOLLOW"/>
+		<result property="toFollow" column="TO_FOLLOW"/>
+	</resultMap>
 
 	<!-- 아이디 중복검사 -->
 	<select id="userIdExist" parameterType="java.lang.String"
@@ -81,17 +87,30 @@
 		VALUES(#{fromFollow}, #{toFollow})
 	</insert>
 	
-	<select id="follower">
-		SELECT COUNT(*) AS FOLLOWER
+	<select id="followerCnt" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS follower
 		FROM KOCO_FOLLOW
 		WHERE TO_FOLLOW = #{toFollow}
 	</select>
 	
+	<select id="followingCnt" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS following
+		FROM KOCO_FOLLOW
+		WHERE FROM_FOLLOW = #{fromFollow}
+	</select>
+	
 	<!-- 팔로워 리스트 -->
-	<select id="followerList" resultType="follow">
-		SELECT FROM_FOLLOW AS follower, TO_FOLLOW AS following
+	<select id="followerList" resultType="java.lang.String" parameterType="java.lang.String">
+		SELECT FROM_FOLLOW
 		FROM KOCO_FOLLOW
 		WHERE TO_FOLLOW = #{toFollow}
+	</select>
+	
+	<!-- 팔로잉 리스트 -->
+	<select id="followingList" resultType="java.lang.String" parameterType="java.lang.String">
+		SELECT TO_FOLLOW
+		FROM KOCO_FOLLOW
+		WHERE FROM_FOLLOW = #{fromFollow}
 	</select>
 	
 	<!-- 관리자페이지 유저리스트 -->

@@ -17,11 +17,19 @@ public class FollowDAO {
 		sql.insert("userMapper.follow", followVo);
 	}
 	
-	public String follower(String toFollow) throws Exception {
-		return sql.selectOne("userMapper.follower", toFollow);
+	public int followerCnt(String toFollow) throws Exception {
+		return sql.selectOne("userMapper.followerCnt", toFollow);
+	}
+	
+	public int followingCnt(String fromFollow) throws Exception {
+		return sql.selectOne("userMapper.followingCnt", fromFollow);
 	}
 	
 	public List<FollowVO> followerList(String toFollow) throws Exception {
 		return sql.selectList("userMapper.followerList", toFollow);
+	}
+	
+	public List<FollowVO> followingList(String fromFollow) throws Exception {
+		return sql.selectList("userMapper.followingList", fromFollow);
 	}
 }

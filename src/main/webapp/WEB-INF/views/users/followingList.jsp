@@ -14,9 +14,9 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	<h3>${selectUser }님을 팔로우하고 있는 회원</h3>
+	<h3>${selectUser }님이 팔로우하고 있는 회원</h3>
 	<table>
-	<c:forEach items="${followerList }" var="list">
+	<c:forEach items="${followingList }" var="list">
 		<h5>${list }</h5>
 	</c:forEach>
 	</table>
