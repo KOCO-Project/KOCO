@@ -19,10 +19,6 @@
 	</beans:bean>
 
 	<interceptors>
-		 <interceptor>
-		 	<mapping path="/**"/>
-		 	<beans:bean class="co.kr.koco.interceptor.TopMenuInterceptor" />
-		 </interceptor>
 		<interceptor>
 			<mapping path="/qnaRegister"/>
 			<beans:bean class="co.kr.koco.interceptor.CheckLoginInterceptor"/>
