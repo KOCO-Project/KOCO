@@ -43,7 +43,7 @@
 			<c:forEach items="${freeBoardList }" var="freeBoard">
 			<tr>
 				<td>${freeBoard.boardNo }
-				<td align="left"><a href='getFreeBoard?infoNo=${infoNo }&boardNo=${freeBoard.boardNo}'>${freeBoard.boardTitle}</a></td>
+				<td align="left"><a href='getFreeBoard?infoNo=${infoNo }&boardNo=${freeBoard.boardNo}&page=${page}'>${freeBoard.boardTitle}</a></td>
 				<td>${freeBoard.writer }</td>
 				<td>${freeBoard.boardRegdate }</td>
 				<td>${freeBoard.boardReadcount }</td>

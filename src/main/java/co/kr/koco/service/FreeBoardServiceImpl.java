@@ -31,15 +31,15 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	}
 
 	@Override
-	public void freeBoardDelete(BoardVO freeBoardVO) {
+	public void freeBoardDelete(int boardNo) {
 		
-		freeBoardDAO.freeBoardDelete(freeBoardVO);
+		freeBoardDAO.freeBoardDelete(boardNo);
 	}
 
 	@Override
-	public BoardVO getFreeBoard(BoardVO freeBoardVO) {
+	public BoardVO getFreeBoard(int boardNo) {
 		
-		return freeBoardDAO.getFreeBoard(freeBoardVO);
+		return freeBoardDAO.getFreeBoard(boardNo);
 	}
 
 	@Override
@@ -54,7 +54,6 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	public String getBoardInfoName(int infoNo) {
 		
 		return freeBoardDAO.getBoardInfoName(infoNo);
-		
 	}
 
 	@Override

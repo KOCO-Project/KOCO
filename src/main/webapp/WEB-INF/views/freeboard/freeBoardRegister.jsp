@@ -20,7 +20,8 @@
 	
 			<h1>자유게시판 글쓰기</h1>
 			
-			<form method="post" action="freeBoardRegister">
+			<form method="post" action="freeBoardRegister_pro">
+			<input id="userNo" name="userNo" type="hidden" value="${sessionScope.user.userNo }"/>
 		<%-- 	<input type="hidden" name="no" value="${boardInfoVO.infoNo }"> --%>
 				<hr>
 				<ul>

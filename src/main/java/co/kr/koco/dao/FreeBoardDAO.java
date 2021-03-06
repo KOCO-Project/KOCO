@@ -30,15 +30,15 @@ public class FreeBoardDAO {
 	}
 	
 	// 글 삭제
-	public void freeBoardDelete(BoardVO freeBoardVO) {
+	public void freeBoardDelete(int boardNo) {
 		
-		mybatis.delete("freeBoardMapper.freeBoardDelete", freeBoardVO);
+		mybatis.delete("freeBoardMapper.freeBoardDelete", boardNo);
 	}
 	
 	// 글 상세 조회
-	public BoardVO getFreeBoard(BoardVO freeBoardVO) {
+	public BoardVO getFreeBoard(int boardNo) {
 		
-		return (BoardVO) mybatis.selectOne("freeBoardMapper.getFreeBoard", freeBoardVO);
+		return (BoardVO) mybatis.selectOne("freeBoardMapper.getFreeBoard", boardNo);
 	}
 	
 	//  글 목록 조회

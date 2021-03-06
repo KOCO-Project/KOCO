@@ -18,6 +18,9 @@
 <body>
 
 		<form action="freeBoardUpdate" method="post">
+		<input id="boardNo" name="boardNo" type="hidden" value="${freeBoard.boardNo}"/>
+		<input id="boardCategory" name="boardCategory" type="hidden" value="${freeBoard.boardCategory }"/>
+		<input type ="hidden" name="page" value="${page }">
 			<ul>
 				<li><label for="제목">제목</label> 
 				<input type="text" name="title" required="required" class="write_title" value="${freeBoard.boardTitle }">

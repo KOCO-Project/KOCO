@@ -15,10 +15,10 @@ public interface FreeBoardService {
 	void freeBoardUpdate(BoardVO freeBoardVO);
 	
 	// 글 삭제
-	void freeBoardDelete(BoardVO freeBoardVO);
+	void freeBoardDelete(int boardNo);
 	
 	// 글 상세 조회
-	BoardVO getFreeBoard(BoardVO freeBoardVO);
+	BoardVO getFreeBoard(int boardNo);
 	
 	// 글 목록 조회
 	List<BoardVO> freeBoardList(int infoNo, int page);

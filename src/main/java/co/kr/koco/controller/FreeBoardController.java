@@ -13,7 +13,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;*/
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +33,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import co.kr.koco.service.FreeBoardService;
 import co.kr.koco.vo.BoardVO;
 import co.kr.koco.vo.PageVO;
+import co.kr.koco.vo.UserVO;
 
 @Controller
 @SessionAttributes("freeBoard") 
@@ -37,7 +41,11 @@ public class FreeBoardController {
 	
 	@Autowired
 	private FreeBoardService freeBoardService; 
-		
+	
+	@Resource(name="userVO")
+	@Lazy
+	private UserVO userVO;	
+	
 	//글 등록 폼
 	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.GET)
 	public String freeBoardRegisterView(@RequestParam("infoNo") int infoNo, BoardVO freeBoardVO) {
@@ -48,39 +56,67 @@ public class FreeBoardController {
 	}
 	
 	//글 등록
-	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.POST)
-	public String freeBoardRegister(BoardVO freeBoardVO) {
+	@RequestMapping(value="/freeBoardRegister_pro", method=RequestMethod.POST)
+	public String freeBoardRegister(BoardVO freeBoardVO, @RequestParam("userNo") int userNo) {
+		freeBoardVO.setUserNo(userNo);
 		freeBoardService.freeBoardRegister(freeBoardVO);
 		
-		return "redirect:freeboard/freeBoardList";
+		return "freeboard/freeBoardRegister_pro";
 	}
 	
-	//글 수정
-	@RequestMapping("/freeBoardUpdate")
-	public String freeBoardUpdate(@ModelAttribute("freeBoard") BoardVO freeBoardVO) {
+	//글 수정 폼
+	@RequestMapping(value="/freeBoardUpdate", method=RequestMethod.GET)
+	public String freeBoardUpdateView(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, 
+			@ModelAttribute("freeBoard") BoardVO freeBoardVO, @RequestParam("page") int page, Model model) {
+		
+		model.addAttribute("infoNo", infoNo);
+		model.addAttribute("boardNo", boardNo);
+		model.addAttribute("page", page);
+		
+		BoardVO tempBoardVO = freeBoardService.getFreeBoard(boardNo);
+		freeBoardVO.setUserNo(tempBoardVO.getUserNo());
+		freeBoardVO.setBoardRegdate(tempBoardVO.getBoardRegdate());
+		freeBoardVO.setBoardTitle(tempBoardVO.getBoardTitle());
+		freeBoardVO.setBoardContent(tempBoardVO.getBoardContent());
+		freeBoardVO.setWriter(tempBoardVO.getWriter());
+		freeBoardVO.setBoardNo(boardNo);
+		freeBoardVO.setBoardCategory(infoNo);
+		
+		/* freeBoardService.freeBoardUpdate(freeBoardVO); */
+		
+		return "freeboard/freeBoardList";
+	}
+	
+	//글 수정 
+	@RequestMapping(value="/freeBoardUpdate", method=RequestMethod.POST)
+	public String freeBoardUpdate(@ModelAttribute("freeBoard") BoardVO freeBoardVO, @RequestParam("page") int page, Model model) {
+		model.addAttribute("page", page);
 		freeBoardService.freeBoardUpdate(freeBoardVO);
 		
-		return "redirect:freeboard/freeBoardList";
+		return "freeboard/freeBoardUpdate_pro";
 	}
 	
 	// 글 삭제 
 	@RequestMapping("/freeBoardDelete")
-	public String freeBoardDelete(BoardVO freeBoardVO) {
-		freeBoardService.freeBoardDelete(freeBoardVO);
+	public String freeBoardDelete(int boardNo) {
+		freeBoardService.freeBoardDelete(boardNo);
 		
 		return "redirect:freeboard/freeBoardList";
 	}
 	
 	// 글 상세 조회
 	@RequestMapping("/getFreeBoard")
-	public String getFreeBoard(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO, Model model) {
+	public String getFreeBoard(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO,  @RequestParam("page") int page, Model model) {
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);
 		
-		BoardVO readContent = freeBoardService.getFreeBoard(freeBoardVO);
+		BoardVO readContent = freeBoardService.getFreeBoard(boardNo);
 		model.addAttribute("readContentBean", readContent);
 		
-		model.addAttribute("freeBoard", freeBoardService.getFreeBoard(freeBoardVO));
+		model.addAttribute("userVO", userVO);
+		model.addAttribute("page", page);
+		
+		/* model.addAttribute("freeBoard", freeBoardService.getFreeBoard(boardNo)); */
 		
 		return "freeboard/getFreeBoard";
 	}
