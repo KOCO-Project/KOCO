@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CultureDAO">
 
 	<resultMap id="cultureResult" type="culture">
@@ -12,69 +10,79 @@
 		<result property="userNo" column="USER_NO" />
 	</resultMap>
 
-
-	<select id="getCultureBoardList" resultType="culture"
-		resultMap="cultureResult">
-	SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE
-	FROM KOCO_CULTURE a1, KOCO_USERS a2
-	WHERE 1=1 AND a1.USER_NO = a2.USER_NO
-    <if test="searchCondition == 'TITLE'">
-    AND a1.CULTURE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
-    </if>
-    <if test="searchCondition == 'CONTENT'">
-    AND a1.CULTURE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
-    </if>
-    <if test="searchCondition == 'NICKNAME'">
-    AND a2.USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
-    </if>
-	ORDER BY a1.CULTURE_NO DESC
+	<select id="getCultureBoardList" resultType="culture" resultMap="cultureResult">
+		SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE
+		FROM KOCO_CULTURE a1, KOCO_USERS a2
+		WHERE 1=1 AND a1.USER_NO = a2.USER_NO
+    	<if test="searchCondition == 'TITLE'">
+    		AND a1.CULTURE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+    	<if test="searchCondition == 'CONTENT'">
+    		AND a1.CULTURE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+    	<if test="searchCondition == 'NICKNAME'">
+    		AND a2.USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+		ORDER BY a1.CULTURE_NO DESC
 	</select>
 
 	<select id="getCultureBoardCnt" resultType="java.lang.Integer">
-	<![CDATA[
-		SELECT COUNT(*) FROM KOCO_CULTURE
-	]]>
+			
+		SELECT COUNT(*) 
+		FROM KOCO_CULTURE
+		WHERE 1=1
+		<if test="searchCondition == 'TITLE'">
+    	AND CULTURE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+    	
+    	<if test="searchCondition == 'CONTENT'">
+    	AND CULTURE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+    	
+    	<if test="searchCondition == 'NICKNAME'">
+    	AND USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+			
 	</select>
 
 	<select id="getCultureList" resultMap="cultureResult"
 		resultType="culture">
 		<![CDATA[
-		SELECT *
-		FROM KOCO_CULTURE
-		ORDER BY CULTURE_NO DESC
+			SELECT *
+			FROM KOCO_CULTURE
+			ORDER BY CULTURE_NO DESC
 		]]>
 	</select>
 
 	<insert id="cultureRegister" parameterType="culture">
 		<![CDATA[
-		INSERT INTO KOCO_CULTURE(CULTURE_TITLE,CULTURE_CONTENT,USER_NO) 
-		VALUES(#{cultureTitle}, #{cultureContent}, #{userNo})
+			INSERT INTO KOCO_CULTURE(CULTURE_TITLE,CULTURE_CONTENT,USER_NO) 
+			VALUES(#{cultureTitle}, #{cultureContent}, #{userNo})
 		]]>
 	</insert>
 
 	<select id="getCultureBoard" resultType="culture"
 		resultMap="cultureResult">
 		<![CDATA[
-		SELECT *
-		FROM KOCO_CULTURE
-		WHERE CULTURE_NO = #{cultureNo}
+			SELECT *
+			FROM KOCO_CULTURE
+			WHERE CULTURE_NO = #{cultureNo}
 		]]>
 	</select>
 
 	<delete id="deleteCultureBoard">
 		<![CDATA[
-		DELETE FROM KOCO_CULTURE
-		WHERE CULTURE_NO = #{cultureNo}
+			DELETE FROM KOCO_CULTURE
+			WHERE CULTURE_NO = #{cultureNo}
 		]]>
 	</delete>
 
 	<update id="cultureUpdate">
 		<![CDATA[
-		UPDATE KOCO_CULTURE SET
-		CULTURE_TITLE = #{cultureTitle},
-		CULTURE_CONTENT = #{cultureContent}
-		WHERE CULTURE_NO = #{cultureNo}
+			UPDATE KOCO_CULTURE SET
+			CULTURE_TITLE = #{cultureTitle},
+			CULTURE_CONTENT = #{cultureContent}
+			WHERE CULTURE_NO = #{cultureNo}
 		]]>
-
 	</update>
 </mapper>

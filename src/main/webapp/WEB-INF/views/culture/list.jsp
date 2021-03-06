@@ -78,7 +78,7 @@
 								<div class="input-group" style="width: 70%; float: right;">
 									<div class="form-group navbar-left" style="margin: 0;">
 										<select class="input-group-text" style="height: 100%;" name="searchCondition">
-<!-- 											<option selected="" style="background-color: white;">검색</option> -->
+											<!--<option selected="" style="background-color: white;">검색</option> -->
 											<option  style="background-color: white;" value="TITLE">제목</option>
 											<option  style="background-color: white;" value="CONTENT">내용</option>
 											<option  style="background-color: white;" value="NICKNAME">작성자</option>
