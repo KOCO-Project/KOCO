@@ -15,9 +15,9 @@
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div id="qna" class="container" style="margin-top: 100px">
-		<h1 class="card-title">${selectUser }님을 팔로우하고 있는 회원</h1>
+		<h1 class="card-title">${selectUser }님이 팔로우하고 있는 회원</h1>
 		<table class="table table-hover" id='board_list'>
-			<c:forEach items="${followerList }" var="list">
+			<c:forEach items="${followingList }" var="list">
 				<tr>
 					<td class="text-center d-none d-md-table-cell">${list }</td>
 				</tr>

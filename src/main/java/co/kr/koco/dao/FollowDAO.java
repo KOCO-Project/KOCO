@@ -14,14 +14,22 @@ public class FollowDAO {
 	private SqlSessionTemplate sql;
 
 	public void follow(FollowVO followVo) throws Exception {
-		sql.insert("userMapper.follow", followVo);
+		sql.insert("followMapper.follow", followVo);
 	}
 	
-	public String follower(String toFollow) throws Exception {
-		return sql.selectOne("userMapper.follower", toFollow);
+	public int followerCnt(String toFollow) throws Exception {
+		return sql.selectOne("followMapper.followerCnt", toFollow);
+	}
+	
+	public int followingCnt(String fromFollow) throws Exception {
+		return sql.selectOne("followMapper.followingCnt", fromFollow);
 	}
 	
 	public List<FollowVO> followerList(String toFollow) throws Exception {
-		return sql.selectList("userMapper.followerList", toFollow);
+		return sql.selectList("followMapper.followerList", toFollow);
+	}
+	
+	public List<FollowVO> followingList(String fromFollow) throws Exception {
+		return sql.selectList("followMapper.followingList", fromFollow);
 	}
 }

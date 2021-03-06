@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.kr.koco.service.FollowService;
 import co.kr.koco.service.UserService;
 import co.kr.koco.vo.UserVO;
 
@@ -28,6 +29,9 @@ import co.kr.koco.vo.UserVO;
 public class UserController {
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private FollowService followService;
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
@@ -120,10 +124,10 @@ public class UserController {
 		return "users/userRegister";
 	}
 
-	@RequestMapping("/mypage")
-	public String mypage() throws Exception {
-		return "users/mypage";
-	}
+//	@RequestMapping("/mypage")
+//	public String mypage() throws Exception {
+//		return "users/mypage";
+//	}
 
 	@RequestMapping("/userUpdateView")
 	public String userUpdateView() throws Exception {
@@ -157,11 +161,11 @@ public class UserController {
 	}
 	
 	@GetMapping("/userPage")
-	public String userPage(@RequestParam(value = "userNickname", required = false) String userNickname, UserVO userVo, Model model) throws Exception {		
-		//model.addAttribute("selectUser", service.userPage(userNickname));
+	public String userPage(@RequestParam(value = "userNickname", required = false) String userNickname, UserVO userVo, Model model) throws Exception {
 		String nickname = service.userPage(userNickname);
 		model.addAttribute("selectUser", nickname);
-		//System.out.println(nickname);
+		model.addAttribute("followerCnt", followService.followerCnt(userNickname));
+		model.addAttribute("followingCnt", followService.followingCnt(userNickname));
 		
 		return "users/mypage";
 	}

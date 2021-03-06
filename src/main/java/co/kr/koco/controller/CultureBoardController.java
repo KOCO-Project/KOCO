@@ -1,6 +1,8 @@
 package co.kr.koco.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,13 @@ public class CultureBoardController {
 		List<CultureVO> cultureList = cultureService.getCultureBoardList(vo, page);
 		model.addAttribute("cultureList",cultureList);
 
+		// Null Check
+		if (vo.getSearchCondition() == null)
+			vo.setSearchCondition("TITLE");
+		if (vo.getSearchKeyword() == null)
+			vo.setSearchKeyword("");
+		// Model 정보 저장
+		
 		PageVO pageVO = cultureService.getCultureBoardCnt(vo, page);
 		model.addAttribute("pageVO", pageVO);
 		model.addAttribute("page", page);
@@ -45,6 +54,17 @@ public class CultureBoardController {
 		return "culture/list"; // View 이름 리턴
 	}
 
+	// 검색 조건 목록 설정
+	@ModelAttribute("conditionMap")
+	public Map<String, String> searchConditionMap() {
+		Map<String, String> conditionMap = new HashMap<String, String>();
+		conditionMap.put("제목", "TITLE");
+		conditionMap.put("내용", "CONTENT");
+		conditionMap.put("작성자", "NICKNAME");
+		return conditionMap;
+	}
+	
+	
 	@RequestMapping("/cultureRegisterForm")
 	public String cultureRegisterForm() {
 		return "culture/register";

@@ -119,9 +119,9 @@
 <br><br><br><br>
 </div>
 
-<footer>
-<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
-</footer>
+	<footer>
+		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+	</footer>
 
 </body>
 </html>

@@ -1,7 +1,6 @@
 package co.kr.koco.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,8 @@ public class FollowController {
 	
 	@RequestMapping("/follow")
 	public String follow(@RequestParam(value = "toFollow") String toFollow, FollowVO followVo, HttpSession session) throws Exception {
-		//session = request.getSession();
 		String from = (String) session.getAttribute("from");
-		System.out.println(from);
-		//followVO.setFromFollow(userVO.getUserNickname());
+	
 		followVo.setFromFollow(from);
 		followVo.setToFollow(toFollow);
 		followService.follow(followVo);
@@ -42,10 +39,19 @@ public class FollowController {
 	}
 	
 	@RequestMapping("/followerList")
-	public String followerList(Model model, @RequestParam(value = "toFollow") String toFollow) throws Exception {
+	public String followerList(Model model, @RequestParam(value = "toFollow") String toFollow, FollowVO followVo) throws Exception {
 		model.addAttribute("followerList", followService.followerList(toFollow));
-		System.out.println(toFollow);
+		model.addAttribute("selectUser", toFollow);
+		
 		return "users/followerList";
+	}
+	
+	@RequestMapping("/followingList")
+	public String followingList(Model model, @RequestParam(value = "fromFollow") String fromFollow) throws Exception {
+		model.addAttribute("followingList", followService.followingList(fromFollow));
+		model.addAttribute("selectUser", fromFollow);
+		
+		return "users/followingList";
 	}
 	
 }
