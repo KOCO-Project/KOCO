@@ -1,6 +1,10 @@
 package co.kr.koco.controller;
 
+import java.io.PrintWriter;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +32,17 @@ public class FollowController {
 	private UserVO userVO;
 	
 	@RequestMapping("/follow")
-	public String follow(@RequestParam(value = "toFollow") String toFollow, FollowVO followVo, HttpSession session) throws Exception {
+	public void follow(@RequestParam(value = "toFollow") String toFollow, FollowVO followVo, HttpSession session, HttpServletResponse response) throws Exception {
+		PrintWriter out = response.getWriter();
 		String from = (String) session.getAttribute("from");
 	
 		followVo.setFromFollow(from);
 		followVo.setToFollow(toFollow);
 		followService.follow(followVo);
 		
-		return "redirect:mypage";
+		out.println("성공");
+		
+		//return "1";
 	}
 	
 	@RequestMapping("/followerList")

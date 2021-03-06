@@ -78,7 +78,7 @@ $(function(){
 						<a href="findUserInfo" class="user">ID 혹은 Password가 기억이 안나십니까?</a><br>
 						<a href="registerView" class="user">아직 KOCO회원이 아니십니까?</a>
 					</p><br><br>
-					<input type="button" value="Sign In" id="login" class="btn btn-success" style="width: 100%;">
+					<input type="submit" value="Sign In" id="login" class="btn btn-success" style="width: 100%;">
 			</form>
 		</div>
 		</div>
