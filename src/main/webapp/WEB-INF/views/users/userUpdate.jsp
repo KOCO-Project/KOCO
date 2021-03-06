@@ -113,7 +113,8 @@ $(function(){
 </script>
 <body>
    <c:import url="/WEB-INF/views/include/top_menu.jsp" />
-   <fmt:formatDate value="${user.userRegDate }" pattern="yyyy-MM-dd" var="userDate"></fmt:formatDate>
+<%--    <fmt:parseDate value="${user.userRegdate }" var="userRegdate" pattern="yyyy-MM-dd HH:mm:ss.S"></fmt:parseDate> --%>
+<%--    <fmt:formatDate value="${userRegdate }" pattern="yyyy-MM-dd"></fmt:formatDate> --%>
    <form action="userUpdate" method="post" id="form1">
    <input type="hidden" id="currentNick" value="${user.userNickname }">
    <input type="hidden" id="currentEmail" value="${user.userEmail }">
@@ -162,7 +163,7 @@ $(function(){
             <div class="row">
                <div class="col-md-12">
                	  <label>가입일</label>
-                  <input type="text" value="${userDate }" readonly style="width: 80%; height: 50px;">
+                  <input type="text" value="${user.userRegdate }" readonly style="width: 80%; height: 50px;">
                </div>
             </div>
             <br>

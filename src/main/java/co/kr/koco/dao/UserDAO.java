@@ -1,7 +1,6 @@
 package co.kr.koco.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +29,8 @@ public class UserDAO {
 		sql.insert("userMapper.register", userVo);
 	}
 
-	public Map<String, UserVO> login(UserVO userVo) throws Exception {
-		return sql.selectOne("userMapper.loginCheck", userVo);
+	public UserVO login(UserVO userVo) throws Exception {
+		return (UserVO) sql.selectOne("userMapper.loginCheck", userVo);
 	}
 
 	public UserVO findIdPw(String userEmail) throws Exception {

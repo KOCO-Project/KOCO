@@ -1,7 +1,6 @@
 package co.kr.koco.controller;
 
 import java.io.PrintWriter;
-import java.util.Map;
 import java.util.Random;
 
 import javax.annotation.Resource;
@@ -90,7 +89,7 @@ public class UserController {
 	public String login(UserVO userVo, HttpServletRequest request, HttpSession session) throws Exception {
 		session = request.getSession();
 
-		Map<String, UserVO> login = service.login(userVo);
+		UserVO login = service.login(userVo);
 
 		if (login != null) {
 			session.setAttribute("user", login);

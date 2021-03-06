@@ -1,7 +1,6 @@
 package co.kr.koco.service;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -55,8 +54,8 @@ public class UserService {
 		dao.userRegister(userVo);
 	}
 
-	public Map<String, UserVO> login(UserVO userVo) throws Exception {
-		Map<String, UserVO> loginUserVO = dao.login(userVo);
+	public UserVO login(UserVO userVo) throws Exception {
+		UserVO loginUserVO = dao.login(userVo);
 		if(loginUserVO != null) {
 			userVO.setUserLogin(true);
 		}

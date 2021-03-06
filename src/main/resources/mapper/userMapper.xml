@@ -7,6 +7,9 @@
 		<result property="userPw" column="USER_PW" />
 		<result property="userEmail" column="USER_EMAIL" />
 		<result property="userNickname" column="USER_NICKNAME" />
+		<result property="userRegdate" column="USER_REGDATE"/>
+		<result property="userStatus" column="USER_STATUS"/>
+		<result property="userCase" column="USER_CASE"/>
 	</resultMap>
 
 	<!-- 아이디 중복검사 -->
@@ -41,8 +44,8 @@
 	</insert>
 
 	<!-- 로그인 -->
-	<select id="loginCheck" resultType="map">
-		SELECT USER_NO AS userNo, USER_ID AS userId, USER_PW AS userPw, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, USER_REGDATE AS userRegDate, USER_STATUS AS userStatus, USER_CASE AS userCase
+	<select id="loginCheck" resultType="users">
+		SELECT USER_NO AS userNo, USER_ID AS userId, USER_PW AS userPw, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, DATE_FORMAT(USER_REGDATE, '%Y-%m-%d') AS userRegdate, USER_STATUS AS userStatus, USER_CASE AS userCase
 		FROM KOCO_USERS
 		WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
 	</select>
