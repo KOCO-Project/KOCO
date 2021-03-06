@@ -16,7 +16,6 @@ main {
 }
 
 #qna {
-	height: 90%;
 	margin-top: 10%;
 	min-height: 50rem;
 	background-color: #fff;
@@ -29,6 +28,8 @@ main {
 }
 
 #qna table a{color: #3e3f3a;}
+#searcharea{display: flex;justify-content: space-between;}
+
 
 footer {
 	text-align: center;

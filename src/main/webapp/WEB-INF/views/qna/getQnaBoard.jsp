@@ -27,7 +27,7 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-7">
-
+ <input id="userNo" name="userNo" type="hidden" value="${sessionScope.user.userNo }"/>
 								<div class="form-group">
 									<label for="writer">WRITER</label> <input type="text"
 										id="writer" name="writer" class="form-control"
@@ -93,13 +93,13 @@
 							<div class="text-right">
 								<a href="${root }qnalist?infoNo=${infoNo }&page=${page}"
 									class="btn btn-primary" style="width: 100px;">목록보기</a>
-								<%-- <c:if test="${loginUser.userNo==readContentBean.userNo }"> --%>
+								<c:if test="${sessionScope.user.userNo == readContentBean.userNo }">
 								<a
 									href="${root }qnaupdate?infoNo=${infoNo }&boardNo=${boardNo }&page=${page}"
 									class="btn btn-success" style="width: 100px;">수정하기</a> <a
 									href="${root }qnadelete?infoNo=${infoNo }&boardNo=${boardNo }"
 									class="btn btn-danger" style="width: 100px;">삭제하기</a>
-								<%-- </c:if> --%>
+								</c:if>
 							</div>
 						</div>
 					</div>

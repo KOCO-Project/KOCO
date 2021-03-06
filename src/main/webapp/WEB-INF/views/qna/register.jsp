@@ -29,7 +29,8 @@
 				<div class="card-body">
 					<form:form action='${root }regQna_pro' method='post' modelAttribute="regQnaBoardVO" enctype="multipart/form-data">
 						<form:hidden path="boardCategory"/>
-						<%-- <form:hidden path="${user.userNo }"/> --%>
+						<%-- <form:hidden path="${sessionScope.user.userNo }"/> --%>
+						<input id="userNo" name="userNo" type="hidden" value="${sessionScope.user.userNo }"/>
 						<div class="form-group">
 						<form:label path="boardTitle">제목</form:label>
 						<form:input path="boardTitle" class="form-control"/>

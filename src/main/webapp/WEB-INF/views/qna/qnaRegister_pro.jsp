@@ -4,5 +4,5 @@
 <c:set var='root' value='${pageContext.request.contextPath }/'/>
 <script>
 	alert('저장되었습니다')
-	location.href = '${root}getQna?infoNo=${regQnaBoardVO.boardCategory}&boardNo=${regQnaBoardVO.boardNo}&page=1'
+	location.href = '${root}qnalist?infoNo=${regQnaBoardVO.boardCategory}&page=1'
 </script>

@@ -25,9 +25,12 @@
 		 </interceptor>
 		<interceptor>
 			<mapping path="/qnaRegister"/>
+			<beans:bean class="co.kr.koco.interceptor.CheckLoginInterceptor"/>
+		</interceptor>
+		<interceptor>
 			<mapping path="/qnaupdate"/>
 			<mapping path="/qnadelete"/>
-			<beans:bean class="co.kr.koco.interceptor.CheckLoginInterceptor"/>
+			<beans:bean class="co.kr.koco.interceptor.CheckWriterInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

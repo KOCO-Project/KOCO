@@ -88,20 +88,11 @@ public class QnaBoardController {
 	}
 	
 	@PostMapping("/regQna_pro")
-	public String qnaRegisterPro(@Valid @ModelAttribute("regQnaBoardVO") BoardVO regQnaBoardVO, BindingResult result,
-			HttpServletRequest request,HttpSession session) {
+	public String qnaRegisterPro(@Valid @ModelAttribute("regQnaBoardVO") BoardVO regQnaBoardVO, BindingResult result,@RequestParam("userNo") int userNo) {
 		if(result.hasErrors()) {
 			System.out.println("글쓰기 에러");
 			return "qna/register";
 		}
-		@SuppressWarnings("unchecked")
-		Map<String, UserVO> map = (Map<String, UserVO>) session.getAttribute("user");
-		System.out.println("qna regQna_pro user: "+session.getAttribute("user"));
-		System.out.println("qna regQna_pro user: "+map.get("userNo"));
-		int userNo = Integer.parseInt(map.get("userNo").toString());
-		regQnaBoardVO.setUserNo(userNo);
-		System.out.println("UserNO : "+regQnaBoardVO.getUserNo());
-		System.out.println(userNo);
 		regQnaBoardVO.setUserNo(userNo);
 		qnaBoardService.getQnaBoardRegister(regQnaBoardVO);
 		return "qna/qnaRegister_pro";
@@ -157,6 +148,11 @@ public class QnaBoardController {
 	@GetMapping("/not_login")
 	public String regFail() {
 		return "users/not_login";
+	}
+	
+	@GetMapping("/not_writer")
+	public String fail() {
+		return "qna/not_writer";
 	}
 	
 }

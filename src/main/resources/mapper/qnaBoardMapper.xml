@@ -16,7 +16,7 @@
 
 	<insert parameterType="board" id="getQnaBoardRegister">
 	<!-- <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="boardNo">
-		select content_seq.nextval from dual 
+		select 
 	</selectKey> -->
 	<![CDATA[
 		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO)
@@ -35,7 +35,7 @@
 	<select parameterType="java.lang.Integer" id="getQnaBoardList" resultType="board" resultMap="boardResult">
 	<![CDATA[
 		SELECT a1.BOARD_NO , a1.BOARD_TITLE, a2.USER_NICKNAME AS writer, 
-			DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE , READCOUNT 
+			DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE , a1.READCOUNT, a1.USER_NO
 		FROM KOCO_BOARD a1, KOCO_USERS a2
 		WHERE a1.USER_NO = a2.USER_NO
 			AND a1.BOARD_CATEGORY = #{infoNo}
@@ -47,7 +47,7 @@
 	<![CDATA[
 		SELECT a2.USER_NICKNAME AS writer, 
 		DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE, 
-	     	  a1.BOARD_TITLE, a1.BOARD_CONTENT, a1.FILE_NAME, READCOUNT 
+	     	  a1.BOARD_TITLE, a1.BOARD_CONTENT, a1.FILE_NAME, a1.READCOUNT, a1.USER_NO
 		FROM KOCO_BOARD a1, KOCO_USERS a2
 		WHERE a1.USER_NO = a2.USER_NO 
 		AND BOARD_NO = #{boardNo}
