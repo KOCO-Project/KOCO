@@ -51,7 +51,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="freeBoardList">Board</a>
           <a class="dropdown-item" href="${root }qnalist?infoNo=2">QnA</a>
-          <a class="dropdown-item" href="${root }eventlist">Event</a>
+          <a class="dropdown-item" href="${root }eventList">Event</a>
         </div>
       </li>
       <!-- <li class="nav-item">
@@ -71,7 +71,7 @@
 
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.user.userNickname }</a>
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
-          <a class="dropdown-item" href="mypage">Mypage</a>
+          <a class="dropdown-item" href="userPage?userNickname=${user.userNickname }">Mypage</a>
       	<c:if test="${sessionScope.user.userCase == 1}">        		      
           		<a class="dropdown-item" href="adminMain">adminPage</a>
         </c:if>         	  
@@ -282,7 +282,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="userPage?userNickname=${user.userNickname }"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>

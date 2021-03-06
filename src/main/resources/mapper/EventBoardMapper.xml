@@ -26,7 +26,7 @@
 		WHERE INFO_NO = #{infoNo}
 	</select> -->
 	<select id="getEventBoard" resultType="board" resultMap="boardResult" parameterType="java.lang.Integer">
-		select *
+		select BOARD_NO, BOARD_TITLE, BOARD_CONTENT, user.USER_NICKNAME as writer, DATE_FORMAT(BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE , READCOUNT
 		from  KOCO_BOARD as board, KOCO_USERS as user  
 		where BOARD_NO=#{boardNo} and board.USER_NO=user.USER_NO
 	</select>

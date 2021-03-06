@@ -2,21 +2,33 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@include file="../includes/header.jsp"%>
-
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">Board Register</h1>
+<c:set var="root" value="${pageContext.request.contextPath }/"/>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>KOCO - Korea Offer Culture Organizaion</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/qna.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<c:import url="/WEB-INF/views/include/event_top.jsp" />
+	<div id="qna" class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Board Register</h1>
+		</div>
 	</div>
-</div>
 
-<div class="row">
+	<div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-body">
 
-				<form role="form" action="/eventboard/register" method="post">
+				<form role="form" action="/KOCO/eventRegister" method="post">
 				<%-- <form:hidden path="3"/> --%>
 					<div class="form-group">
 						<label>제목</label>
@@ -39,4 +51,10 @@
 		</div>
 	</div>
 </div>
-<%@include file="../includes/footer.jsp"%>
+</div>
+
+<footer>
+	<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+</footer>
+</body>
+</html>

@@ -10,27 +10,9 @@
     <title>KOCO - Korea Offer Culture Organizaion</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/qna.css">
-	<!-- Bootstrap Core CSS -->
-    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="/resources/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/event_top.jsp" />
@@ -55,7 +37,7 @@
 			<!-- 조회페이지 이동 수정 후 -->
 			<tr>
 				<td class="text-center"><c:out value="${event.boardNo}" /></td>
-				<td class="text-center" ><a class='move' href='eventboard/get?boardNo=<c:out value="${event.boardNo}"/>'>
+				<td class="text-center" ><a class='move' href='<c:out value="${event.boardNo}"/>'>
 						<c:out value="${event.boardTitle}" />
 				</a></td>
 				<td class="text-center"><c:out value="${event.writer}" /></td>
@@ -117,7 +99,7 @@
 				</ul>
 			</div>
 	</div>
-	<form id="actionForm" action="/KOCO/eventlist" method="get">
+	<form id="actionForm" action="/KOCO/eventList" method="get">
 		<input type="hidden" name="pageNum"
 			value="${pageMaker.cri.pageNum }"> <input type="hidden"
 			name="amount" value="${pageMaker.cri.amount }">
@@ -168,7 +150,7 @@ function checkModal(result) {
 		$("#myModal").modal("show");
 		}
 	$("#regBtn").on("click", function() {
-		self.location = "/eventboard/register";
+		self.location = "/KOCO/eventRegister";
 		});
 	
 	var actionForm = $("#actionForm");

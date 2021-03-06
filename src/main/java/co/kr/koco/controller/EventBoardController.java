@@ -25,7 +25,8 @@ public class EventBoardController {
 	private EventBoardService service;
 	
 	@GetMapping("/eventRegister")
-	public void register() {
+	public String register() {
+		return "eventboard/register";
 	}
 	
     @PostMapping("/eventRegister")	// 등록에 대한 처리
@@ -36,7 +37,7 @@ public class EventBoardController {
     }
 
 //	@GetMapping("/list")
-	@RequestMapping(value="/eventlist", method=RequestMethod.GET)
+	@RequestMapping(value="/eventList", method=RequestMethod.GET)
 	public String list(Criteria cri, Model model) {
 		model.addAttribute("infoNo", 3);
 //		model.addAttribute("infoName", service.getBoardInfoName(infoNo));
@@ -51,12 +52,13 @@ public class EventBoardController {
  	   model.addAttribute("event",service.getEventBoard(bno));
  	  return "eventboard/get";
     }
-    @GetMapping({"/getUpdate"})
-    public void update(@RequestParam("boardNo")int bno,@ModelAttribute("cri") Criteria cri,Model model) {
+    @GetMapping({"/getEventUpdate"})
+    public String update(@RequestParam("boardNo")int bno,@ModelAttribute("cri") Criteria cri,Model model) {
  	   model.addAttribute("event",service.getEventBoardUpdate(bno));
+ 	  return "eventboard/update";
     }
 
-    @PostMapping("/postUpdate")
+    @PostMapping("/postEvnetUpdate")
 	public String update(@RequestParam("pageNum")int pageNum,@RequestParam("amount")int amount,BoardVO event,Criteria cri, RedirectAttributes rttr) {
 		
 		int count = service.postEventBoardUpdate(event);
@@ -71,7 +73,7 @@ public class EventBoardController {
 		
 	}
 
-    @PostMapping("/delete")
+    @PostMapping("/eventDelete")
 	public String delete(@RequestParam("boardNo") int bno,Criteria cri, RedirectAttributes rttr) {
 		
 		int count = service.eventBoardDelete(bno);

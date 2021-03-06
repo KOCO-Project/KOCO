@@ -3,7 +3,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../includes/header.jsp"%>
-
+<c:set var="root" value="${pageContext.request.contextPath }/"/>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>KOCO - Korea Offer Culture Organizaion</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/qna.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<c:import url="/WEB-INF/views/include/event_top.jsp" />
+	<div id="qna" class="container">
 
 <div class="row">
 	<div class="col-lg-12">
@@ -60,8 +74,10 @@
 	<!-- end panel -->
 </div>
 <!-- /.row -->
-
-<%@include file="../includes/footer.jsp"%>
+</div>
+<footer>
+	<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+</footer>
 <script>
 
 $(document).ready(function() {
@@ -77,14 +93,9 @@ $(document).ready(function() {
 		console.log(operation);
 		
 		if(operation === 'list'){
-			self.location ="/eventboard/list?pageNum=${cri.pageNum}&amount=${cri.amount}";
-		}else if(operation === 'remove'){
-			formObj.attr("action","/eventboard/delete")
-			.attr("method", "post");
-			formObj.submit();
-			
+			self.location ="/KOCO/eventList?pageNum=${cri.pageNum}&amount=${cri.amount}";
 		}else if(operation === 'update'){
-			formObj.attr("action","/eventboard/update")
+			formObj.attr("action","/KOCO/postEvnetUpdate")
 			.attr("method", "post");
 			formObj.submit();
 		}
@@ -92,3 +103,6 @@ $(document).ready(function() {
 	
 })
 </script>
+
+</body>
+</html>
