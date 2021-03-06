@@ -17,11 +17,19 @@ public class FollowService {
 		dao.follow(followVo);
 	}
 	
-	public String follower(String toFollow) throws Exception {
-		return dao.follower(toFollow);
+	public int followerCnt(String toFollow) throws Exception {
+		return dao.followerCnt(toFollow);
+	}
+	
+	public int followingCnt(String fromFollow) throws Exception {
+		return dao.followingCnt(fromFollow);
 	}
 	
 	public List<FollowVO> followerList(String toFollow) throws Exception {
 		return dao.followerList(toFollow);
+	}
+	
+	public List<FollowVO> followingList(String fromFollow) throws Exception {
+		return dao.followingList(fromFollow);
 	}
 }

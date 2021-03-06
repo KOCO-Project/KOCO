@@ -19,13 +19,14 @@
 		<c:when test="${sessionScope.user.userNickname == selectUser}">
 			<h2>${user.userNickname }</h2><br>
 			<a href="userUpdateView" class="btn btn-primary">개인정보수정</a><br><br>
-			<strong>팔로워</strong>&emsp;&emsp;&emsp;&emsp;&emsp;<strong>팔로잉</strong>
+			<strong>팔로워</strong>&emsp;&emsp;&emsp;&emsp;&emsp;<strong>팔로잉</strong><br>
+			<a href="followerList?toFollow=${selectUser }">${followerCnt }</a>&emsp;&emsp;&emsp;&emsp;&emsp;<a href="followingList?fromFollow=${selectUser }">${followingCnt }</a>
 		</c:when>
 		<c:otherwise>
 			<h2>${selectUser }</h2><br>
 			<a href="follow?toFollow=${selectUser }" class="btn btn-primary">팔로우</a><br><br>
 			<strong>팔로워</strong>&emsp;&emsp;&emsp;&emsp;&emsp;<strong>팔로잉</strong><br>
-			<a href="followerList?toFollow=${selectUser }">112</a>&emsp;&emsp;&emsp;&emsp;&emsp;<a href="#">132</a>
+			<a href="followerList?toFollow=${selectUser }">${followerCnt }</a>&emsp;&emsp;&emsp;&emsp;&emsp;<a href="followingList?fromFollow=${selectUser }">${followingCnt }</a>
 		</c:otherwise>
 		</c:choose>			
 		</div>

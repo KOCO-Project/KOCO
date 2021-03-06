@@ -74,25 +74,7 @@
 		SELECT USER_NICKNAME AS userNickname
 		FROM KOCO_USERS
 		WHERE USER_NICKNAME = #{userNickname}
-	</select>
-	
-	<insert id="follow">
-		INSERT INTO KOCO_FOLLOW(FROM_FOLLOW, TO_FOLLOW)
-		VALUES(#{fromFollow}, #{toFollow})
-	</insert>
-	
-	<select id="follower">
-		SELECT COUNT(*) AS FOLLOWER
-		FROM KOCO_FOLLOW
-		WHERE TO_FOLLOW = #{toFollow}
-	</select>
-	
-	<!-- 팔로워 리스트 -->
-	<select id="followerList" resultType="follow">
-		SELECT FROM_FOLLOW AS follower, TO_FOLLOW AS following
-		FROM KOCO_FOLLOW
-		WHERE TO_FOLLOW = #{toFollow}
-	</select>
+	</select>	
 	
 	<!-- 관리자페이지 유저리스트 -->
 	<select id="userList" resultType="users">
