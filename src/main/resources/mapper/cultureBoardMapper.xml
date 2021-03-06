@@ -13,17 +13,21 @@
 	</resultMap>
 
 
-	<select parameterType="java.lang.Integer"
-		id="getCultureBoardList" resultType="culture"
+	<select id="getCultureBoardList" resultType="culture"
 		resultMap="cultureResult">
-		
-	<![CDATA[
-		SELECT 
-		a1.CULTURE_NO , a1.CULTURE_TITLE, a2.USER_NICKNAME AS userNickname,CULTURE_REGDATE 
-		FROM KOCO_CULTURE a1, KOCO_USERS a2
-		WHERE a1.USER_NO = a2.USER_NO
-		ORDER BY a1.CULTURE_NO DESC
-	]]>
+	SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE
+	FROM KOCO_CULTURE a1, KOCO_USERS a2
+	WHERE 1=1 AND a1.USER_NO = a2.USER_NO
+    <if test="searchCondition == 'TITLE'">
+    AND a1.CULTURE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+    </if>
+    <if test="searchCondition == 'CONTENT'">
+    AND a1.CULTURE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+    </if>
+    <if test="searchCondition == 'NICKNAME'">
+    AND a2.USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+    </if>
+	ORDER BY a1.CULTURE_NO DESC
 	</select>
 
 	<select id="getCultureBoardCnt" resultType="java.lang.Integer">

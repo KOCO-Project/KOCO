@@ -39,7 +39,7 @@
 			<div class="col-md-10">
 				<table class="table table-hover">
 					<thead>
-<!-- 						<tr> -->
+						<tr>
 							<th scope="col">번호</th>
 							<th scope="col">메인</th>
 							<th scope="col">제목</th>
@@ -78,10 +78,10 @@
 								<div class="input-group" style="width: 70%; float: right;">
 									<div class="form-group navbar-left" style="margin: 0;">
 										<select class="input-group-text" style="height: 100%;" name="searchCondition">
-											<option selected="" style="background-color: white;" value="TITLE">검색</option>
-											<option value="1" style="background-color: white;" value="TITLE">제목</option>
-											<option value="2" style="background-color: white;" value="CONTENT">내용</option>
-											<option value="3" style="background-color: white;" value="NICKNAME">작성자</option>
+<!-- 											<option selected="" style="background-color: white;">검색</option> -->
+											<option  style="background-color: white;" value="TITLE">제목</option>
+											<option  style="background-color: white;" value="CONTENT">내용</option>
+											<option  style="background-color: white;" value="NICKNAME">작성자</option>
 										</select>
 									</div>
 									<input type="text" class="form-control" placeholder="SERCH"
@@ -142,7 +142,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- 	</div> -->
+			</div>
 
 		<footer>
 			<c:import url="/WEB-INF/views/include/bottom_info.jsp" />

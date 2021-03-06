@@ -39,10 +39,11 @@ public class CultureBoardController {
 
 		List<CultureVO> cultureList = cultureService.getCultureBoardList(vo, page);
 		model.addAttribute("cultureList",cultureList);
-
+		
 		// Null Check
 		if (vo.getSearchCondition() == null)
 			vo.setSearchCondition("TITLE");
+		
 		if (vo.getSearchKeyword() == null)
 			vo.setSearchKeyword("");
 		// Model 정보 저장

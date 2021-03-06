@@ -44,6 +44,13 @@ public class CultureDAO {
 	}
 	
 	public List<CultureVO> getCultureBoardList(CultureVO vo, RowBounds rowBounds) {
+		System.out.println("변경 전 dao "+vo.getSearchCondition());
+		if (vo.getSearchCondition() == null || vo.getSearchCondition().equals("검색"))
+			vo.setSearchCondition("TITLE");
+		
+		if (vo.getSearchKeyword() == null)
+			vo.setSearchKeyword("");
+		System.out.println("dao "+vo.getSearchCondition());
 		return mybatis.selectList("CultureDAO.getCultureBoardList", vo, rowBounds);
 	}
 	public int getCultureBoardCnt(CultureVO vo) {
