@@ -46,7 +46,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">      
           <a class="dropdown-item" href="loginView">Sign In</a>
           <a class="dropdown-item" href="registerView">Sign Up</a>
-<!--           <a class="dropdown-item" href="#">Blah blah</a>       -->
+		  <a class="dropdown-item" href="mypage">Blah blah</a>
         </div>
       </c:when>
       <c:otherwise>
