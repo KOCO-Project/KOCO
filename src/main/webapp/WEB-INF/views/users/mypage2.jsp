@@ -58,26 +58,17 @@ html{height: 100%;}
 .mypage_nav{list-style: none; margin-left: 5%; text-decoration: none;font-size: 1rem;}
 .mypage_nav a{color: #3e3f3a;}
 .mypage_nav a:hover{text-decoration: line-through;}
-#welcome{line-height: 15rem;
-height: 15rem;
-}
+#welcome{line-height: 15rem;height: 15rem;}
 .row{background-color: #fff;padding: 5rem;height: 50rem;}
 .mypage h1{color: #fff;line-height: inherit;}
-
-ul{
-list-style: none;
-padding-left: 0px;
-}
+ul{list-style: none;padding-left: 0px;}
 ul li{line-height: 3rem;}
-
-ul.infoform{
-list-style: none;
-display: flex;
-}
-#info ul li{
-line-height: inherit;
-}
-
+ul.infoform{list-style: none;display: flex;}
+#info ul li{line-height: inherit;}
+table.infobox{margin: auto;width: 100%;}
+table.infobox tbody tr{line-height: 200px;}
+table.infobox tbody tr td a{font-size: 3rem;}
+table.infobox tbody tr td a:hover{text-decoration: none;}
 </style>
 <meta charset="UTF-8">
 <title>KOCO❤MYPAGE❤</title>
@@ -132,13 +123,21 @@ $(function(){
 			<ul>
 			<li><strong>${user.userNickname }</strong></li>
 			<li>${user.userEmail }</li>
-			<li>${user.userRegdate }</li>
+			<li>SINCE : ${user.userRegdate }</li>
 			</ul>
 		</div>
-		<div class="row"style="width: 100%;"><div class="col-md-12">
-		<button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로워수</button>&emsp;&emsp;&emsp;
-		<button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로잉수</button><br>
-		<a href="followerList?toFollow=${selectUser }">${followerCnt }</a><a href="followingList?fromFollow=${selectUser }" style="margin-left:130px;">${followingCnt }</a>
+		<div class="row" style="padding: 0;width: 100%;"><div class="col-md-12">
+		<table class="infobox">
+		<thead>
+		<tr>
+			<th><button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로워수</button></th>
+			<th><button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로잉수</button></th>
+		</tr></thead><tbody><tr>
+			<td><a href="followerList?toFollow=${selectUser }">${followerCnt }</a></td>
+			<td><a href="followingList?fromFollow=${selectUser }">${followingCnt }</a></td>
+		</tr></tbody>
+		</table>
+
 		</div></div>
 	</div>
 	</div>
@@ -217,16 +216,23 @@ $(function(){
 	<div class="col-md-6 cc_cursor" style="height: 100%;">
 	
 <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle cc_cursor" style="height: 200px;"/>
+
 	
-	
-<form role="form">
- 	<div class="form-group">
+<form role="form" style="margin-top: 1rem;">
+   <div class="form-group">
       <label for="">Name</label>
-      <input type="text" class="form-control" id="" placeholder="${user.userNickname }"/>
+      <ul class="infoform">
+      <li style="width: 100%;"><input type="text" class="form-control" id="" placeholder="${user.userNickname }" style="text-align: center;"/></li>
+  <!--     <li><button type="submit" class="btn btn-primary"style="width: 80px;">변경하기</button></li> -->
+      </ul>
    </div>
    <div class="form-group">
-      <label for="">Email address</label>
-      <input type="email" class="form-control" id="" placeholder="${user.userEmail }"/>
+      <label for="">ID</label>
+      <input type="email" class="form-control" id="" placeholder="${user.userId }"  style="text-align: center;" readonly="readonly"/>
+   </div>
+   <div class="form-group">
+      <label for="">Email Address</label>
+      <input type="email" class="form-control" id="" placeholder="${user.userEmail }"  style="text-align: center;" readonly="readonly"/>
    </div>
    <div class="form-group">
       <label for="">Password</label>
