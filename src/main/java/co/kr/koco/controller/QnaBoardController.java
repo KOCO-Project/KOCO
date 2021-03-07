@@ -29,7 +29,6 @@ import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
 @Controller
-//@RequestMapping("/qna")
 public class QnaBoardController {
 	
 	@Autowired
