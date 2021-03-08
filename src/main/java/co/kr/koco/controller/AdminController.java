@@ -3,6 +3,7 @@ package co.kr.koco.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.xml.stream.events.Comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -76,23 +77,35 @@ public class AdminController {
 
 	@RequestMapping("/getAdminTest")
 	public String getAdminTest(@ModelAttribute CommentVO vo,Model model) {
-		
 		List<CommentVO> commentList = commentService.commentList(vo);
 		model.addAttribute("commentList", commentList);
-		
+		model.addAttribute("groupNo", (Integer)commentService.commentGetGroupNo());
 		return "admin/getAdminTest";
 	}
+	
 	@RequestMapping("/commentRegister")
 	public String commentRegister(CommentVO vo) {
 		commentService.commentRegister(vo);
 		return "redirect:getAdminTest";
 	}
+	
+	@RequestMapping("/comcommentRegister")
+	public String comcommentRegister(CommentVO vo) {
+		commentService.comcommentRegister(vo);
+		return "redirect:getAdminTest";
+	}
+	
 	@RequestMapping("/commentDelete")
-	public String commentDelete(int commentNo) {
-		commentService.commentDelete(commentNo);
+	public String commentDelete(int groupNo) {
+		commentService.commentDelete(groupNo);
 		return "redirect:getAdminTest";
 	}
 
+	@RequestMapping("/comcommentDelete")
+	public String comcommentDelete(int commentNo) {
+		commentService.comcommentDelete(commentNo);
+		return "redirect:getAdminTest";
+	}
 	
 	@RequestMapping("commentUpdateForm")
 	public String commentUpdateForm(int commentNo,Model model) {

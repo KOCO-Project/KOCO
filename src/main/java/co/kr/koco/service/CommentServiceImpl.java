@@ -28,12 +28,24 @@ public class CommentServiceImpl implements CommentService{
 		commentDAO.commentRegister(vo);
 	}
 	
-	public void commentDelete(int commentNo) {
-		commentDAO.commentDelete(commentNo);
+	public void comcommentRegister(CommentVO vo) {
+		commentDAO.comcommentRegister(vo);
+	}
+	
+	public void commentDelete(int groupNo) {
+		commentDAO.commentDelete(groupNo);
+	}
+	
+	public void comcommentDelete(int commentNo) {
+		commentDAO.comcommentDelete(commentNo);
 	}
 	
 	
 	public void commentUpdate(CommentVO vo) {
 		commentDAO.commentUpdate(vo);
+	}
+	
+	public Integer commentGetGroupNo() {
+		return (Integer)commentDAO.commentGetGroupNo();
 	}
 }

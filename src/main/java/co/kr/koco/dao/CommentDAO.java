@@ -24,11 +24,23 @@ public class CommentDAO {
 		mybatis.insert("commentMapper.commentRegister", vo);
 	}
 	
-	public void commentDelete(int commentNo) {
-		mybatis.delete("commentMapper.commentDelete", commentNo);
+	public void comcommentRegister(CommentVO vo) {
+		mybatis.insert("commentMapper.comcommentRegister", vo);
+	}
+	public void commentDelete(int groupNo) {
+		mybatis.delete("commentMapper.commentDelete", groupNo);
+	}
+	
+	public void comcommentDelete(int commentNo) {
+		mybatis.delete("commentMapper.comcommentDelete", commentNo);
 	}
 	
 	public void commentUpdate(CommentVO vo) {
 		mybatis.update("commentMapper.commentUpdate", vo);
 	}
+	
+	public Integer commentGetGroupNo() {
+		return (Integer)mybatis.selectOne("commentMapper.commentGetGroupNo");
+	}
+	
 }

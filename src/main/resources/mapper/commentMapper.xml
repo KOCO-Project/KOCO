@@ -13,39 +13,61 @@
 		<result property="groupNo" column="GROUP_NO" />
 		<result property="userNo" column="USER_NO" />
 	</resultMap>
-	
-	
-	<select id="commentList" resultMap="commentResult" resultType="comment">
+
+
+	<select id="commentList" resultMap="commentResult"
+		resultType="comment">
 		<![CDATA[
 		SELECT *
 		FROM KOCO_COMMENT
 		ORDER BY GROUP_NO DESC
 		]]>
 	</select>
-	
-	<select id="commentGet" resultType="comment" resultMap="commentResult">
+
+	<select id="commentGet" resultType="comment"
+		resultMap="commentResult">
 		<![CDATA[
 			SELECT *
 			FROM KOCO_COMMENT
 			WHERE COMMENT_NO = #{commentNo}
 		]]>
 	</select>
-	
+
+	<select id="commentGetGroupNo" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT MAX(GROUP_NO)
+			FROM KOCO_COMMENT
+		]]>
+	</select>
+
 	<insert id="commentRegister" parameterType="comment">
+		<![CDATA[
+		INSERT INTO KOCO_COMMENT(BOARD_CATEGORY,BOARD_NO,DEPTH,COMMENT_CONTENT,GROUP_NO,USER_NO) 
+		VALUES(#{boardCategory}, #{boardNo}, #{depth}, #{commentContent},#{groupNo}+1,#{userNo})
+		]]>
+	</insert>
+
+	<insert id="comcommentRegister" parameterType="comment">
 		<![CDATA[
 		INSERT INTO KOCO_COMMENT(BOARD_CATEGORY,BOARD_NO,DEPTH,COMMENT_CONTENT,GROUP_NO,USER_NO) 
 		VALUES(#{boardCategory}, #{boardNo}, #{depth}, #{commentContent},#{groupNo},#{userNo})
 		]]>
 	</insert>
 
-
 	<delete id="commentDelete">
+		<![CDATA[
+		DELETE FROM KOCO_COMMENT
+		WHERE GROUP_NO = #{groupNo}
+		]]>
+	</delete>
+
+	<delete id="comcommentDelete">
 		<![CDATA[
 		DELETE FROM KOCO_COMMENT
 		WHERE COMMENT_NO = #{commentNo}
 		]]>
 	</delete>
-	
+
 	<update id="commentUpdate">
 		<![CDATA[
 		UPDATE KOCO_COMMENT SET
