@@ -17,6 +17,7 @@ public class CultureDAO {
 	private SqlSessionTemplate mybatis;
 
 	public List<CultureVO> getCultureList(CultureVO vo) {
+
 		return mybatis.selectList("CultureDAO.getCultureList", vo);
 	}
 
@@ -49,6 +50,9 @@ public class CultureDAO {
 		
 		if (vo.getSearchKeyword() == null)
 			vo.setSearchKeyword("");
+		
+		System.out.println(vo.getSearchCondition());
+		System.out.println(vo.getSearchKeyword());
 		
 		return mybatis.selectList("CultureDAO.getCultureBoardList", vo, rowBounds);
 	}
