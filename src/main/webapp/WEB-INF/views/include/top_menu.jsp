@@ -54,6 +54,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.user.userNickname }</a>
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="userPage?userNickname=${user.userNickname }">Mypage</a>
+          <a class="dropdown-item" href="mypage">Blah blah</a>
       	<c:if test="${sessionScope.user.userCase == 1}">        		      
           		<a class="dropdown-item" href="adminMain">adminPage</a>
         </c:if>         	  

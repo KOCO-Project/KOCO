@@ -124,10 +124,10 @@ public class UserController {
 		return "users/userRegister";
 	}
 
-//	@RequestMapping("/mypage")
-//	public String mypage() throws Exception {
-//		return "users/mypage";
-//	}
+	@RequestMapping("/mypage")
+	public String mypage() throws Exception {
+		return "users/userPage";
+	}
 
 	@RequestMapping("/userUpdateView")
 	public String userUpdateView() throws Exception {
@@ -206,5 +206,6 @@ public class UserController {
 		mav.addObject("findUser", service.findIdPw(userEmail));
 
 		return mav;
-	}
+	}	
+	
 }
