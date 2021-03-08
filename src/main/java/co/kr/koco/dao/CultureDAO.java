@@ -51,8 +51,8 @@ public class CultureDAO {
 		if (vo.getSearchKeyword() == null)
 			vo.setSearchKeyword("");
 		
-		System.out.println(vo.getSearchCondition());
-		System.out.println(vo.getSearchKeyword());
+		System.out.println("DAO에서보는 "+ vo.getSearchCondition());
+		System.out.println("DAO에서보는 "+ vo.getSearchKeyword());
 		
 		return mybatis.selectList("CultureDAO.getCultureBoardList", vo, rowBounds);
 	}

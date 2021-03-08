@@ -19,8 +19,6 @@
 
 </head>
 <body>
-	<%String searchCondition = request.getParameter("searchCondition");	
-	String searchKeyword = request.getParameter("searchKeyword");%>
 	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
 	<br>
 	<br>
@@ -66,7 +64,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-				
 
 				<table style="width: 100%">
 					<tr>
@@ -78,7 +75,7 @@
 						</td>
 						<!-- 검색 영역 -->
 						<td style="width: 40%;">
-							<form class="navbar-form" action="cultureList" method="post">
+							<form class="navbar-form" action="cultureSearchList" method="post">
 								<div class="input-group" style="width: 70%; float: right;">
 									<div class="form-group navbar-left" style="margin: 0;">
 										<select class="input-group-text" style="height: 100%;" name="searchCondition">
@@ -108,36 +105,37 @@
 				<div class="d-none d-md-block">
 					<ul class="pagination justify-content-center">
 						<c:choose>
-							<c:when test="${pageVO.prevPage <= 0 }">
+							<c:when test="${pageVOSearch.prevPage <= 0 }">
 								<li class="page-item disabled"><a href="#"
 									class="page-link">이전</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="cultureList?page=${pageVO.prevPage}&searchCondition=<%=searchCondition%>&searchKeyword=<%=searchKeyword %>" class="page-link">이전</a></li>
+									href="cultureSearchList?pageSearch=${pageVOSearch.prevPage}" class="page-link">이전</a></li>
 							</c:otherwise>
 						</c:choose>
-						<c:forEach var='idx' begin="${pageVO.min }" end='${pageVO.max }'>
+
+						<c:forEach var='idx' begin="${pageVOSearch.min }" end='${pageVOSearch.max }'>
 							<c:choose>
-								<c:when test="${idx == pageVO.currentPage }">
+								<c:when test="${idx == pageVOSearch.currentPage }">
 									<li class="page-item active"><a
-										href="cultureList?page=${idx}&searchCondition=<%=searchCondition%>&searchKeyword=<%=searchKeyword %>" class="page-link">${idx }</a></li>
+										href="cultureSearchList?pageSearch=${idx}" class="page-link">${idx }</a></li>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item"><a href="cultureList?page=${idx}&searchCondition=<%=searchCondition%>&searchKeyword=<%=searchKeyword %>"
+									<li class="page-item"><a href="cultureSearchList?pageSearch=${idx}"
 										class="page-link">${idx }</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 
 						<c:choose>
-							<c:when test="${pageVO.max >= pageVO.pageCnt }">
+							<c:when test="${pageVOSearch.max >= pageVOSearch.pageCnt }">
 								<li class="page-item disabled"><a href="#"
 									class="page-link">다음</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="cultureList?page=${pageVO.nextPage}&searchCondition=<%=searchCondition%>&searchKeyword=<%=searchKeyword %>" class="page-link">다음</a></li>
+									href="cultureSearchList?pageSearch=${pageVOSearch.nextPage}" class="page-link">다음</a></li>
 							</c:otherwise>
 						</c:choose>
 
