@@ -42,7 +42,6 @@ public class CultureBoardController {
 		model.addAttribute("cultureList",cultureList);
 
 		// Model 정보 저장
-		
 		PageVO pageVO = cultureService.getCultureBoardCnt(vo, page);
 		model.addAttribute("pageVO", pageVO);
 		model.addAttribute("page", page);
