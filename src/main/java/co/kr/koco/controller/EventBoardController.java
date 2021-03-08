@@ -44,7 +44,7 @@ public class EventBoardController {
 		model.addAttribute("list", service.getListWithPaging(cri));
 		int total = service.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		return "eventboard/list";
+		return "eventboard/list3";
 	}
 
     @GetMapping({"/eventGet"})

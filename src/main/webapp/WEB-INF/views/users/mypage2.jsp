@@ -179,7 +179,8 @@ $(function(){
 <table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca;">
 	<thead>
 	<tr>
-		<th class="text-center d-none d-md-table-cell">글번호</th>
+		<th class="text-center d-none d-md-table-cell">카테고리</th>	
+		<!-- <th class="text-center d-none d-md-table-cell">글번호</th> -->
 		<th class="w-50">제목</th>
 		<th class="text-center d-none d-md-table-cell">작성자</th>
 		<th class="text-center d-none d-md-table-cell">작성날짜</th>
@@ -188,7 +189,8 @@ $(function(){
 	<tbody>
 	<%-- <c:forEach var='' items=""> --%>
 	<tr>
-		<td class="text-center d-none d-md-table-cell">1</td>
+		<th class="text-center d-none d-md-table-cell">이벤트</th>
+		<!-- <td class="text-center d-none d-md-table-cell">1</td> -->
 		<td><a href=''>글 제목</a></td>
 		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;">지원이</td>
 		<td class="text-center d-none d-md-table-cell">날짜</td>

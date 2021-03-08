@@ -37,7 +37,9 @@
 
 				<div class="form-group">
 					<label>제목</label> <input class="form-control" name='boardTitle'
-						value='<c:out value="${event.boardTitle}"/>' readonly="readonly" style="background-color: #FFF7DD;">
+						value='<c:out value="${event.boardTitle}"/>' readonly="readonly" style="background-color: #FFF7DD;"><br>
+						<label>마감일</label> <input class="form-control" name='boardTitle'
+						value='<c:out value="${event.boardRegdate}"/>' readonly="readonly" style="background-color: #FFF7DD;">
 				</div>
 
 				<div class="form-group">
@@ -54,6 +56,11 @@
 					<label>최근수정일</label> <input class="form-control" name='boardRegDate'
 						value='<c:out value="${event.boardRegdate}"/>' readonly="readonly" style="background-color: #FFF7DD;"><br><br>
 				</div>
+				
+				</div>
+				<div class="form-group">
+					<label>첨부파일</label> <input class="form-control" name='boardTitle'
+						value='<c:out value="${event.fileName}"/>' readonly="readonly" style="background-color: #FFF7DD;">
 				</div>
 				<div class="form-group float-right">
 				<button data-oper='update' class="btn btn-success" sty>Modify</button>

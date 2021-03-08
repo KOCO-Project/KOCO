@@ -17,7 +17,7 @@ public class Criteria {
   private String keyword;
 
   public Criteria() {
-    this(1, 10);
+    this(1, 3);
   }
 
   public Criteria(int pageNum, int amount) {

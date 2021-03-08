@@ -2,135 +2,167 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%-- <c:import url="/WEB-INF/views/include/top_menu.jsp"/> --%>
-<%-- <c:set var="root" value="${pageContext.request.contextPath }/"/> --%>
-
-<%-- <%@include file="../includes/header.jsp"%> --%>
 <c:set var="root" value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <title>KOCO - Korea Offer Culture Organizaion</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="/resources/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-	<title>QnA</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
-<!-- Bootstrap CDN -->
+	<link rel="stylesheet" href="css/qna.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<style type="text/css">
+	HTML CSS JSResult Skip Results Iframe
+EDIT ON
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+figure.snip1384 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: #ffffff;
+  text-align: left;
+  font-size: 16px;
+  background-color: #000000;
+}
+figure.snip1384 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+figure.snip1384 img {
+  max-width: 100%;
+  backface-visibility: hidden;
+  vertical-align: top;
+}
+figure.snip1384:after,
+figure.snip1384 figcaption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+figure.snip1384:after {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.65);
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  opacity: 0;
+}
+figure.snip1384 figcaption {
+  z-index: 1;
+  padding: 40px;
+}
+figure.snip1384 h3,
+figure.snip1384 .links {
+  width: 100%;
+  margin: 5px 0;
+  padding: 0;
+}
+figure.snip1384 h3 {
+  line-height: 1.1em;
+  font-weight: 700;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  opacity: 0;
+}
+figure.snip1384 p {
+  font-size: 0.8em;
+  font-weight: 300;
+  letter-spacing: 1px;
+  opacity: 0;
+  top: 50%;
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+}
+figure.snip1384 i {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 20px 25px;
+  font-size: 34px;
+  opacity: 0;
+  -webkit-transform: translateX(-10px);
+  transform: translateX(-10px);
+}
+figure.snip1384 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+figure.snip1384:hover img,
+figure.snip1384.hover img {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+}
+figure.snip1384:hover:after,
+figure.snip1384.hover:after {
+  opacity: 1;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+figure.snip1384:hover h3,
+figure.snip1384.hover h3,
+figure.snip1384:hover p,
+figure.snip1384.hover p,
+figure.snip1384:hover i,
+figure.snip1384.hover i {
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+
+Resources1× 0.5× 0.25×Rerun
+	
+	</style>
 </head>
-
 <body>
-	<c:import url="/WEB-INF/views/include/event_top.jsp" />
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="panel-heading">
-				<!-- Event Board !! -->
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New Event</button>
-				<br>
-			</div>
-			<div class="panel-body">
-				<table class="table table-striped table-hover">
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>조회수</th>
-						</tr>
-					</thead>
-					<c:forEach items="${list}" var="event">
-						<!-- 조회페이지 이동 수정 후 -->
-						<tr>
-							<td><c:out value="${event.boardNo}" /></td>
-							<td><a class='move' href='<c:out value="${event.boardNo}"/>'>
-									<c:out value="${event.boardTitle}" />
-							</a></td>
-							<td><c:out value="${event.writer}" /></td>
-							<td><c:out value="${event.boardRegdate}" /></td>
-							<td><c:out value="${event.boardReadcount}" /></td>
-						</tr>
-					</c:forEach>
-				</table>
-				<div class='pull-right'>
-					<ul class="pagination">
-						<c:if test="${pageMaker.prev}">
-							<li class="paginate_button previous"><a
-								href="${pageMaker.startPage -1}">Previous</a></li>
-						</c:if>
-						<c:forEach var="num" begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}">
-							<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
-								<a href="${num}">${num}</a>
-							</li>
-						</c:forEach>
+<figure class="snip1384">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample83.jpg" alt="sample83" />
+  <figcaption>
+    <h3>Fleece Marigold</h3>
+    <p>Which is worse, that everyone has his price, or that the price is always so low.</p><i class="ion-ios-arrow-right"></i>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+<figure class="snip1384 hover"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample66.jpg" alt="sample66" />
+  <figcaption>
+    <h3>Guy Mann</h3>
+    <p>I'm killing time while I wait for life to shower me with meaning and happiness.</p><i class="ion-ios-arrow-right"></i>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+<figure class="snip1384"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample92.jpg" alt="sample92" />
+  <figcaption>
+    <h3>Nigel Nigel</h3>
+    <p>The only skills I have the patience to learn are those that have no real application in life. </p><i class="ion-ios-arrow-right"></i>
+  </figcaption>
+  <a href="#"></a>
+</figure>
 
-						<c:if test="${pageMaker.next}">
-							<li class="paginate_button next"><a
-								href="${pageMaker.endPage +1 }">Next</a></li>
-						</c:if>
-					</ul>
-				</div>
-				<form id="actionForm" action="/eventboard/list" method="get">
-					<input type="hidden" name="pageNum"
-						value="${pageMaker.cri.pageNum }"> <input type="hidden"
-						name="amount" value="${pageMaker.cri.amount }">
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- </div> -->
-	<div id="myModal" class="modal" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Modal title</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>Modal body text goes here.</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Save
-						changes</button>
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<footer>
-		<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
-	</footer>
+<footer>
+	<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+</footer>
 
 <script>
+
 $(document).ready(function() {
 	var result = '<c:out value="${result}"/>';
 	checkModal(result);
@@ -148,7 +180,7 @@ function checkModal(result) {
 		$("#myModal").modal("show");
 		}
 	$("#regBtn").on("click", function() {
-		self.location = "/eventboard/register";
+		self.location = "/KOCO/eventRegister";
 		});
 	
 	var actionForm = $("#actionForm");
@@ -165,7 +197,7 @@ function checkModal(result) {
 	$(".move").on("click",function(e) {
 		e.preventDefault();
 		actionForm.append("<input type='hidden' name='boardNo' value='"+ $(this).attr("href")+ "'>");
-		actionForm.attr("action","/eventboard/get");
+		actionForm.attr("action","/KOCO/eventGet");	//컨트롤러 매핑
 		actionForm.submit();
 		});
 	
@@ -175,6 +207,12 @@ function checkModal(result) {
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
 		});
+	/* Demo purposes only */
+	$(".hover").mouseleave(
+	  function () {
+	    $(this).removeClass("hover");
+	  }
+	);
 	});
 </script>
 </body></html>
