@@ -14,7 +14,7 @@
 		<result property="userNo" column="USER_NO"/>	
 	</resultMap>
 
-	<select id="getFreeBoard" parameterType="board" resultType="board">
+	<select id="getFreeBoard" parameterType="board" resultMap="freeboardResult" resultType="board">
 		
 		SELECT a2.USER_NICKNAME AS writer,
 		DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE,

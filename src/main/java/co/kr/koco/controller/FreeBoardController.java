@@ -56,7 +56,7 @@ public class FreeBoardController {
 	}
 	
 	//글 등록
-	@RequestMapping(value="/freeBoardRegister_pro", method=RequestMethod.POST)
+	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.POST)
 	public String freeBoardRegister(BoardVO freeBoardVO, @RequestParam("userNo") int userNo) {
 		freeBoardVO.setUserNo(userNo);
 		freeBoardService.freeBoardRegister(freeBoardVO);
@@ -98,10 +98,11 @@ public class FreeBoardController {
 	
 	// 글 삭제 
 	@RequestMapping("/freeBoardDelete")
-	public String freeBoardDelete(int boardNo) {
+	public String freeBoardDelete(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, Model model) {
 		freeBoardService.freeBoardDelete(boardNo);
+		model.addAttribute("infoNo", infoNo);
 		
-		return "redirect:freeboard/freeBoardList";
+		return "freeboard/freeBoardDelete";
 	}
 	
 	// 글 상세 조회
