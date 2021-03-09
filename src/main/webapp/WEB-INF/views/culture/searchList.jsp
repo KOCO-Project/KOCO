@@ -5,6 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+<!--뒤로가기기능-->
+	function goBack() {
+		window.history.back();
+	}
+</script>
 <meta charset="UTF-8">
 <title>Culture List</title>
 <link rel="stylesheet" href="css/bootstrap.css?v=1">

@@ -8,10 +8,11 @@
 		<result property="cultureContent" column="CULTURE_CONTENT" />
 		<result property="cultureRegdate" column="CULTURE_REGDATE" />
 		<result property="userNo" column="USER_NO" />
+		<result property="culturePick" column="CULTURE_PICK"/>
 	</resultMap>
 
 	<select id="getCultureBoardList" resultType="culture" resultMap="cultureResult">
-		SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE
+		SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE,a1.CULTURE_PICK
 		FROM KOCO_CULTURE a1, KOCO_USERS a2
 		WHERE 1=1 AND a1.USER_NO = a2.USER_NO
     	<if test="searchCondition == 'TITLE'">
@@ -56,18 +57,16 @@
 
 	<insert id="cultureRegister" parameterType="culture">
 		<![CDATA[
-			INSERT INTO KOCO_CULTURE(CULTURE_TITLE,CULTURE_CONTENT,USER_NO) 
-			VALUES(#{cultureTitle}, #{cultureContent}, #{userNo})
+			INSERT INTO KOCO_CULTURE(CULTURE_TITLE,CULTURE_CONTENT,USER_NO,CULTURE_PICK) 
+			VALUES(#{cultureTitle}, #{cultureContent}, #{userNo}, #{culturePick})
 		]]>
 	</insert>
 
 	<select id="getCultureBoard" resultType="culture"
 		resultMap="cultureResult">
-		<![CDATA[
-			SELECT *
-			FROM KOCO_CULTURE
-			WHERE CULTURE_NO = #{cultureNo}
-		]]>
+			SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a1.CULTURE_CONTENT,a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE,a1.CULTURE_PICK
+			FROM KOCO_CULTURE a1, KOCO_USERS a2
+			WHERE 1=1 AND a1.USER_NO = a2.USER_NO AND a1.CULTURE_NO = #{cultureNo}		
 	</select>
 
 	<delete id="deleteCultureBoard">

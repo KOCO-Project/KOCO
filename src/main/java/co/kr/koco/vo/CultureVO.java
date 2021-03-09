@@ -16,15 +16,35 @@ public class CultureVO {
 	private Date cultureRegdate;
 	private int userNo;
 	private String userNickname;
+	private int culturePick;
+
 	private String searchCondition;
 	private String searchKeyword;
 
+
+	
 	@Override
 	public String toString() {
 		return "CultureVO [cultureNo=" + cultureNo + ", cultureTitle=" + cultureTitle + ", cultureContent="
 				+ cultureContent + ", cultureRegdate=" + cultureRegdate + ", userNo=" + userNo + ", userNickname="
-				+ userNickname + "]";
+				+ userNickname + ", culturePick=" + culturePick + "]";
 	}
+
+
+	public int getCulturePick() {
+		return culturePick;
+	}
+
+
+	public void setCulturePick(int culturePick) {
+		this.culturePick = culturePick;
+	}
+
+
+	public void setCultureNo(int cultureNo) {
+		this.cultureNo = cultureNo;
+	}
+
 
 	public int getCultureNo() {
 		return cultureNo;

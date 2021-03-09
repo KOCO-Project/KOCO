@@ -5,6 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+<!--뒤로가기기능-->
+	function goBack() {
+		window.history.back();
+	}
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Culture getBoard</title>
@@ -29,14 +35,23 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<div class="card border-light mb-12" style="max-width: 100%;">
-					<div class="card-header" style="font-weight: bold;">[culturePick] &nbsp;CultureBoard</div>
+					<div class="card-header" style="font-weight: bold;">CultureBoard</div>
 					<div class="card-body">
-						<h4 class="card-title">${culture.cultureTitle}</h4>
-						<h4 class="card-title" style="font-size: 12px;">${culture.userNo} &nbsp; ${culture.cultureRegdate }</h4>
+						<h4 class="card-title">
+							<h6 scope="row" style="display: inline-flex;">
+								<c:if test="${culture.culturePick  == 1}">
+									<p style="font-size: 10px; align-self: center;">[</p>
+									<p style="color: red; font-weight: bold;" >Main
+									<p style="font-size: 10px; align-self: center;">]&nbsp;&nbsp;&nbsp;&nbsp;</p>
+								</c:if>${culture.cultureTitle}
+							</h6>
+						</h4>
+						<h4 class="card-title" style="font-size: 12px;">${culture.userNickname}
+							&nbsp; ${culture.cultureRegdate }</h4>
 						<p class="card-text">${culture.cultureContent }</p>
 						<div class="form-group">
 							<div class="text-right">
-								<a href="cultureList" class="btn btn-primary">목록보기</a> <a
+							<button type="button" class="btn btn-primary" onClick="goBack()">목록보기</button> <a
 									href="cultureUpdateBoardForm?cultureNo=${culture.cultureNo}"
 									class="btn btn-info">수정하기</a> <a
 									href="deleteCultureBoard?cultureNo=${culture.cultureNo}"

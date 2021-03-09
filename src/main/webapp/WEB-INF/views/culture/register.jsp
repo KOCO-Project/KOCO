@@ -6,10 +6,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+<!--뒤로가기기능-->
+	function goBack() {
+		window.history.back();
+	}
+</script>
 <meta charset="UTF-8">
 <title>Culture Register Form</title>
 </head>
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/footer.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -20,36 +27,78 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
+	<br>
+	<br>
+	<br>
 
-
-	<div class="container" style="margin-top: 100px">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
-				<div class="card shadow">
-					<div class="card-body">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h1>
+					<a href="cultureList" class="header"
+						style="color: black; text-decoration: none; font-weight: bold;">문화게시판</a>
+				</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<br>
+					<div class="col-md-10">
+						<table class="table table">
+							<th scope="col">게시글 작성</th>
+						</table>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10">
+
+					<div class="table table-hover">
 						<form action='cultureRegister' method='post'>
-							<input type="hidden" name="userNo" value="1">
+							<input type="hidden" name="userNo" value="${sessionScope.user.userNo}">
+						
 							<div class="form-group">
-								<td>제목</td> <input type="text" class="form-control"
+
+								<label>제목</label> <input type="text" class="form-control"
 									name="cultureTitle" />
 							</div>
+
 							<div class="form-group">
-								<td>내용</td>
-								<textarea class="form-control" name="cultureContent"></textarea>
+								<label>내용</label>
+								<textarea class="form-control" name="cultureContent" rows="12"></textarea>
+							</div>
+
+							<div class="form-group">
+								<label>메인 여부&nbsp;</label>
+								<input type="radio" name="culturePick" value="1">등록&nbsp;
+								<input type="radio" name="culturePick" value="0" checked>미등록
 							</div>
 
 							<div class="form-group">
 								<div class="text-right">
-									<button type="submit" class="btn btn-primary">작성하기</button>
+									<button type="submit" class="btn btn-info">작성</button>
+									<button type="button" class="btn btn-danger" onClick="goBack()">취소</button>
 								</div>
 							</div>
 						</form>
 					</div>
+
 				</div>
 			</div>
-			<div class="col-sm-3"></div>
+			<div class="col-sm-1"></div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<footer>
+		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+	</footer>
 </body>
 </html>
