@@ -67,31 +67,34 @@ public class FreeBoardController {
 	//글 수정 폼
 	@RequestMapping(value="/freeBoardUpdate", method=RequestMethod.GET)
 	public String freeBoardUpdateView(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, 
-			@ModelAttribute("freeBoard") BoardVO freeBoardVO, @RequestParam("page") int page, Model model) {
+			@ModelAttribute("freeBoardVO") BoardVO freeBoardVO, @RequestParam("page") int page, Model model) {
 		
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);
 		model.addAttribute("page", page);
 		
 		BoardVO tempBoardVO = freeBoardService.getFreeBoard(boardNo);
-		freeBoardVO.setUserNo(tempBoardVO.getUserNo());
-		freeBoardVO.setBoardRegdate(tempBoardVO.getBoardRegdate());
-		freeBoardVO.setBoardTitle(tempBoardVO.getBoardTitle());
-		freeBoardVO.setBoardContent(tempBoardVO.getBoardContent());
-		freeBoardVO.setWriter(tempBoardVO.getWriter());
-		freeBoardVO.setBoardNo(boardNo);
-		freeBoardVO.setBoardCategory(infoNo);
+		
+		model.addAttribute("freeBoardVO", tempBoardVO);
 		
 		/* freeBoardService.freeBoardUpdate(freeBoardVO); */
 		
-		return "freeboard/freeBoardList";
+		return "freeboard/freeBoardUpdate";
 	}
 	
 	//글 수정 
 	@RequestMapping(value="/freeBoardUpdate", method=RequestMethod.POST)
-	public String freeBoardUpdate(@ModelAttribute("freeBoard") BoardVO freeBoardVO, @RequestParam("page") int page, Model model) {
+	public String freeBoardUpdate(@ModelAttribute("freeBoardVO") BoardVO freeBoardVO, @RequestParam("page") int page, Model model,  @RequestParam(value = "boardNo") int boardNo, @RequestParam(value = "infoNo") int infoNo) {
 		model.addAttribute("page", page);
-		freeBoardService.freeBoardUpdate(freeBoardVO);
+		
+		BoardVO updateBoard = new BoardVO();
+		
+		updateBoard.setBoardCategory(infoNo);
+		updateBoard.setBoardNo(boardNo);
+		updateBoard.setBoardTitle(freeBoardVO.getBoardTitle());
+		updateBoard.setBoardContent(freeBoardVO.getBoardContent());
+		
+		freeBoardService.freeBoardUpdate(updateBoard);
 		
 		return "freeboard/freeBoardUpdate_pro";
 	}

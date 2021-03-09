@@ -30,7 +30,7 @@
 						<div class="row">
 							<div class="col-md-7">
 								<input id="userNo" name="userNo" type="hidden"
-									value=${sessionScope.user.userNo } "/>
+									value="${sessionScope.user.userNo }" />
 								<div class="form-group">
 									<label for="writer">WRITER</label> <input type="text"
 										id="writer" name="writer" class="form-control"
@@ -70,9 +70,9 @@
 							<div class="text-right">
 								<a href="freeBoardList?infoNo=1&page=${page }"
 									class="btn btn-primary" style="width: 100px;">글목록</a>
-								<c:if test="${sessionScope.user.userNo == readContentBean.userNo }">
-									<a
-										href="freeBoardUpdate?infoNo=1&boardNo=${boardNo}&page=${page}"
+								<c:if
+									test="${sessionScope.user.userNo == readContentBean.userNo }">
+									<a href="freeBoardUpdate?infoNo=1&boardNo=${boardNo}&page=${page}"
 										class="btn btn-success" style="width: 100px;">수정하기</a>
 									<a href="freeBoardDelete?infoNo=1&boardNo=${boardNo}"
 										class="btn btn-danger" style="width: 100px;">삭제하기</a>

@@ -38,6 +38,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 
 	@Override
 	public BoardVO getFreeBoard(int boardNo) {
+		freeBoardDAO.setFreeBoardRcnt(boardNo);
 		
 		return freeBoardDAO.getFreeBoard(boardNo);
 	}
