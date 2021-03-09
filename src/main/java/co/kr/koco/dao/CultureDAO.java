@@ -22,6 +22,7 @@ public class CultureDAO {
 	}
 
 	public void cultureRegister(CultureVO vo) {
+		System.out.println("DAO에서 보는 컬쳐픽! " + vo.getCulturePick());
 		mybatis.insert("CultureDAO.cultureRegister", vo);
 	}
 

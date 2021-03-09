@@ -5,6 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+<!--뒤로가기기능-->
+	function goBack() {
+		window.history.back();
+	}
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Update CultureBoard</title>
@@ -57,8 +63,7 @@
 							<div class="form-group">
 								<div class="text-right">
 									<input type="submit" class="btn btn-info" value="수정완료" />
-									<a href="getCultureBoard?cultureNo=${culture.cultureNo}"
-										class="btn btn-danger">취소하기</a>
+									<button type="button" class="btn btn-danger" onClick="goBack()">취소하기</button>
 								</div>
 							</div>
 						</form>

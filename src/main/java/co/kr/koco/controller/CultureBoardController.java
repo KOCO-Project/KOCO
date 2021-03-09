@@ -35,7 +35,7 @@ public class CultureBoardController {
 
 	// 글 목록 검색
 	@RequestMapping("/cultureList")
-	public String getCultureList(@ModelAttribute CultureVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	public String getCultureList(@ModelAttribute CultureVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model,@RequestParam(value="searchKeyword" ,required=false)String searchKeyword) {
 		
 		
 		List<CultureVO> cultureList = cultureService.getCultureBoardList(vo, page);
@@ -48,7 +48,8 @@ public class CultureBoardController {
 
 		System.out.println("컨트롤러에서 보는 " + vo.getSearchCondition());
 		System.out.println("컨트롤러에서 보는 " + vo.getSearchKeyword());
-		
+		System.out.println("컨트롤러에서 보는 " + searchKeyword);
+		model.addAttribute("searchKeyword", searchKeyword);
 		
 		return "culture/list"; // View 이름 리턴
 	}

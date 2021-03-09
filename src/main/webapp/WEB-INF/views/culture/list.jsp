@@ -6,6 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+<!--뒤로가기기능-->
+	function goBack() {
+		window.history.back();
+	}
+</script>
 <meta charset="UTF-8">
 <title>Culture List</title>
 <link rel="stylesheet" href="css/bootstrap.css?v=1">
@@ -34,7 +40,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<h1>
-					<a href="cultureList" class="header" style="color: black; text-decoration: none; font-weight: bold;">문화게시판</a>
+					<a href="cultureList" class="header" style="color: black; text-decoration: none; font-weight: bold;">문화게시판 ${searchKeyword}</a>
 				</h1>
 			</div>
 			<div class="col-md-1"></div>
@@ -55,21 +61,31 @@
 							<th scope="col">등록일</th>
 						</tr>
 					</thead>
-					<c:forEach items="${cultureList}" var="culture">
+					<c:if test="${cultureList == null && cultureList == ''}">
+								<tr class="table-light">
+						<td>"<%=searchKeyword %>" 으로 검색된 게시물이 없습니다.</td>
+					</tr>
+					
+					</c:if>
+				<c:forEach items="${cultureList}" var="culture">
 						<tr class="table-light">
 							<th scope="row">${culture.cultureNo}</th>
+							
 							<th scope="row" style="display: inline-flex;">
+							<c:if test="${culture.culturePick  == 1}">
 								<p style="font-size: 10px; align-self: center;">[</p>
-								<p style="color: red;">main
+								<p style="color: red;">Main
 								<p style="font-size: 10px; align-self: center;">]</p>
+							</c:if>
 							</th>
+							
 							<td><a href="getCultureBoard?cultureNo=${culture.cultureNo}"
 								style="color: black;" onMouseover="this.style.fontWeight='bold'"
 								onMouseout="this.style.fontWeight=''">${culture.cultureTitle}</a></td>
 							<td>${culture.userNickname}</td>
 							<td>${culture.cultureRegdate}</td>
 						</tr>
-					</c:forEach>
+					</c:forEach>	
 				</table>
 
 
@@ -101,8 +117,7 @@
 											<svg xmlns="http://www.w3.org/2000/svg" width="16"
 												height="16" fill="currentColor" class="bi bi-search"
 												viewBox="0 0 16 16">
-  									<path
-													d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
+  									<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
 										</button>
 									</div>
 								</div>

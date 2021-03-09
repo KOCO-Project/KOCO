@@ -43,9 +43,10 @@
   <!-- Page Content -->
 
     <div class="row">
-      <div class="col-md-8 mb-5">
+      <div class="col-md-12 mb-5">
         <h1>Event</h1>
         <hr>
+        <button id='regBtn' type="button" class="btn btn-primary btn-lg pull-right" style="font-size:10px;">New Event</button>
         <p>이벤트 게시판 입니다 :)</p>
       </div>
     </div>

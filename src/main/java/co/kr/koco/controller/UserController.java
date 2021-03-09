@@ -162,12 +162,12 @@ public class UserController {
 	
 	@GetMapping("/userPage")
 	public String userPage(@RequestParam(value = "userNickname", required = false) String userNickname, UserVO userVo, Model model) throws Exception {
-		String nickname = service.userPage(userNickname);
-		model.addAttribute("selectUser", nickname);
+		UserVO userVO = service.userPage(userNickname);
+		model.addAttribute("selectUser", userVO);
 		model.addAttribute("followerCnt", followService.followerCnt(userNickname));
 		model.addAttribute("followingCnt", followService.followingCnt(userNickname));
 		
-		return "users/mypage2";
+		return "users/userPage";
 	}
 
 	@RequestMapping("/sendAuthMail")
