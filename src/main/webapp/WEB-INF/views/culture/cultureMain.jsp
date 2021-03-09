@@ -8,6 +8,7 @@
 <style type="text/css">
 html body p{
 margin: 0;
+pointer-events : none;
 }
 
 html body{
