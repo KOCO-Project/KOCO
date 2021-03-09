@@ -17,7 +17,7 @@
 	</resultMap>
 	<insert parameterType="board" id="eventBoardRegister">
 		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO)
-		VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo})
+		VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName}, ${thumbnail}, 28)
 		<!-- VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName, jdbcType=VARCHAR}, NULL, 1) -->
 	</insert>
 	<!-- <select parameterType="java.lang.Integer" id="getBoardInfoName" resultType="java.lang.String">
@@ -26,7 +26,7 @@
 		WHERE INFO_NO = #{infoNo}
 	</select> -->
 	<select id="getEventBoard" resultType="board" resultMap="boardResult" parameterType="java.lang.Integer">
-		select BOARD_NO, BOARD_TITLE, BOARD_CONTENT, user.USER_NICKNAME as writer, DATE_FORMAT(BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE , READCOUNT, FILE_NAME
+		select BOARD_NO, BOARD_TITLE, BOARD_CONTENT, user.USER_NICKNAME as writer, DATE_FORMAT(BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE , READCOUNT, FILE_NAME, THUMBNAIL
 		from  KOCO_BOARD as board, KOCO_USERS as user  
 		where BOARD_NO=#{boardNo} and board.USER_NO=user.USER_NO
 	</select>

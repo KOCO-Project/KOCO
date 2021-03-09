@@ -30,7 +30,7 @@
 		</interceptor>
 	</interceptors>
 	
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/> -->
 	
 	<!-- 정적 파일 경로 -->
 	<resources mapping="/**" location="/resources/"/>
@@ -48,5 +48,20 @@
 	<beans:bean class='org.springframework.context.support.MessageSourceAccessor'>
 		<beans:constructor-arg ref='messageSource'/>
 	</beans:bean>
+	
+	<!-- 업로드 패스 설정 --> 
+	<!-- <beans:bean class="java.lang.String" id="uploadPath">
+ 		<beans:constructor-arg value="/Users/isang-a/Documents/workspace-sts-3.9.15.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/KOCO/resources"/>
+	</beans:bean> -->
+
+	<!-- 일반 파일 업로드 경로 -->
+	<resources mapping="/imgUpload/**" location="imgUpload/"/>
+
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+ 		<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
+	
+	<!-- ck에디터 파일 업로드 경로 -->
+	<resources mapping="/ckUpload/**" location="/resources/ckUpload/"/>
 	
 </beans:beans>

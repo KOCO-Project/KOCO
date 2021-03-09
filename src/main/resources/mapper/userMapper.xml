@@ -70,8 +70,8 @@
 	</update>
 	
 	<!-- 유저페이지 -->
-	<select id="userPage" resultType="java.lang.String" parameterType="java.lang.String">
-		SELECT USER_NICKNAME AS userNickname
+	<select id="userPage" resultType="users" parameterType="java.lang.String">
+		SELECT USER_NO AS userNo, USER_ID AS userId, USER_PW AS userPw, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, DATE_FORMAT(USER_REGDATE, '%Y-%m-%d') AS userRegdate, USER_STATUS AS userStatus, USER_CASE AS userCase
 		FROM KOCO_USERS
 		WHERE USER_NICKNAME = #{userNickname}
 	</select>	

@@ -75,8 +75,8 @@ public class UserService {
 		dao.pwUpdate(userVo);
 	}
 	
-	public String userPage(String userNickname) throws Exception {
-		return dao.userPage(userNickname);
+	public UserVO userPage(String userNickname) throws Exception {
+		return (UserVO) dao.userPage(userNickname);
 	}
 
 	public List<UserVO> userList(UserVO userVo) throws Exception {
