@@ -97,6 +97,29 @@ public class QnaBoardController {
 		return "qna/qnaRegister_pro";
 	}
 	
+	@GetMapping("/ansRegister")
+	public String ansRegister(@ModelAttribute("ansQnaBoardVO")BoardVO ansQnaBoardVO,
+			@RequestParam("infoNo") int infoNo,
+			@RequestParam("boardNo") int boardNo) {
+		System.out.println("ansRegister");
+		ansQnaBoardVO.setBoardCategory(infoNo);
+		ansQnaBoardVO.setParent(boardNo);
+
+		return "qna/answer_register";
+	}
+	
+	@PostMapping("/ansRegister_pro")
+	public String ansRegisterPro(@ModelAttribute("ansQnaBoardVO") BoardVO ansQnaBoardVO, 
+			@RequestParam("userNo") int userNo, HttpServletRequest request, Model model) {
+		System.out.println("ansRegister Pro");
+		ansQnaBoardVO.setUserNo(userNo);
+		ansQnaBoardVO.setSequence(1);
+		model.addAttribute("ansQnaBoardVO", ansQnaBoardVO);
+		model.addAttribute("userVO", userVO);
+		qnaBoardService.getQnaBoardRegister(ansQnaBoardVO);
+		return "qna/answer_register_pro";
+	}
+	
 	@GetMapping("/qnaupdate")
 	public String qnaUpdate(@RequestParam("infoNo") int infoNo,
 						 @RequestParam("boardNo") int boardNo,

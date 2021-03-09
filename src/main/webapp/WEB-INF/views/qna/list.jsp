@@ -32,7 +32,23 @@
 	<c:forEach var='obj' items="${qnaList }">
 	<tr>
 		<td class="text-center d-none d-md-table-cell">${obj.boardNo }</td>
-		<td><a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a></td>
+		<td>
+
+	   <c:choose>
+	      <c:when test='${obj.depth > 0 }'>  
+	      
+	         <c:forEach begin="0" end="${obj.depth }" step="2">
+	              <span style="padding-left:20px"></span>    
+	         </c:forEach>
+	         
+	         <span style="font-size:12px;">[답변]</span>
+          		 <a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a></td>
+	     </c:when>
+	      <c:otherwise>
+	 			<a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a></td>
+	      </c:otherwise>
+	   </c:choose>
+
 		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;">${obj.writer }</td>
 		<td class="text-center d-none d-md-table-cell">${obj.boardRegdate }</td>
 		<td class="text-center d-none d-md-table-cell">${obj.boardReadcount }</td>

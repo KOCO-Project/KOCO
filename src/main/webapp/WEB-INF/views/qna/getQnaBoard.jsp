@@ -27,7 +27,8 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-7">
- <input id="userNo" name="userNo" type="hidden" value="${sessionScope.user.userNo }"/>
+							<input type="hidden" name ="boardNo" value="${readContentBean.boardNo }">
+ 								<input id="userNo" name="userNo" type="hidden" value="${sessionScope.user.userNo }"/>
 								<div class="form-group">
 									<label for="writer">WRITER</label> <input type="text"
 										id="writer" name="writer" class="form-control"
@@ -93,6 +94,8 @@
 							<div class="text-right">
 								<a href="${root }qnalist?infoNo=${infoNo }&page=${page}"
 									class="btn btn-primary" style="width: 100px;">목록보기</a>
+								<a href="${root }ansRegister?infoNo=${infoNo }&boardNo=${boardNo }&page=${page}"
+									class="btn btn-primary" style="width: 100px;">답글달기</a>
 								<c:if test="${sessionScope.user.userNo == readContentBean.userNo }">
 								<a
 									href="${root }qnaupdate?infoNo=${infoNo }&boardNo=${boardNo }&page=${page}"

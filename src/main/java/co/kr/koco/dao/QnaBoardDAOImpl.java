@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import co.kr.koco.vo.BoardVO;
 
@@ -53,6 +54,18 @@ public class QnaBoardDAOImpl implements QnaBoardDAO {
 	@Override
 	public void setQnaBoardRcnt(int boardNo) {
 		sqlSessionTemplate.selectOne("qnaBoard.updateRcnt", boardNo);
+	}
+
+	@Override
+	public void getAnswerRegister(Model model) {
+		sqlSessionTemplate.insert("qnaBoard.getAnswerRegister", model);
+		
+	}
+
+	@Override
+	public void getAnswerRegView(Model model) {
+		sqlSessionTemplate.selectOne("qnaBoard.answerRegView", model);
+		
 	}
 
 }

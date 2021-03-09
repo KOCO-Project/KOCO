@@ -2,17 +2,14 @@ package co.kr.koco.service;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.kr.koco.dao.QnaBoardDAO;
@@ -53,9 +50,6 @@ public class QnaBoardService {
 			String fileName = saveUploadFile(uploadFile);
 			regQnaBoardVO.setFileName(fileName);
 		}
-		
-		
-//		regQnaBoardVO.setUserNo(userVO.getUserNo());
 		qnaBoardDAO.getQnaBoardRegister(regQnaBoardVO);
 	}
 	
@@ -91,6 +85,11 @@ public class QnaBoardService {
 		int contentCnt = qnaBoardDAO.getQnaBoardCnt(infoNo);//전체글 갯수
 		PageVO pageVO = new PageVO(contentCnt, currentPage, pageListcnt, pagePaginationcnt);
 		return pageVO;
+	}
+
+	public void getAnswerRegView(Model model) {
+		
+		qnaBoardDAO.getAnswerRegView(model);
 	}
 }
 

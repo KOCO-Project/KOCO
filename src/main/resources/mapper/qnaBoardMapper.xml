@@ -19,10 +19,13 @@
 		select 
 	</selectKey> -->
 	<![CDATA[
-		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO)
-		VALUES(#{boardCategory}, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo})
+		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO ,parent,depth,sequence)
+		VALUES(#{boardCategory}, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo},#{sequence},#{depth},#{sequence})
 	]]>
 	</insert>
+	
+	
+	
 	
 	<select parameterType="java.lang.Integer" id="getBoardInfoName" resultType="java.lang.String">
 	<![CDATA[
@@ -34,12 +37,36 @@
 	
 	<select parameterType="java.lang.Integer" id="getQnaBoardList" resultType="board" resultMap="boardResult">
 	<![CDATA[
-		SELECT a1.BOARD_NO , a1.BOARD_TITLE, a2.USER_NICKNAME AS writer, 
-			DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE , a1.READCOUNT, a1.USER_NO
-		FROM KOCO_BOARD a1, KOCO_USERS a2
-		WHERE a1.USER_NO = a2.USER_NO
-			AND a1.BOARD_CATEGORY = #{infoNo}
-		ORDER BY a1.BOARD_NO DESC
+	SELECT CONCAT(REPEAT('    ', depth  - 1), CAST(ou.BOARD_NO AS CHAR)) AS BOARD_NO, 
+	      parent,
+	      depth, 
+	      CONCAT(REPEAT('    ', depth  - 1), CAST(ou.BOARD_TITLE AS CHAR)) AS BOARD_TITLE, 
+	      sequence,
+	      ou.READCOUNT, 
+	      DATE_FORMAT(ou.BOARD_REGDATE,  '%Y-%m-%d') AS BOARD_REGDATE,
+	      ou.USER_NO,
+	      ou.BOARD_CATEGORY,
+	      LEVEL 
+	FROM (SELECT mn.BOARD_TITLE , 
+            mn.BOARD_NO, 
+            depth , 
+            parent, 
+            sequence, 
+            mn.READCOUNT, 
+            DATE_FORMAT(mn.BOARD_REGDATE,  '%Y-%m-%d') AS BOARD_REGDATE,
+            mn.USER_NO,
+            mn.BOARD_CATEGORY,
+            LEVEL 
+     	 FROM (SELECT hierarchy_connect_by_parent_eq_prior_no(BOARD_NO) AS BOARD_NO,
+                 	  @level AS LEVEL 
+            	FROM (SELECT   @start_with := 0, 
+		                       @id := @start_with, 
+		                       @level := 0 ) vars, 
+		                       KOCO_BOARD
+               WHERE @id IS NOT NULL ) m 
+         	   JOIN KOCO_BOARD mn ON mn.BOARD_NO = m.BOARD_NO ) ou
+         	   
+	WHERE ou.BOARD_CATEGORY = 2
 	]]>
 	</select>
 	
@@ -47,7 +74,7 @@
 	<![CDATA[
 		SELECT a2.USER_NICKNAME AS writer, 
 		DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE, 
-	     	  a1.BOARD_TITLE, a1.BOARD_CONTENT, a1.FILE_NAME, a1.READCOUNT, a1.USER_NO
+	     	  a1.BOARD_TITLE, a1.BOARD_CONTENT, a1.FILE_NAME, a1.READCOUNT, a1.USER_NO , a1.BOARD_NO
 		FROM KOCO_BOARD a1, KOCO_USERS a2
 		WHERE a1.USER_NO = a2.USER_NO 
 		AND BOARD_NO = #{boardNo}
@@ -84,5 +111,14 @@
 		WHERE BOARD_NO = #{boardNo}
 	]]>
 	</update>
+	
+	
+	<select id="answerRegView" resultType="java.lang.Integer">
+	<![CDATA[
+		SELECT * FROM KOCO_BOARD WHERE BOARD_NO = #{boardNo}
+	]]>
+	</select>
+	
+	
 	
 </mapper>

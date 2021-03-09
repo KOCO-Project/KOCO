@@ -3,6 +3,7 @@ package co.kr.koco.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.ui.Model;
 
 import co.kr.koco.vo.BoardVO;
 
@@ -16,4 +17,6 @@ public interface QnaBoardDAO {
 	public String getBoardInfoName(int infoNo);
 	public int getQnaBoardCnt(int boardCategory);
 	public void setQnaBoardRcnt(int boardNo);
+	public void getAnswerRegister(Model model);
+	public void getAnswerRegView(Model model);
 }
