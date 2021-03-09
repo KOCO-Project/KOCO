@@ -50,4 +50,8 @@ public class CultureServiceImpl implements CultureService {
 		PageVO pageVO = new PageVO(contentCnt, currentPage, pageListcnt, pagePaginationcnt);
 		return pageVO;
 	}
+	
+	public List<CultureVO> getCultureMainList(CultureVO vo){
+		return cultureDAO.getCultureMainList(vo);
+	}
 }

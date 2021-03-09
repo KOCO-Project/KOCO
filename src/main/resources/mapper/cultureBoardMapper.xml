@@ -12,7 +12,7 @@
 	</resultMap>
 
 	<select id="getCultureBoardList" resultType="culture" resultMap="cultureResult">
-		SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE,a1.CULTURE_PICK
+		SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a1.CULTURE_CONTENT,a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE,a1.CULTURE_PICK
 		FROM KOCO_CULTURE a1, KOCO_USERS a2
 		WHERE 1=1 AND a1.USER_NO = a2.USER_NO
     	<if test="searchCondition == 'TITLE'">
@@ -80,7 +80,8 @@
 		<![CDATA[
 			UPDATE KOCO_CULTURE SET
 			CULTURE_TITLE = #{cultureTitle},
-			CULTURE_CONTENT = #{cultureContent}
+			CULTURE_CONTENT = #{cultureContent},
+			CULTURE_PICK = #{culturePick}
 			WHERE CULTURE_NO = #{cultureNo}
 		]]>
 	</update>

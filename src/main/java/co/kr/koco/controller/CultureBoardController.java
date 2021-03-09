@@ -23,20 +23,10 @@ public class CultureBoardController {
 
 	@Autowired
 	private CultureService cultureService;
-
-//	// 검색 조건 목록 설정
-//	@ModelAttribute("conditionMap")
-//	public Map<String, String> searchConditionMap() {
-//		Map<String, String> conditionMap = new HashMap<String, String>();
-//		conditionMap.put("제목", "TITLE");
-//		conditionMap.put("내용", "CONTENT");
-//		return conditionMap;
-//	}
-
+	
 	// 글 목록 검색
 	@RequestMapping("/cultureList")
-	public String getCultureList(@ModelAttribute CultureVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model,@RequestParam(value="searchKeyword" ,required=false)String searchKeyword) {
-		
+	public String getCultureList(@ModelAttribute CultureVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model,@RequestParam(value="searchKeyword" ,required=false)String searchKeyword,@RequestParam(value="searchCondition" ,required=false)String searchCondition) {
 		
 		List<CultureVO> cultureList = cultureService.getCultureBoardList(vo, page);
 		model.addAttribute("cultureList",cultureList);
@@ -46,12 +36,17 @@ public class CultureBoardController {
 		model.addAttribute("pageVO", pageVO);
 		model.addAttribute("page", page);
 
-		System.out.println("컨트롤러에서 보는 " + vo.getSearchCondition());
-		System.out.println("컨트롤러에서 보는 " + vo.getSearchKeyword());
-		System.out.println("컨트롤러에서 보는 " + searchKeyword);
 		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("searchCondition", searchCondition);
 		
 		return "culture/list"; // View 이름 리턴
+	}
+	
+	@RequestMapping("/cultureMain")
+	public String cultureMain(@ModelAttribute CultureVO vo, Model model) {
+		List<CultureVO> cultureList = cultureService.getCultureMainList(vo);
+		model.addAttribute("cultureList",cultureList);
+		return "culture/cultureMain"; // View 이름 리턴
 	}
 
 	// 검색 조건 목록 설정
@@ -99,18 +94,4 @@ public class CultureBoardController {
 		cultureService.cultureUpdate(vo);
 		return "redirect:cultureList";
 	}
-	
-// 페이징 테스트	
-//	@GetMapping("/listTest")
-//	public String qnaList(@ModelAttribute CultureVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-//
-//		List<CultureVO> cultureList = cultureService.getCultureBoardList(vo, page);
-//		model.addAttribute("cultureList",cultureList);
-//
-//		PageVO pageVO = cultureService.getCultureBoardCnt(vo, page);
-//		model.addAttribute("pageVO", pageVO);
-//		model.addAttribute("page", page);
-//
-//		return "culture/listTest";
-//	}
 }

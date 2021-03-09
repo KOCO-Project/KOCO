@@ -2,10 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <c:set var="root" value="${pageContext.request.contextPath }/" />
-
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+tbody tr.table-light th h5{
+margin: 0;
+font-size: 0.8rem;
+}
+</style>
 <script type="text/javascript">
 <!--뒤로가기기능-->
 	function goBack() {
@@ -26,21 +31,18 @@
 
 </head>
 <body>
-	<%
-		String searchCondition = request.getParameter("searchCondition");
-		String searchKeyword = request.getParameter("searchKeyword");
-	%>
+
 	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
 	<br>
 	<br>
 	<br>
-
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<h1>
-					<a href="cultureList" class="header" style="color: black; text-decoration: none; font-weight: bold;">문화게시판 ${searchKeyword}</a>
+					<a href="cultureList" class="header"
+						style="color: black; text-decoration: none; font-weight: bold;">문화게시판</a>
 				</h1>
 			</div>
 			<div class="col-md-1"></div>
@@ -61,31 +63,25 @@
 							<th scope="col">등록일</th>
 						</tr>
 					</thead>
-					<c:if test="${cultureList == null && cultureList == ''}">
-								<tr class="table-light">
-						<td>"<%=searchKeyword %>" 으로 검색된 게시물이 없습니다.</td>
-					</tr>
-					
-					</c:if>
-				<c:forEach items="${cultureList}" var="culture">
+
+					<c:forEach items="${cultureList}" var="culture">
 						<tr class="table-light">
 							<th scope="row">${culture.cultureNo}</th>
-							
+
 							<th scope="row" style="display: inline-flex;">
 							<c:if test="${culture.culturePick  == 1}">
-								<p style="font-size: 10px; align-self: center;">[</p>
-								<p style="color: red;">Main
-								<p style="font-size: 10px; align-self: center;">]</p>
-							</c:if>
-							</th>
-							
+									<h5>[</h5>
+									<h5 style="color: red;font-weight: bold;">Main</h5>
+									<h5>]</h5>
+								</c:if></th>
+
 							<td><a href="getCultureBoard?cultureNo=${culture.cultureNo}"
 								style="color: black;" onMouseover="this.style.fontWeight='bold'"
 								onMouseout="this.style.fontWeight=''">${culture.cultureTitle}</a></td>
 							<td>${culture.userNickname}</td>
 							<td>${culture.cultureRegdate}</td>
 						</tr>
-					</c:forEach>	
+					</c:forEach>
 				</table>
 
 
@@ -107,7 +103,8 @@
 											<!--<option selected="" style="background-color: white;">검색</option> -->
 											<option style="background-color: white;" value="TITLE">제목</option>
 											<option style="background-color: white;" value="CONTENT">내용</option>
-											<option style="background-color: white;" value="NICKNAME">작성자</option>
+											<!-- 작성자로 찾는 것 보류 -->
+											<!--<option style="background-color: white;" value="NICKNAME">작성자</option> -->
 										</select>
 									</div>
 									<input type="text" class="form-control" placeholder="SERCH"
@@ -117,7 +114,8 @@
 											<svg xmlns="http://www.w3.org/2000/svg" width="16"
 												height="16" fill="currentColor" class="bi bi-search"
 												viewBox="0 0 16 16">
-  									<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
+  									<path
+													d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
 										</button>
 									</div>
 								</div>
@@ -136,7 +134,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="cultureList?page=${pageVO.prevPage}&searchCondition=<%=searchCondition%>&searchKeyword=<%=searchKeyword %>"
+									href="cultureList?page=${pageVO.prevPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 									class="page-link">이전</a></li>
 							</c:otherwise>
 						</c:choose>
@@ -144,12 +142,12 @@
 							<c:choose>
 								<c:when test="${idx == pageVO.currentPage }">
 									<li class="page-item active"><a
-										href="cultureList?page=${idx}&searchCondition=<%=searchCondition%>&searchKeyword=<%=searchKeyword %>"
+										href="cultureList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 										class="page-link">${idx }</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a
-										href="cultureList?page=${idx}&searchCondition=<%=searchCondition%>&searchKeyword=<%=searchKeyword %>"
+										href="cultureList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 										class="page-link">${idx }</a></li>
 								</c:otherwise>
 							</c:choose>
@@ -162,7 +160,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="cultureList?page=${pageVO.nextPage}&searchCondition=<%=searchCondition%>&searchKeyword=<%=searchKeyword %>"
+									href="cultureList?page=${pageVO.nextPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 									class="page-link">다음</a></li>
 							</c:otherwise>
 						</c:choose>

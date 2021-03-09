@@ -66,4 +66,8 @@ public class CultureDAO {
 		
 		return mybatis.selectOne("CultureDAO.getCultureBoardCnt", vo);
 	}
+	
+	public List<CultureVO> getCultureMainList(CultureVO vo){
+		return mybatis.selectList("CultureDAO.getCultureBoardList", vo);
+	}
 }

@@ -24,4 +24,6 @@ public interface CultureService {
 	List<CultureVO> getCultureBoardList(CultureVO vo, int page);
 	
 	PageVO getCultureBoardCnt(CultureVO vo,int currentPage);
+	
+	List<CultureVO> getCultureMainList(CultureVO vo);
 }

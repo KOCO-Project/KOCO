@@ -7,14 +7,23 @@
 <html>
 <head>
 <script type="text/javascript">
-<!--뒤로가기기능-->
+function check(){
+    var editorValue = CKEDITOR.instances.editor.getData();
+    console.log(editorValue);
+    if(editorValue == "" || editorValue.length == 0){
+       alert('내용을 입력해주세요.');
+       return false;
+    } else {
+       return true;
+    }
+ }
 	function goBack() {
 		window.history.back();
-	}
+	}       
 </script>
 <meta charset="UTF-8">
 <title>Culture Register Form</title>
-</head>
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/footer.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
@@ -61,17 +70,19 @@
 
 					<div class="table table-hover">
 						<form action='cultureRegister' method='post'>
+							
 							<input type="hidden" name="userNo" value="${sessionScope.user.userNo}">
-						
 							<div class="form-group">
 
-								<label>제목</label> <input type="text" class="form-control"
-									name="cultureTitle" />
+							<label>제목</label> <input type="text" class="form-control" name="cultureTitle" placeholder="제목을 입력하세요" required="required" mexlength="50" />
 							</div>
 
 							<div class="form-group">
 								<label>내용</label>
-								<textarea class="form-control" name="cultureContent" rows="12"></textarea>
+								<textarea class="form-control" name="cultureContent" id="editor" rows="12"></textarea>
+							    <script>
+						    	   CKEDITOR.replace( 'cultureContent' );
+    							</script>
 							</div>
 
 							<div class="form-group">
@@ -88,7 +99,6 @@
 							</div>
 						</form>
 					</div>
-
 				</div>
 			</div>
 			<div class="col-sm-1"></div>

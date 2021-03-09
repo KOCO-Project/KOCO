@@ -16,7 +16,7 @@
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
-          <a class="dropdown-item" href="freeBoardList">Culture</a>
+          <a class="dropdown-item" href="cultureMain">Culture</a>
           <a class="dropdown-item" href="seasonList">Seasons</a>
           <a class="dropdown-item" href="getAdminTest">Admin Test</a>
         </div>
