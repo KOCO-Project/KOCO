@@ -129,7 +129,7 @@ $(function(){
 	<h1 class="text-center">Hello, ${user.userNickname }</h1>
 </c:when>
 <c:otherwise>
-	<h1 class="text-center">Welcome to ${selectUser }'s</h1>
+	<h1 class="text-center">Welcome to ${selectUser.userNickname }'s</h1>
 </c:otherwise>
 </c:choose>
 </div>
@@ -142,9 +142,9 @@ $(function(){
 		</div>
 		<div class="col-md-7" style="height: 40%;">
 			<ul>
-			<li><strong>NAME : ${user.userNickname }</strong></li>
-			<li>MAIL : ${user.userEmail }</li>
-			<li>SINCE : ${user.userRegdate }</li>
+			<li><strong>NAME : ${selectUser.userNickname }</strong></li>
+			<li>MAIL : ${selectUser.userEmail }</li>
+			<li>SINCE : ${selectUser.userRegdate }</li>
 			</ul>
 		</div>
 		<div class="row" style="padding: 0;width: 100%;"><div class="col-md-12">
@@ -154,8 +154,8 @@ $(function(){
 			<th><button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로워수</button></th>
 			<th><button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로잉수</button></th>
 		</tr></thead><tbody><tr>
-			<td><a href="followerList?toFollow=${selectUser }">${followerCnt }</a></td>
-			<td><a href="followingList?fromFollow=${selectUser }">${followingCnt }</a></td>
+			<td><a href="followerList?toFollow=${selectUser.userNickname }">${followerCnt }</a></td>
+			<td><a href="followingList?fromFollow=${selectUser.userNickname }">${followingCnt }</a></td>
 		</tr></tbody>
 		</table>
 
@@ -166,7 +166,8 @@ $(function(){
 </div>
 </div>
 	
-	
+<c:choose>
+<c:when test="${sessionScope.user.userNickname == selectUser}">	
 <div id="bookmark">
 <div class="col-md-12" id="welcome">
 	<h1 class="text-center">Your favorite</h1>
@@ -256,7 +257,11 @@ $(function(){
 </div>
 
 </div>
+</c:when>
+<c:otherwise>
 
+</c:otherwise>
+</c:choose>
 </div>
 <footer>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
