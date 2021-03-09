@@ -167,7 +167,7 @@ public class UserController {
 		model.addAttribute("followerCnt", followService.followerCnt(userNickname));
 		model.addAttribute("followingCnt", followService.followingCnt(userNickname));
 		
-		return "users/mypage2";
+		return "users/userPage";
 	}
 
 	@RequestMapping("/sendAuthMail")
