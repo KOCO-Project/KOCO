@@ -42,12 +42,20 @@
 						value='<c:out value="${event.boardRegdate}"/>' readonly="readonly" style="background-color: #FFF7DD;">
 				</div>
 
-				<div class="form-group">
-					<label>내용</label>
+						<div class="form-group">
+							<%-- <label>내용</label>
 					<textarea class="form-control" rows="3" name='boardContent'
-						readonly="readonly" style="background-color: #FFF7DD;"><c:out value="${event.boardContent}" /></textarea>
-				</div>
-				<div class="row">
+						readonly="readonly" style="background-color: #FFF7DD;"><c:out value="${event.boardContent}" /></textarea> --%>
+							<div class="inputArea">
+								<label for="fileName">이미지</label>
+								<p>원본 이미지</p>
+								<img src="${goods.fileName}" class="oriImg" />
+
+								<p>썸네일</p>
+								<img src="${goods.thumbnail}" class="thumbImg" />
+							</div>
+						</div>
+						<div class="row">
 				<div class="col-md-7">
 					<label>작성자</label> <input class="form-control" name='userNo'
 						value='<c:out value="${event.writer}"/>' readonly="readonly" style="background-color: #FFF7DD;">
