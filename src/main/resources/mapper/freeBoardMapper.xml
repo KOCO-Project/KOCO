@@ -36,8 +36,14 @@
 		SELECT a1.BOARD_NO, a1.BOARD_TITLE, a2.USER_NICKNAME AS writer,
 			DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE, a1.READCOUNT
 		FROM KOCO_BOARD a1, KOCO_USERS a2
-		WHERE a1.USER_NO = a2.USER_NO
-		AND a1.BOARD_CATEGORY = #{infoNo}
+		WHERE 1 = 1 AND a1.USER_NO = a2.USER_NO
+	<!-- AND a1.BOARD_CATEGORY = #{infoNo} -->
+		<if test="searchCondition == 'TITLE'">
+    		AND a1.BOARD_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+    	<if test="searchCondition == 'CONTENT'">
+    		AND a1.BOARD_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
 		ORDER BY a1.BOARD_NO DESC
 		
 	</select>
@@ -83,4 +89,28 @@
 	
 	</update>
 	
+	<!-- boardLike -->
+	
+<!-- 	<insert id = "createBoardLike">
+		INSERT INTO KOCO_HEART (BOARD_NO, USER_NO) 
+		VALUES (#{boardNo}, #{userNo})
+	</insert>
+	
+	<delete id="deleteBoardLike">
+		DELETE FROM KOCO_HEART 
+		WHERE BOARD_NO = #{boardNo} AND USER_NO = #{userNo}
+	</delete>
+	
+	<select id="updateBoardLike">
+		UPDATE KOCO_HEART
+		SET 
+		BOARD_LIKECNT = (SELECT COUNT (*)
+		FROM KOCO_HEART
+		WHERE BOARD_NO = #{boardNo})
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<select id="getBoardLike" resultType="int">
+		SELECT COUNT(BOARD_LIKE_NO) FROM BOARD_HEART WHERE BOARD_NO = #{boardNo} AND USER_NO = #{userNo} 
+	</select> -->
 </mapper>

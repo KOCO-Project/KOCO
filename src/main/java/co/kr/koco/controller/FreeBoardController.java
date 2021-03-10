@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 */
 import co.kr.koco.service.FreeBoardService;
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.HeartVO;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
@@ -111,6 +113,7 @@ public class FreeBoardController {
 	// 글 상세 조회
 	@RequestMapping("/getFreeBoard")
 	public String getFreeBoard(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO,  @RequestParam("page") int page, Model model) {
+		
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);
 		
@@ -120,7 +123,23 @@ public class FreeBoardController {
 		model.addAttribute("userVO", userVO);
 		model.addAttribute("page", page);
 		
+		/*
+		 * HeartVO vo = new HeartVO(); vo.setBoardNO(boardNO); vo.setUserNo(userNo);
+		 * 
+		 * int boardlike = service.getHeart(vo);
+		 */
+		
 		/* model.addAttribute("freeBoard", freeBoardService.getFreeBoard(boardNo)); */
+		
+		/*
+		 * //좋아요 업데이트 else if(command.equals("/RecUpdate.do")){ try { action = new
+		 * RecUpdate(); action.execute(request, response); } catch(Exception e) {
+		 * e.printStackTrace(); } }
+		 * 
+		 * //좋아요 검색 else if(command.equals("/RecCount.do")) { try { action = new
+		 * RecCount(); action.execute(request, response); } catch(Exception e) {
+		 * e.printStackTrace(); } }
+		 */
 		
 		return "freeboard/getFreeBoard";
 	}
@@ -131,7 +150,7 @@ public class FreeBoardController {
 		Map<String, String> conditionMap = new HashMap<String, String>();
 		conditionMap.put("제목", "TITLE");
 		conditionMap.put("내용", "CONTENT");
-		
+	
 		return conditionMap;
 	}
 	
@@ -139,15 +158,13 @@ public class FreeBoardController {
 	@RequestMapping("/freeBoardList")
 	public String freeBoardList(@RequestParam("infoNo") int infoNo, @RequestParam(value = "page", defaultValue = "1") int page, BoardVO freeBoardVO, Model model) {
 	
+		//null check
+		if(freeBoardVO.getSearchCondition() == null) freeBoardVO.setSearchCondition("TITLE");
+		if(freeBoardVO.getSearchKeyword() == null) freeBoardVO.setSearchKeyword("");
+		
 		model.addAttribute("infoNo", infoNo);
 		String infoName = freeBoardService.getBoardInfoName(infoNo);
 		model.addAttribute("infoName", infoName);
-		
-		//null check
-		//if(freeBoardVO.getSearchCondition() == null) freeBoardVO.setSearchCondition("TITLE");
-		//if(freeBoardVO.getSearchKeyword() == null) freeBoardVO.setSearchKeyword("");
-		
-		//model.addAttribute("freeBoardList", freeBoardService.freeBoardList(freeBoardVO));
 		
 		List<BoardVO> freeBoardList = freeBoardService.freeBoardList(infoNo, page);
 		model.addAttribute("freeBoardList", freeBoardList);
@@ -155,8 +172,14 @@ public class FreeBoardController {
 		PageVO pageVO = freeBoardService.getfreeBoardCnt(infoNo, page);
 		model.addAttribute("pageVO", pageVO);
 		model.addAttribute("page", page);
-		
+				
 		return "freeboard/freeBoardList";
+	}
+	
+	@RequestMapping("/not_login")
+	public String regFail() {
+		
+		return "users/not_login";
 	}
 	
 	/*

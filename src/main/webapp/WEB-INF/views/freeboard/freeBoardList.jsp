@@ -3,7 +3,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,10 +59,9 @@
 					<form action="freeBoardList" method="post" class="navbar-form">
 						<div class="input-group">
 							<div class="form-group navbar-left" style="margin: 0;">
-								<select name="searchCondition" class="custom-select">
-									<c:forEach items="${conditionMap }" var="option">
-										<option value="${option.value }">${option.key }
-									</c:forEach>
+								<select class="custom-select">
+									<option value="Title">제목</option>
+									<option value="Content">내용</option>
 								</select>
 							</div>
 							<input name="searchKeyword" type="text" class="form-control"

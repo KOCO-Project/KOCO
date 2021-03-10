@@ -15,6 +15,43 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+<!-- <script type="text/javascript">
+/* 좋아요 */
+function like_func(){
+  var frm_read = $('#frm_read');
+  var boardno = $('#boardno', frm_read).val();
+  var userno = $('#userno', frm_read).val();
+  console.log("boardno, userno : " + boardno +","+ userno);
+  
+  $.ajax({
+    url: "../liketo/like.do",
+    type: "GET",
+    cache: false,
+    dataType: "json",
+    data: 'boardno=' +boardno+ '&userno=' +userno,
+    success: function(data) {
+      var msg = '';
+      var like_img = '';
+      msg += data.msg;
+      alert(msg);
+      
+      if(data.like_check == 0){
+        like_img = "../images/emptyheart.png";
+      } else {
+        like_img = "../images/heart.png";
+      }      
+      $('#like_img', frm_read).attr('src', like_img);
+      $('#like_cnt').html(data.like_cnt);
+      $('#like_check').html(data.like_check);
+    },
+    error: function(request, status, error){
+      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    }
+  });
+}
+
+</script> -->
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -65,7 +102,23 @@
 								class="form-control" rows="10" style="resize: none"
 								disabled="disabled">${readContentBean.boardContent }</textarea>
 						</div>
-
+						<%-- <div class="div1">
+							<div class="div2">
+							<div class="div3">
+							<c:choose>
+							
+							<c:when test="${userNo ne null }">
+								<a href='javascript: like_func();'><img id="heart_img" src="../images/emptyheart.png"></a>
+							</c:when>
+							
+							<c:otherwise>
+								<a href='javascript: login_need();'><img src="../images/emptyheart.png"></a>
+							</c:otherwise>
+							
+							</c:choose>
+							</div>
+							</div>
+							</div> --%>
 						<div class="form-group">
 							<div class="text-right">
 								<a href="freeBoardList?infoNo=1&page=${page }"
