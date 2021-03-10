@@ -57,7 +57,7 @@ html{height: 100%;}
 .mypage_nav{position: fixed; height: 10rem; z-index: 1; top:40%; margin-top: auto; line-height: 3rem; padding-left: 2rem;}
 .mypage_nav{list-style: none; margin-left: 5%; text-decoration: none;font-size: 1rem;}
 .mypage_nav a{color: #3e3f3a;}
-.mypage_nav a:hover{text-decoration: line-through;}
+.mypage_nav a:hover{font-size: 1.2rem;color: #3e3f3a; text-decoration: none;font-weight: 700;}
 #welcome{line-height: 15rem;height: 15rem;}
 .row{background-color: #fff;padding: 5rem;height: 50rem;}
 .mypage h1{color: #fff;line-height: inherit;}
@@ -66,7 +66,7 @@ ul li{line-height: 3rem;}
 ul.infoform{list-style: none;display: flex;}
 #info ul li{line-height: inherit;}
 table.infobox{margin: auto;width: 100%;}
-table.infobox tbody tr{line-height: 200px;}
+table.infobox tbody tr{line-height: 100px;}
 table.infobox tbody tr td a{font-size: 3rem;}
 table.infobox tbody tr td a:hover{text-decoration: none;}
 </style>
@@ -146,12 +146,15 @@ $(function(){
 			<li>SINCE : ${selectUser.userRegdate }</li>
 			</ul>
 		</div>
+		<div class="col-md-5" style="margin-top: 1rem;"> 
+		  <button type="submit" class="btn btn-danger" style="width: 100px;">팔로우</button>
+		</div><div class="col-md-2"> </div>
 		<div class="row" style="height: auto;padding: 0;width: 100%;margin-top: 3rem;"><div class="col-md-12">
 		<table class="infobox">
 		<thead>
 		<tr>
-			<th><button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로워수</button></th>
-			<th><button type="button" class="btn btn-primary btn-lg" style="width: 100px;">팔로잉수</button></th>
+			<th><a>팔로워</a></th>
+			<th><a>팔로잉</a></th>
 		</tr></thead><tbody><tr>
 			<td><a href="followerList?toFollow=${selectUser.userNickname }">${followerCnt }</a></td>
 			<td><a href="followingList?fromFollow=${selectUser.userNickname }">${followingCnt }</a></td>
