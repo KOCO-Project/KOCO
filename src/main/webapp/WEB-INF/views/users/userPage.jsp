@@ -49,7 +49,7 @@ html{height: 100%;}
     }
 .mypage{height: 100%; text-align: center;}
 .mypage #about,.mypage #follow,.mypage #bookmark,.mypage #info{height: 100%;position: relative;width:100%;height:49rem ;}
-.mypage #about{height: 100%;background:url('images/bg2.png')bottom center fixed no-repeat;background-size:cover;}
+.mypage #about{height: 99%;background:url('images/bg2.png')bottom center fixed no-repeat;background-size:cover;}
 .mypage #follow{height: 100%;background:url('images/bg3.png')bottom center fixed no-repeat;background-size:cover;}
 .mypage #bookmark{height: 100%;background:url('images/bg4.png')bottom center fixed no-repeat;background-size:cover;}
 .mypage #info{height: 100%;background:url('images/bg5.png')bottom center fixed no-repeat;background-size:cover;}
@@ -58,7 +58,7 @@ html{height: 100%;}
 .mypage_nav{list-style: none; margin-left: 5%; text-decoration: none;font-size: 1rem;}
 .mypage_nav a{color: #3e3f3a;}
 .mypage_nav a:hover{font-size: 1.2rem;color: #3e3f3a; text-decoration: none;font-weight: 700;}
-#welcome{line-height: 15rem;height: 15rem;}
+#welcome{line-height: 15rem;height: 16rem;}
 .row{background-color: #fff;padding: 5rem;height: 50rem;}
 .mypage h1{color: #fff;line-height: inherit;}
 ul{list-style: none;padding-left: 0px;}
