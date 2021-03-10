@@ -94,4 +94,34 @@
 		) AS userCase 
 		FROM KOCO_USERS
 	</select>
+	
+	<!--관리자 페이지 유저 리스트 seop-->
+	<select id="getAdminUserList" resultType="users" resultMap="userResult">
+		SELECT *
+		FROM KOCO_USERS WHERE
+		<if test="searchCondition == 'ID'">
+			USER_ID LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'NAME'">
+			USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'EMAIL'">
+			USER_EMAIL LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+	</select>
+	
+	<!--관리자 페이지 유저 리스트 CNT seop-->
+		<select id="getAdminUserCnt" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM KOCO_USERS WHERE
+		<if test="searchCondition == 'ID'">
+			USER_ID LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'NAME'">
+			USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'EMAIL'">
+			USER_EMAIL LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+	</select>
 </mapper>

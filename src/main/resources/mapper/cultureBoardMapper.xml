@@ -8,44 +8,51 @@
 		<result property="cultureContent" column="CULTURE_CONTENT" />
 		<result property="cultureRegdate" column="CULTURE_REGDATE" />
 		<result property="userNo" column="USER_NO" />
-		<result property="culturePick" column="CULTURE_PICK"/>
+		<result property="culturePick" column="CULTURE_PICK" />
 	</resultMap>
 
-	<select id="getCultureBoardList" resultType="culture" resultMap="cultureResult">
-		SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a1.CULTURE_CONTENT,a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE,a1.CULTURE_PICK
-		FROM KOCO_CULTURE a1, KOCO_USERS a2
+	<!--관리자페이지 게시물 리스트 -->
+	<select id="getCultureBoardList" resultType="culture"
+		resultMap="cultureResult">
+		SELECT a1.CULTURE_NO , a1.CULTURE_TITLE,
+		a1.CULTURE_CONTENT,a2.USER_NICKNAME AS
+		userNickname,a1.CULTURE_REGDATE,a1.CULTURE_PICK
+		FROM KOCO_CULTURE a1,
+		KOCO_USERS a2
 		WHERE 1=1 AND a1.USER_NO = a2.USER_NO
-    	<if test="searchCondition == 'TITLE'">
-    		AND a1.CULTURE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
-    	</if>
-    	<if test="searchCondition == 'CONTENT'">
-    		AND a1.CULTURE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
-    	</if>
-    	<if test="searchCondition == 'NICKNAME'">
-    		AND a2.USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
-    	</if>
+		<if test="searchCondition == 'TITLE'">
+			AND a1.CULTURE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'CONTENT'">
+			AND a1.CULTURE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'NICKNAME'">
+			AND a2.USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
 		ORDER BY a1.CULTURE_NO DESC
 	</select>
 
+	<!--관리자페이지 게시물 갯 수 -->
 	<select id="getCultureBoardCnt" resultType="java.lang.Integer">
-			
-		SELECT COUNT(*) 
+
+		SELECT COUNT(*)
 		FROM KOCO_CULTURE a1, KOCO_USERS a2
 		WHERE 1=1 AND a1.USER_NO = a2.USER_NO
 		<if test="searchCondition == 'TITLE'">
-    	AND CULTURE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
-    	</if>
-    	
-    	<if test="searchCondition == 'CONTENT'">
-    	AND CULTURE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
-    	</if>
-    	
-    	<if test="searchCondition == 'NICKNAME'">
-    	AND USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
-    	</if>
-			
+			AND CULTURE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+
+		<if test="searchCondition == 'CONTENT'">
+			AND CULTURE_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+
+		<if test="searchCondition == 'NICKNAME'">
+			AND USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+
 	</select>
 
+	<!--관리자페이지 구 버전 게시물 리스트 -->
 	<select id="getCultureList" resultMap="cultureResult"
 		resultType="culture">
 		<![CDATA[
@@ -55,6 +62,7 @@
 		]]>
 	</select>
 
+	<!--글쓰기 -->
 	<insert id="cultureRegister" parameterType="culture">
 		<![CDATA[
 			INSERT INTO KOCO_CULTURE(CULTURE_TITLE,CULTURE_CONTENT,USER_NO,CULTURE_PICK) 
@@ -62,13 +70,16 @@
 		]]>
 	</insert>
 
+	<!--게시글 상세 보기 -->
 	<select id="getCultureBoard" resultType="culture"
 		resultMap="cultureResult">
-			SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a1.CULTURE_CONTENT,a2.USER_NICKNAME AS userNickname,a1.CULTURE_REGDATE,a1.CULTURE_PICK
-			FROM KOCO_CULTURE a1, KOCO_USERS a2
-			WHERE 1=1 AND a1.USER_NO = a2.USER_NO AND a1.CULTURE_NO = #{cultureNo}		
+		SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a1.CULTURE_CONTENT,a2.USER_NICKNAME
+		AS userNickname,a1.CULTURE_REGDATE,a1.CULTURE_PICK
+		FROM KOCO_CULTURE a1, KOCO_USERS a2
+		WHERE 1=1 AND a1.USER_NO = a2.USER_NO AND a1.CULTURE_NO = #{cultureNo}
 	</select>
 
+	<!--게시글 삭제 -->
 	<delete id="deleteCultureBoard">
 		<![CDATA[
 			DELETE FROM KOCO_CULTURE
@@ -76,6 +87,7 @@
 		]]>
 	</delete>
 
+	<!--게시글 수정 -->
 	<update id="cultureUpdate">
 		<![CDATA[
 			UPDATE KOCO_CULTURE SET

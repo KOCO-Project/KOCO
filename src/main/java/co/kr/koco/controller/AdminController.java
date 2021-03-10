@@ -33,6 +33,7 @@ public class AdminController {
 
 	@Autowired
 	private QnaBoardService qnaBoardService;
+
 	
 	@Resource(name = "CommentService")
 	private CommentService commentService;
@@ -117,5 +118,21 @@ public class AdminController {
 	public String commentUpdate(@ModelAttribute("comment") CommentVO vo) {
 		commentService.commentUpdate(vo);		
 		return "redirect:getAdminTest";
+	}
+	
+	@RequestMapping("adminUserList")
+	public String adminUserList(@ModelAttribute UserVO vo,@RequestParam(value = "page", defaultValue = "1") int page, Model model,@RequestParam(value="searchKeyword" ,required=false)String searchKeyword,@RequestParam(value="searchCondition" ,required=false)String searchCondition) throws Exception{
+		
+		List<UserVO> adminUserList = userService.getAdminUserList(vo, page);
+		model.addAttribute("adminUserList", adminUserList);
+		
+		PageVO pageVO = userService.getAdminUserCnt(vo, page);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("page", page);
+		
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("searchCondition", searchCondition);
+		
+		return "admin/adminUser";
 	}
 }

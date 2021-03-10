@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import co.kr.koco.dao.UserDAO;
+import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
 @Service
@@ -19,6 +21,9 @@ public class UserService {
 	@Resource(name = "userVO")
 	@Lazy
 	private UserVO userVO;
+	
+	private int pageListcnt = 10; // 페이지당 글 개수
+	private int pagePaginationcnt = 10;
 
 	public boolean userIdExist(String userId) {
 		String exist = dao.userIdExist(userId);
@@ -82,5 +87,18 @@ public class UserService {
 	public List<UserVO> userList(UserVO userVo) throws Exception {
 		return dao.userList(userVo);
 	}				
+	
+	public List<UserVO> getAdminUserList(UserVO vo,int page) throws Exception{
+		
+		int start = (page-1)*pageListcnt;
+		RowBounds rowBounds = new RowBounds(start, pageListcnt);//pageListcnt-페이지당 글 개수
+		return dao.getAdminUserList(vo, rowBounds);
+	}
+	
+	public PageVO getAdminUserCnt(UserVO vo,int currentPage) throws Exception{
+		int contentCnt = dao.getAdminUserCnt(vo);//전체글 갯수
+		PageVO pageVO = new PageVO(contentCnt, currentPage, pageListcnt, pagePaginationcnt);
+		return pageVO;
+	}
 
 }

@@ -35,6 +35,10 @@ public class UserVO {
 	private String currentPw;
 	private String newPw;
 	
+	private String searchCondition;
+	private String searchKeyword;
+	
+
 	public UserVO() {
 		this.userIdExist = false;
 	}
@@ -148,5 +152,22 @@ public class UserVO {
 		this.userLogin = userLogin;
 		
 	}
+	
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
 
 }

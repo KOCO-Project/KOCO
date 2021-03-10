@@ -2,6 +2,7 @@ package co.kr.koco.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -51,6 +52,28 @@ public class UserDAO {
 
 	public List<UserVO> userList(UserVO userVo) throws Exception {
 		return sql.selectList("userMapper.userList", userVo);
-	}			
+	}		
+	
+	public List<UserVO> getAdminUserList(UserVO vo,RowBounds rowBounds) throws Exception{
+		if (vo.getSearchCondition() == null || vo.getSearchCondition().equals("검색"))
+			vo.setSearchCondition("ID");
+		
+		if (vo.getSearchKeyword() == null)
+			vo.setSearchKeyword("");
+		
+		System.out.println("DAO에서 보는 유저 컨디션 값 : " + vo.getSearchCondition());
+		System.out.println("DAO에서 보는 유저 키워드 값 : " + vo.getSearchKeyword());
+		
+		return sql.selectList("userMapper.getAdminUserList",vo,rowBounds);
+	}
 
+	public int getAdminUserCnt(UserVO vo) {
+		if (vo.getSearchCondition() == null || vo.getSearchCondition().equals("검색"))
+			vo.setSearchCondition("ID");
+		
+		if (vo.getSearchKeyword() == null)
+			vo.setSearchKeyword("");
+		return sql.selectOne("userMapper.getAdminUserCnt",vo);
+	}
 }
+
