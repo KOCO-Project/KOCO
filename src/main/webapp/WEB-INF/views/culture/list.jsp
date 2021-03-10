@@ -104,7 +104,7 @@ font-size: 0.8rem;
 											<option style="background-color: white;" value="TITLE">제목</option>
 											<option style="background-color: white;" value="CONTENT">내용</option>
 											<!-- 작성자로 찾는 것 보류 -->
-											<!--<option style="background-color: white;" value="NICKNAME">작성자</option> -->
+											<option style="background-color: white;" value="NICKNAME">작성자</option>
 										</select>
 									</div>
 									<input type="text" class="form-control" placeholder="SERCH"
