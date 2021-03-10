@@ -280,7 +280,7 @@ $(function(){
       <label for="">Password</label>
       <ul class="infoform">
       <li style="width: 100%;"><input type="password" class="form-control" id="" /></li>
-      <li><button type="submit" class="btn btn-primary"style="width: 80px;">변경하기</button></li>
+      <li><button type="button" class="btn btn-primary"style="width: 80px;" onclick="location.href='pwUpdateView'">변경하기</button></li>
       </ul>
    </div>
    <div class="form-group">
