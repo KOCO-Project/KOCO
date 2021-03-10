@@ -7,96 +7,140 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/qna.css">
+<link rel="stylesheet" href="css/bootstrap.css?v=1">
+<link rel="stylesheet" href="css/footer.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	<div id="qna" class="container" style="margin-top: 100px">
-		<h1 class="card-title">공지사항</h1>
-		<br>
-		<table class="table table-hover" id='board_list'>
-			<thead>
-				<tr>
-					<th class="text-center d-none d-md-table-cell">글번호</th>
-					<th class="w-50">제목</th>
-					<th class="text-center d-none d-md-table-cell">작성자</th>
-					<th class="text-center d-none d-md-table-cell">작성날짜</th>
-					<th class="text-center d-none d-md-table-cell">조회수</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var='obj' items="${noticeList }">
-					<tr>
-						<td class="text-center d-none d-md-table-cell">${obj.noticeNo }</td>
-						<td><a
-							href='${root }getNotice?noticeNo=${obj.noticeNo }&page=${page}'>${obj.noticeTitle }</a></td>
-						<td class="text-center d-none d-md-table-cell"
-							style="color: #325d88; font-weight: 500;"><a href="${root }userPage?userNickname=${obj.userNickname }">${obj.userNickname }</a></td>
-						<td class="text-center d-none d-md-table-cell">${obj.noticeRegDate }</td>
-						<td class="text-center d-none d-md-table-cell">${obj.readcount }</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<br>
-		<br>
-		<br>
-
-		<div class="d-none d-md-block">
-			<ul class="pagination justify-content-center">
-				<c:choose>
-					<c:when test="${pageVO.prevPage <= 0 }">
-						<li class="page-item disabled"><a href="#" class="page-link">이전</a>
-						</li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item"><a
-							href="${root }noticeList?page=${pageVO.prevPage}"
-							class="page-link">이전</a></li>
-					</c:otherwise>
-				</c:choose>
-
-				<c:forEach var='idx' begin="${pageVO.min }" end='${pageVO.max }'>
-					<c:choose>
-						<c:when test="${idx == pageVO.currentPage }">
-							<li class="page-item active"><a
-								href="${root }noticeList?page=${idx}"
-								class="page-link">${idx }</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item"><a
-								href="${root }noticeList?page=${idx}"
-								class="page-link">${idx }</a></li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-
-				<c:choose>
-					<c:when test="${pageVO.max >= pageVO.pageCnt }">
-						<li class="page-item disabled"><a href="#" class="page-link">다음</a>
-						</li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item"><a
-							href="${root }noticeList?page=${pageVO.nextPage}"
-							class="page-link">다음</a></li>
-					</c:otherwise>
-				</c:choose>
-
-			</ul>
+<c:import url="/WEB-INF/views/include/top_menu.jsp" /><br><br><br>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h1>
+					<a href="cultureList" class="header"
+						style="color: black; text-decoration: none; font-weight: bold;">공지사항</a>
+				</h1>
+			</div>
+			<div class="col-md-1"></div>
 		</div>
-
-		<div class="text-right">
-			<a href="${root }noticeRegister"
-				class="btn btn-primary btn-lg">Write</a>
-		</div>
-
 	</div>
 
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th scope="col">번호</th>
+							<th scope="col">제목</th>
+							<th scope="col">작성자</th>
+							<th scope="col">등록일</th>
+						</tr>
+					</thead>
+
+					<c:forEach items="${noticeList}" var="notice">
+						<tr class="table-light">
+						<th scope="row">${notice.noticeNo}</th>
+							<td><a href="getCultureBoard?cultureNo=${notice.noticeNo}"
+								style="color: black;" onMouseover="this.style.fontWeight='bold'"
+								onMouseout="this.style.fontWeight=''">${notice.noticeTitle}</a></td>
+							<td>${notice.userNickname}</td>
+							<td>${notice.noticeRegdate}</td>
+						</tr>
+					</c:forEach>
+				</table>
+
+
+				<table style="width: 100%">
+					<tr>
+						<td>
+							<div class="page-item">
+								<a href="cultureRegisterForm" class="input-group-text"
+									style="width: 100px; justify-content: center;">글 쓰기</a>
+							</div>
+						</td>
+						<!-- 검색 영역 -->
+						<td style="width: 40%;">
+							<form class="navbar-form" action="cultureList" method="post">
+								<div class="input-group" style="width: 70%; float: right;">
+									<div class="form-group navbar-left" style="margin: 0;">
+										<select class="input-group-text" style="height: 100%;"
+											name="searchCondition">
+											<!--<option selected="" style="background-color: white;">검색</option> -->
+											<option style="background-color: white;" value="TITLE">제목</option>
+											<option style="background-color: white;" value="CONTENT">내용</option>
+											<!-- 작성자로 찾는 것 보류 -->
+											<option style="background-color: white;" value="NICKNAME">작성자</option>
+										</select>
+									</div>
+									<input type="text" class="form-control" placeholder="SERCH"
+										style="border: 1px solid #ced4da;" name="searchKeyword">
+									<div class="input-group-append">
+										<button class="input-group-text" type="submit">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16"
+												height="16" fill="currentColor" class="bi bi-search"
+												viewBox="0 0 16 16">
+  									<path
+													d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
+										</button>
+									</div>
+								</div>
+							</form>
+						</td>
+					</tr>
+				</table>
+				<br> <br> <br> <br>
+
+				<div class="d-none d-md-block">
+					<ul class="pagination justify-content-center">
+						<c:choose>
+							<c:when test="${pageVO.prevPage <= 0 }">
+								<li class="page-item disabled"><a href="#"
+									class="page-link">이전</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a
+									href="cultureList?page=${pageVO.prevPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+									class="page-link">이전</a></li>
+							</c:otherwise>
+						</c:choose>
+						<c:forEach var='idx' begin="${pageVO.min }" end='${pageVO.max }'>
+							<c:choose>
+								<c:when test="${idx == pageVO.currentPage }">
+									<li class="page-item active"><a
+										href="cultureList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+										class="page-link">${idx }</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a
+										href="cultureList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+										class="page-link">${idx }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:choose>
+							<c:when test="${pageVO.max >= pageVO.pageCnt }">
+								<li class="page-item disabled"><a href="#"
+									class="page-link">다음</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a
+									href="cultureList?page=${pageVO.nextPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+									class="page-link">다음</a></li>
+							</c:otherwise>
+						</c:choose>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br><br>
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 	</footer>
