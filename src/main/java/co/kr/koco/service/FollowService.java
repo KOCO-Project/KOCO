@@ -17,6 +17,14 @@ public class FollowService {
 		dao.follow(followVo);
 	}
 	
+	public void unfollow(FollowVO followVo) throws Exception {
+		dao.unfollow(followVo);
+	}
+	
+	public int followyn(FollowVO followVo) throws Exception {
+		return dao.followyn(followVo);
+	}
+	
 	public int followerCnt(String toFollow) throws Exception {
 		return dao.followerCnt(toFollow);
 	}
