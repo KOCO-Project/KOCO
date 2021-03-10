@@ -30,8 +30,8 @@
 	<select id="getCultureBoardCnt" resultType="java.lang.Integer">
 			
 		SELECT COUNT(*) 
-		FROM KOCO_CULTURE
-		WHERE 1=1
+		FROM KOCO_CULTURE a1, KOCO_USERS a2
+		WHERE 1=1 AND a1.USER_NO = a2.USER_NO
 		<if test="searchCondition == 'TITLE'">
     	AND CULTURE_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
     	</if>
