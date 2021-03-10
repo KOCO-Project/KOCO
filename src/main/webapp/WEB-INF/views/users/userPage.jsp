@@ -99,12 +99,42 @@ $(function(){
             window.location.hash = target;
         });
 	});
+	
+	$('#followbtn').on('click', function follow(){
+		var selectUser = $('#selectUser').val();
+		
+		$.ajax({
+			url: 'follow?toFollow=' + selectUser,
+			type: 'get',
+			dataType: 'text',
+			success: function(data){
+				console.log(data);
+				$('#followyn').load(location.href + " #followyn");
+				$('#cnt').load(location.href + " #cnt");
+			}
+		});
+	});
+	
+	$('#unfollowbtn').on('click', function unfollow(){
+		var selectUser = $('#selectUser').val();
+		
+		$.ajax({
+			url: 'unfollow?toFollow=' + selectUser,
+			type: 'get',
+			dataType: 'text',
+			success: function(data){
+				console.log(data);
+				$('#followyn').load(location.href + " #followyn");
+				$('#cnt').load(location.href + " #cnt");
+			}
+		});
+	});
 });
 </script>
 <body>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
-
+<input type="hidden" value="${selectUser.userNickname }" id="selectUser">
 <c:choose>
 <c:when test="${user.userNickname == selectUser.userNickname}">
 <ul class="mypage_nav">
@@ -146,10 +176,18 @@ $(function(){
 			<li>SINCE : ${selectUser.userRegdate }</li>
 			</ul>
 		</div>
-		<div class="col-md-5" style="margin-top: 1rem;"> 
-		  <button type="submit" class="btn btn-danger" style="width: 100px;">팔로우</button>
+		<div class="col-md-5" style="margin-top: 1rem;">
+		<div id="followyn">
+		<c:if test="${user.userNickname != selectUser.userNickname && followyn == 0}"> 
+		  <button type="button" class="btn btn-danger" style="width: 100px;" id="followbtn">팔로우</button>
+		</c:if>
+		<c:if test="${user.userNickname != selectUser.userNickname && followyn == 1}">
+		  <button type="button" class="btn btn-danger" style="width: 100px;" id="unfollowbtn">언팔로우</button>
+		</c:if>
+		</div>
 		</div><div class="col-md-2"> </div>
-		<div class="row" style="height: auto;padding: 0;width: 100%;margin-top: 3rem;"><div class="col-md-12">
+		<div class="row" style="height: auto;padding: 0;width: 100%;margin-top: 3rem;"><div class="col-md-12">	
+		<div id="cnt">
 		<table class="infobox">
 		<thead>
 		<tr>
@@ -160,7 +198,7 @@ $(function(){
 			<td><a href="followingList?fromFollow=${selectUser.userNickname }">${followingCnt }</a></td>
 		</tr></tbody>
 		</table>
-
+		</div>
 		</div></div>
 	</div>
 	</div>

@@ -5,28 +5,43 @@
 		<id property="followNo" column="FOLLOW_NO"/>
 		<result property="fromFollow" column="FROM_FOLLOW"/>
 		<result property="toFollow" column="TO_FOLLOW"/>
+		<result property="followYn" column="FOLLOW_YN"/>
 	</resultMap>
 	
 	<!-- 팔로우 -->
 	<insert id="follow">
-		INSERT INTO KOCO_FOLLOW(FROM_FOLLOW, TO_FOLLOW)
-		VALUES(#{fromFollow}, #{toFollow})
+		INSERT INTO KOCO_FOLLOW(FROM_FOLLOW, TO_FOLLOW, FOLLOW_YN)
+		VALUES(#{fromFollow}, #{toFollow}, 1)
+		ON DUPLICATE KEY UPDATE FOLLOW_YN = 1
 	</insert>
 	
+	<!-- 팔로우 여부 확인 -->
+	<select id="followyn" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT DISTINCT(FOLLOW_YN)
+			FROM KOCO_FOLLOW
+			WHERE FROM_FOLLOW = #{fromFollow} AND TO_FOLLOW = #{toFollow}
+		]]>
+	</select>
+	
 	<!-- 언팔로우 -->
+	<update id="unfollow">
+		UPDATE KOCO_FOLLOW SET FOLLOW_YN = 0
+		WHERE FROM_FOLLOW = #{fromFollow} AND TO_FOLLOW = #{toFollow}
+	</update>
 	
 	<!-- 팔로워 수 -->
 	<select id="followerCnt" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS follower
 		FROM KOCO_FOLLOW
-		WHERE TO_FOLLOW = #{toFollow}
+		WHERE TO_FOLLOW = #{toFollow} AND FOLLOW_YN = 1
 	</select>
 	
 	<!-- 팔로잉 수 -->
 	<select id="followingCnt" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS following
 		FROM KOCO_FOLLOW
-		WHERE FROM_FOLLOW = #{fromFollow}
+		WHERE FROM_FOLLOW = #{fromFollow} AND FOLLOW_YN = 1
 	</select>
 	
 	<!-- 팔로워 리스트 -->

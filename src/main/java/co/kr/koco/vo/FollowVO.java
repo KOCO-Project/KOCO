@@ -4,6 +4,7 @@ public class FollowVO {
 	private int followNo;
 	private String fromFollow;
 	private String toFollow;
+	private int followYn;
 
 	public int getFollowNo() {
 		return followNo;
@@ -27,6 +28,14 @@ public class FollowVO {
 
 	public void setToFollow(String toFollow) {
 		this.toFollow = toFollow;
+	}
+	
+	public int getFollowYn() {
+		return followYn;
+	}
+
+	public void setFollowYn(int followYn) {
+		this.followYn = followYn;
 	}
 
 	@Override

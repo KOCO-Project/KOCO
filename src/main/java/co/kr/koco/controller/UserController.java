@@ -23,13 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.kr.koco.service.FollowService;
 import co.kr.koco.service.UserService;
+import co.kr.koco.vo.FollowVO;
 import co.kr.koco.vo.UserVO;
 
 @Controller
 public class UserController {
 	@Autowired
 	private UserService service;
-	
+
 	@Autowired
 	private FollowService followService;
 
@@ -99,7 +100,7 @@ public class UserController {
 			session.setAttribute("user", login);
 			session.setAttribute("from", login.getUserNickname());
 			session.setAttribute("userNo", login.getUserNo());
-			
+
 			return "redirect:main";
 		} else {
 			session.setAttribute("user", null);
@@ -153,20 +154,36 @@ public class UserController {
 	}
 
 	@RequestMapping("/pwUpdate")
-	public String pwUpdate(@RequestParam(value = "currentPw") String currentPw, @RequestParam(value = "newPw") String newPw, UserVO userVo, HttpSession session) throws Exception {
+	public String pwUpdate(@RequestParam(value = "currentPw") String currentPw,
+			@RequestParam(value = "newPw") String newPw, UserVO userVo, HttpSession session) throws Exception {
 		service.pwUpdate(userVo);
 		session.invalidate();
-		
+
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/userPage")
-	public String userPage(@RequestParam(value = "userNickname", required = false) String userNickname, UserVO userVo, Model model) throws Exception {
+	public String userPage(@RequestParam(value = "userNickname", required = false) String userNickname, UserVO userVo,
+			Model model, HttpSession session, FollowVO followVo) throws Exception {
 		UserVO userVO = service.userPage(userNickname);
-		model.addAttribute("selectUser", userVO);
-		model.addAttribute("followerCnt", followService.followerCnt(userNickname));
-		model.addAttribute("followingCnt", followService.followingCnt(userNickname));
-		
+
+		String fromFollow = (String) session.getAttribute("from");
+		String toFollow = userNickname;
+
+		if (fromFollow.equals(toFollow)) {
+			model.addAttribute("selectUser", userVO);
+			model.addAttribute("followerCnt", followService.followerCnt(userNickname));
+			model.addAttribute("followingCnt", followService.followingCnt(userNickname));
+		} else {
+			followVo.setFromFollow(fromFollow);
+			followVo.setToFollow(toFollow);
+
+			model.addAttribute("followyn", followService.followyn(followVo));
+			model.addAttribute("selectUser", userVO);
+			model.addAttribute("followerCnt", followService.followerCnt(userNickname));
+			model.addAttribute("followingCnt", followService.followingCnt(userNickname));
+		}
+
 		return "users/userPage";
 	}
 
@@ -206,6 +223,6 @@ public class UserController {
 		mav.addObject("findUser", service.findIdPw(userEmail));
 
 		return mav;
-	}	
-	
+	}
+
 }
