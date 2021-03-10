@@ -10,7 +10,7 @@ public class NoticeVO {
 	
 	@NotBlank
 	private String noticeContent;
-	private String noticeRegDate;
+	private String noticeRegdate;
 	private int readcount;
 	private String fileName;
 	private int userNo;
@@ -40,12 +40,12 @@ public class NoticeVO {
 		this.noticeContent = noticeContent;
 	}
 
-	public String getNoticeRegDate() {
-		return noticeRegDate;
+	public String getNoticeRegdate() {
+		return noticeRegdate;
 	}
 
-	public void setNoticeRegDate(String noticeRegDate) {
-		this.noticeRegDate = noticeRegDate;
+	public void setNoticeRegdate(String noticeRegdate) {
+		this.noticeRegdate = noticeRegdate;
 	}
 
 	public int getReadcount() {
@@ -83,7 +83,7 @@ public class NoticeVO {
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", noticeRegDate=" + noticeRegDate + ", readcount=" + readcount + ", fileName=" + fileName + "]";
+				+ ", noticeRegDate=" + noticeRegdate + ", readcount=" + readcount + ", fileName=" + fileName + "]";
 	}
 
 }
