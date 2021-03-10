@@ -58,8 +58,8 @@
 			<div class="col-md-12" style="top: 30px;">
 				<form action="commentRegister" method="post">
 					<input type="hidden" name="depth" value="0"> <input
-						type="hidden" name="boardCategory" value="2"> <input
-						type="hidden" name="boardNo" value="2"> <input
+						type="hidden" name="boardCategory" value="1"> <input
+						type="hidden" name="boardNo" value="639"> <input
 						type="hidden" name="userNo" value="1"> <input
 						type="hidden" name="groupNo" value="${groupNo }">
 					<div class="row">
@@ -101,21 +101,20 @@
 												<button type="button"
 													onclick="self.location.href='commentDelete?groupNo=${comment.groupNo}'"
 													class="btn btn-danger">삭제</button>
-												<button type="button" id="toc-toggle${comment.groupNo }"
-													onclick="openCloseToc()" class="btn btn-success">대댓글</button>
+												<button type="button" class="btn btn-success">대댓글</button>
 											</div>
 										</div>
 										<p style="font-size: 20px;">부모댓글 내용 :
 											${comment.commentContent}</p>
 
-										<div class="row" id="toc-input${comment.groupNo }">
+										<div class="row">
 											<div class="col-md-1"></div>
 											<div class="col-md-11">
 												<div class="row">
 													<form action="comcommentRegister" method="post">
 														<input type="hidden" name="depth" value="1"> <input
-															type="hidden" name="boardCategory" value="2"> <input
-															type="hidden" name="boardNo" value="2"> <input
+															type="hidden" name="boardCategory" value="1"> <input
+															type="hidden" name="boardNo" value="639"> <input
 															type="hidden" name="userNo" value="1"> <input
 															type="hidden" name="groupNo" value="${comment.groupNo }">
 														<div class="col-md-11" style="height: 80px;">
@@ -129,26 +128,7 @@
 												</div>
 											</div>
 										</div>
-										<script type="text/javascript">
-										
-											function openCloseToc() {
-												var groupNo = <c:out value='${comment.groupNo}'/>;
-												if (document
-														.getElementById('toc-input'+groupNo).style.display == 'block') {
-													document
-															.getElementById('toc-input'+groupNo).style.display = 'none';
-													document
-															.getElementById('toc-toggle'+groupNo).textContent = '대댓글';
-												} else {
-													document
-															.getElementById('toc-input'+groupNo).style.display = 'block';
-													document
-															.getElementById('toc-toggle'+groupNo).textContent = '접기';
-												}
-											}
-										</script>
 									</c:if>
-									<!-- 여기까지 -->
 
 
 									<!-- 대댓글css -->
