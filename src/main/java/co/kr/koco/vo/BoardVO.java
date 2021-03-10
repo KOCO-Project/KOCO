@@ -25,6 +25,10 @@ public class BoardVO {
 	private int boardReadcount;
 	private String searchCondition;
 	private String searchKeyword;
+	private int parent;
+	private int depth;
+	private int sequence;
+	
 	
 	public String getFileName() {
 		return fileName;
@@ -104,7 +108,25 @@ public class BoardVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	
+	public int getParent() {
+		return parent;
+	}
+	public void setParent(int parent) {
+		this.parent = parent;
+	}
+	public int getDepth() {
+		return depth;
+	}
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+	public int getSequence() {
+		return sequence;
+	}
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
+	}
+
 	
 	
 }
