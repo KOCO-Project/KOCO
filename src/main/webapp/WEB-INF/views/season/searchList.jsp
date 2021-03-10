@@ -12,7 +12,7 @@
 	}
 </script>
 <meta charset="UTF-8">
-<title>Culture List</title>
+<title>Season List</title>
 <link rel="stylesheet" href="css/bootstrap.css?v=1">
 <link rel="stylesheet" href="css/footer.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
@@ -34,7 +34,7 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<h1 class="header" style="font-weight: bold;">문화게시판</h1>
+				<h1 class="header" style="font-weight: bold;">계절게시판</h1>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
@@ -50,23 +50,25 @@
 							<th scope="col">번호</th>
 							<th scope="col">메인</th>
 							<th scope="col">제목</th>
+							<th scope="col">계절</th>
 							<th scope="col">작성자</th>
 							<th scope="col">등록일</th>
 						</tr>
 					</thead>
-					<c:forEach items="${cultureList}" var="culture">
+					<c:forEach items="${seasonList}" var="season">
 						<tr class="table-light">
-							<th scope="row">${culture.cultureNo}</th>
+							<th scope="row">${season.seasonNo}</th>
 							<th scope="row" style="display: inline-flex;">
 								<p style="font-size: 10px; align-self: center;">[</p>
 								<p style="color: red;">main
 								<p style="font-size: 10px; align-self: center;">]</p>
 								</th>
-							<td><a href="getCultureBoard?cultureNo=${culture.cultureNo}"
+							<td><a href="getSeasonBoard?seasonNo=${season.seasonNo}"
 								style="color: black;" onMouseover="this.style.fontWeight='bold'"
-								onMouseout="this.style.fontWeight=''">${culture.cultureTitle}</a></td>
-							<td>${culture.userNickname}</td>
-							<td>${culture.cultureRegdate}</td>
+								onMouseout="this.style.fontWeight=''">${season.seasonTitle}</a></td>
+							<td>${season.seasonStatus}</td>
+							<td>${season.userNickname}</td>
+							<td>${season.seasonRegdate}</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -75,13 +77,13 @@
 					<tr>
 						<td>
 							<div class="page-item">
-								<a href="cultureRegisterForm" class="input-group-text"
+								<a href="seasonRegisterForm" class="input-group-text"
 									style="width: 100px; justify-content: center;">글 쓰기</a>
 							</div>
 						</td>
 						<!-- 검색 영역 -->
 						<td style="width: 40%;">
-							<form class="navbar-form" action="cultureSearchList" method="post">
+							<form class="navbar-form" action="seasonSearchList" method="post">
 								<div class="input-group" style="width: 70%; float: right;">
 									<div class="form-group navbar-left" style="margin: 0;">
 										<select class="input-group-text" style="height: 100%;" name="searchCondition">
@@ -91,7 +93,7 @@
 											<option  style="background-color: white;" value="NICKNAME">작성자</option>
 										</select>
 									</div>
-									<input type="text" class="form-control" placeholder="SERCH"
+									<input type="text" class="form-control" placeholder="SEARCH"
 										style="border: 1px solid #ced4da;" name="searchKeyword">
 									<div class="input-group-append">
 										<button class="input-group-text" type="submit">
@@ -117,7 +119,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="cultureSearchList?pageSearch=${pageVOSearch.prevPage}" class="page-link">이전</a></li>
+									href="seasonSearchList?pageSearch=${pageVOSearch.prevPage}" class="page-link">이전</a></li>
 							</c:otherwise>
 						</c:choose>
 
@@ -125,10 +127,10 @@
 							<c:choose>
 								<c:when test="${idx == pageVOSearch.currentPage }">
 									<li class="page-item active"><a
-										href="cultureSearchList?pageSearch=${idx}" class="page-link">${idx }</a></li>
+										href="seasonSearchList?pageSearch=${idx}" class="page-link">${idx }</a></li>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item"><a href="cultureSearchList?pageSearch=${idx}"
+									<li class="page-item"><a href="seasonSearchList?pageSearch=${idx}"
 										class="page-link">${idx }</a></li>
 								</c:otherwise>
 							</c:choose>
@@ -141,7 +143,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="cultureSearchList?pageSearch=${pageVOSearch.nextPage}" class="page-link">다음</a></li>
+									href="seasonSearchList?pageSearch=${pageVOSearch.nextPage}" class="page-link">다음</a></li>
 							</c:otherwise>
 						</c:choose>
 
