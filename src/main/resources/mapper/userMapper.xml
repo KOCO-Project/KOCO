@@ -124,4 +124,16 @@
 			USER_EMAIL LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>
 	</select>
+	
+	<delete id="adminUserDelete">
+		DELETE FROM KOCO_USERS
+		WHERE USER_NO = #{userNo}
+	</delete>
+	
+	<update id="adminSimpleUpdate">
+		UPDATE KOCO_USERS SET
+		USER_STATUS = #{userStatus},
+		USER_CASE = #{userCase}
+		WHERE USER_NO = #{userNo}
+	</update>
 </mapper>

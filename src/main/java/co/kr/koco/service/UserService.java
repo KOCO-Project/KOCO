@@ -100,5 +100,13 @@ public class UserService {
 		PageVO pageVO = new PageVO(contentCnt, currentPage, pageListcnt, pagePaginationcnt);
 		return pageVO;
 	}
+	
+	public void adminUserDelete(int userNo) throws Exception {
+		dao.adminUserDelete(userNo);
+	}
+	
+	public void adminSimpleUpdate(UserVO vo) throws Exception{
+		dao.adminSimpleUpdate(vo);
+	}
 
 }

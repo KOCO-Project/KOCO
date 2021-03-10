@@ -75,5 +75,14 @@ public class UserDAO {
 			vo.setSearchKeyword("");
 		return sql.selectOne("userMapper.getAdminUserCnt",vo);
 	}
+	
+	public void adminUserDelete(int userNo) {
+		System.out.println(userNo);
+		sql.delete("userMapper.adminUserDelete",userNo);
+	}
+	
+	public void adminSimpleUpdate(UserVO vo) {
+		sql.update("userMapper.adminSimpleUpdate",vo);
+	}
 }
 

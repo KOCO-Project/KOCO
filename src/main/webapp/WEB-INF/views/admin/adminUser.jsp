@@ -78,15 +78,19 @@ a:hover {
 						<c:forEach items="${adminUserList}" var="user">
 							<tr class="table-light">
 								<th scope="row">${user.userNo}</th>
-								<td>${user.userId}</td>
-								<td><a href="getCultureBoard?cultureNo=${user.userNo}"
+								<td><a href="adminGetUser?userNo=${user.userNo}"
+									style="color: black;"
+									onMouseover="this.style.fontWeight='bold'"
+									onMouseout="this.style.fontWeight=''">${user.userId}</a></td>
+								<td><a href="adminGetUser?userNo=${user.userNo}"
 									style="color: black;"
 									onMouseover="this.style.fontWeight='bold'"
 									onMouseout="this.style.fontWeight=''">${user.userNickname}</a></td>
 								<td>${user.userEmail}</td>
 
 								<form action="adminSimpleUpdate" method="post" class="navbar-form">
-									<td><select class="input-group-text" style="padding: 0;">
+								<input type="hidden" name="userNo" value="${user.userNo}">
+									<td><select class="input-group-text" style="padding: 0;" name="userStatus">
 									<c:if test="${user.userStatus == 1}">
 											<option style="background-color: white;" value="1">활성</option>
 											<option style="background-color: white;" value="2">비활성</option>
@@ -97,7 +101,7 @@ a:hover {
 											</c:if>											
 									</select></td>
 
-									<td><select class="input-group-text"style="padding: 0;">
+									<td><select class="input-group-text"style="padding: 0;" name="userCase">
 									<c:if test="${user.userCase == 0}">
 											<option value="0">일반</option>
 											<option value="1">관리자</option>
@@ -112,7 +116,7 @@ a:hover {
 									style="width: 50%;justify-content: center;padding: 0;"/></td>
 								</form>
 								<td style="width: 10%;" class="page-item">
-								<button type="button" class="input-group-text" style="width: 50%;justify-content: center;padding: 0;" onclick="location.href='adminUserDelete?no=${user.userNo}'">삭제</button></td>
+								<button type="button" class="input-group-text" style="width: 50%;justify-content: center;padding: 0;" onclick="location.href='adminUserDelete?userNo=${user.userNo}'">삭제</button></td>
 							</tr>
 						</c:forEach>
 					</table>

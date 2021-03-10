@@ -71,8 +71,7 @@
 	</insert>
 
 	<!--게시글 상세 보기 -->
-	<select id="getCultureBoard" resultType="culture"
-		resultMap="cultureResult">
+	<select id="getCultureBoard" resultType="culture" resultMap="cultureResult">
 		SELECT a1.CULTURE_NO , a1.CULTURE_TITLE, a1.CULTURE_CONTENT,a2.USER_NICKNAME
 		AS userNickname,a1.CULTURE_REGDATE,a1.CULTURE_PICK
 		FROM KOCO_CULTURE a1, KOCO_USERS a2
@@ -83,7 +82,7 @@
 	<delete id="deleteCultureBoard">
 		<![CDATA[
 			DELETE FROM KOCO_CULTURE
-			WHERE CULTURE_NO = #{cultureNo}
+			WHERE CULTURE_NO = #{cultureNo}	
 		]]>
 	</delete>
 
