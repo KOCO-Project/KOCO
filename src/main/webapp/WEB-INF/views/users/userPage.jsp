@@ -72,7 +72,7 @@ table.infobox tbody tr td a:hover{text-decoration: none;}
 </style>
 <meta charset="UTF-8">
 <c:choose>
-<c:when test="${sessionScope.user.userNickname == selectUser}">
+<c:when test="${user.userNickname == selectUser.userNickname}">
 <title>KOCO❤MYPAGE❤</title>
 </c:when>
 <c:otherwise>
@@ -105,11 +105,10 @@ $(function(){
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
-
 <c:choose>
-<c:when test="${sessionScope.user.userNickname == selectUser}">
+<c:when test="${user.userNickname == selectUser.userNickname}">
 <ul class="mypage_nav">
-<li><a href="#about">내 프로필</a></li>
+<li><a href="#about">프로필</a></li>
 <li><a href="#bookmark">즐겨찾기</a></li>
 <li><a href="#info">개인정보</a></li>
 </ul>
@@ -125,7 +124,7 @@ $(function(){
 <div id="about">
 <div class="col-md-12" id="welcome">
 <c:choose>
-<c:when test="${sessionScope.user.userNickname == selectUser}">
+<c:when test="${user.userNickname == selectUser.userNickname}">
 	<h1 class="text-center">Hello, ${user.userNickname }</h1>
 </c:when>
 <c:otherwise>
@@ -165,9 +164,9 @@ $(function(){
 <div class="col-md-2 cc_cursor" style="height: 100%;"></div>
 </div>
 </div>
-	
+
 <c:choose>
-<c:when test="${sessionScope.user.userNickname == selectUser}">	
+<c:when test="${user.userNickname == selectUser.userNickname}">
 <div id="bookmark">
 <div class="col-md-12" id="welcome">
 	<h1 class="text-center">Your favorite</h1>
@@ -220,7 +219,7 @@ $(function(){
 <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle cc_cursor" style="height: 200px;"/>
 
 	
-<form role="form" style="margin-top: 1rem;">
+<form role="form" style="margin-top: 1rem; ">
    <div class="form-group">
       <label for="">Name</label>
       <ul class="infoform">
@@ -257,15 +256,17 @@ $(function(){
 </div>
 
 </div>
-</c:when>
-<c:otherwise>
-
-</c:otherwise>
-</c:choose>
-</div>
 <footer>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 </footer>
+</c:when>
+<c:otherwise>
+<footer>
+<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+</footer>
+</c:otherwise>
+</c:choose>
+</div>
 
 
 </body>
