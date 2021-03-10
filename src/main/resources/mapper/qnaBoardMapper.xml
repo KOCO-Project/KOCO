@@ -64,8 +64,8 @@
 		                       @level := 0 ) vars, 
 		                       KOCO_BOARD
                WHERE @id IS NOT NULL ) m 
-         	   JOIN KOCO_BOARD mn ON mn.BOARD_NO = m.BOARD_NO ) ou
-         	   JOIN KOCO_USERS u ON ou.USER_NO = u.USER_NO
+         	   LEFT OUTER JOIN KOCO_BOARD mn ON mn.BOARD_NO = m.BOARD_NO ) ou
+         	   LEFT OUTER JOIN KOCO_USERS u ON ou.USER_NO = u.USER_NO
 	WHERE ou.BOARD_CATEGORY = 2 
 
 	]]>
