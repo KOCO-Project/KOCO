@@ -48,7 +48,7 @@
 							<td><a href="getCultureBoard?cultureNo=${notice.noticeNo}"
 								style="color: black;" onMouseover="this.style.fontWeight='bold'"
 								onMouseout="this.style.fontWeight=''">${notice.noticeTitle}</a></td>
-							<td>${notice.userNickname}</td>
+							<td><a href="userPage?userNickname=${notice.userNickname}">${notice.userNickname}</a></td>
 							<td>${notice.noticeRegdate}</td>
 						</tr>
 					</c:forEach>
