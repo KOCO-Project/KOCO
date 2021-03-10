@@ -125,11 +125,6 @@ public class UserController {
 		return "users/userRegister";
 	}
 
-	@RequestMapping("/mypage")
-	public String mypage() throws Exception {
-		return "users/userPage";
-	}
-
 	@RequestMapping("/userUpdateView")
 	public String userUpdateView() throws Exception {
 		return "users/userUpdate";

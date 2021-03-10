@@ -4,9 +4,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.reg{	
+	background-image: url('images/reg.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 15rem;
+	}
+.reg h1{
+    background: #fff;
+    opacity: 90%;
+    padding-bottom: 4rem;
+    }
+.reg h2{
+	text-align: center;
+	color: #fff;
+}
+.mypage{height: 100%; text-align: center;}
+.mypage #info{height: 100%;position: relative;width:100%;height:30rem ;}
+.row{background-color: #fff;padding: 5rem;height: 10rem;}
+ul{list-style: none;padding-left: 0px;}
+ul li{line-height: 3rem;}
+ul.infoform{list-style: none;display: flex;}
+#info ul li{line-height: inherit;}
+</style>
 <meta charset="UTF-8">
-<title>개인정보수정</title>
-<link rel="stylesheet" href="css/bootstrap.css">
+<title>비밀번호 변경</title>
+<link rel="stylesheet" href="css/bootstrap.css?v=1">
+<link rel="stylesheet" href="css/footer.css?v=1">
+<!-- <link rel="stylesheet" href="css/qna.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -93,59 +119,46 @@ $(function(){
 </script>
 <body>
    <c:import url="/WEB-INF/views/include/top_menu.jsp" />
-   <form action="pwUpdate" method="post" id="form1">
-   <input type="hidden" value="${user.userId }" name="userId">
-   <input type="hidden" value="${user.userPw }" id="userPw">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-2"></div>
-         <div class="col-md-8" style="margin-top: 150px;">
-            <div class="row">
-               <div class="col-md-6" style="height: 60px;">
-                  <a href="userUpdateView" class="btn btn-success" style="float: right;">개인정보 변경</a>
-               </div>
-               <div class="col-md-6">
-                  <a href="pwUpdateView" class="btn btn-success">비밀번호 변경</a>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-12" style="height: 60px;">
-                  <h3 style="text-align: center;">비밀번호 변경</h3>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-12" style="height: 60px;">
-                  <input type="password" name="currentPw" id="currentPw" placeholder="현재 비밀번호" required="required" style="width: 100%; height: 50px;"><br>
-                  <span id="pwCheck" style="font-size:11px"></span>
-               </div>
-            </div>
-            <br>
-            <div class="row">
-               <div class="col-md-12" style="height: 60px;">
-                  <input type="password" name="newPw" id="newPw" placeholder="새 비밀번호" required="required" style="width: 100%; height: 50px;"><br>
-                  <span id="newPwCheck" style="font-size:11px"></span>
-               </div>
-            </div>
-            <br>
-            <div class="row">
-               <div class="col-md-12" style="height: 60px;">
-                  <input type="password" id="newPw2" placeholder="새 비밀번호 확인" required="required" style="width: 100%; height: 50px;">
-                  <span id="newPwCheck2" style="font-size:11px"></span>
-               </div>
-            </div>
-            <br>
-            <div class="row">
-               <div class="col-md-6">
-                  <button type="button" id="pwUpdate" class="btn btn-success" style="float: right;">수정</button>
-               </div>
-               <div class="col-md-6">
-                  <button type="button" class="btn btn-success">취소</button>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-2"></div>
-      </div>
-   </div>
-   </form>
+   <div class="reg"><h1></h1><br><br><br><h2>Change Your Password</h2></div>
+   <div class="mypage">
+   		<div id="info">
+   			<div class="row">
+   				<div class="col-md-3 cc_cursor" style="height: 100%;"></div>
+					<div class="col-md-6 cc_cursor" style="height: 100%;">
+   					<form action="pwUpdate" method="post" id="form1" style="margin-top: 1rem;">
+   					<input type="hidden" value="${user.userId }" name="userId">
+   					<input type="hidden" value="${user.userPw }" id="userPw">
+   						<div class="form-group">
+   							<label for="">현재 비밀번호</label>
+   							<ul class="infoform">
+   							<li style="width: 100%;"><input type="password" class="form-control" id="currentPw" name="currentPw" placeholder="현재 비밀번호" style="text-align: center;"/>
+   							<span id="pwCheck" style="font-size:11px"></span></li>
+							</ul>
+						</div>
+						<div class="form-group">
+							<label for="">새 비밀번호</label>
+							<ul class="infoform">
+   							<li style="width: 100%;"><input type="password" class="form-control" id="newPw" name="newPw" placeholder="새 비밀번호" style="text-align: center;"/>
+   							<span id="newPwCheck" style="font-size:11px"></span></li>
+							</ul>
+						</div>
+						<div class="form-group">
+							<label for="">새 비밀번호</label>
+							<ul class="infoform">
+   							<li style="width: 100%;"><input type="password" class="form-control" id="newPw2" placeholder="새 비밀번호 확인" style="text-align: center;"/>
+   							<span id="newPwCheck2" style="font-size:11px"></span></li>
+							</ul>
+						</div>
+						<button type="button" class="btn btn-primary" id="pwUpdate" style="width: 100px;">Submit</button>
+						<button type="button" class="btn btn-primary" style="width: 100px;" onclick="history.back()">Cancel</button>
+					</form>
+         			</div>
+         			<div class="col-md-3 cc_cursor"></div>
+      		</div>
+   		</div>
+	</div>
+<footer>
+<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+</footer>
 </body>
 </html>

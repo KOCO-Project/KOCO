@@ -53,7 +53,13 @@ footer ul{
 footer ul li a>img{
 width: 30px; height: 30px;
 }
-
+#loading{
+/*  	display: none; */	
+    position: absolute;
+    left: 50%;
+    top: 30%;
+	z-index: 1;
+}
 </style>
 <meta charset="UTF-8">
 <title>회원가입</title>
@@ -68,7 +74,7 @@ $(function(){
 	var idCheck = "";
 	var pwCheck = "";
 	var pwCheck2 = "";
-	var nickCheck = "";	
+	var nickCheck = "";
 	
 	$('#userId').on('blur', function userIdExist(){
 		var userId = $('#userId').val();
@@ -225,7 +231,7 @@ $(function(){
 	
 	function sendAuthMail() {
 		var userEmail = $('#userEmail').val();
-		
+				
 		$.ajax({
 			type : 'post',
 			url : 'sendAuthMail',
@@ -243,7 +249,7 @@ $(function(){
 			failure : function(data) {
 				alert('발송이 실패하였습니다.');
 			}
-		});
+		});		
 	}
 	
 	$('#checkAuthKey').on('click', function checkAuthKey() {
@@ -262,6 +268,14 @@ $(function(){
 			alert('회원가입 조건 또는 인증번호를 확인해주세요.');
 		}
 	});
+	
+	$(document).ajaxStart(function (){
+		$('#loading').show();
+	});
+	
+	$(document).ajaxStop(function (){
+		$('#loading').hide();
+	});
 });
 	
 </script>
@@ -271,7 +285,7 @@ $(function(){
 
 
 
-
+<div id="loading" style="display: none;"><img src="images/spinner.gif"/></div>
 <div class="reg"><h1></h1><br><br><br><h2>Create Your KOCO ID</h2></div>
 <div class="container">
 	<div class="row">
@@ -279,7 +293,7 @@ $(function(){
 		</div>
 		<div class="col-md-8">
 		<br>
-			<p>KOCO ID를 가지고 계십니까? <a class="btn cc_pointer" href="#" style="color: #29abe0">찾아보기 »</a></p>
+			<p>KOCO ID를 가지고 계십니까? <a class="btn cc_pointer" href="findUserInfo" style="color: #29abe0">찾아보기 »</a></p>
 		<br>
 			<form action="userRegister" method="post" id="form1">
 				<div class="form-group">
