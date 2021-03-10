@@ -137,7 +137,7 @@ $(function(){
 	<div class="col-md-7 cc_cursor" style="padding-top: 5rem;">
 	<div class="row"style="padding: 0;height: auto;">
 		<div class="col-md-5" style="height: 40%;">
-		<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle cc_cursor" style="height: 200px;"/>
+		<img src="images/profile.png" class="rounded-circle cc_cursor" style="height: 200px;width: 200px;"/>
 		</div>
 		<div class="col-md-7" style="height: 40%;">
 			<ul>
