@@ -10,6 +10,8 @@ tbody tr.table-light th h5{
 margin: 0;
 font-size: 0.8rem;
 }
+
+
 </style>
 <script type="text/javascript">
 <!--뒤로가기기능-->
@@ -36,6 +38,7 @@ font-size: 0.8rem;
 	<br>
 	<br>
 	<br>
+	<div style="height: auto;min-height: 500px;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
@@ -169,6 +172,7 @@ font-size: 0.8rem;
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<br>
 	<br>
