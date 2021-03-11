@@ -62,12 +62,12 @@ $(function(){
 				<div class="col-sm-10">
 
 					<div class="table table-hover">
-						<form action='noticeRegister' method='post'>
-							
+						<form action='noticeRegister' method='post'>							
 							<input type="hidden" name="userNo" value="${user.userNo}">
+							
 							<div class="form-group">
-
-							<label>제목</label> <input type="text" class="form-control" name="noticeTitle" placeholder="제목을 입력하세요" required="required" maxlength="50" />
+								<label>제목</label> 
+								<input type="text" class="form-control" name="noticeTitle" placeholder="제목을 입력하세요" required="required" maxlength="50" />
 							</div>
 
 							<div class="form-group">
