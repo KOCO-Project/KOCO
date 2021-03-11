@@ -9,7 +9,7 @@
 	background-image: url('images/reg.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
-	height: 10rem;
+	height: 11rem;
 	}
 .reg h1{
     background: #fff;
