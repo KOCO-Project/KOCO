@@ -8,7 +8,7 @@
 <head>
 
   <meta charset="UTF-8">
-    <title>KOCO - Korea Offer Culture Organizaion</title>
+    <title>KOCO - Korean Offer Culture Organization</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -19,7 +19,7 @@
   <!-- Custom styles for this template -->
 	
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/event.css?v=1">
+	<link rel="stylesheet" href="css/event.css?v=9">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -27,40 +27,28 @@
 
 <body>
 <c:import url="/WEB-INF/views/include/event_top.jsp" />
-
-  <!-- Header -->
-  <!-- <header class="bg-primary py-5 mb-5">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-lg-12">
-          <h1 class="display-4 text-white mt-5 mb-2">Business Name or Tagline</h1>
-          <p class="lead mb-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non possimus ab labore provident mollitia. Id assumenda voluptate earum corporis facere quibusdam quisquam iste ipsa cumque unde nisi, totam quas ipsam.</p>
-        </div>
-      </div>
-    </div>
-  </header> -->
 <div id="event" class="container">
-  <!-- Page Content -->
-
+	<div class="row">
+		<div class="col-md-12 mb-5" style="text-align: center;">
+			<h2>Event</h2>
+			<p style="color: #939393;">이벤트 게시판 입니다 :)</p>
+			<button id='regBtn' type="button" class="btn btn-primary btn-lg pull-right" style="font-size: 10px; float: right;">New Event</button>
+		</div>
+	</div>
+	<!-- /.row -->
     <div class="row">
-      <div class="col-md-12 mb-5">
-        <h1>Event</h1>
-        <hr>
-        <button id='regBtn' type="button" class="btn btn-primary btn-lg pull-right" style="font-size:10px;">New Event</button>
-        <p>이벤트 게시판 입니다 :)</p>
-      </div>
-    </div>
-    <!-- /.row -->
-    <div class="row">
-<c:forEach items="${list}" var="event">
+	<c:forEach items="${list}" var="event">
       <div class="col-md-4 mb-5">
         <div class="card h-80">
-          <img class="card-img-top" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample83.jpg" alt="">
+          <!-- <img class="card-img-top" src="imgUpload/2021/03/12/4497c2f4-294a-413f-912f-ce4e25825091_신세계 물류관리.png" alt=""> -->
+          <img class="card-img-top" src="${event.thumbnail}" alt="">
           <div class="card-body">
-            <h4 class="card-title"><a class='move' href='<c:out value="${event.boardNo}"/>'>
+            <h4 class="card-title">
+            	<a class='move' href='<c:out value="${event.boardNo}"/>'>
 						<c:out value="${event.boardTitle}" />
-				</a></h4>
-            <p class="card-text"><c:out value="${event.writer}" /></p>
+				</a>
+			</h4>
+            <p class="card-text" style="color: #939393;"><c:out value="${event.writer}" /></p>
           </div>
           <!-- <div class="card-footer">
             <a href="#" class="btn btn-primary">Find Out More!</a>
@@ -73,7 +61,7 @@
           <img class="card-img-top" src="images/2.jpeg" alt="">
           <div class="card-body">
             <h4 class="card-title">코코 X BC카드 즉시할인 이벤트</h4>
-            <p class="card-text">경영지원팀장_LEE</p>
+            <p class="card-text" style="color: #939393;">경영지원팀장_LEE</p>
           </div>
           <!-- <div class="card-footer">
             <a href="#" class="btn btn-primary">ㅇㅇ</a>
@@ -86,13 +74,13 @@
           <img class="card-img-top" src="images/chul.jpeg" alt="">
           <div class="card-body">
             <h4 class="card-title">KOCO 출석체크 이벤트 OPEN!</h4>
-            <p class="card-text">경영지원팀장_LEE</p>
+            <p class="card-text" style="color: #939393;">경영지원팀장_LEE</p>
           </div>
         </div>
       </div>
       </c:forEach>
 </div>
-<div class="container">
+<div class="row">
 			<div class='center-block' style="width: 500px;padding:15px;">
 				<ul class="pagination" >
 					<c:if test="${pageMaker.prev}">
@@ -144,15 +132,15 @@
 </div>
 
   <!-- Footer -->
- <footer class="py-5 bg-dark">
+<!--  <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>
     /.container
-  </footer> 
-<%-- <footer>
+  </footer>  -->
+<footer>
 	<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
-</footer> --%>
+</footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -14,6 +14,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<script src="ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/event_top.jsp" />
@@ -55,8 +56,19 @@
 
 					<div class="form-group">
 						<label>Text area</label>
-						<textarea class="form-control" rows="3" name='boardContent'><c:out
-								value="${event.boardContent}" /></textarea>
+						<textarea class="form-control" rows="3" name='boardContent'>
+						<c:out value="${event.boardContent}" /></textarea>
+						<script>
+ var ckeditor_config = {
+   resize_enaleb : false,
+   enterMode : CKEDITOR.ENTER_BR,
+   shiftEnterMode : CKEDITOR.ENTER_P,
+   filebrowserUploadUrl : "/KOCO/ckUpload"
+ };
+ 
+ CKEDITOR.replace("boardContent", ckeditor_config);
+</script>
+								
 					</div>
 
 					<div class="form-group">

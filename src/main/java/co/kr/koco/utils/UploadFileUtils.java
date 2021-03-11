@@ -19,22 +19,22 @@ public class UploadFileUtils {
 
   UUID uid = UUID.randomUUID();
   
-  String newFileName = uid + "_" + fileName;
+  String thumbFileName = uid + "_" + fileName;
   String imgPath = uploadPath + ymdPath;
 
-  File target = new File(imgPath, newFileName);
+  File target = new File(imgPath, thumbFileName);
   FileCopyUtils.copy(fileData, target);
   
-  String thumbFileName = "s_" + newFileName;
-  File image = new File(imgPath + File.separator + newFileName);
+  String newFileName = "s_" + thumbFileName;
+  File image = new File(imgPath + File.separator + thumbFileName);
 
-  File thumbnail = new File(imgPath + File.separator + "s" + File.separator + thumbFileName);
+  File fileName1 = new File(imgPath + File.separator + "s" + File.separator + newFileName);
 
   if (image.exists()) {
-   thumbnail.getParentFile().mkdirs();
-   Thumbnails.of(image).size(THUMB_WIDTH, THUMB_HEIGHT).toFile(thumbnail);
+	  fileName1.getParentFile().mkdirs();
+   Thumbnails.of(image).size(THUMB_WIDTH, THUMB_HEIGHT).toFile(fileName1);
   }
-  return newFileName;
+  return thumbFileName;
  }
 
  public static String calcPath(String uploadPath) {

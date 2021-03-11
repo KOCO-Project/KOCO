@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-	background-image: url('../images/bg_qna.png');
+	background-image: url('../images/bg_event.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
@@ -19,7 +19,7 @@ main {
 	margin-top: 10%;
 	min-height: 50rem;
 	background-color: #fff;
-	padding: 3rem 7rem;
+	padding: 3rem 5rem;
 }
 
 .list-group p {

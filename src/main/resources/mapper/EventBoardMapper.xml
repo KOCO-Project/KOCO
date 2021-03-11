@@ -17,7 +17,7 @@
 	</resultMap>
 	<insert parameterType="board" id="eventBoardRegister">
 		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO)
-		VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName}, ${thumbnail}, 28)
+		VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName}, #{thumbnail}, 28)
 		<!-- VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName, jdbcType=VARCHAR}, NULL, 1) -->
 	</insert>
 	<!-- <select parameterType="java.lang.Integer" id="getBoardInfoName" resultType="java.lang.String">

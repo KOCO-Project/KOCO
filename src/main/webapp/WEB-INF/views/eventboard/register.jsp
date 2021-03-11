@@ -47,7 +47,7 @@
 										resize_enaleb : false,
 										enterMode : CKEDITOR.ENTER_BR,
 										shiftEnterMode : CKEDITOR.ENTER_P,
-										filebrowserUploadUrl : "images/"
+										filebrowserUploadUrl : "/KOCO/ckUpload"
 									};
 
 									CKEDITOR.replace("boardContent", ckeditor_config);
@@ -62,20 +62,19 @@
 								<div class="select_img">
 									<img src="" />
 								</div>
-
 								<script>
-										$("#fileName").change(
-											function() {
-												if (this.files && this.files[0]) {
-													var reader = new FileReader;
-													reader.onload = function(data) {
-														$(".select_img img").attr("src",data.target.result).width(500);
-													}
-													reader.readAsDataURL(this.files[0]);
+									$("#fileName").change(
+										function() {
+											if (this.files && this.files[0]) {
+												var reader = new FileReader;
+												reader.onload = function(data) {
+													$(".select_img img").attr("src",data.target.result).width(500);
 												}
-											});
-									</script>
-								<%=request.getRealPath("/") %>
+												reader.readAsDataURL(this.files[0]);
+											}
+										});
+								</script>
+								<%-- <%=request.getRealPath("/") %> --%>
 								<!-- /Users/isang-a/Documents/workspace-sts-3.9.15.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/KOCO/ -->
 							</div>
 							<button type="reset" style="float: right" class="btn btn-default">Reset

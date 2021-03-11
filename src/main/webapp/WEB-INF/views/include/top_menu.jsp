@@ -42,6 +42,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="noticeList">Notice</a>
           <a class="dropdown-item" href="supportMailForm" onclick="return loginCheck();">SupportMail</a>
+          <a class="dropdown-item" href="developer">Introduce</a>
         </div>
       </li>
        <li class="nav-item dropdown">

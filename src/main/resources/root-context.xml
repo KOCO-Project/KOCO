@@ -32,9 +32,9 @@
 	</bean>
 	
 	<!-- 파일 업로드 경로 설정 -->
-<bean id="uploadPath" class="java.lang.String">
-	<constructor-arg value="/Users/isang-a/Documents/workspace-sts-3.9.15.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/KOCO/resources" />
-</bean>
+	<bean id="uploadPath" class="java.lang.String">
+		<constructor-arg value="/Users/isang-a/Documents/workspace-sts-3.9.15.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/KOCO/resources/"/>
+	</bean>
 
 	<!-- email 인증 관련   -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

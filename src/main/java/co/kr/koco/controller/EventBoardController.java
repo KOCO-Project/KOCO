@@ -39,6 +39,11 @@ public class EventBoardController {
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
+	@GetMapping("/developer")
+	public String developer() {
+		return "eventboard/developer";
+	}
+	
 	@GetMapping("/eventRegister")
 	public String register() {
 		return "eventboard/register";
@@ -49,16 +54,16 @@ public class EventBoardController {
     	
     	String imgUploadPath = uploadPath + File.separator + "imgUpload";
     	String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-    	String fileName = null;
+    	String thumbFileName = null;
 
     	if(uploadFile != null) {
-    	 fileName = UploadFileUtils.fileUpload(imgUploadPath, uploadFile.getOriginalFilename(), uploadFile.getBytes(), ymdPath); 
+    		thumbFileName = UploadFileUtils.fileUpload(imgUploadPath, uploadFile.getOriginalFilename(), uploadFile.getBytes(), ymdPath); 
     	} else {
-    	 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+    		thumbFileName = uploadPath + File.separator + "images" + File.separator + "none.png";
     	}
 
-    	event.setFileName(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-    	event.setThumbnail(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+    	event.setThumbnail("imgUpload" + ymdPath + File.separator + thumbFileName);
+    	event.setFileName(thumbFileName);
     	
     	service.eventBoardRegister(event);
     	rttr.addFlashAttribute("result", event.getBoardNo());
@@ -66,7 +71,7 @@ public class EventBoardController {
     }
 
  // ck 에디터에서 파일 업로드
-    @RequestMapping(value = "/goods/ckUpload", method = RequestMethod.POST)
+    @RequestMapping(value = "/ckUpload", method = RequestMethod.POST)
     public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res,
             @RequestParam MultipartFile upload) throws Exception {
      
@@ -94,13 +99,9 @@ public class EventBoardController {
       
       String callback = req.getParameter("CKEditorFuncNum");
       printWriter = res.getWriter();
-      String fileUrl = "/ckUpload/" + uid + "_" + fileName; // 작성화면
+      String fileUrl = "/KOCO/ckUpload/" + uid + "_" + fileName; // 작성화면
       
       // 업로드시 메시지 출력
-      printWriter.println("<script type='text/javascript'>"
-         + "window.parent.CKEDITOR.tools.callFunction("
-         + callback+",'"+ fileUrl+"','이미지를 업로드하였습니다.')"
-         +"</script>");
       printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
       
       printWriter.flush();
@@ -148,12 +149,27 @@ public class EventBoardController {
 		}
 		rttr.addAttribute("pageNum",cri.getPageNum());
 		rttr.addAttribute("amount",cri.getAmount());
-		return "redirect:/eventboard/list";
+		return "redirect:eventboard/list";
 //		return "redirect:/eventboard/list?pageNum={pageNum}&amount={amount}";
 		
 	}
 
-    @PostMapping("/eventDelete")
+//    @PostMapping("/eventDelete")
+////    @RequestMapping(value="/eventDelete", method=RequestMethod.POST)
+//	public String delete(@RequestParam("boardNo") int bno,Criteria cri, RedirectAttributes rttr) {
+//		
+//		int count = service.eventBoardDelete(bno);
+//		
+//		if(count == 1) {
+//			rttr.addFlashAttribute("result", "success");
+//		}
+//		rttr.addAttribute("pageNum",cri.getPageNum());
+//		rttr.addAttribute("amount",cri.getAmount());
+//		return "redirect:eventboard/list3";
+//	}
+    
+    @GetMapping("/eventDelete")
+//  @RequestMapping(value="/eventDelete", method=RequestMethod.POST)
 	public String delete(@RequestParam("boardNo") int bno,Criteria cri, RedirectAttributes rttr) {
 		
 		int count = service.eventBoardDelete(bno);
@@ -163,44 +179,6 @@ public class EventBoardController {
 		}
 		rttr.addAttribute("pageNum",cri.getPageNum());
 		rttr.addAttribute("amount",cri.getAmount());
-		return "redirect:/eventboard/list";
+		return "eventboard/delete";
 	}
-	
-    
-//  @GetMapping("/list")		// 목록에 대한 처리
-//  public void list(Model model) {
-//  	log.info("list");
-//  	model.addAttribute("list", service.getList());
-//  }
-
-    
-//  @GetMapping("/get")			// 상세보기에 대한 처리
-//  public void eventGet(@RequestParam("bno") Long bno, Model model) {
-//  	log.info("/get  ");
-//  	model.addAttribute("event", service.get(bno));
-//  }
-
-//  @PostMapping("/update")		// 수정에 대한 처리
-//  public String eventUpdate(EventVO event, RedirectAttributes rttr) {
-//  	log.info("modify:" + event);
-// 
-//  	if (service.modify(event)) {
-//  		rttr.addFlashAttribute("result", "success");
-//  	}
-//  	return "redirect:/eventboard/list";
-//  }
-
-    
-//  @PostMapping("/delete")		// 삭제에 대한 처리
-//  public String EventDelete(@RequestParam("bno") Long bno, RedirectAttributes rttr)
-//  {
-//
-//  	log.info("remove..." + bno);
-//  	if (service.remove(bno)) {
-//  		rttr.addFlashAttribute("result", "success");
-//  	}
-//  	return "redirect:/eventboard/list";
-//  }
-  
-    
 }
