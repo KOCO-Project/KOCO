@@ -104,7 +104,8 @@ public class UserController {
 			return "redirect:main";
 		} else {
 			session.setAttribute("user", null);
-			return "users/login";
+			
+			return "users/loginfail";
 		}
 	}
 

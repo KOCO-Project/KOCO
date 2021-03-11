@@ -2,11 +2,26 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var='root' value="${pageContext.request.contextPath }/"/>
+<script>	
+	function loginCheck(){
+		var loginyn = $('#loginyn').val();
+		
+		console.log(loginyn);
+		
+		if(loginyn == ''){
+			alert('로그인 해주세요.');
+			location.href = 'loginView';
+			return false;
+		} else {
+			return true;
+		}
+	}
+</script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
+<input type="hidden" value="${user.userNo }" id="loginyn">
   <div class="collapse navbar-collapse justify-content-md-center cc_cursor" id="navbarsExample08">
     <ul class="navbar-nav">
       <li class="nav-item active">
@@ -26,7 +41,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Support</a>
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="noticeList">Notice</a>
-          <a class="dropdown-item" href="supportMailForm">SupportMail</a>
+          <a class="dropdown-item" href="supportMailForm" onclick="return loginCheck();">SupportMail</a>
         </div>
       </li>
        <li class="nav-item dropdown">

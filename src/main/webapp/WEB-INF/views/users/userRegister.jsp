@@ -11,7 +11,7 @@
 	background-image: url('images/reg.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
-	height: 15rem;
+	height: 10rem;
 	}
 .reg h1{
     background: #fff;
@@ -286,7 +286,7 @@ $(function(){
 
 
 <div id="loading" style="display: none;"><img src="images/spinner.gif"/></div>
-<div class="reg"><h1></h1><br><br><br><h2>Create Your KOCO ID</h2></div>
+<div class="reg"><br><br><br><h2>Create Your KOCO ID</h2></div>
 <div class="container">
 	<div class="row">
 		<div class="col-md-2">
