@@ -58,8 +58,8 @@
 			<div class="col-md-12" style="top: 30px;">
 				<form action="commentRegister" method="post">
 					<input type="hidden" name="depth" value="0"> <input
-						type="hidden" name="boardCategory" value="1"> <input
-						type="hidden" name="boardNo" value="639"> <input
+						type="hidden" name="boardCategory" value="2"> <input
+						type="hidden" name="boardNo" value="464"> <input
 						type="hidden" name="userNo" value="1"> <input
 						type="hidden" name="groupNo" value="${groupNo }">
 					<div class="row">
