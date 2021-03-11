@@ -37,7 +37,7 @@
 			DATE_FORMAT(a1.BOARD_REGDATE, '%Y-%m-%d') AS BOARD_REGDATE, a1.READCOUNT
 		FROM KOCO_BOARD a1, KOCO_USERS a2
 		WHERE 1 = 1 AND a1.USER_NO = a2.USER_NO
-	 	AND a1.BOARD_CATEGORY = #{infoNo} 
+	 	AND a1.BOARD_CATEGORY = 1
 	 	<if test="searchCondition == 'TITLE'">
 			AND a1.BOARD_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>
@@ -98,7 +98,7 @@
 		SELECT COUNT(*) 
 		FROM KOCO_BOARD a1, KOCO_USERS a2 
 		WHERE 1=1 AND a1.USER_NO = a2.USER_NO
-		AND BOARD_CATEGORY = #{infoNo}
+		AND BOARD_CATEGORY = 1
 		<if test="searchCondition == 'TITLE'">
 			AND a1.BOARD_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>

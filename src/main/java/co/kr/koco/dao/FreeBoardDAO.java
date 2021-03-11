@@ -42,7 +42,7 @@ public class FreeBoardDAO {
 	}
 	
 	//  글 목록 조회
-	public List<BoardVO> freeBoardList(int infoNo, RowBounds rowBounds, BoardVO freeBoardVO){
+	public List<BoardVO> freeBoardList(RowBounds rowBounds, BoardVO freeBoardVO){
 			
 		  if (freeBoardVO.getSearchCondition()==null||freeBoardVO.getSearchCondition().equals("검색")) 
 			  freeBoardVO.setSearchCondition("TITLE");
@@ -50,7 +50,10 @@ public class FreeBoardDAO {
 		 if (freeBoardVO.getSearchKeyword()==null)
 			 freeBoardVO.setSearchKeyword("");
 		 
-		return mybatis.selectList("freeBoardMapper.freeBoardList", infoNo, rowBounds, freeBoardVO);
+		 //freeBoardVO.setBoardCategory(1);
+		 
+		//return mybatis.selectList("freeBoardMapper.freeBoardList", infoNo, rowBounds, freeBoardVO);
+		return mybatis.selectList("freeBoardMapper.freeBoardList", freeBoardVO, rowBounds);
 	}
 	
 	public String getBoardInfoName(int infoNo) {
@@ -58,14 +61,14 @@ public class FreeBoardDAO {
 		return mybatis.selectOne("freeBoardMapper.getBoardInfoName", infoNo);
 	}
 	
-	public int getFreeBoardCnt(int infoNo, BoardVO freeBoardVO) {
+	public int getFreeBoardCnt(BoardVO freeBoardVO) {
 		 if (freeBoardVO.getSearchCondition()==null||freeBoardVO.getSearchCondition().equals("검색")) 
 			  freeBoardVO.setSearchCondition("TITLE");
 			  
 		 if (freeBoardVO.getSearchKeyword()==null)
 			 freeBoardVO.setSearchKeyword("");
 		 
-		return mybatis.selectOne("freeBoardMapper.getFreeBoardCnt", infoNo);
+		return mybatis.selectOne("freeBoardMapper.getFreeBoardCnt", freeBoardVO);
 	}
 	
 	public void setFreeBoardRcnt(int boardNo) {

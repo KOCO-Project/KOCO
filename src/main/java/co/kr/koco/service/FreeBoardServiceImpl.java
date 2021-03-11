@@ -44,11 +44,11 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	}
 
 	@Override
-	public List<BoardVO> freeBoardList(int infoNo, int page, BoardVO freeBoardVO) {
+	public List<BoardVO> freeBoardList(int page, BoardVO freeBoardVO) {
 		int start = (page-1)*pageListcnt;
 		RowBounds rowBounds = new RowBounds(start, pageListcnt);
 		
-		return freeBoardDAO.freeBoardList(infoNo, rowBounds, freeBoardVO);
+		return freeBoardDAO.freeBoardList(rowBounds, freeBoardVO);
 	}
 
 	@Override
@@ -58,8 +58,8 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	}
 
 	@Override
-	public PageVO getfreeBoardCnt(int infoNo, int currentPage, BoardVO freeBoardVO) {
-		int contentCnt = freeBoardDAO.getFreeBoardCnt(infoNo, freeBoardVO);
+	public PageVO getfreeBoardCnt(int currentPage, BoardVO freeBoardVO) {
+		int contentCnt = freeBoardDAO.getFreeBoardCnt(freeBoardVO);
 		PageVO pageVO = new PageVO(contentCnt, currentPage, pageListcnt, pagePaginationcnt);
 		
 		return pageVO;

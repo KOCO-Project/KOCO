@@ -56,7 +56,7 @@
 
 				<!-- 검색 시작 -->
 				<td style="width: 50%;">
-					<form action="freeBoardList" method="post" class="navbar-form">
+					<form action="freeBoardList" class="navbar-form">
 						<div class="input-group">
 							<div class="form-group navbar-left" style="margin: 0;">
 								<select name="searchCondition" class="custom-select">

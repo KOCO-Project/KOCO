@@ -21,10 +21,10 @@ public interface FreeBoardService {
 	BoardVO getFreeBoard(int boardNo);
 	
 	// 글 목록 조회
-	List<BoardVO> freeBoardList(int infoNo, int page, BoardVO freeBoardVO);
+	List<BoardVO> freeBoardList(int page, BoardVO freeBoardVO);
 	
 	//infoName
 	String getBoardInfoName(int infoNo);
 	
-	PageVO getfreeBoardCnt(int infoNo, int currentPage, BoardVO freeBoardVO);
+	PageVO getfreeBoardCnt(int currentPage, BoardVO freeBoardVO);
 }

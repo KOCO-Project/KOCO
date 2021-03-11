@@ -158,7 +158,7 @@ public class FreeBoardController {
 	
 	// 글 목록 검색
 	@RequestMapping("/freeBoardList")
-	public String freeBoardList(@RequestParam("infoNo") int infoNo, @RequestParam(value = "page", defaultValue = "1") int page, 
+	public String freeBoardList(@RequestParam(value = "infoNo", defaultValue = "1") int infoNo, @RequestParam(value = "page", defaultValue = "1") int page, 
 								BoardVO freeBoardVO, Model model, @RequestParam(value="searchKeyword" ,required=false)String searchKeyword, @RequestParam(value="searchCondition", defaultValue="TITLE")String searchCondition) {
 	
 	
@@ -170,11 +170,12 @@ public class FreeBoardController {
 		model.addAttribute("infoNo", infoNo);
 		String infoName = freeBoardService.getBoardInfoName(infoNo);
 		model.addAttribute("infoName", infoName);
+		//freeBoardVO.setBoardCategory(infoNo);
 		
-		List<BoardVO> freeBoardList = freeBoardService.freeBoardList(infoNo, page, freeBoardVO);
+		List<BoardVO> freeBoardList = freeBoardService.freeBoardList(page, freeBoardVO);
 		model.addAttribute("freeBoardList", freeBoardList);
 		
-		PageVO pageVO = freeBoardService.getfreeBoardCnt(infoNo, page, freeBoardVO);
+		PageVO pageVO = freeBoardService.getfreeBoardCnt(page, freeBoardVO);
 		model.addAttribute("pageVO", pageVO);
 		model.addAttribute("page", page);
 		
