@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date"/>
 <c:set var="root" value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
 <html>
@@ -14,30 +16,31 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<fmt:formatDate value="${now }" pattern="yyyy-MM-dd" var="today"/>
 <c:import url="/WEB-INF/views/include/top_menu.jsp" /><br><br><br>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
 				<h1>
 					<a href="noticeList" class="header"
 						style="color: black; text-decoration: none; font-weight: bold;">공지사항</a>
 				</h1>
 			</div>
-			<div class="col-md-1"></div>
+			<div class="col-md-2"></div>
 		</div>
 	</div>
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
+							<th scope="col" style="width:15%">번호</th>
+							<th scope="col" style="width:50%">제목</th>
+							<th scope="col" style="width:25%">작성자</th>
 							<th scope="col">등록일</th>
 						</tr>
 					</thead>
@@ -45,9 +48,16 @@
 					<c:forEach items="${noticeList}" var="notice">
 						<tr class="table-light">
 						<th scope="row">${notice.noticeNo}</th>
+						<c:if test="${today == notice.noticeRegdate }">
+							<td><a href="getNoticeBoard?noticeNo=${notice.noticeNo}"
+								style="color: red;" onMouseover="this.style.fontWeight='bold'"
+								onMouseout="this.style.fontWeight=''">${notice.noticeTitle}</a></td>
+						</c:if>
+						<c:if test="${today != notice.noticeRegdate }">
 							<td><a href="getNoticeBoard?noticeNo=${notice.noticeNo}"
 								style="color: black;" onMouseover="this.style.fontWeight='bold'"
 								onMouseout="this.style.fontWeight=''">${notice.noticeTitle}</a></td>
+						</c:if>
 							<td><a href="userPage?userNickname=${notice.userNickname}">${notice.userNickname}</a></td>
 							<td>${notice.noticeRegdate}</td>
 						</tr>
