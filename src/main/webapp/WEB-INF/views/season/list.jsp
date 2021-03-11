@@ -1,14 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <c:set var="root" value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<style type="text/css">
+tbody tr.table-light th h5{
+margin: 0;
+font-size: 0.8rem;
+}
+
+
+</style>
+<script type="text/javascript">
+<!--Îí§Î°úÍ∞ÄÍ∏∞Í∏∞Îä•-->
+	function goBack() {
+		window.history.back();
+	}
+</script>
+<meta charset="UTF-8">
 <title>Season List</title>
-<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.css?v=1">
+<link rel="stylesheet" href="css/footer.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,28 +30,28 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	function delFun(){
-		return confirm("ªË¡¶«œΩ√∞⁄Ω¿¥œ±Ó?");
-	}
-</script>
+
 </head>
 <body>
+
 	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
-	
 	<br>
 	<br>
 	<br>
-		<div class="container-fluid">
+	<div style="height: auto;min-height: 500px;">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<h1>∞Ë¿˝∞‘Ω√∆«</h1>
+				<h1>
+					<a href="seasonList" class="header"
+						style="color: black; text-decoration: none; font-weight: bold;">Í≥ÑÏ†àÍ≤åÏãúÌåê</a>
+				</h1>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 	</div>
-	
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
@@ -45,49 +59,144 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th scope="col">π¯»£</th>
-							<th scope="col">¡¶∏Ò</th>
-							<th scope="col">∞Ë¿˝</th>
-							<th scope="col">¿€º∫¿⁄</th>
-							<th scope="col">µÓ∑œ¿œ</th>
-							<th scope="col">∞¸∏Æ</th>
+							<th scope="col">Î≤àÌò∏</th>
+							<th scope="col">Î©îÏù∏</th>
+							<th scope="col">Ï†úÎ™©</th>
+							<th scope="col">Í≥ÑÏ†à</th>
+							<th scope="col">ÏûëÏÑ±Ïûê</th>
+							<th scope="col">Îì±Î°ùÏùº</th>
 						</tr>
 					</thead>
+
 					<c:forEach items="${seasonList}" var="season">
 						<tr class="table-light">
 							<th scope="row">${season.seasonNo}</th>
-							<td><a href="getSeasonBoard?seasonNo=${season.seasonNo}">${season.seasonTitle}</a></td>
+
+							<th scope="row" style="display: inline-flex;">
+							<c:if test="${season.seasonPick  == 1}">
+									<h5>[</h5>
+									<h5 style="color: red;font-weight: bold;">Main</h5>
+									<h5>]</h5>
+								</c:if></th>
+
+							<td><a href="getSeasonBoard?seasonNo=${season.seasonNo}"
+								style="color: black;" onMouseover="this.style.fontWeight='bold'"
+								onMouseout="this.style.fontWeight=''">${season.seasonTitle}</a></td>
 							<td>
-							<c:set var="seasonNumber" value="${season.seasonStatus}"/>
+								<c:set var="seasonNumber" value="${season.seasonStatus}"/>
 							<c:choose>
 								<c:when test="${seasonNumber eq 1}">
-									∫Ω
+									Î¥Ñ
 								</c:when>
 								<c:when test="${seasonNumber eq 2}">
-									ø©∏ß
+									Ïó¨Î¶Ñ
 								</c:when>
 								<c:when test="${seasonNumber eq 3}">
-									∞°¿ª
+									Í∞ÄÏùÑ
 								</c:when>
 								<c:when test="${seasonNumber eq 4}">
-									∞‹øÔ
+									Í≤®Ïö∏
 								</c:when>
 							</c:choose>
 							</td>
-							<td>${season.userNo}</td>
+							<td>${season.userNickname}</td>
 							<td>${season.seasonRegdate}</td>
-							<td style="color: red; font-weight: bold;">
-							<a href="deleteSeasonBoard?seasonNo=${season.seasonNo}" style="color: red;" onclick="return delFun();">ªË¡¶</a>
-							</td>
 						</tr>
 					</c:forEach>
 				</table>
-				<div class="text-right">
-					<br> <a href="seasonRegisterForm" class="btn btn-secondary">±€
-						µÓ∑œ</a>
+
+
+				<table style="width: 100%">
+					<tr>
+						<td>
+							<div class="page-item">
+								<a href="seasonRegisterForm" class="input-group-text"
+									style="width: 100px; justify-content: center;">Í∏Ä Ïì∞Í∏∞</a>
+							</div>
+						</td>
+						<!-- Í≤ÄÏÉâ ÏòÅÏó≠ -->
+						<td style="width: 40%;">
+							<form class="navbar-form" action="seasonList" method="post">
+								<div class="input-group" style="width: 70%; float: right;">
+									<div class="form-group navbar-left" style="margin: 0;">
+										<select class="input-group-text" style="height: 100%;"
+											name="searchCondition">
+											<!--<option selected="" style="background-color: white;">Í≤ÄÏÉâ</option> -->
+											<option style="background-color: white;" value="TITLE">Ï†úÎ™©</option>
+											<option style="background-color: white;" value="CONTENT">ÎÇ¥Ïö©</option>
+											<!-- ÏûëÏÑ±ÏûêÎ°ú Ï∞æÎäî Í≤É Î≥¥Î•ò -->
+											<option style="background-color: white;" value="NICKNAME">ÏûëÏÑ±Ïûê</option>
+										</select>
+									</div>
+									<input type="text" class="form-control" placeholder="SEARCH"
+										style="border: 1px solid #ced4da;" name="searchKeyword">
+									<div class="input-group-append">
+										<button class="input-group-text" type="submit">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16"
+												height="16" fill="currentColor" class="bi bi-search"
+												viewBox="0 0 16 16">
+  									<path
+													d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
+										</button>
+									</div>
+								</div>
+							</form>
+						</td>
+					</tr>
+				</table>
+				<br> <br> <br> <br>
+
+				<div class="d-none d-md-block">
+					<ul class="pagination justify-content-center">
+						<c:choose>
+							<c:when test="${pageVO.prevPage <= 0 }">
+								<li class="page-item disabled"><a href="#"
+									class="page-link">Ïù¥Ï†Ñ</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a
+									href="seasonList?page=${pageVO.prevPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+									class="page-link">Ïù¥Ï†Ñ</a></li>
+							</c:otherwise>
+						</c:choose>
+						<c:forEach var='idx' begin="${pageVO.min }" end='${pageVO.max }'>
+							<c:choose>
+								<c:when test="${idx == pageVO.currentPage }">
+									<li class="page-item active"><a
+										href="seasonList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+										class="page-link">${idx }</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a
+										href="seasonList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+										class="page-link">${idx }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:choose>
+							<c:when test="${pageVO.max >= pageVO.pageCnt }">
+								<li class="page-item disabled"><a href="#"
+									class="page-link">Îã§Ïùå</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a
+									href="seasonList?page=${pageVO.nextPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+									class="page-link">Îã§Ïùå</a></li>
+							</c:otherwise>
+						</c:choose>
+
+					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<footer>
+		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+	</footer>
 </body>
 </html>

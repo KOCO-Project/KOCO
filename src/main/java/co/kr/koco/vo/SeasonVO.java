@@ -16,11 +16,12 @@ public class SeasonVO {
 	private int seasonStatus;
 	@NotBlank
 	private int userNo;
+	
 	private String userNickname;
 	private int seasonPick;
 	
 	private String searchCondition;
-	private String seasrchKeyword;
+	private String searchKeyword;
 	
 	
 	@Override
@@ -28,7 +29,7 @@ public class SeasonVO {
 		return "SeasonVO [seasonNo=" + seasonNo + ", seasonTitle=" + seasonTitle + ", seasonContent=" + seasonContent
 				+ ", seasonRegdate=" + seasonRegdate + ", seasonStatus=" + seasonStatus + ", userNo=" + userNo
 				+ ", userNickname=" + userNickname + ", seasonPick=" + seasonPick + ", searchCondition="
-				+ searchCondition + ", seasrchKeyword=" + seasrchKeyword + "]";
+				+ searchCondition + ", seasrchKeyword=" + searchKeyword + "]";
 	}
 
 
@@ -122,13 +123,13 @@ public class SeasonVO {
 	}
 
 
-	public String getSeasrchKeyword() {
-		return seasrchKeyword;
+	public String getSearchKeyword() {
+		return searchKeyword;
 	}
 
 
-	public void setSeasrchKeyword(String seasrchKeyword) {
-		this.seasrchKeyword = seasrchKeyword;
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 	
 	

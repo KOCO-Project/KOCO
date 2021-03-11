@@ -10,7 +10,46 @@
 		<result property="seasonStatus" column="SEASON_STATUS" />
 		<result property="seasonRegdate" column="SEASON_REGDATE" />
 		<result property="userNo" column="USER_NO" />
+		<result property="seasonPick" column="SEASON_PICK"/>
 	</resultMap>
+
+
+	<select id="getSeasonBoardList" resultType="season" resultMap="seasonResult">
+		SELECT a1.SEASON_NO , a1.SEASON_TITLE, a1.SEASON_STATUS , a1.SEASON_CONTENT,a2.USER_NICKNAME AS userNickname,a1.SEASON_REGDATE,a1.SEASON_PICK
+		FROM KOCO_SEASON a1, KOCO_USERS a2
+		WHERE 1=1 AND a1.USER_NO = a2.USER_NO
+    	<if test="searchCondition == 'TITLE'">
+    		AND a1.SEASON_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+    	<if test="searchCondition == 'CONTENT'">
+    		AND a1.SEASON_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+    	<if test="searchCondition == 'NICKNAME'">
+    		AND a2.USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+		ORDER BY a1.SEASON_NO DESC
+	</select>
+	
+	
+	<select id="getSeasonBoardCnt" resultType="java.lang.Integer">
+			
+		SELECT COUNT(*) 
+		FROM KOCO_SEASON a1, KOCO_USERS a2
+		WHERE 1=1 AND a1.USER_NO = a2.USER_NO
+		<if test="searchCondition == 'TITLE'">
+    	AND SEASON_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+    	
+    	<if test="searchCondition == 'CONTENT'">
+    	AND SEASON_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+    	
+    	<if test="searchCondition == 'NICKNAME'">
+    	AND USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+    	</if>
+			
+	</select>
+	
 
 	<select id="getSeasonList" resultMap="seasonResult"
 		resultType="season">
@@ -22,20 +61,18 @@
 	</select>
 
 
+
 	<select id="getSeasonBoard" resultType="season"
 		resultMap="seasonResult">
-		<![CDATA[
-		SELECT *
-		FROM KOCO_SEASON
-		WHERE SEASON_NO = #{seasonNo}
-		]]>
+			SELECT a1.SEASON_NO , a1.SEASON_TITLE, a1.SEASON_CONTENT, a1.SEASON_STATUS, a2.USER_NICKNAME AS userNickname,a1.SEASON_REGDATE,a1.SEASON_PICK
+			FROM KOCO_SEASON a1, KOCO_USERS a2
+			WHERE 1=1 AND a1.USER_NO = a2.USER_NO AND a1.SEASON_NO = #{seasonNo}		
 	</select>
-
 
 	<insert id="seasonRegister" parameterType="season">
 		<![CDATA[
-		INSERT INTO KOCO_SEASON(SEASON_TITLE,SEASON_CONTENT,SEASON_STATUS,USER_NO) 
-		VALUES(#{seasonTitle}, #{seasonContent}, #{seasonStatus}, #{userNo})
+		INSERT INTO KOCO_SEASON(SEASON_TITLE,SEASON_CONTENT,SEASON_STATUS,USER_NO,SEASON_PICK) 
+		VALUES(#{seasonTitle}, #{seasonContent}, #{seasonStatus}, #{userNo}, #{seasonPick})
 		]]>
 	</insert>
 
@@ -52,6 +89,7 @@
 		SEASON_TITLE = #{seasonTitle},
 		SEASON_CONTENT = #{seasonContent},
 		SEASON_STATUS = #{seasonStatus}
+		SEASON_PICK = #{seasonPick}
 		WHERE SEASON_NO = #{seasonNo}
 		]]>	
 	</update>

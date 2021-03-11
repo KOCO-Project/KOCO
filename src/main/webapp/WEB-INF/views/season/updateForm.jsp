@@ -5,10 +5,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+<!--뒤로가기기능-->
+	function goBack() {
+		window.history.back();
+	}
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Update SeasonBoard</title>
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/footer.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,41 +26,61 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-
-	<div class="container" style="margin-top: 100px">
+	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
+	<br>
+	<br>
+	<br>
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
-				<div class="card shadow">
-					<div class="card-body">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h1>
+					<a href="seasonList" class="header"
+						style="color: black; text-decoration: none; font-weight: bold;">계절게시판</a>
+				</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<br>
+					<div class="col-md-10">
+						<table class="table table">
+							<th scope="col">게시글
+								수정&nbsp;&nbsp;│&nbsp;&nbsp;기존&nbsp;제목&nbsp;:&nbsp;${season.seasonTitle }&nbsp;│&nbsp;작성일&nbsp;:&nbsp;${season.seasonRegdate }</th>
+						</table>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10">
+					<div class="table table-hover">
 						<form action="seasonUpdateBoard" method="post">
+
 							<input type="hidden" name="seasonNo" value="${season.seasonNo}" />
+							<input type="hidden" name="userNo" value="${season.userNo}">
 
 							<div class="form-group">
-								<label for="writer">작성자</label> <input type="text" id="writer"
-									name="userNo" class="form-control" value="${season.userNo}"
-									disabled="disabled" />
+								<label>제목</label> <input type="text" class="form-control"
+									name="seasonTitle" value="${season.seasonTitle }"
+									required="required" mexlength="50" />
 							</div>
+
 							<div class="form-group">
-								<label for="boardRegdate">작성날짜</label> <input type="text"
-									id="boardRegdate" name="seasonRegdate" class="form-control"
-									value="${season.seasonRegdate }" disabled="disabled" />
-							</div>
-							<div class="form-group">
-								<label for="boardTitle">제목</label> <input type="text"
-									id="boardTitle" name="seasonTitle" class="form-control"
-									value="${season.seasonTitle }" />
-							</div>
-							<div class="form-group">
-								<label for="boardContent">내용</label>
-								<textarea id="boardContent" name="seasonContent"
-									class="form-control" rows="10" style="resize: none">${season.seasonContent }</textarea>
+								<label>내용</label>
+								<textarea class="form-control" name="seasonContent" rows="12">${season.seasonContent }</textarea>
+								<script>
+									CKEDITOR.replace('seasonContent');
+								</script>
 							</div>
 
 							<c:set var="seasonNumber" value="${season.seasonStatus}" />
 							<div class="text-right">
-								<select name="seasonStatus" >
+								<select name="seasonStatus">
 									<option value="1"
 										<c:if test="${seasonNumber eq '1'}">selected</c:if>>
 										봄</option>
@@ -67,17 +95,38 @@
 										겨울</option>
 								</select>
 							</div>
+
+							<div class="form-group">
+								<label>메인 여부&nbsp;</label>
+								<c:if test="${season.seasonPick == 1 }">
+									<input type="radio" name="seasonPick" value="1" checked>등록&nbsp; 
+									<input type="radio" name="seasonPick" value="0">미등록
+								</c:if>
+
+								<c:if test="${season.seasonPick != 1 }">
+									<input type="radio" name="seasonPick" value="1">등록&nbsp; 
+									<input type="radio" name="seasonPick" value="0" checked>미등록
+								</c:if>
+							</div>
+
 							<div class="form-group">
 								<div class="text-right">
-									<input type="submit" class="btn btn-info" value="수정완료" /> 
-									<a href="getSeasonBoard?seasonNo=${season.seasonNo}" class="btn btn-danger">취소하기</a>
+									<input type="submit" class="btn btn-info" value="수정완료" />
+									<button type="button" class="btn btn-danger" onClick="goBack()">취소하기</button>
 								</div>
 							</div>
 						</form>
 					</div>
 				</div>
+				<div class="col-sm-1"></div>
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<footer>
+		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+	</footer>
 </body>
 </html>

@@ -1,15 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var='root' value='${pageContext.request.contextPath}/' />
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+	function check() {
+		var editorValue = CKEDITOR.instances.editor.getData();
+		console.log(editorValue);
+		if (editorValue == "" || editorValue.length == 0) {
+			alert('ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.');
+			return false;
+		} else {
+			return true;
+		}
+	}
+	function goBack() {
+		window.history.back();
+	}
+</script>
 <meta charset="UTF-8">
 <title>Season Register Form</title>
-</head>
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/footer.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -17,50 +33,98 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
+	<br>
+	<br>
+	<br>
 
-
-	<div class="container" style="margin-top: 100px">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
-				<div class="card shadow">
-					<div class="card-body">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h1>
+					<a href="seasonList" class="header"
+						style="color: black; text-decoration: none; font-weight: bold;">ê³„ì ˆê²Œì‹œíŒ</a>
+				</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<br>
+					<div class="col-md-10">
+						<table class="table table">
+							<th scope="col">ê²Œì‹œê¸€ ì‘ì„±</th>
+						</table>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10">
+
+					<div class="table table-hover">
 						<form action='seasonRegister' method='post'>
-							<input type="hidden" name="userNo" value="1">
+
+							<input type="hidden" name="userNo"
+								value="${sessionScope.user.userNo}">
 							<div class="form-group">
-								<td>Á¦¸ñ</td> 
-								<input type="text" class="form-control" required = "required" name="seasonTitle" />
+
+								<label>ì œëª©</label> <input type="text" class="form-control"
+									name="seasonTitle" placeholder="ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”" required="required"
+									mexlength="50" />
 							</div>
+
 							<div class="form-group">
-								<td>³»¿ë</td>
-								<textarea class="form-control" name="seasonContent" required = "required"></textarea>
+								<label>ë‚´ìš©</label>
+								<textarea class="form-control" name="seasonContent" id="editor"
+									rows="12"></textarea>
+								<script>
+									CKEDITOR.replace('seasonContent');
+								</script>
 							</div>
-							<ul>
-								<div class = "form-group">
-									<div class="text-right">
-										<select name="seasonStatus" required="required">
-											<option value="">°èÀı ¼±ÅÃ</option>
-											<option value="1">º½</option>
-											<option value="2">¿©¸§</option>
-											<option value="3">°¡À»</option>
-											<option value="4">°Ü¿ï</option>
-										</select>
-									</div>
+
+							<div class="form-group">
+								<div class="text-right">
+									<select name="seasonStatus" required="required">
+										<option value="">ê³„ì ˆ ì„ íƒ</option>
+										<option value="1">ë´„</option>
+										<option value="2">ì—¬ë¦„</option>
+										<option value="3">ê°€ì„</option>
+										<option value="4">ê²¨ìš¸</option>
+									</select>
 								</div>
-								<div class="form-group">
-									<div class="text-right">
-										<button type="submit" class="btn btn-primary">ÀÛ¼ºÇÏ±â</button>
-									</div>
+							</div>
+
+							<div class="form-group">
+								<label>ë©”ì¸ ì—¬ë¶€&nbsp;</label> <input type="radio" name="seasonPick"
+									value="1">ë“±ë¡&nbsp; <input type="radio"
+									name="seasonPick" value="0" checked>ë¯¸ë“±ë¡
+							</div>
+
+							<div class="form-group">
+								<div class="text-right">
+									<button type="submit" class="btn btn-info">ì‘ì„±</button>
+									<button type="button" class="btn btn-danger" onClick="goBack()">ì·¨ì†Œ</button>
 								</div>
-							</ul>
+							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-3"></div>
+			<div class="col-sm-1"></div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<footer>
+		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+	</footer>
 </body>
 </html>

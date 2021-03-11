@@ -1,14 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value='${pageContext.request.contextPath }/' />
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<style type="text/css">
+div.card.border-light.mb-12 div.card-body h5 {
+	margin: 0;
+	font-size: 0.8rem;
+	display: inline-flex;
+}
+
+html, body {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+</style>
+
+<script type="text/javascript">
+<!--Îí§Î°úÍ∞ÄÍ∏∞Í∏∞Îä•-->
+	function goBack() {
+		window.history.back();
+	}
+</script>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Season getBoard</title>
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/footer.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,77 +37,99 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
+	<br>
+	<br>
+	<br>
 
-	<div class="container" style="margin-top: 100px">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
-				<div class="card shadow">
-					<div class="card-body">
-						<div class="form-group">
-							<label for="writer">¿€º∫¿⁄</label> <input type="text" id="writer"
-								name="userNo" class="form-control" value="${season.userNo}"
-								disabled="disabled" />
-						</div>
-						<div class="form-group">
-							<label for="boardRegdate">¿€º∫≥Ø¬•</label> <input type="text"
-								id="boardRegdate" name="seasonRegdate" class="form-control"
-								value="${season.seasonRegdate }" disabled="disabled" />
-						</div>
-						<div class="form-group">
-							<label for="boardTitle">¡¶∏Ò</label> <input type="text"
-								id="boardTitle" name="seasonTitle" class="form-control"
-								value="${season.seasonTitle }" disabled="disabled" />
-						</div>
-						<div class="form-group">
-							<label for="boardContent">≥ªøÎ</label>
-							<textarea id="boardContent" name="seasonContent"
-								class="form-control" rows="10" style="resize: none"
-								disabled="disabled">${season.seasonContent }</textarea>
-						</div>
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<h1>
+					<a href="seasonList" class="header"
+						style="color: black; text-decoration: none; font-weight: bold;">Í≥ÑÏ†àÍ≤åÏãúÌåê</a>
+				</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<br>
+					<div class="col-md-10">
+						<table class="table table">
+							<th scope="col"></th>
+						</table>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</div>
+		</div>
 
-						<c:set var="seasonNumber" value="${season.seasonStatus}" />
-						<div class="text-right">
-							<select name="seasonStatus" disabled="disabled">
-								<option value="1"
-									<c:if test="${seasonNumber eq '1'}">selected</c:if>>∫Ω</option>
-								<option value="2"
-									<c:if test="${seasonNumber eq '2'}">selected</c:if>>
-									ø©∏ß</option>
-								<option value="3"
-									<c:if test="${seasonNumber eq '3'}">selected</c:if>>
-									∞°¿ª</option>
-								<option value="4"
-									<c:if test="${seasonNumber eq '4'}">selected</c:if>>
-									∞‹øÔ</option>
-							</select>
-						</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="card border-light mb-12" style="max-width: 100%;">
+						<div class="card-header" style="font-weight: bold;">SeasonBoard</div>
+						<div class="card-body">
+							<h4 class="card-title">
 
-						<div class="form-group">
+								<c:if test="${season.seasonPick  == 1}">
+									<th scope="row">
+										<h5>[</h5>
+										<h5 style="color: red; font-weight: bold;">Main</h5>
+										<h5>]&nbsp;&nbsp;&nbsp;</h5>
+									</th>
+								</c:if>
+								<h9 style="font-size: 20px;font-weight: bold; ">${season.seasonTitle}</h9>
+
+							</h4>
+							<h4 class="card-title" style="font-size: 12px;">${season.userNickname}&nbsp;
+								${season.seasonRegdate }</h4>
+							<p class="card-text">${season.seasonContent }</p>
+
+							<c:set var="seasonNumber" value="${season.seasonStatus}" />
 							<div class="text-right">
-								<a href="seasonList" class="btn btn-primary">∏Ò∑œ∫∏±‚</a> 
-								<a href="seasonUpdateBoardForm?seasonNo=${season.seasonNo}"	class="btn btn-info">ºˆ¡§«œ±‚</a>
-								<button id="btn-remove" class="btn btn-danger">ªË¡¶«œ±‚</button>
+								<select name="seasonStatus" disabled="disabled">
+									<option value="1"
+										<c:if test="${seasonNumber eq '1'}">selected</c:if>>Î¥Ñ</option>
+									<option value="2"
+										<c:if test="${seasonNumber eq '2'}">selected</c:if>>
+										Ïó¨Î¶Ñ</option>
+									<option value="3"
+										<c:if test="${seasonNumber eq '3'}">selected</c:if>>
+										Í∞ÄÏùÑ</option>
+									<option value="4"
+										<c:if test="${seasonNumber eq '4'}">selected</c:if>>
+										Í≤®Ïö∏</option>
+								</select>
+							</div>
+							<br>
+
+							<div class="form-group">
+								<div class="text-right">
+									<button type="button" class="btn btn-primary"
+										onClick="goBack()">Î™©Î°ùÎ≥¥Í∏∞</button>
+									<a href="seasonUpdateBoardForm?seasonNo=${season.seasonNo}"
+										class="btn btn-info">ÏàòÏ†ïÌïòÍ∏∞</a> <a
+										href="deleteSeasonBoard?seasonNo=${season.seasonNo}"
+										class="btn btn-danger">ÏÇ≠Ï†úÌïòÍ∏∞</a>
+								</div>
 							</div>
 						</div>
-						<script>
-							$(function() {
-								$('#btn-remove').click(	function() {
-									if (confirm("ªË¡¶«œΩ√∞⁄Ω¿¥œ±Ó?")) {
-										self.location.href = "deleteSeasonBoard?seasonNo=${season.seasonNo}";
-									}
-								});
-							});
-						</script>
+						<div class="col-md-1"></div>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-3"></div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<footer>
+		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+	</footer>
 </body>
 </html>
