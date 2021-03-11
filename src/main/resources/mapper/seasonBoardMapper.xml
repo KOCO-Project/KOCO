@@ -88,7 +88,7 @@
 		UPDATE KOCO_SEASON SET
 		SEASON_TITLE = #{seasonTitle},
 		SEASON_CONTENT = #{seasonContent},
-		SEASON_STATUS = #{seasonStatus}
+		SEASON_STATUS = #{seasonStatus},
 		SEASON_PICK = #{seasonPick}
 		WHERE SEASON_NO = #{seasonNo}
 		]]>	
