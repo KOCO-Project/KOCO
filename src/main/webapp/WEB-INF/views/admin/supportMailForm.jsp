@@ -32,11 +32,35 @@ margin-bottom : 3rem;
 }
 
 legend{
- font-weight: bold;
+font-weight: bold;
+font-size: 2rem;
 }
 
 html body form{
 line-height: 2;
+}
+
+.jb-wrap {
+position: relative;
+}
+
+.jb-wrap img {
+width: 100%;
+vertical-align: middle;
+}
+
+.jb-text {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate( -50%, -50% );
+color: white;
+z-index: 20;
+letter-spacing: 10px;
+}
+
+img{
+height: 200px;
 }
 </style>
 <meta charset="UTF-8">
@@ -52,10 +76,16 @@ line-height: 2;
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	<br><br>
+	<div class="jb-wrap">
+	<div class="jb-image"><img src="${root }/images/mailBackImage.png"/></div>
+	<div class="jb-text" >
+	<legend>KOCO 이메일 문의</legend>
+	</div>
+	</div>
 	<form action="supportMail" method="post">
 		<fieldset>
-			<legend>KOCO 이메일 문의</legend>
+		
+			
 			<br><br>
 			<div class="form-group">
 				<label for="exampleInputEmail1">Email address</label> 
