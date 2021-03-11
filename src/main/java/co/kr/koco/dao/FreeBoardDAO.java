@@ -42,9 +42,15 @@ public class FreeBoardDAO {
 	}
 	
 	//  글 목록 조회
-	public List<BoardVO> freeBoardList(int infoNo, RowBounds rowBounds) {
-		
-		return mybatis.selectList("freeBoardMapper.freeBoardList", infoNo, rowBounds);
+	public List<BoardVO> freeBoardList(int infoNo, RowBounds rowBounds, BoardVO freeBoardVO){
+			
+		  if (freeBoardVO.getSearchCondition()==null||freeBoardVO.getSearchCondition().equals("검색")) 
+			  freeBoardVO.setSearchCondition("TITLE");
+			  
+		 if (freeBoardVO.getSearchKeyword()==null)
+			 freeBoardVO.setSearchKeyword("");
+		 
+		return mybatis.selectList("freeBoardMapper.freeBoardList", infoNo, rowBounds, freeBoardVO);
 	}
 	
 	public String getBoardInfoName(int infoNo) {
@@ -52,8 +58,13 @@ public class FreeBoardDAO {
 		return mybatis.selectOne("freeBoardMapper.getBoardInfoName", infoNo);
 	}
 	
-	public int getFreeBoardCnt(int infoNo) {
-		
+	public int getFreeBoardCnt(int infoNo, BoardVO freeBoardVO) {
+		 if (freeBoardVO.getSearchCondition()==null||freeBoardVO.getSearchCondition().equals("검색")) 
+			  freeBoardVO.setSearchCondition("TITLE");
+			  
+		 if (freeBoardVO.getSearchKeyword()==null)
+			 freeBoardVO.setSearchKeyword("");
+		 
 		return mybatis.selectOne("freeBoardMapper.getFreeBoardCnt", infoNo);
 	}
 	

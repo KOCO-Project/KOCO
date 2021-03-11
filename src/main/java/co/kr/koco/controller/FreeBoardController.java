@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;*/
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +52,7 @@ public class FreeBoardController {
 	
 	//글 등록 폼
 	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.GET)
-	public String freeBoardRegisterView(@RequestParam("infoNo") int infoNo, BoardVO freeBoardVO) {
+	public String freeBoardRegisterView(@RequestParam("infoNo") int infoNo, @ModelAttribute("freeBoardVO") BoardVO freeBoardVO) {
 		/* freeBoardService.freeBoardRegister(freeBoardVO); */
 		freeBoardVO.setBoardCategory(infoNo);
 		
@@ -59,7 +61,7 @@ public class FreeBoardController {
 	
 	//글 등록
 	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.POST)
-	public String freeBoardRegister(BoardVO freeBoardVO, @RequestParam("userNo") int userNo) {
+	public String freeBoardRegister(@Valid @ModelAttribute("freeBoardVO") BoardVO freeBoardVO,  BindingResult result, @RequestParam("userNo") int userNo) {
 		freeBoardVO.setUserNo(userNo);
 		freeBoardService.freeBoardRegister(freeBoardVO);
 		
@@ -156,22 +158,28 @@ public class FreeBoardController {
 	
 	// 글 목록 검색
 	@RequestMapping("/freeBoardList")
-	public String freeBoardList(@RequestParam("infoNo") int infoNo, @RequestParam(value = "page", defaultValue = "1") int page, BoardVO freeBoardVO, Model model) {
+	public String freeBoardList(@RequestParam("infoNo") int infoNo, @RequestParam(value = "page", defaultValue = "1") int page, 
+								BoardVO freeBoardVO, Model model, @RequestParam(value="searchKeyword" ,required=false)String searchKeyword, @RequestParam(value="searchCondition", defaultValue="TITLE")String searchCondition) {
 	
-		//null check
-		if(freeBoardVO.getSearchCondition() == null) freeBoardVO.setSearchCondition("TITLE");
-		if(freeBoardVO.getSearchKeyword() == null) freeBoardVO.setSearchKeyword("");
+	
+		 //null check if(freeBoardVO.getSearchCondition() == null)
+		// freeBoardVO.setSearchCondition("TITLE"); 
+		// if(freeBoardVO.getSearchKeyword() == null) freeBoardVO.setSearchKeyword("");
+		 
 		
 		model.addAttribute("infoNo", infoNo);
 		String infoName = freeBoardService.getBoardInfoName(infoNo);
 		model.addAttribute("infoName", infoName);
 		
-		List<BoardVO> freeBoardList = freeBoardService.freeBoardList(infoNo, page);
+		List<BoardVO> freeBoardList = freeBoardService.freeBoardList(infoNo, page, freeBoardVO);
 		model.addAttribute("freeBoardList", freeBoardList);
 		
-		PageVO pageVO = freeBoardService.getfreeBoardCnt(infoNo, page);
+		PageVO pageVO = freeBoardService.getfreeBoardCnt(infoNo, page, freeBoardVO);
 		model.addAttribute("pageVO", pageVO);
 		model.addAttribute("page", page);
+		
+		model.addAttribute("searchCondition", searchCondition);
+		model.addAttribute("searchKeyword", searchKeyword);
 				
 		return "freeboard/freeBoardList";
 	}
@@ -182,6 +190,11 @@ public class FreeBoardController {
 		return "users/not_login";
 	}
 	
+	@RequestMapping("/not_writer")
+	public String fail() {
+		
+		return "qna/not_writer";
+	}
 	/*
 	 * //CKEditor4 이미지 업로드
 	 * 

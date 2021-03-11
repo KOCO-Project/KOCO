@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
+<c:set var="root" value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +49,7 @@
 			<tr>
 				<td>
 					<div class="text-left">
-						<a href="freeBoardRegister?infoNo=1" class="btn btn-success"
+						<a href="${root }freeBoardRegister?infoNo=${infoNo }" class="btn btn-success"
 							style="width: 100px;">글쓰기</a>
 					</div>
 				</td>
@@ -59,13 +59,13 @@
 					<form action="freeBoardList" method="post" class="navbar-form">
 						<div class="input-group">
 							<div class="form-group navbar-left" style="margin: 0;">
-								<select class="custom-select">
-									<option value="Title">제목</option>
-									<option value="Content">내용</option>
+								<select name="searchCondition" class="custom-select">
+									<option value="TITLE">제목</option>
+									<option value="CONTENT">내용</option>
 								</select>
 							</div>
 							<input name="searchKeyword" type="text" class="form-control"
-								placeholder="SERCH" style="border: 1px solid #ced4da;" />
+								placeholder="SEARCH" style="border: 1px solid #ced4da;" />
 							<div class="input-group-append" style="height: fit-content;">
 								<button class="btn btn btn-primary" type="submit">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
