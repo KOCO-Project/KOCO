@@ -142,4 +142,15 @@
 		FROM KOCO_USERS
 		WHERE USER_NO = #{userNo}
 	</select>
+	
+	<update id="adminUserUpdate">
+		UPDATE KOCO_USERS SET
+		USER_ID = #{userId},
+		USER_NICKNAME = #{userNickname},
+		USER_PW = #{userPw},
+		USER_EMAIL = #{userEmail},
+		USER_STATUS = #{userStatus},
+		USER_CASE = #{userCase}
+		WHERE USER_NO = #{userNo}
+	</update>
 </mapper>

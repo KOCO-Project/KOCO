@@ -112,5 +112,9 @@ public class UserService {
 	public UserVO adminGetUser(int userNo) throws Exception{
 		return dao.adminGetUser(userNo);
 	}
+	
+	public void adminUserUpdate(UserVO vo) throws Exception{
+		dao.adminUserUpdate(vo);
+	}
 
 }

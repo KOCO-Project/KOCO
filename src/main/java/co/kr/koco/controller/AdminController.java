@@ -3,13 +3,11 @@ package co.kr.koco.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.xml.stream.events.Comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +17,6 @@ import co.kr.koco.service.CommentService;
 import co.kr.koco.service.CultureService;
 import co.kr.koco.service.QnaBoardService;
 import co.kr.koco.service.UserService;
-import co.kr.koco.vo.BoardVO;
 import co.kr.koco.vo.CommentVO;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
@@ -152,5 +149,17 @@ public class AdminController {
 	public String adminGetUser(int userNo, Model model) throws Exception{
 		model.addAttribute("getUser",userService.adminGetUser(userNo));
 		return "admin/adminGetUser";
+	}
+	
+	@RequestMapping("adminUserUpdateForm")
+	public String adminUserUpdateForm(int userNo, Model model) throws Exception{
+		model.addAttribute("getUser",userService.adminGetUser(userNo));
+		return "admin/adminUserUpdateForm";
+	}
+	
+	@RequestMapping("adminUserUpdate")
+	public String adminUserUpdate(@ModelAttribute("user") UserVO vo) throws Exception{
+		userService.adminUserUpdate(vo);
+		return "redirect:adminGetUser?userNo="+vo.getUserNo();
 	}
 }

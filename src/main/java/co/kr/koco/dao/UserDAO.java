@@ -88,5 +88,16 @@ public class UserDAO {
 	public UserVO adminGetUser(int userNo) {
 		return (UserVO) sql.selectOne("userMapper.adminGetUser",userNo);
 	}
+	
+	public void adminUserUpdate(UserVO vo) {
+//		System.out.println(vo.getUserNo());
+//		System.out.println(vo.getUserId());
+//		System.out.println(vo.getUserNickname());
+//		System.out.println(vo.getUserPw());
+//		System.out.println(vo.getUserEmail());
+//		System.out.println(vo.getUserStatus());
+//		System.out.println(vo.getUserCase());
+		sql.update("userMapper.adminUserUpdate",vo);
+	}
 }
 

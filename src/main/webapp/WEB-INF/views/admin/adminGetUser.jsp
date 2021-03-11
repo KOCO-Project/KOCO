@@ -24,11 +24,11 @@ html, body {
 }
 
 .seopBody {
-	text-align: -webkit-center;
+text-align: -webkit-center;
 }
 
 label {
-	float: left;
+float: left;
 }
 </style>
 
@@ -42,6 +42,15 @@ label {
 		var chk = confirm("정말 삭제하시겠습니까?");
 		if (chk) {
 			location.href='adminUserDelete?userNo='+userNo;
+		}
+	}
+	
+	function btnClick(){
+		var chk = confirm("정말 수정하시겠습니까?");
+		if(chk) {
+			return true;
+		}else{
+			return false;
 		}
 	}
 </script>
@@ -70,7 +79,7 @@ label {
 			<div class="col-md-10">
 				<h1>
 					<a href="adminUserList" class="header"
-						style="color: black; text-decoration: none; font-weight: bold;">유저관리</a>
+						style="color: black; text-decoration: none; font-weight: bold;">회원관리</a>
 				</h1>
 			</div>
 			<div class="container-fluid">
@@ -79,7 +88,7 @@ label {
 					<br>
 					<div class="col-md-10">
 						<table class="table table">
-							<th scope="col">유저 상세 정보 보기</th>
+							<th scope="col">유저 상세 정보</th>
 						</table>
 					</div>
 					<div class="col-md-1"></div>
@@ -168,12 +177,9 @@ label {
 							<br> <br> <br>
 							<div class="form-group">
 								<div class="text-right">
-									<button type="button" class="btn btn-primary"
-										onClick="goBack()">목록보기</button>
-									<a href="userUpdateForm?userNo=${getUser.userNo}"
+									<a href="adminUserList" class="btn btn-primary">목록보기</a>
+									<a href="adminUserUpdateForm?userNo=${getUser.userNo}"
 										class="btn btn-info">수정하기</a> 
-										
-<%-- 										<a href="adminUserDelete?userNo=${getUser.userNo}" class="btn btn-danger">삭제하기</a> --%>
 										<input type="button" class="btn btn-danger" value="삭제하기" onclick="del(${getUser.userNo})">
 								</div>
 							</div>

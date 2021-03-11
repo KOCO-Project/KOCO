@@ -22,6 +22,15 @@ tbody tr.table-light th h5 {
 			location.href='adminUserDelete?userNo='+userNo;
 		}
 	}	
+	
+	function btnClick(){
+		var chk = confirm("정말 수정하시겠습니까?");
+		if(chk) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 </script>
 <meta charset="UTF-8">
 <title>Culture List</title>
@@ -87,8 +96,7 @@ tbody tr.table-light th h5 {
 									onMouseout="this.style.fontWeight=''">${user.userNickname}</a></td>
 								<td>${user.userEmail}</td>
 
-								<form action="adminSimpleUpdate?userNo=${user.userNo}" method="post"
-									class="navbar-form">
+								<form action="adminSimpleUpdate?userNo=${user.userNo}" method="post" class="navbar-form">
 									<input type="hidden" name="userNo" value="${user.userNo}">
 									<td><select class="input-group-text" style="padding: 0;"
 										name="userStatus">
@@ -113,8 +121,8 @@ tbody tr.table-light th h5 {
 												<option value="0">일반</option>
 											</c:if>
 									</select></td>
-									<td style="width: 10%;" class="page-item"><input
-										type="submit" value="수정" class="input-group-text"
+									<td style="width: 10%;" class="page-item">
+									<input type="submit" onclick="btnClick()" value="수정" class="input-group-text"
 										style="width: 50%; justify-content: center; padding: 0;" /></td>
 								</form>
 								
