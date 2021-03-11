@@ -1,19 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 <head>
+
+<style type="text/css">
+input#userEmail.form-control {width: 60%;display: initial;}
+input#inputCode.form-control {width: 90%;}
+input#findUserEmail.btn.btn-primary {width: 30%}
+form {width: 30%;}
+.jb-wrap {position: relative;}
+.jb-wrap img {width: 100%;vertical-align: middle;}
+.jb-text {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;z-index: 20;letter-spacing: 10px;}
+img {height: 200px;}
+legend {font-weight: bold;font-size: 2rem;}
+.seopBody{height: 17rem;margin-top: 5%;margin-bottom: 5%;}
+</style>
 <meta charset="UTF-8">
 <title>ID & Password 찾기</title>
-<link rel="stylesheet" href="css/bootstrap.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css?v=1">
+<link rel="stylesheet" href="css/footer.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script
+	src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 <script>
 	$(function() {
 		var code = "";
-		
+
 		$('#findUserEmail').on('click', function findUserEmail() {
 			var userEmail = $('#userEmail').val();
 
@@ -39,11 +64,11 @@
 					console.log('fail');
 				}
 			});
-		});		
-		
+		});
+
 		function sendAuthMail() {
 			var userEmail = $('#userEmail').val();
-			
+
 			$.ajax({
 				type : 'post',
 				url : 'sendAuthMail',
@@ -63,57 +88,64 @@
 				}
 			});
 		}
-		
+
 		$('#checkAuthKey').on('click', function checkAuthKey() {
 			//var userEmail = $('#userEmail').val();
 			var inputCode = $('#inputCode').val();
 			//console.log(code);
 			//console.log(inputCode);
-			if(code.trim() == inputCode.trim()){
+			if (code.trim() == inputCode.trim()) {
 				$('#form1').submit();
 			} else {
 				alert('인증번호가 일치하지 않습니다.');
 			}
 		});
-		
+
 	});
 </script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	<form id="form1" action="findIdPwd">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2"></div>
-				<div class="col-md-8" style="margin-top: 150px;">
-					<div class="row">
-						<div class="col-md-12" style="height: 60px;">							
-							<h3>가입시 등록한 Email을 입력해주세요</h3>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12" style="height: 60px;">
-							<input type="email" name="userEmail" id="userEmail"	placeholder="E-Mail" required="required" style="width: 65%; height: 50px;">&emsp;
-							<input type="button" value="인증번호 발송" id="findUserEmail" style="width: 130px; height: 45px;" class="btn btn-success">
+
+	<div class="jb-wrap">
+		<div class="jb-image">
+			<img src="${root }/images/mailBackImage.png" />
+		</div>
+		<div class="jb-text">
+			<legend>가입시 등록한 Email을 입력해주세요</legend>
+		</div>
+	</div>
+
+	<div class="seopBody">
+		<div style="text-align: -webkit-center;">
+			<form id="form1" action="findIdPwd">
+				<fieldset>
+					<div class="form-group">
+						<div>
+							<div class="seopTest">
+								<input type="email" class="form-control" id="userEmail"
+									aria-describedby="emailHelp" placeholder="E-Mail"
+									name="userEmail"> <input type="button" value="인증번호 발송"
+									id="findUserEmail" class="btn btn-primary"">
+							</div>
+							<small id="emailHelp" class="form-text text-muted">We'll
+								never share your email with anyone else.</small>
 						</div>
 					</div>
 					<br>
-					<div class="row">
-						<div class="col-md-12" style="height: 60px;">	
-							<input type="text" name="inputCode" id="inputCode" placeholder="인증번호 입력" style="width: 80%; height: 50px;">
-						</div>
+					<div class="form-group">
+						<input type="text" name="inputCode" class="form-control"
+							id="inputCode" placeholder="인증번호 입력"> <br> <br>
+						<input type="button" value="Continue" class="btn btn-primary"
+							id="checkAuthKey"> <input type="button" value="Cancel"
+							onclick="history.back()" class="btn btn-danger">
 					</div>
-					<div class="row">
-						<div class="col-md-5">
-							<input type="button" value="Continue" class="btn btn-success" id="checkAuthKey" style="float: right; width:100px;">
-						</div>
-						<div class="col-md-5">
-							<input type="button" value="Cancel" onclick="history.back()" class="btn btn-success" style="width:100px;">
-						</div>
-					</div>			
-				</div>
+				</fieldset>
+			</form>
 		</div>
 	</div>
-	</form>
+	<footer>
+		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+	</footer>
 </body>
 </html>
