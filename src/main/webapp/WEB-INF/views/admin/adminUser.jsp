@@ -10,17 +10,18 @@ tbody tr.table-light th h5 {
 	margin: 0;
 	font-size: 0.8rem;
 }
-a:hover {
-	text-decoration: none;
-	color: black;
-}
-
 </style>
 <script type="text/javascript">
 <!--뒤로가기기능-->
 	function goBack() {
 		window.history.back();
 	}
+	function del(userNo) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='adminUserDelete?userNo='+userNo;
+		}
+	}	
 </script>
 <meta charset="UTF-8">
 <title>Culture List</title>
@@ -70,8 +71,6 @@ a:hover {
 								<th scope="col">Case</th>
 								<th scope="col">Management</th>
 								<th scope="col"></th>
-
-
 							</tr>
 						</thead>
 
@@ -88,35 +87,41 @@ a:hover {
 									onMouseout="this.style.fontWeight=''">${user.userNickname}</a></td>
 								<td>${user.userEmail}</td>
 
-								<form action="adminSimpleUpdate" method="post" class="navbar-form">
-								<input type="hidden" name="userNo" value="${user.userNo}">
-									<td><select class="input-group-text" style="padding: 0;" name="userStatus">
-									<c:if test="${user.userStatus == 1}">
-											<option style="background-color: white;" value="1">활성</option>
-											<option style="background-color: white;" value="2">비활성</option>
+								<form action="adminSimpleUpdate?userNo=${user.userNo}" method="post"
+									class="navbar-form">
+									<input type="hidden" name="userNo" value="${user.userNo}">
+									<td><select class="input-group-text" style="padding: 0;"
+										name="userStatus">
+											<c:if test="${user.userStatus == 1}">
+												<option style="background-color: white;" value="1">활성</option>
+												<option style="background-color: white;" value="2">비활성</option>
 											</c:if>
 											<c:if test="${user.userStatus == 2}">
-											<option style="background-color: white;" value="2">비활성</option>
-											<option style="background-color: white;" value="1">활성</option>
-											</c:if>											
+												<option style="background-color: white;" value="2">비활성</option>
+												<option style="background-color: white;" value="1">활성</option>
+											</c:if>
 									</select></td>
 
-									<td><select class="input-group-text"style="padding: 0;" name="userCase">
-									<c:if test="${user.userCase == 0}">
-											<option value="0">일반</option>
-											<option value="1">관리자</option>
+									<td><select class="input-group-text" style="padding: 0;"
+										name="userCase">
+											<c:if test="${user.userCase == 0}">
+												<option value="0">일반</option>
+												<option value="1">관리자</option>
 											</c:if>
 											<c:if test="${user.userCase == 1}">
-											<option value="1">관리자</option>
-											<option value="0">일반</option>
+												<option value="1">관리자</option>
+												<option value="0">일반</option>
 											</c:if>
 									</select></td>
-									<td style="width: 10%;" class="page-item">
-									<input type="submit" value="수정" class="input-group-text"
-									style="width: 50%;justify-content: center;padding: 0;"/></td>
+									<td style="width: 10%;" class="page-item"><input
+										type="submit" value="수정" class="input-group-text"
+										style="width: 50%; justify-content: center; padding: 0;" /></td>
 								</form>
-								<td style="width: 10%;" class="page-item">
-								<button type="button" class="input-group-text" style="width: 50%;justify-content: center;padding: 0;" onclick="location.href='adminUserDelete?userNo=${user.userNo}'">삭제</button></td>
+								
+									<td style="width: 10%;" class="page-item">
+									<input type="button" class="input-group-text" value="삭제" style="width: 50%; justify-content: center; padding: 0;"
+										onclick="del(${user.userNo})"></td>
+								
 							</tr>
 						</c:forEach>
 					</table>
@@ -143,7 +148,8 @@ a:hover {
 												<svg xmlns="http://www.w3.org/2000/svg" width="16"
 													height="16" fill="currentColor" class="bi bi-search"
 													viewBox="0 0 16 16">
-  									<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
+  									<path
+														d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
 											</button>
 										</div>
 									</div>

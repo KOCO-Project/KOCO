@@ -84,5 +84,9 @@ public class UserDAO {
 	public void adminSimpleUpdate(UserVO vo) {
 		sql.update("userMapper.adminSimpleUpdate",vo);
 	}
+	
+	public UserVO adminGetUser(int userNo) {
+		return (UserVO) sql.selectOne("userMapper.adminGetUser",userNo);
+	}
 }
 

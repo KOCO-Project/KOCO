@@ -136,4 +136,10 @@
 		USER_CASE = #{userCase}
 		WHERE USER_NO = #{userNo}
 	</update>
+	
+	<select id="adminGetUser" resultMap="userResult" resultType="users">
+		SELECT USER_NO,USER_ID,USER_PW,USER_EMAIL,USER_NICKNAME,DATE_FORMAT(USER_REGDATE, '%Y-%m-%d') AS userRegdate,USER_STATUS,USER_CASE
+		FROM KOCO_USERS
+		WHERE USER_NO = #{userNo}
+	</select>
 </mapper>

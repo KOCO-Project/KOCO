@@ -87,7 +87,6 @@ font-size: 0.8rem;
 					</c:forEach>
 				</table>
 
-
 				<table style="width: 100%">
 					<tr>
 						<td>
