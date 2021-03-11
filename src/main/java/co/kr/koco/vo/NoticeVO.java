@@ -15,6 +15,9 @@ public class NoticeVO {
 	private String fileName;
 	private int userNo;
 	private String userNickname;
+	
+	private String searchCondition;
+	private String searchKeyword;
 
 	public int getNoticeNo() {
 		return noticeNo;
@@ -78,6 +81,22 @@ public class NoticeVO {
 
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
+	}
+
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 
 	@Override

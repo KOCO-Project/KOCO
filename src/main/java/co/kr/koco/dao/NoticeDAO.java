@@ -15,10 +15,38 @@ public class NoticeDAO {
 	private SqlSessionTemplate sql;
 
 	public List<NoticeVO> getNoticeList(NoticeVO noticeVo, RowBounds rowBounds) {
+		if (noticeVo.getSearchCondition() == null || noticeVo.getSearchCondition().equals("검색"))
+			noticeVo.setSearchCondition("TITLE");
+
+		if (noticeVo.getSearchKeyword() == null)
+			noticeVo.setSearchKeyword("");
+
 		return sql.selectList("noticeBoardMapper.noticeList", noticeVo, rowBounds);
 	}
-	
-	public int getNoticeCnt() {
-		return sql.selectOne("noticeBoardMapper.getNoticeCnt");
+
+	public NoticeVO getNoticeBoard(int noticeNo) {
+		return (NoticeVO) sql.selectOne("noticeBoardMapper.getNoticeBoard", noticeNo);
+	}
+
+	public void noticeRegister(NoticeVO noticeVo) {
+		sql.insert("noticeBoardMapper.noticeRegister", noticeVo);
+	}
+
+	public int getNoticeCnt(NoticeVO noticeVo) {
+		if (noticeVo.getSearchCondition() == null || noticeVo.getSearchCondition().equals("검색"))
+			noticeVo.setSearchCondition("TITLE");
+
+		if (noticeVo.getSearchKeyword() == null)
+			noticeVo.setSearchKeyword("");
+
+		return sql.selectOne("noticeBoardMapper.getNoticeCnt", noticeVo);
+	}
+
+	public void deleteNotice(int noticeNo) {
+		sql.delete("noticeBoardMapper.deleteNotice", noticeNo);
+	}
+
+	public void updateNotice(NoticeVO noticeVo) {
+		sql.update("noticeBoardMapper.updateNotice", noticeVo);
 	}
 }

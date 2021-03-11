@@ -24,11 +24,27 @@ public class NoticeService {
 		
 		return dao.getNoticeList(noticeVo, rowBounds);
 	}
+	
+	public NoticeVO getNoticeBoard(int noticeNo) {
+		return dao.getNoticeBoard(noticeNo);
+	}
 
-	public PageVO getNoticeCnt(int currentPage) {
-		int cnt = dao.getNoticeCnt();
+	public void noticeRegister(NoticeVO noticeVo) {
+		dao.noticeRegister(noticeVo);
+	}
+	
+	public PageVO getNoticeCnt(NoticeVO noticeVo, int currentPage) {
+		int cnt = dao.getNoticeCnt(noticeVo);
 		PageVO pageVO = new PageVO(cnt, currentPage, pageListcnt, pagePaginationcnt);
 
 		return pageVO;
+	}
+	
+	public void deleteNotice(int noticeNo) {
+		dao.deleteNotice(noticeNo);
+	}
+	
+	public void updateNotice(NoticeVO noticeVo) {
+		dao.updateNotice(noticeVo);
 	}
 }

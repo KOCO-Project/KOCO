@@ -12,14 +12,59 @@
 	</resultMap>
 	
 	<select id="noticeList" resultMap="noticeResult" resultType="notice">
-		SELECT N.NOTICE_NO, N.NOTICE_TITLE, U.USER_NICKNAME AS userNickname, DATE_FORMAT(N.NOTICE_REGDATE, '%Y-%m-%d') AS NOTICE_REGDATE, N.READCOUNT
+		SELECT N.NOTICE_NO, N.NOTICE_TITLE, N.NOTICE_CONTENT, U.USER_NICKNAME AS userNickname, DATE_FORMAT(N.NOTICE_REGDATE, '%Y-%m-%d') AS NOTICE_REGDATE, N.READCOUNT
 		FROM KOCO_NOTICE N
 		LEFT JOIN KOCO_USERS U
 		ON N.USER_NO = U.USER_NO
-		ORDER BY NOTICE_NO DESC
+		WHERE 1 = 1
+		<if test="searchCondition == 'TITLE'">
+			AND N.NOTICE_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'CONTENT'">
+			AND N.NOTICE_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'NICKNAME'">
+			AND U.USER_NICKNAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY N.NOTICE_NO DESC
 	</select>
 	
-	<select id="getNoticeCnt" resultType="java.lang.Integer">
-		SELECT COUNT(*)	FROM KOCO_NOTICE
+	<select id="getNoticeBoard" resultType="notice" resultMap="noticeResult">
+		SELECT N.NOTICE_NO, N.NOTICE_TITLE, N.NOTICE_CONTENT, U.USER_NICKNAME AS userNickname, DATE_FORMAT(N.NOTICE_REGDATE, '%Y-%m-%d') AS NOTICE_REGDATE, N.READCOUNT
+		FROM KOCO_NOTICE N
+		LEFT JOIN KOCO_USERS U
+		ON N.USER_NO = U.USER_NO
+		WHERE N.NOTICE_NO = #{noticeNo}
 	</select>
+	
+	<insert id="noticeRegister">
+		INSERT INTO KOCO_NOTICE(NOTICE_TITLE, NOTICE_CONTENT, USER_NO)
+		VALUES(#{noticeTitle}, #{noticeContent}, #{userNo})
+	</insert>
+	
+	<select id="getNoticeCnt" resultType="java.lang.Integer">
+		SELECT COUNT(*)	
+		FROM KOCO_NOTICE N LEFT JOIN KOCO_USERS U
+		ON N.USER_NO = U.USER_NO
+		WHERE 1 = 1
+		<if test="searchCondition == 'TITLE'">
+			AND N.NOTICE_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'CONTENT'">
+			AND N.NOTICE_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'NICKNAME'">
+			AND U.USER_NICKNAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
+	
+	<delete id="deleteNotice">
+		DELETE FROM KOCO_NOTICE
+		WHERE NOTICE_NO = #{noticeNo}
+	</delete>
+	
+	<update id="updateNotice">
+		UPDATE KOCO_NOTICE SET NOTICE_TITLE = #{noticeTitle}, NOTICE_CONTENT = #{noticeContent}
+		WHERE NOTICE_NO = #{noticeNo}
+	</update>
 </mapper>

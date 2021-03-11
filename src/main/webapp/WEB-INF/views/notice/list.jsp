@@ -20,7 +20,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<h1>
-					<a href="cultureList" class="header"
+					<a href="noticeList" class="header"
 						style="color: black; text-decoration: none; font-weight: bold;">공지사항</a>
 				</h1>
 			</div>
@@ -45,7 +45,7 @@
 					<c:forEach items="${noticeList}" var="notice">
 						<tr class="table-light">
 						<th scope="row">${notice.noticeNo}</th>
-							<td><a href="getCultureBoard?cultureNo=${notice.noticeNo}"
+							<td><a href="getNoticeBoard?noticeNo=${notice.noticeNo}"
 								style="color: black;" onMouseover="this.style.fontWeight='bold'"
 								onMouseout="this.style.fontWeight=''">${notice.noticeTitle}</a></td>
 							<td><a href="userPage?userNickname=${notice.userNickname}">${notice.userNickname}</a></td>
@@ -59,13 +59,13 @@
 					<tr>
 						<td>
 							<div class="page-item">
-								<a href="cultureRegisterForm" class="input-group-text"
+								<a href="noticeRegisterView" class="input-group-text"
 									style="width: 100px; justify-content: center;">글 쓰기</a>
 							</div>
 						</td>
 						<!-- 검색 영역 -->
 						<td style="width: 40%;">
-							<form class="navbar-form" action="cultureList" method="post">
+							<form class="navbar-form" action="noticeList" method="post">
 								<div class="input-group" style="width: 70%; float: right;">
 									<div class="form-group navbar-left" style="margin: 0;">
 										<select class="input-group-text" style="height: 100%;"
@@ -77,7 +77,7 @@
 											<option style="background-color: white;" value="NICKNAME">작성자</option>
 										</select>
 									</div>
-									<input type="text" class="form-control" placeholder="SERCH"
+									<input type="text" class="form-control" placeholder="SEARCH"
 										style="border: 1px solid #ced4da;" name="searchKeyword">
 									<div class="input-group-append">
 										<button class="input-group-text" type="submit">
@@ -104,7 +104,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="cultureList?page=${pageVO.prevPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+									href="noticeList?page=${pageVO.prevPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 									class="page-link">이전</a></li>
 							</c:otherwise>
 						</c:choose>
@@ -112,12 +112,12 @@
 							<c:choose>
 								<c:when test="${idx == pageVO.currentPage }">
 									<li class="page-item active"><a
-										href="cultureList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+										href="noticeList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 										class="page-link">${idx }</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a
-										href="cultureList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+										href="noticeList?page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 										class="page-link">${idx }</a></li>
 								</c:otherwise>
 							</c:choose>
@@ -130,7 +130,7 @@
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a
-									href="cultureList?page=${pageVO.nextPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
+									href="noticeList?page=${pageVO.nextPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 									class="page-link">다음</a></li>
 							</c:otherwise>
 						</c:choose>
