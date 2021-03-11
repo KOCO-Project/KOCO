@@ -9,7 +9,7 @@
 	background-image: url('images/reg.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
-	height: 15rem;
+	height: 10rem;
 	}
 .reg h1{
     background: #fff;
@@ -21,7 +21,7 @@
 	color: #fff;
 }
 .mypage{height: 100%; text-align: center;}
-.mypage #info{height: 100%;position: relative;width:100%;height:30rem ;}
+.mypage #info{height: 100%;position: relative;width:100%;height:33rem ;}
 .row{background-color: #fff;padding: 5rem;height: 10rem;}
 ul{list-style: none;padding-left: 0px;}
 ul li{line-height: 3rem;}
@@ -32,7 +32,6 @@ ul.infoform{list-style: none;display: flex;}
 <title>비밀번호 변경</title>
 <link rel="stylesheet" href="css/bootstrap.css?v=1">
 <link rel="stylesheet" href="css/footer.css?v=1">
-<!-- <link rel="stylesheet" href="css/qna.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -119,7 +118,7 @@ $(function(){
 </script>
 <body>
    <c:import url="/WEB-INF/views/include/top_menu.jsp" />
-   <div class="reg"><h1></h1><br><br><br><h2>Change Your Password</h2></div>
+   <div class="reg"><br><br><br><h2>Change Your Password</h2></div>
    <div class="mypage">
    		<div id="info">
    			<div class="row">
