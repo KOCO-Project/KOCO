@@ -214,6 +214,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		String authKey = Integer.toString(num);
 
 		out.println(authKey);

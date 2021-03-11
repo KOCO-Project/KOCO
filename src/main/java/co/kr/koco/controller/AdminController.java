@@ -3,9 +3,13 @@ package co.kr.koco.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,6 +35,8 @@ public class AdminController {
 	@Autowired
 	private QnaBoardService qnaBoardService;
 
+	@Autowired
+	private JavaMailSenderImpl mailSender;
 	
 	@Resource(name = "CommentService")
 	private CommentService commentService;
@@ -161,5 +167,34 @@ public class AdminController {
 	public String adminUserUpdate(@ModelAttribute("user") UserVO vo) throws Exception{
 		userService.adminUserUpdate(vo);
 		return "redirect:adminGetUser?userNo="+vo.getUserNo();
+	}
+	
+	@RequestMapping("supportMailForm")
+	public String supportMailForm() throws Exception{
+		return "admin/supportMailForm";
+	}
+	
+	@RequestMapping("supportMail")
+	public String supportMail(@RequestParam(value = "email") String email,@RequestParam(value = "example") String example,@RequestParam(value = "content") String content, HttpServletResponse response) throws Exception{
+		
+		String setFrom = email;
+		String setTo = "kocomuzi@gmail.com";
+		String mailTitle = "[KOCO " + example +"] 문의가 들어왔습니다.";
+		String mailContent = content;
+
+		try {
+			MimeMessage mail = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(mail, true, "utf-8");
+
+			helper.setFrom(setFrom);
+			helper.setTo(setTo);
+			helper.setSubject(mailTitle);
+			helper.setText(mailContent);
+			mailSender.send(mail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "main";
 	}
 }

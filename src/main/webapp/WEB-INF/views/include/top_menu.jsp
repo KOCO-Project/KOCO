@@ -26,6 +26,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Support</a>
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="noticeList">Notice</a>
+          <a class="dropdown-item" href="supportMailForm">SupportMail</a>
         </div>
       </li>
        <li class="nav-item dropdown">
