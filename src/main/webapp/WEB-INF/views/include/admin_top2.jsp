@@ -15,6 +15,9 @@
       
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="adminUserList" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USER</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;"> 
+          <a class="dropdown-item" href="adminUserList">Management</a>
+        </div>
       </li>
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
@@ -22,7 +25,6 @@
           <a class="dropdown-item" href="adminFreeList">Board</a>
           <a class="dropdown-item" href="adminQnaList">QnA</a>
           <a class="dropdown-item" href="adminEventList">Event</a>
-          <a class="dropdown-item" href="adminUserList">userTest</a>
         </div>
       </li>
       

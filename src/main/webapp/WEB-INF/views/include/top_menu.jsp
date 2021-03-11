@@ -55,7 +55,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="userPage?userNickname=${user.userNickname }">Mypage</a>
       	<c:if test="${sessionScope.user.userCase == 1}">        		      
-          		<a class="dropdown-item" href="adminMain">adminPage</a>
+          		<a class="dropdown-item" href="adminUserList">adminPage</a>
         </c:if>         	  
           <a class="dropdown-item" href="userLogout">Logout</a>
         </div>
