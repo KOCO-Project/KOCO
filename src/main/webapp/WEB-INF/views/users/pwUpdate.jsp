@@ -131,21 +131,21 @@ $(function(){
    						<div class="form-group">
    							<label for="">현재 비밀번호</label>
    							<ul class="infoform">
-   							<li style="width: 100%;"><input type="password" class="form-control" id="currentPw" name="currentPw" placeholder="현재 비밀번호" style="text-align: center;"/>
+   							<li style="width: 100%;"><input type="password" class="form-control" id="currentPw" name="currentPw" style="text-align: center;"/>
    							<span id="pwCheck" style="font-size:11px"></span></li>
 							</ul>
 						</div>
 						<div class="form-group">
 							<label for="">새 비밀번호</label>
 							<ul class="infoform">
-   							<li style="width: 100%;"><input type="password" class="form-control" id="newPw" name="newPw" placeholder="새 비밀번호" style="text-align: center;"/>
+   							<li style="width: 100%;"><input type="password" class="form-control" id="newPw" name="newPw" style="text-align: center;"/>
    							<span id="newPwCheck" style="font-size:11px"></span></li>
 							</ul>
 						</div>
 						<div class="form-group">
 							<label for="">새 비밀번호</label>
 							<ul class="infoform">
-   							<li style="width: 100%;"><input type="password" class="form-control" id="newPw2" placeholder="새 비밀번호 확인" style="text-align: center;"/>
+   							<li style="width: 100%;"><input type="password" class="form-control" id="newPw2" style="text-align: center;"/>
    							<span id="newPwCheck2" style="font-size:11px"></span></li>
 							</ul>
 						</div>

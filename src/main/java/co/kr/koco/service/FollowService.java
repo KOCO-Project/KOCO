@@ -21,6 +21,14 @@ public class FollowService {
 		dao.unfollow(followVo);
 	}
 	
+	public void updateFromFollow(FollowVO followVo) throws Exception {
+		dao.updateFromFollow(followVo);
+	}
+	
+	public void updateToFollow(FollowVO followVo) throws Exception {
+		dao.updateToFollow(followVo);
+	}
+	
 	public int followyn(FollowVO followVo) throws Exception {
 		return dao.followyn(followVo);
 	}

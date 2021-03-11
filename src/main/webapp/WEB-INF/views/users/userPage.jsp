@@ -87,6 +87,11 @@ table.infobox tbody tr td a:hover{text-decoration: none;}
 </head>
 <script>
 $(function(){
+	var nickCheck = "true";
+	//var emailCheck = "true";
+	var nickname = $('#currentNick').val();
+	//var email = $('#currentEmail').val();
+	
 	$('a[href^="#"]').on('click', function (e){
 		e.preventDefault();
 		
@@ -129,6 +134,97 @@ $(function(){
 			}
 		});
 	});
+	
+	$('#userNickname').on('blur', function userNicknameExist(){
+		var userNickname = $('#userNickname').val();
+
+		if(userNickname == ""){
+			$('#nickCheck').text('NickName을 입력해주세요.');
+			$('#nickCheck').css('color', '#55B836');
+			return false;
+		}
+		
+		$.ajax({
+			url: 'userNicknameExist',
+			type: 'post',
+			data: {
+				'userNickname': userNickname
+			},
+			dataType: 'text',
+			success: function(data){
+				console.log(data);
+				if(data == 1){
+					$('#nickCheck').text('사용 가능한 NickName 입니다.');
+					$('#nickCheck').css('color', '#55B836');
+					nickCheck = "true";
+				} else {
+					if(nickname == userNickname){
+						nickCheck = "true";
+					} else {
+						$('#nickCheck').text('이미 존재하는 NickName 입니다.');
+						$('#nickCheck').css('color', 'red');
+						nickCheck = "false";
+					}
+				}
+			},
+			error: function(data){
+				console.log('error');
+			},
+			failure: function(data){
+				console.log('fail');
+			}
+		});
+	});
+
+// 	$('#userEmail').on('blur', function userEmailExist(){
+// 		var userEmail = $('#userEmail').val();
+		
+// 		if(userEmail == ""){
+// 			$('#emailCheck').text('E-Mail을 입력해주세요.');
+// 			$('#emailCheck').css('color', '#55B836');
+// 			return false;
+// 		}
+		
+// 		$.ajax({
+// 			url: 'userEmailExist',
+// 			type: 'post',
+// 			data: {
+// 				'userEmail': userEmail
+// 			},
+// 			dataType: 'text',
+// 			success: function(data){
+// 				console.log(data);
+// 				if(data == 1){
+// 					$('#emailCheck').text('사용 가능한 E-Mail 입니다.');
+// 					$('#emailCheck').css('color', '#55B836');
+// 					emailCheck = "true";
+// 				} else {
+// 					if(email == userEmail){
+// 						emailCheck = "true";
+// 					} else {
+// 						$('#emailCheck').text('이미 존재하는 E-Mail 입니다.');
+// 						$('#emailCheck').css('color', 'red');
+// 						emailCheck = "false";
+// 					}
+// 				}
+// 			},
+// 			error: function(data){
+// 				console.log('error');
+// 			},
+// 			failure: function(data){
+// 				console.log('fail');
+// 			}
+// 		});
+// 	});
+	
+	$('#userUpdate').on('click', function userUpdate(){
+		if(nickCheck == "true"){
+			$('#form1').submit();
+			alert('수정되었습니다. 로그아웃 됩니다.');
+		} else {
+			alert('닉네임 및 이메일 중복확인을 해주세요.');
+		}
+	});
 });
 </script>
 <body>
@@ -140,7 +236,7 @@ $(function(){
 <ul class="mypage_nav">
 <li><a href="#about">프로필</a></li>
 <li><a href="#bookmark">즐겨찾기</a></li>
-<li><a href="#info">개인정보</a></li>
+<li><a href="#info">닉네임 및 비밀번호 변경</a></li>
 </ul>
 </c:when>
 <c:otherwise>
@@ -171,6 +267,9 @@ $(function(){
 		</div>
 		<div class="col-md-7" style="height: 40%;">
 			<ul>
+			<c:if test="${user.userNickname == selectUser.userNickname}">
+			<li>ID : ${user.userId }</li>
+			</c:if>
 			<li><strong>NAME : ${selectUser.userNickname }</strong></li>
 			<li>MAIL : ${selectUser.userEmail }</li>
 			<li>SINCE : ${selectUser.userRegdate }</li>
@@ -260,34 +359,34 @@ $(function(){
 <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle cc_cursor" style="height: 200px;"/>
 
 	
-<form role="form" style="margin-top: 1rem; ">
+<form role="form" style="margin-top: 1rem;" id="form1" action="userUpdate">
+<input type="hidden" id="currentNick" name="oldNick" value="${user.userNickname }">
+<input type="hidden" name="userId" value="${user.userId }">
+<!--    <div class="form-group"> -->
+<!--    	  <label for="">ID (변경불가)</label> -->
+<%--       <input type="text" class="form-control" name="userId" value="${user.userId }"  style="text-align: center;" readonly="readonly"/>       --%>
+<!--    </div> -->
    <div class="form-group">
       <label for="">Name</label>
       <ul class="infoform">
-      <li style="width: 100%;"><input type="text" class="form-control" id="" placeholder="${user.userNickname }" style="text-align: center;"/></li>
+      <li style="width: 100%;"><input type="text" class="form-control" id="userNickname" name="newNick" value="${user.userNickname }" style="text-align: center;"/>
+      </li>
   <!--     <li><button type="submit" class="btn btn-primary"style="width: 80px;">변경하기</button></li> -->
       </ul>
    </div>
+   <div style="height:0;"><span id="nickCheck" style="text-align:center; font-size:11px"></span></div>
+<!--    <div class="form-group"> -->
+<!--       <label for="">Email Address</label> -->
+<%--       <input type="email" class="form-control" id="userEmail" name="userEmail" value="${user.userEmail }" style="text-align: center;" readonly="readonly"/> --%>
+<!--    </div> -->
    <div class="form-group">
-      <label for="">ID</label>
-      <input type="email" class="form-control" id="" placeholder="${user.userId }"  style="text-align: center;" readonly="readonly"/>
+      <ul class="infoform">      
+      <li><button type="button" class="btn btn-danger"style="width: 100px;" onclick="location.href='pwUpdateView'">비밀번호변경</button></li>
+      </ul>   
    </div>
-   <div class="form-group">
-      <label for="">Email Address</label>
-      <input type="email" class="form-control" id="" placeholder="${user.userEmail }"  style="text-align: center;" readonly="readonly"/>
-   </div>
-   <div class="form-group">
-      <label for="">Password</label>
-      <ul class="infoform">
-      <li style="width: 100%;"><input type="password" class="form-control" id="" /></li>
-      <li><button type="button" class="btn btn-primary"style="width: 80px;" onclick="location.href='pwUpdateView'">변경하기</button></li>
-      </ul>
-   </div>
-   <div class="form-group">
-      <label for="">Password</label>
-      <input type="password" class="form-control" id="" />
-   </div>
-      <button type="submit" class="btn btn-primary" style="width: 100px;">Submit</button>
+   
+      <button type="button" class="btn btn-primary" id="userUpdate" style="width: 100px;">Submit</button>
+      <button type="button" class="btn btn-primary" style="width: 100px;" onclick="history.back()">Cancel</button>
 </form>
 
 

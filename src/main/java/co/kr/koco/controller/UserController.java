@@ -141,8 +141,16 @@ public class UserController {
 	}
 
 	@RequestMapping("/userUpdate")
-	public String userUpdate(UserVO userVo, HttpSession session) throws Exception {
+	public String userUpdate(@RequestParam(value = "oldNick") String oldNick, @RequestParam(value = "newNick") String newNick, @RequestParam(value = "userId") String userId, UserVO userVo, FollowVO followVo, HttpSession session) throws Exception {
+		userVo.setUserNickname(newNick);
+		userVo.setUserId(userId);		
 		service.userUpdate(userVo);
+		
+		followVo.setNewNick(newNick);
+		followVo.setOldNick(oldNick);
+		followService.updateFromFollow(followVo);
+		followService.updateToFollow(followVo);
+		
 		session.invalidate();
 
 		return "redirect:/";

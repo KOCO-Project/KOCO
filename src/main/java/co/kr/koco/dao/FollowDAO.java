@@ -21,6 +21,14 @@ public class FollowDAO {
 		sql.update("followMapper.unfollow", followVo);
 	}
 	
+	public void updateFromFollow(FollowVO followVo) throws Exception {
+		sql.update("followMapper.updateFromFollow", followVo);
+	}
+	
+	public void updateToFollow(FollowVO followVo) throws Exception {
+		sql.update("followMapper.updateToFollow", followVo);
+	}
+	
 	public int followyn(FollowVO followVO) throws Exception {
 		return sql.selectOne("followMapper.followyn", followVO);
 	}

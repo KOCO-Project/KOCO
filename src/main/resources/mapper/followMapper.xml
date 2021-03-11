@@ -30,6 +30,16 @@
 		WHERE FROM_FOLLOW = #{fromFollow} AND TO_FOLLOW = #{toFollow}
 	</update>
 	
+	<update id="updateFromFollow">
+		UPDATE KOCO_FOLLOW SET FROM_FOLLOW = #{newNick}
+		WHERE FROM_FOLLOW = #{oldNick}
+	</update>
+	
+	<update id="updateToFollow">
+		UPDATE KOCO_FOLLOW SET TO_FOLLOW = #{newNick}
+		WHERE TO_FOLLOW = #{oldNick}
+	</update>
+	
 	<!-- 팔로워 수 -->
 	<select id="followerCnt" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS follower

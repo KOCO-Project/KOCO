@@ -59,7 +59,7 @@
 	
 	<!-- 회원 정보 수정 -->
 	<update id="userUpdate">
-		UPDATE KOCO_USERS SET USER_NICKNAME = #{userNickname}, USER_EMAIL = #{userEmail}
+		UPDATE KOCO_USERS SET USER_NICKNAME = #{userNickname}
 		WHERE USER_ID = #{userId}
 	</update>
 	
