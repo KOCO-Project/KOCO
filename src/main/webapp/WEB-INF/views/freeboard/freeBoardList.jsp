@@ -6,6 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+h1.card-title{	font-weight: bold;float: left;}
+body{text-align: -webkit-center;}
+div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80%;}
+</style>
 <meta charset="UTF-8">
 <title>자유게시판</title>
 <link rel="stylesheet" href="css/bootstrap.css?v=1">
@@ -17,15 +22,16 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="seopBody">
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+	
 	<div id="qna" class="container">
 		<h1 class="card-title">${infoName }</h1>
-
+<br><br>
 		<table class="table table-hover" id='board_list'
 			style="border-bottom: 1px solid #dfd7ca;">
 			<tr>
-				<th class="text-center d-none d-md-table-cell">번호</th>
+				<th></th>
 				<th class="w-50">제목</th>
 				<th class="text-center d-none d-md-table-cell">작성자</th>
 				<th class="text-center d-none d-md-table-cell">작성일</th>
@@ -34,7 +40,8 @@
 
 			<c:forEach items="${freeBoardList }" var="freeBoard">
 				<tr>
-					<td class="text-center d-none d-md-table-cell">${freeBoard.boardNo }
+					<td></td>
+					<%-- <td class="text-center d-none d-md-table-cell">${freeBoard.boardNo } --%>
 					<td><a
 						href='getFreeBoard?infoNo=${infoNo }&boardNo=${freeBoard.boardNo}&page=${page}'>${freeBoard.boardTitle}</a></td>
 					<td class="text-center d-none d-md-table-cell"
@@ -127,11 +134,12 @@
 							class="page-link">다음</a></li>
 					</c:otherwise>
 				</c:choose>
-
 			</ul>
 		</div>
-
+		<br>
 	</div>
+	<br><br>
+	
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 	</footer>
