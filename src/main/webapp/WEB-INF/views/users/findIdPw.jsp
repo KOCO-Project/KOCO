@@ -58,8 +58,8 @@ h1.display-3{font-size: 2rem; font-weight: bold;}
 		</div>
 	</div>
 
+</body>
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 	</footer>
-</body>
 </html>
