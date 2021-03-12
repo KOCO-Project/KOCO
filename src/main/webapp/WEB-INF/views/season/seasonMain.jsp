@@ -56,7 +56,7 @@ div.jb-wrap div.jb-text h6 {
 
 	<div class="jb-wrap">
 		<div class="jb-image">
-			<img src="${root }/images/cultureMainTop.png"
+			<img src="${root }/images/top_main.2.png"
 				style="width: 100%; height: 100%;" />
 		</div>
 		<div class="jb-text">
