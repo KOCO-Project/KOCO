@@ -23,7 +23,7 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
 	<div id="qna" class="container">
-	<a href="qnalist" class="header"style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">Q&A</a>
+	<a href="qnalist?infoNo=2" class="header"style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">Q&A</a>
 	<br><br>
 	<table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca;">
 	<thead>
