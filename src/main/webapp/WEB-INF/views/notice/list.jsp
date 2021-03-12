@@ -7,6 +7,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+h1.card-title{	font-weight: bold;float: left;}
+body{text-align: -webkit-center;}
+div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80%;}
+.body1 {
+	background-image: url('images/top_main.11.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 200px;
+}
+</style>
 <meta charset="UTF-8">
 <title>공지사항</title>
 <link rel="stylesheet" href="css/bootstrap.css?v=1">
@@ -15,7 +26,7 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="body1">
 <fmt:formatDate value="${now }" pattern="yyyy-MM-dd" var="today"/>
 <c:import url="/WEB-INF/views/include/top_menu.jsp" /><div style="min-height: 860px;"><br><br><br>
 	<div class="container-fluid">
