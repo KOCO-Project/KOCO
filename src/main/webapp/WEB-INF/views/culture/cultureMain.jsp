@@ -12,7 +12,7 @@ pointer-events : none;
 }
 
 html body{
-background-color: #3e3f3a !important;
+background-color: white;
 }
 
 .jb-wrap {
@@ -33,7 +33,7 @@ background-color: #3e3f3a !important;
 }
 
 div.jb-wrap div.jb-text h6{
-font-size: 40px; 
+font-size: 30px; 
 font-weight: bold;
 }
 </style>
@@ -50,7 +50,7 @@ font-weight: bold;
 	
 	
 	<div class="jb-wrap">
-	<div class="jb-image"><img src="${root }/images/cultureMainTop.png" style="width: 100%; height: 100%;"/></div>
+	<div class="jb-image"><img src="${root }/images/top_main.1.png" style="width: 100%; height: 100%;"/></div>
 	<div class="jb-text" >
 	<h6>대한민국 문화</h6>
 	</div>
@@ -58,9 +58,11 @@ font-weight: bold;
 	
 	
 	<c:forEach items="${cultureList}" var="culture">
+		
 		<c:if test="${culture.culturePick  == 1}">
-			${culture.cultureContent}
+			<div>${culture.cultureContent}</div>
 		</c:if>
+		
 	</c:forEach>
 
 	<footer>
