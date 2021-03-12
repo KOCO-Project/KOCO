@@ -22,9 +22,24 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
+<script type="text/javascript">
+	function loginCheck(){
+		var userNo = $('#loginyn').val();
+		
+		console.log(userNo);
+		
+		if(userNo == ''){
+			alert('로그인 해주세요.');
+			location.href = 'loginView';
+			return false;
+		} else {
+			return true;
+		}
+	}
+</script>
 <body class="seopBody">
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	
+	<input type="hidden" value="${user.userNo }" id="loginyn">
 	<div id="qna" class="container">
 		<h1 class="card-title">${infoName }</h1>
 <br><br>
@@ -57,7 +72,7 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 				<td>
 					<div class="text-left">
 						<a href="${root }freeBoardRegister?infoNo=${infoNo }" class="btn btn-success"
-							style="width: 100px;">글쓰기</a>
+							style="width: 100px;" onclick="return loginCheck();">글쓰기</a>
 					</div>
 				</td>
 
