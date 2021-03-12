@@ -11,6 +11,7 @@
 		<typeAlias alias="comment" type="co.kr.koco.vo.CommentVO"></typeAlias>
 		<typeAlias alias="notice" type="co.kr.koco.vo.NoticeVO"></typeAlias>
 		<typeAlias alias="follow" type="co.kr.koco.vo.FollowVO"></typeAlias>
+		<typeAlias alias="profile" type="co.kr.koco.vo.ProfileImgVO"></typeAlias>
 	</typeAliases>
 
 	<mappers>

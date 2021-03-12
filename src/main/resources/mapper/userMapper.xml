@@ -9,7 +9,16 @@
 		<result property="userNickname" column="USER_NICKNAME" />
 		<result property="userRegdate" column="USER_REGDATE"/>
 		<result property="userStatus" column="USER_STATUS"/>
-		<result property="userCase" column="USER_CASE"/>
+		<result property="userCase" column="USER_CASE"/>				
+	</resultMap>
+	
+	<resultMap type="profile" id="profileResult">
+		<id property="imgNo" column="IMG_NO"/>
+		<result property="imgName" column="IMG_NAME"/>
+		<result property="imgSize" column="IMG_SIZE"/>
+		<result property="imgType" column="IMG_TYPE"/>
+		<result property="imgData" column="IMG_DATA"/>
+		<result property="userNo" column="USER_NO"/>
 	</resultMap>
 
 	<!-- 아이디 중복검사 -->
@@ -45,8 +54,12 @@
 
 	<!-- 로그인 -->
 	<select id="loginCheck" resultType="users">
-		SELECT USER_NO AS userNo, USER_ID AS userId, USER_PW AS userPw, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, DATE_FORMAT(USER_REGDATE, '%Y-%m-%d') AS userRegdate, USER_STATUS AS userStatus, USER_CASE AS userCase
-		FROM KOCO_USERS
+		SELECT U.USER_NO AS userNo, U.USER_ID AS userId, U.USER_PW AS userPw, U.USER_NICKNAME AS userNickname, 
+		U.USER_EMAIL AS userEmail, DATE_FORMAT(U.USER_REGDATE, '%Y-%m-%d') AS userRegdate, 
+		U.USER_STATUS AS userStatus, U.USER_CASE AS userCase,
+		I.IMG_NO AS imgNo, I.IMG_NAME AS imgName, I.IMG_SIZE AS imgSize, I.IMG_TYPE AS imgType
+		FROM KOCO_USERS U LEFT JOIN KOCO_PROFILE_IMG I
+		ON U.USER_NO = I.USER_NO
 		WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
 	</select>
 	
@@ -71,10 +84,20 @@
 	
 	<!-- 유저페이지 -->
 	<select id="userPage" resultType="users" parameterType="java.lang.String">
-		SELECT USER_NO AS userNo, USER_ID AS userId, USER_PW AS userPw, USER_NICKNAME AS userNickname, USER_EMAIL AS userEmail, DATE_FORMAT(USER_REGDATE, '%Y-%m-%d') AS userRegdate, USER_STATUS AS userStatus, USER_CASE AS userCase
-		FROM KOCO_USERS
+		SELECT U.USER_NO AS userNo, U.USER_ID AS userId, U.USER_PW AS userPw, U.USER_NICKNAME AS userNickname, 
+		U.USER_EMAIL AS userEmail, DATE_FORMAT(U.USER_REGDATE, '%Y-%m-%d') AS userRegdate, 
+		U.USER_STATUS AS userStatus, U.USER_CASE AS userCase,
+		I.IMG_NO AS imgNo, I.IMG_NAME AS imgName, I.IMG_SIZE AS imgSize, I.IMG_TYPE AS imgType
+		FROM KOCO_USERS U LEFT JOIN KOCO_PROFILE_IMG I
+		ON U.USER_NO = I.USER_NO
 		WHERE USER_NICKNAME = #{userNickname}
-	</select>	
+	</select>
+	
+	<!-- 프로필 사진 등록 -->
+	<insert id="imgRegister">
+		INSERT INTO KOCO_PROFILE_IMG(IMG_NAME, IMG_SIZE, IMG_TYPE, IMG_DATA, USER_NO)
+		VALUES(#{imgName}, #{imgSize}, #{imgType}, #{imgData}, #{userNo})
+	</insert>	
 	
 	<!-- 관리자페이지 유저리스트 -->
 	<select id="userList" resultType="users">

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import co.kr.koco.dao.UserDAO;
 import co.kr.koco.vo.PageVO;
+import co.kr.koco.vo.ProfileImgVO;
 import co.kr.koco.vo.UserVO;
 
 @Service
@@ -86,7 +87,13 @@ public class UserService {
 
 	public List<UserVO> userList(UserVO userVo) throws Exception {
 		return dao.userList(userVo);
-	}				
+	}
+	
+	public void imgRegister(ProfileImgVO profileVo) throws Exception {
+		dao.imgRegister(profileVo);
+	}
+	
+	//-------------------------------관리자--------------------------------------
 	
 	public List<UserVO> getAdminUserList(UserVO vo,int page) throws Exception{
 		

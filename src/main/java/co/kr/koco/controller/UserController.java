@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.kr.koco.service.FollowService;
 import co.kr.koco.service.UserService;
 import co.kr.koco.vo.FollowVO;
+import co.kr.koco.vo.ProfileImgVO;
 import co.kr.koco.vo.UserVO;
 
 @Controller
@@ -229,6 +231,20 @@ public class UserController {
 		mav.addObject("findUser", service.findIdPw(userEmail));
 
 		return mav;
+	}
+	
+	@RequestMapping("/imgRegister")
+	public String imgRegister(ProfileImgVO profileVo, HttpSession session) throws Exception {
+		MultipartFile file = profileVo.getFile();
+		
+		profileVo.setImgName(file.getOriginalFilename());
+		profileVo.setImgSize(file.getSize());
+		profileVo.setImgType(file.getContentType());
+		profileVo.setImgData(file.getBytes());
+		
+		service.imgRegister(profileVo);
+		
+		return "main";
 	}
 
 }

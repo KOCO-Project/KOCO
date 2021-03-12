@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.kr.koco.vo.ProfileImgVO;
 import co.kr.koco.vo.UserVO;
 
 @Repository
@@ -52,7 +53,13 @@ public class UserDAO {
 
 	public List<UserVO> userList(UserVO userVo) throws Exception {
 		return sql.selectList("userMapper.userList", userVo);
-	}		
+	}
+	
+	public void imgRegister(ProfileImgVO profileVo) throws Exception {
+		sql.insert("userMapper.imgRegister", profileVo);
+	}
+	
+	//-------------------------------------관리자-----------------------------------------
 	
 	public List<UserVO> getAdminUserList(UserVO vo,RowBounds rowBounds) throws Exception{
 		if (vo.getSearchCondition() == null || vo.getSearchCondition().equals("검색"))

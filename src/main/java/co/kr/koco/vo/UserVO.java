@@ -5,6 +5,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UserVO {
 	private int userNo;
 	
@@ -38,6 +40,12 @@ public class UserVO {
 	private String searchCondition;
 	private String searchKeyword;
 	
+	private MultipartFile file;
+	
+	private int imgNo;
+	private String imgName;
+	private long imgSize;
+	private String imgType;	
 
 	public UserVO() {
 		this.userIdExist = false;
@@ -167,6 +175,46 @@ public class UserVO {
 	
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	public int getImgNo() {
+		return imgNo;
+	}
+
+	public void setImgNo(int imgNo) {
+		this.imgNo = imgNo;
+	}
+
+	public String getImgName() {
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+
+	public long getImgSize() {
+		return imgSize;
+	}
+
+	public void setImgSize(long imgSize) {
+		this.imgSize = imgSize;
+	}
+
+	public String getImgType() {
+		return imgType;
+	}
+
+	public void setImgType(String imgType) {
+		this.imgType = imgType;
 	}
 
 
