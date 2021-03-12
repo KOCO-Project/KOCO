@@ -185,17 +185,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardList";
 	}
 	
-	@RequestMapping("/not_login")
-	public String regFail() {
-		
-		return "users/not_login";
-	}
-	
-	@RequestMapping("/not_writer")
-	public String fail() {
-		
-		return "qna/not_writer";
-	}
+}
 	/*
 	 * //CKEditor4 이미지 업로드
 	 * 
@@ -235,4 +225,4 @@ public class FreeBoardController {
 	 * null) {out.close();} if(printWriter != null) {printWriter.close();} }
 	 * catch(IOException e) { e.printStackTrace();} } return; }
 	 */
-}
+

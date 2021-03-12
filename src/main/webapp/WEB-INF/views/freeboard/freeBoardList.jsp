@@ -41,7 +41,7 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<input type="hidden" value="${user.userNo }" id="loginyn">
 	<div id="qna" class="container">
-		<h1 class="card-title">${infoName }</h1>
+		<a href="freeBoardList?infoNo=1" class="header"style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">자유게시판</a>
 <br><br>
 		<table class="table table-hover" id='board_list'
 			style="border-bottom: 1px solid #dfd7ca;">
@@ -60,7 +60,8 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 					<td><a
 						href='getFreeBoard?infoNo=${infoNo }&boardNo=${freeBoard.boardNo}&page=${page}'>${freeBoard.boardTitle}</a></td>
 					<td class="text-center d-none d-md-table-cell"
-						style="color: #325d88; font-weight: 500;">${freeBoard.writer }</td>
+						style="color: #325d88; font-weight: 500;"><a href="userPage?userNickname=${freeBoard.writer}"onMouseover="this.style.fontWeight='bold'"
+								onMouseout="this.style.fontWeight=''">${freeBoard.writer }</a></td>
 					<td class="text-center d-none d-md-table-cell">${freeBoard.boardRegdate }</td>
 					<td class="text-center d-none d-md-table-cell">${freeBoard.boardReadcount }</td>
 				</tr>
@@ -71,13 +72,13 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 			<tr>
 				<td>
 					<div class="text-left">
-						<a href="${root }freeBoardRegister?infoNo=${infoNo }" class="btn btn-success"
-							style="width: 100px;" onclick="return loginCheck();">글쓰기</a>
+						<a href="${root }freeBoardRegister?infoNo=${infoNo }" class="btn btn-primary btn-lg"
+							style="width: 100px; color: #fff;" onclick="return loginCheck();">글쓰기</a>
 					</div>
 				</td>
 
 				<!-- 검색 시작 -->
-				<td style="width: 50%;">
+				<td style="width: 30%;">
 					<form action="freeBoardList" class="navbar-form">
 						<div class="input-group">
 							<div class="form-group navbar-left" style="margin: 0;">
