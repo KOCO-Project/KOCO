@@ -17,7 +17,7 @@
 </head>
 <body>
 <fmt:formatDate value="${now }" pattern="yyyy-MM-dd" var="today"/>
-<c:import url="/WEB-INF/views/include/top_menu.jsp" /><div style="min-height: 820px;"><br><br><br>
+<c:import url="/WEB-INF/views/include/top_menu.jsp" /><div style="min-height: 860px;"><br><br><br>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2"></div>
