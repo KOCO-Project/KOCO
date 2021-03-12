@@ -62,6 +62,7 @@
 								<select name="searchCondition" class="custom-select">
 									<option value="TITLE">제목</option>
 									<option value="CONTENT">내용</option>
+									<option value="NICKNAME">작성자</option>
 								</select>
 							</div>
 							<input name="searchKeyword" type="text" class="form-control"
