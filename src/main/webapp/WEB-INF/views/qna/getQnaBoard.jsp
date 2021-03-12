@@ -67,7 +67,8 @@ div.card-body {
 							조회수&nbsp;${readContentBean.boardReadcount }</div>
 					</div>
 				</div>
-				<div style="padding: 0.75rem;">${readContentBean.writer }&nbsp;&nbsp;${readContentBean.boardRegdate }
+				<div style="padding: 0.75rem;"><a href="userPage?userNickname=${readContentBean.writer}"onMouseover="this.style.fontWeight='bold'"
+								onMouseout="this.style.fontWeight=''" style="color: black; text-decoration: none;">${readContentBean.writer }</a>&nbsp;&nbsp;${readContentBean.boardRegdate }
 				</div>
 
 				<div class="card-body" style="padding: 0.75rem;" row="10">

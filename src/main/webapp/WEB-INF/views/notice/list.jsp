@@ -50,13 +50,13 @@
 						<th scope="row">${notice.noticeNo}</th>
 						<c:if test="${today == notice.noticeRegdate }">
 							<td><a href="getNoticeBoard?noticeNo=${notice.noticeNo}"
-								style="color: red;" onMouseover="this.style.fontWeight='bold'"
+								style="color: red; text-decoration: none;" onMouseover="this.style.fontWeight='bold'"
 								onMouseout="this.style.fontWeight=''">${notice.noticeTitle}</a></td>
 						</c:if>
 						<c:if test="${today != notice.noticeRegdate }">
-							<td><a href="getNoticeBoard?noticeNo=${notice.noticeNo}"
-								style="color: black;" onMouseover="this.style.fontWeight='bold'"
-								onMouseout="this.style.fontWeight=''">${notice.noticeTitle}</a></td>
+							<td ><a href="getNoticeBoard?noticeNo=${notice.noticeNo}"
+								style="color: black; text-decoration: none;" onMouseover="this.style.fontWeight='bold'"
+								onMouseout="this.style.fontWeight=''" >${notice.noticeTitle}</a></td>
 						</c:if>
 							<td><a href="userPage?userNickname=${notice.userNickname}">${notice.userNickname}</a></td>
 							<td>${notice.noticeRegdate}</td>

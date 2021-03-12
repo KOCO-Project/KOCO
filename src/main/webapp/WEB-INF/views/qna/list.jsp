@@ -50,16 +50,19 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 	         </c:forEach>
 	         
 	         <span style="font-size:12px;">[답변]</span>
-          		 <a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a>
+          		 <a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'onMouseover="this.style.fontWeight='bold'"
+								onMouseout="this.style.fontWeight=''">${obj.boardTitle }</a>
 	     	</c:when>
 	     
 	      <c:otherwise>
-	 			<a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a>
+	 			<a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'onMouseover="this.style.fontWeight='bold'"
+								onMouseout="this.style.fontWeight=''">${obj.boardTitle }</a>
 	      </c:otherwise>
 	   </c:choose>
 		</td>
 
-		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;">${obj.writer }</td>
+		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;"><a href="userPage?userNickname=${obj.writer}"onMouseover="this.style.fontWeight='bold'"
+								onMouseout="this.style.fontWeight=''">${obj.writer }</a></td>
 		<td class="text-center d-none d-md-table-cell">${obj.boardRegdate }</td>
 		<td class="text-center d-none d-md-table-cell">${obj.boardReadcount }</td>
 	</tr>
