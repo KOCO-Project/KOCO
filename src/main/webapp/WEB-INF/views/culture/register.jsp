@@ -84,7 +84,8 @@ $(function(){
 							<input type="hidden" name="userNo" value="${sessionScope.user.userNo}">
 							<div class="form-group">
 
-							<label>제목</label> <input type="text" class="form-control" name="cultureTitle" placeholder="제목을 입력하세요" required="required" mexlength="50" />
+							<label>제목</label> 
+							<input type="text" class="form-control" name="cultureTitle" placeholder="제목을 입력하세요" required="required" mexlength="50" />
 							</div>
 
 							<div class="form-group">

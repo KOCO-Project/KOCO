@@ -6,14 +6,8 @@
 <html>
 <head>
 <style type="text/css">
-h1.card-title{	
-font-weight: bold;
-float: left;
-}
-
-body{
-text-align: -webkit-center;
-}
+h1.card-title{	font-weight: bold;float: left;}
+body{text-align: -webkit-center;}
 div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80%;}
 </style>
 <meta charset="UTF-8">
@@ -25,26 +19,28 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="seopBody">
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
-<div id="qna" class="container">
 
-
+	<div id="qna" class="container">
 	<a href="qnalist" class="header"style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">Q&A</a>
+	<br><br>
 	<table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca;">
 	<thead>
+	
 	<tr>
-		<th class="text-center d-none d-md-table-cell">글번호</th>
+		<th></th>
 		<th class="w-50">제목</th>
 		<th class="text-center d-none d-md-table-cell">작성자</th>
 		<th class="text-center d-none d-md-table-cell">작성날짜</th>
 		<th class="text-center d-none d-md-table-cell">조회수</th>
 	</tr>
+	
 	</thead>
 	<tbody>
 	<c:forEach var='obj' items="${qnaList }">
 	<tr>
-		<td class="text-center d-none d-md-table-cell">${obj.boardNo }</td>
+		<td></td>
 		<td>
 
 	  	 <c:choose>
