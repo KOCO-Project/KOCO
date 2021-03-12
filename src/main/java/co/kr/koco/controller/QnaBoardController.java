@@ -30,27 +30,29 @@ import co.kr.koco.vo.UserVO;
 
 @Controller
 public class QnaBoardController {
-	
+
 	@Autowired
 	private QnaBoardService qnaBoardService;
-	
+
 	@Resource(name = "CommentService")
 	private CommentService commentService;
-	
-	@Resource(name="userVO")
+
+	@Resource(name = "userVO")
 	@Lazy
 	private UserVO userVO;
-	
+
 	@RequestMapping("/qnalist")
 	public String qnaList(@RequestParam("infoNo") int infoNo,
-						  @RequestParam(value = "page", defaultValue = "1") int page,@ModelAttribute BoardVO vo,@RequestParam(value="searchKeyword" ,required=false)String searchKeyword,@RequestParam(value="searchCondition" ,required=false)String searchCondition, Model model) {
-		
+			@RequestParam(value = "page", defaultValue = "1") int page, @ModelAttribute BoardVO vo,
+			@RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+			@RequestParam(value = "searchCondition", required = false) String searchCondition, Model model) {
+
 		model.addAttribute("infoNo", infoNo);
 		String infoName = qnaBoardService.getBoardInfoName(infoNo);
 		model.addAttribute("infoName", infoName);
-		
+
 		List<BoardVO> qnaList = qnaBoardService.getQnaBoardList(vo, page);
-		model.addAttribute("qnaList",qnaList);
+		model.addAttribute("qnaList", qnaList);
 
 		PageVO pageVO = qnaBoardService.getQnaBoardCnt(vo, page);
 		model.addAttribute("pageVO", pageVO);
@@ -58,39 +60,40 @@ public class QnaBoardController {
 
 		model.addAttribute("searchKeyword", searchKeyword);
 		model.addAttribute("searchCondition", searchCondition);
-		
+
 		return "qna/list";
 	}
-	
+
 	@GetMapping("/getQna")
-	public String getQnaBoard(@ModelAttribute CommentVO vo,@RequestParam("infoNo") int infoNo,
-					   @RequestParam("boardNo") int boardNo,
-					   @RequestParam("page") int page,
-					   Model model) {
+	public String getQnaBoard(@ModelAttribute CommentVO vo, @RequestParam("infoNo") int infoNo,
+			@RequestParam("boardNo") int boardNo, Model model) {
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);
-		
+
 		BoardVO readContent = qnaBoardService.getQnaBoard(boardNo);
 		model.addAttribute("readContentBean", readContent);
-		
+
 		model.addAttribute("userVO", userVO);
-		model.addAttribute("page", page);
-		
+		//model.addAttribute("page", page);
+
 		List<CommentVO> commentList = commentService.commentList(vo);
 		model.addAttribute("commentList", commentList);
+		model.addAttribute("groupNo", (Integer)commentService.commentGetGroupNo());
 		return "qna/getQnaBoard";
 	}
-	
+
 	@GetMapping("/qnaRegister")
-	public String qnaRegister(@ModelAttribute("regQnaBoardVO")BoardVO regQnaBoardVO,
-						   @RequestParam("infoNo")int infoNo) {
+	public String qnaRegister(@ModelAttribute("regQnaBoardVO") BoardVO regQnaBoardVO,
+			@RequestParam("infoNo") int infoNo) {
 		regQnaBoardVO.setBoardCategory(infoNo);
+		
 		return "qna/register";
 	}
-	
+
 	@PostMapping("/regQna_pro")
-	public String qnaRegisterPro(@Valid @ModelAttribute("regQnaBoardVO") BoardVO regQnaBoardVO, BindingResult result,@RequestParam("userNo") int userNo) {
-		if(result.hasErrors()) {
+	public String qnaRegisterPro(@Valid @ModelAttribute("regQnaBoardVO") BoardVO regQnaBoardVO, BindingResult result,
+			@RequestParam("userNo") int userNo) {
+		if (result.hasErrors()) {
 			System.out.println("글쓰기 에러");
 			return "qna/register";
 		}
@@ -98,20 +101,19 @@ public class QnaBoardController {
 		qnaBoardService.getQnaBoardRegister(regQnaBoardVO);
 		return "qna/qnaRegister_pro";
 	}
-	
+
 	@GetMapping("/ansRegister")
-	public String ansRegister(@ModelAttribute("ansQnaBoardVO")BoardVO ansQnaBoardVO,
-			@RequestParam("infoNo") int infoNo,
-			@RequestParam("boardNo") int boardNo) {
+	public String ansRegister(@ModelAttribute("ansQnaBoardVO") BoardVO ansQnaBoardVO,
+			@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo) {
 		System.out.println("ansRegister");
 		ansQnaBoardVO.setBoardCategory(infoNo);
 		ansQnaBoardVO.setParent(boardNo);
 
 		return "qna/answer_register";
 	}
-	
+
 	@PostMapping("/ansRegister_pro")
-	public String ansRegisterPro(@ModelAttribute("ansQnaBoardVO") BoardVO ansQnaBoardVO, 
+	public String ansRegisterPro(@ModelAttribute("ansQnaBoardVO") BoardVO ansQnaBoardVO,
 			@RequestParam("userNo") int userNo, HttpServletRequest request, Model model) {
 		System.out.println("ansRegister Pro");
 		ansQnaBoardVO.setUserNo(userNo);
@@ -121,18 +123,15 @@ public class QnaBoardController {
 		qnaBoardService.getQnaBoardRegister(ansQnaBoardVO);
 		return "qna/answer_register_pro";
 	}
-	
+
 	@GetMapping("/qnaupdate")
-	public String qnaUpdate(@RequestParam("infoNo") int infoNo,
-						 @RequestParam("boardNo") int boardNo,
-						 @ModelAttribute("qnaUpdateBoardVO") BoardVO qnaUpdateBoardVO,
-						 @RequestParam("page") int page,
-						 Model model) {
-		
+	public String qnaUpdate(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo,
+			@ModelAttribute("qnaUpdateBoardVO") BoardVO qnaUpdateBoardVO, @RequestParam("page") int page, Model model) {
+
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);
 		model.addAttribute("page", page);
-		
+
 		BoardVO tempBoardVO = qnaBoardService.getQnaBoard(boardNo);
 		qnaUpdateBoardVO.setUserNo(tempBoardVO.getUserNo());
 		qnaUpdateBoardVO.setBoardRegdate(tempBoardVO.getBoardRegdate());
@@ -142,41 +141,86 @@ public class QnaBoardController {
 		qnaUpdateBoardVO.setWriter(tempBoardVO.getWriter());
 		qnaUpdateBoardVO.setBoardNo(boardNo);
 		qnaUpdateBoardVO.setBoardCategory(infoNo);
-		
+
 		return "qna/update";
 	}
-	
+
 	@PostMapping("/qnaUpdate_pro")
 	public String qnaUpdatePro(@Valid @ModelAttribute("qnaUpdateBoardVO") BoardVO qnaUpdateBoardVO,
-							BindingResult result,
-							@RequestParam("page") int page,
-							Model model) {
+			BindingResult result, @RequestParam("page") int page, Model model) {
 		model.addAttribute("page", page);
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			System.out.println("수정 에러");
 			return "qna/update";
 		}
 		qnaBoardService.updateQnaBoard(qnaUpdateBoardVO);
 		return "qna/qnaUpdate_pro";
 	}
-	
+
 	@GetMapping("/qnadelete")
-	public String qnaDelete(@RequestParam("infoNo") int infoNo,
-					 	 @RequestParam("boardNo") int boardNo,
-					 	 Model model) {
+	public String qnaDelete(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, Model model) {
 		qnaBoardService.deleteQnaBoard(boardNo);
 		model.addAttribute("infoNo", infoNo);
 		return "qna/delete";
 	}
-	
+
 	@GetMapping("/not_login")
 	public String regFail() {
 		return "users/not_login";
 	}
-	
+
 	@GetMapping("/not_writer")
 	public String fail() {
 		return "qna/not_writer";
 	}
+
+	@RequestMapping("/QnaCommentRegister")
+	public String commentRegister(@ModelAttribute CommentVO vo, @RequestParam("boardNo") int boardNo,
+			 Model model) {
+		commentService.commentRegister(vo);
+		model.addAttribute("infoNo", 2);
+		model.addAttribute("boardNo", boardNo);
+		//model.addAttribute("page", 1);
+
+		return "redirect:getQna";
+	}
+	@RequestMapping("/qnaCommentDelete")
+	public String commentDelete(int groupNo,Model model,int boardNo) {
+		commentService.commentDelete(groupNo);
+		model.addAttribute("infoNo", 2);
+		model.addAttribute("boardNo", boardNo);
+		return "redirect:getQna";
+	}
+	
+	@RequestMapping("/qnaComcommentDelete")
+	public String comcommentDelete(Model model,int boardNo,int commentNo) {
+		commentService.comcommentDelete(commentNo);
+		model.addAttribute("infoNo", 2);
+		model.addAttribute("boardNo", boardNo);
+		return "redirect:getQna";
+	}
+	
+	@RequestMapping("/qnaCommentUpdateForm")
+	public String commentUpdateForm(int commentNo,Model model) {
+		model.addAttribute("comment", commentService.commentGet(commentNo));
+		return "qna/commentUpdateForm";
+	}
+	@RequestMapping("qnaCommentUpdate")
+	public String commentUpdate(@ModelAttribute("comment") CommentVO vo,Model model,int boardNo) {
+		commentService.commentUpdate(vo);	
+		model.addAttribute("infoNo", 2);
+		model.addAttribute("boardNo", boardNo);
+		return "redirect:getQna";
+	}
+	@RequestMapping("/qnaComcommentRegister")
+	public String comcommentRegister(@ModelAttribute CommentVO vo, @RequestParam("boardNo") int boardNo,
+			 Model model) {
+		commentService.comcommentRegister(vo);
+		model.addAttribute("infoNo", 2);
+		model.addAttribute("boardNo", boardNo);
+		//model.addAttribute("page", 1);
+		return "redirect:getQna";
+	}
 	
 }
+

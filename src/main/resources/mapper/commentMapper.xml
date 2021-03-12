@@ -12,17 +12,29 @@
 		<result property="replyNo" column="REPLY_NO" />
 		<result property="groupNo" column="GROUP_NO" />
 		<result property="userNo" column="USER_NO" />
+		<result property="userNickname" column="USER_NICKNAME" />
 	</resultMap>
 
 
 	<select id="commentList" resultMap="commentResult"
 		resultType="comment">
 		<![CDATA[
-		SELECT *
-		FROM KOCO_COMMENT
+		SELECT A.COMMENT_NO AS commentNo , A.BOARD_CATEGORY AS boardCategory , A.BOARD_NO AS boardNo ,
+		A.DEPTH AS depth , A.COMMENT_CONTENT AS commentContent , A.COMMENT_REGDATE AS commentRegdate ,
+		A.REPLY_NO AS replyNo , A.GROUP_NO AS groupNo , A.USER_NO AS userNo , B.USER_NICKNAME AS userNickname
+		FROM KOCO_COMMENT AS A LEFT JOIN KOCO_USERS AS B ON A.USER_NO = B.USER_NO 
 		ORDER BY GROUP_NO DESC
 		]]>
 	</select>
+
+<!-- 	<select id="commentList" resultMap="commentResult" -->
+<!-- 		resultType="comment"> -->
+<!-- 		<![CDATA[ -->
+<!-- 		SELECT * -->
+<!-- 		FROM KOCO_COMMENT -->
+<!-- 		ORDER BY GROUP_NO DESC -->
+<!-- 		]]> -->
+<!-- 	</select> -->
 
 	<select id="commentGet" resultType="comment"
 		resultMap="commentResult">

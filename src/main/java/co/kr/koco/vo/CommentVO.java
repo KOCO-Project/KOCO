@@ -16,11 +16,18 @@ public class CommentVO {
 	private int replyNo;
 	private int groupNo;
 	private int userNo;
+	private String userNickname;
 	public int getCommentNo() {
 		return commentNo;
 	}
 	public void setCommentNo(int commentNo) {
 		this.commentNo = commentNo;
+	}
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
 	}
 	public int getBoardCategory() {
 		return boardCategory;

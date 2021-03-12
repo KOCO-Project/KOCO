@@ -23,8 +23,9 @@
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<form action="qnaCommentUpdate" method="get">
 		<input type="text" name="commentContent" required="required"
-			placeholder="no=${comment.commentNo } content= ${comment.commentContent }">
+			placeholder="no=${comment.commentNo } content= ${comment.commentContent } ${comment.boardNo}">
 		<input type="hidden" name="commentNo" value="${comment.commentNo }">
+		<input type="hidden" name="boardNo" value="${comment.boardNo }">
 		<input type="submit" value="수정 완료">
 	</form>
 </body>
