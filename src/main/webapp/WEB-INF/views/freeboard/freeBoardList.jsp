@@ -95,7 +95,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a
-							href="freeBoardList?infoNo=${infoNo }&page=${pageVO.prevPage }"
+							href="freeBoardList?infoNo=${infoNo }&page=${pageVO.prevPage }&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 							class="page-link">이전</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -104,12 +104,12 @@
 					<c:choose>
 						<c:when test="${idx == pageVO.currentPage }">
 							<li class="page-item active"><a
-								href="freeBoardList?infoNo=${infoNo }&page=${idx }"
+								href="freeBoardList?infoNo=${infoNo }&page=${idx }&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 								class="page-link">${idx }</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a
-								href="freeBoardList?infoNo=${infoNo }&page=${idx}"
+								href="freeBoardList?infoNo=${infoNo }&page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 								class="page-link">${idx }</a></li>
 						</c:otherwise>
 					</c:choose>
@@ -122,7 +122,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a
-							href="freeBoardList?infoNo=${infoNo }&page=${pageVO.nextPage}"
+							href="freeBoardList?infoNo=${infoNo }&page=${pageVO.nextPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"
 							class="page-link">다음</a></li>
 					</c:otherwise>
 				</c:choose>
