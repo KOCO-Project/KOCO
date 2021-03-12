@@ -112,7 +112,7 @@ legend {font-weight: bold;font-size: 2rem;}
 			<img src="${root }/images/mailBackImage.png" />
 		</div>
 		<div class="jb-text">
-			<legend>가입시 등록한 Email을 입력해주세요</legend>
+			<legend>KOCO ID & PW 찾기</legend>
 		</div>
 	</div>
 
