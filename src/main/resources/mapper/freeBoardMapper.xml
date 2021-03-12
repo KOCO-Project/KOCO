@@ -44,6 +44,9 @@
 		<if test="searchCondition == 'CONTENT'">
 			AND a1.BOARD_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>
+		<if test="searchCondition == 'NICKNAME'">
+			AND USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
 		ORDER BY a1.BOARD_NO DESC
 		
 	</select>
@@ -104,6 +107,9 @@
 		</if>
 		<if test="searchCondition == 'CONTENT'">
 			AND a1.BOARD_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'NICKNAME'">
+			AND USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>
 	
 	</select>
