@@ -126,7 +126,7 @@ legend {font-weight: bold;font-size: 2rem;}
 								<input type="email" class="form-control" id="userEmail"
 									aria-describedby="emailHelp" placeholder="E-Mail"
 									name="userEmail"> <input type="button" value="인증번호 발송"
-									id="findUserEmail" class="btn btn-primary"">
+									id="findUserEmail" class="btn btn-primary">
 							</div>
 							<small id="emailHelp" class="form-text text-muted">We'll
 								never share your email with anyone else.</small>
