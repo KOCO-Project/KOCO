@@ -47,28 +47,18 @@ div.card-body {
 
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<input type="hidden" name="boardNo" value="${readContentBean.boardNo }">
-	<input type="hidden" id="userNo" name="userNo"
-		value="${sessionScope.user.userNo }" />
-	<input type="hidden" id="boardTitle" name="boardTitle"
-		class="form-control" value="${readContentBean.boardTitle }"
-		disabled="disabled" />
-	<input type="hidden" id="writer" name="writer" class="form-control"
-		value="${readContentBean.writer }" disabled="disabled" />
-	<input type="hidden" id="boardRegdate" name="boardRegdate"
-		class="form-control" value="${readContentBean.boardRegdate }"
-		disabled="disabled" />
-	<input type="hidden" id="boardReadcount" name="boardReadcount"
-		class="form-control" value="${readContentBean.boardReadcount }"
-		disabled="disabled" />
+	<input type="hidden" id="userNo" name="userNo" value="${sessionScope.user.userNo }" />
+	<input type="hidden" id="boardTitle" name="boardTitle" class="form-control" value="${readContentBean.boardTitle }" disabled="disabled" />
+	<input type="hidden" id="writer" name="writer" class="form-control" value="${readContentBean.writer }" disabled="disabled" />
+	<input type="hidden" id="boardRegdate" name="boardRegdate" class="form-control" value="${readContentBean.boardRegdate }" disabled="disabled" />
+	<input type="hidden" id="boardReadcount" name="boardReadcount" class="form-control" value="${readContentBean.boardReadcount }" disabled="disabled" />
 
 
 	<div id="qna" class="container">
-		<a href="qnalist" class="header"
-			style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">Q&A</a>
+		<a href="qnalist?infoNo=2" class="header"style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">Q&A</a>
 		<div>
 			<div class="card-body">
-				<div class="card-header"
-					style="display: flex; padding: 0.75rem 0.75rem;">
+				<div class="card-header" style="display: flex; padding: 0.75rem 0.75rem;">
 
 					<div style="font-size: 20px; font-weight: bold; width: 100%;">
 						${readContentBean.boardTitle }
