@@ -5,6 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+h1.card-title{	
+font-weight: bold;
+float: left;
+}
+
+body{
+text-align: -webkit-center;
+}
+div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80%;}
+</style>
 <meta charset="UTF-8">
 <title>QnA</title>
 <!-- Bootstrap CDN -->
@@ -17,7 +28,9 @@
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 <div id="qna" class="container">
-<h1 class="card-title">QnA</h1><br>
+
+
+	<a href="qnalist" class="header"style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">Q&A</a>
 	<table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca;">
 	<thead>
 	<tr>
@@ -34,20 +47,21 @@
 		<td class="text-center d-none d-md-table-cell">${obj.boardNo }</td>
 		<td>
 
-	   <c:choose>
-	      <c:when test='${obj.depth > 0 }'>  
-	      
+	  	 <c:choose>
+	   	   <c:when test='${obj.depth > 0 }'>     
 	         <c:forEach begin="0" end="${obj.depth }" step="2">
 	              <span style="padding-left:20px"></span>    
 	         </c:forEach>
 	         
 	         <span style="font-size:12px;">[답변]</span>
-          		 <a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a></td>
-	     </c:when>
+          		 <a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a>
+	     	</c:when>
+	     
 	      <c:otherwise>
-	 			<a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a></td>
+	 			<a href='${root }getQna?infoNo=${infoNo }&boardNo=${obj.boardNo }&page=${page}'>${obj.boardTitle }</a>
 	      </c:otherwise>
 	   </c:choose>
+		</td>
 
 		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;">${obj.writer }</td>
 		<td class="text-center d-none d-md-table-cell">${obj.boardRegdate }</td>
@@ -66,16 +80,16 @@
 	<a href="${root }qnaRegister?infoNo=${infoNo }" class="btn btn-primary btn-lg" style="width: 100px; color: #fff;">Write</a>		
 </div></td>
 <!-- 검색 영역 -->
-<td style=" width: 50%;">
-<form class="navbar-form">
+<td style=" width: 30%;">
+<form class="navbar-form" action="qnalist" method="post">
+<input type="hidden" name="infoNo" value="${infoNo }">
 	<div class="input-group"><div class="form-group navbar-left" style="margin: 0;">
-		    <select class="custom-select">
-		      <option selected="">🔎</option>
-		      <option value="1">❤TITLE</option>
-		      <option value="2">❤CONTENT</option>
-		      <option value="3">❤AUTHOR</option>
+		    <select class="custom-select" name="searchCondition">
+		      <option value="TITLE">TITLE</option>
+		      <option value="CONTENT">CONTENT</option>
+		      <option value="NICKNAME">AUTHOR</option>
 		    </select></div>
-		  <input type="text" class="form-control" placeholder="SERCH" style="border: 1px solid #ced4da;">
+		  <input type="text" class="form-control" placeholder="SEARCH" style="border: 1px solid #ced4da;" name="searchKeyword">
 		  <div class="input-group-append" style="height: fit-content;">
 		  <button class="btn btn btn-primary" type="submit">
 		 	 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -84,7 +98,7 @@
 	</div></div>
 </form>	
 </td></tr>
-</table><br><br><br><br>
+</table><br><br>
 
 
 
@@ -98,7 +112,7 @@
 		</c:when>
 		<c:otherwise>
 			<li class="page-item">
-			<a href="${root }qnalist?infoNo=${infoNo }&page=${pageVO.prevPage}" class="page-link">이전</a>
+			<a href="${root }qnalist?infoNo=${infoNo }&page=${pageVO.prevPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}" class="page-link">이전</a>
 			</li>
 		</c:otherwise>
 		</c:choose>
@@ -107,12 +121,12 @@
 		<c:choose>
 			<c:when test="${idx == pageVO.currentPage }">
 				<li class="page-item active">
-				<a href="${root }qnalist?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
+				<a href="${root }qnalist?infoNo=${infoNo }&page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}" class="page-link">${idx }</a>
 				</li>
 			</c:when>
 			<c:otherwise>
 				<li class="page-item">
-					<a href="${root }qnalist?infoNo=${infoNo }&page=${idx}" class="page-link">${idx }</a>
+					<a href="${root }qnalist?infoNo=${infoNo }&page=${idx}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}" class="page-link">${idx }</a>
 				</li>
 			</c:otherwise>
 		</c:choose>
@@ -126,14 +140,15 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item">
-					<a href="${root }qnalist?infoNo=${infoNo }&page=${pageVO.nextPage}" class="page-link">다음</a>
+					<a href="${root }qnalist?infoNo=${infoNo }&page=${pageVO.nextPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}" class="page-link">다음</a>
 				</li>
 			</c:otherwise>
 		</c:choose>
 	</ul>
 </div>
-<br><br><br><br>
+<br>
 </div>
+<br><br>
 
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />

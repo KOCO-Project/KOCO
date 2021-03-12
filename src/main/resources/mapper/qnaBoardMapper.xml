@@ -36,7 +36,7 @@
 	</select>
 	
 	<select parameterType="java.lang.Integer" id="getQnaBoardList" resultType="board" resultMap="boardResult">
-	<![CDATA[
+
 	SELECT CONCAT(REPEAT('    ', depth  - 1), CAST(ou.BOARD_NO AS CHAR)) AS BOARD_NO, 
 	      parent,
 	      depth, 
@@ -67,8 +67,16 @@
          	   LEFT OUTER JOIN KOCO_BOARD mn ON mn.BOARD_NO = m.BOARD_NO ) ou
          	   LEFT OUTER JOIN KOCO_USERS u ON ou.USER_NO = u.USER_NO
 	WHERE ou.BOARD_CATEGORY = 2 
+		<if test="searchCondition == 'TITLE'">
+			AND BOARD_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'CONTENT'">
+			AND BOARD_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'NICKNAME'">
+			AND USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
 
-	]]>
 	</select>
 	
 	<select parameterType="java.lang.Integer" id="getQnaBoard" resultType="board" resultMap="boardResult">
@@ -100,9 +108,18 @@
 	</select>
 	
 	<select id="getQnaBoardCnt" resultType="java.lang.Integer">
-	<![CDATA[
-		SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = #{infoNo}
-	]]>
+	
+		SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = 2
+		<if test="searchCondition == 'TITLE'">
+			AND BOARD_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'CONTENT'">
+			AND BOARD_CONTENT LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'NICKNAME'">
+			AND USER_NICKNAME LIKE CONCAT('%',#{searchKeyword},'%')
+		</if>
+	
 	</select>
 	
 	<update parameterType="board" id="updateRcnt">

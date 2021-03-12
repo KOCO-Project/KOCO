@@ -10,12 +10,12 @@ import co.kr.koco.vo.BoardVO;
 public interface QnaBoardDAO {
 
 	public void getQnaBoardRegister(BoardVO qnaBoardVO);
-	public List<BoardVO> getQnaBoardList(int infoNo, RowBounds rowBounds);
+	public List<BoardVO> getQnaBoardList(BoardVO vo, RowBounds rowBounds);
 	public BoardVO getQna(int boardNo);
 	public void updateQnaBoard(BoardVO boardVO);
 	public void deleteQnaBoard(int boardNo);
 	public String getBoardInfoName(int infoNo);
-	public int getQnaBoardCnt(int boardCategory);
+	public int getQnaBoardCnt(BoardVO vo);
 	public void setQnaBoardRcnt(int boardNo);
 	public void getAnswerRegister(Model model);
 	public void getAnswerRegView(Model model);

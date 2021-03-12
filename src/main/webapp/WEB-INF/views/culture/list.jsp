@@ -45,7 +45,7 @@ font-size: 0.8rem;
 			<div class="col-md-10">
 				<h1>
 					<a href="cultureList" class="header"
-						style="color: black; text-decoration: none; font-weight: bold;">문화게시판</a>
+						style="color: black; text-decoration: none; font-weight: bold; ">문화게시판</a>
 				</h1>
 			</div>
 			<div class="col-md-1"></div>

@@ -22,8 +22,14 @@ public class QnaBoardDAOImpl implements QnaBoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> getQnaBoardList(int infoNo, RowBounds rowBounds) {
-		return sqlSessionTemplate.selectList("qnaBoard.getQnaBoardList", infoNo, rowBounds);
+	public List<BoardVO> getQnaBoardList(BoardVO vo, RowBounds rowBounds) {
+		if (vo.getSearchCondition() == null || vo.getSearchCondition().equals("검색"))
+			vo.setSearchCondition("TITLE");
+		
+		if (vo.getSearchKeyword() == null)
+			vo.setSearchKeyword("");
+		
+		return sqlSessionTemplate.selectList("qnaBoard.getQnaBoardList", vo, rowBounds);
 	}
 
 	@Override
@@ -47,8 +53,8 @@ public class QnaBoardDAOImpl implements QnaBoardDAO {
 	}
 
 	@Override
-	public int getQnaBoardCnt(int infoNo) {
-		return sqlSessionTemplate.selectOne("qnaBoard.getQnaBoardCnt", infoNo);
+	public int getQnaBoardCnt(BoardVO vo) {
+		return sqlSessionTemplate.selectOne("qnaBoard.getQnaBoardCnt", vo);
 	}
 
 	@Override

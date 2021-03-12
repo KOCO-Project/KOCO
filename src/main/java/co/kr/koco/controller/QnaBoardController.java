@@ -41,22 +41,24 @@ public class QnaBoardController {
 	@Lazy
 	private UserVO userVO;
 	
-	@GetMapping("/qnalist")
+	@RequestMapping("/qnalist")
 	public String qnaList(@RequestParam("infoNo") int infoNo,
-						  @RequestParam(value = "page", defaultValue = "1") int page,
-						   Model model) {
+						  @RequestParam(value = "page", defaultValue = "1") int page,@ModelAttribute BoardVO vo,@RequestParam(value="searchKeyword" ,required=false)String searchKeyword,@RequestParam(value="searchCondition" ,required=false)String searchCondition, Model model) {
 		
 		model.addAttribute("infoNo", infoNo);
 		String infoName = qnaBoardService.getBoardInfoName(infoNo);
 		model.addAttribute("infoName", infoName);
 		
-		List<BoardVO> qnaList = qnaBoardService.getQnaBoardList(infoNo, page);
+		List<BoardVO> qnaList = qnaBoardService.getQnaBoardList(vo, page);
 		model.addAttribute("qnaList",qnaList);
 
-		PageVO pageVO = qnaBoardService.getQnaBoardCnt(infoNo, page);
+		PageVO pageVO = qnaBoardService.getQnaBoardCnt(vo, page);
 		model.addAttribute("pageVO", pageVO);
 		model.addAttribute("page", page);
 
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("searchCondition", searchCondition);
+		
 		return "qna/list";
 	}
 	

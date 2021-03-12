@@ -57,10 +57,10 @@ public class QnaBoardService {
 		return qnaBoardDAO.getBoardInfoName(infoNo);
 	}
 	
-	public List<BoardVO> getQnaBoardList(int infoNo, int page) {
+	public List<BoardVO> getQnaBoardList(BoardVO vo, int page) {
 		int start = (page-1)*pageListcnt;
 		RowBounds rowBounds = new RowBounds(start, pageListcnt);//pageListcnt-페이지당 글 개수
-		return qnaBoardDAO.getQnaBoardList(infoNo, rowBounds);
+		return qnaBoardDAO.getQnaBoardList(vo, rowBounds);
 	}
 	
 	public BoardVO getQnaBoard(int boardNo) {
@@ -81,8 +81,8 @@ public class QnaBoardService {
 		qnaBoardDAO.deleteQnaBoard(boardNo);
 	}
 	
-	public PageVO getQnaBoardCnt(int infoNo, int currentPage) {
-		int contentCnt = qnaBoardDAO.getQnaBoardCnt(infoNo);//전체글 갯수
+	public PageVO getQnaBoardCnt(BoardVO vo, int currentPage) {
+		int contentCnt = qnaBoardDAO.getQnaBoardCnt(vo);//전체글 갯수
 		PageVO pageVO = new PageVO(contentCnt, currentPage, pageListcnt, pagePaginationcnt);
 		return pageVO;
 	}
