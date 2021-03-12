@@ -26,6 +26,8 @@ public class NoticeService {
 	}
 	
 	public NoticeVO getNoticeBoard(int noticeNo) {
+		dao.updateReadcount(noticeNo);
+		
 		return dao.getNoticeBoard(noticeNo);
 	}
 

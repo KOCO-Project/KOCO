@@ -49,4 +49,8 @@ public class NoticeDAO {
 	public void updateNotice(NoticeVO noticeVo) {
 		sql.update("noticeBoardMapper.updateNotice", noticeVo);
 	}
+	
+	public void updateReadcount(int noticeNo) {
+		sql.update("noticeBoardMapper.updateReadcount", noticeNo);
+	}
 }

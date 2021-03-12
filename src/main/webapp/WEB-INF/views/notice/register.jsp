@@ -28,7 +28,7 @@ $(function(){
 });
 </script>
 <body>
-	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
+	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<br>
 	<br>
 	<br>
