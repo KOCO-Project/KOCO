@@ -401,13 +401,11 @@ $(function(){
 </footer>
 </c:when>
 <c:otherwise>
-<footer>
-<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
-</footer>
 </c:otherwise>
 </c:choose>
 </div>
-
-
 </body>
+<footer>
+<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+</footer>
 </html>
