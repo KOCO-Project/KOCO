@@ -52,7 +52,7 @@
 	
 	<!-- id, password 찾기 -->
 	<select id="findIdPw" parameterType="java.lang.String" resultType="users">
-		SELECT USER_ID AS userId, USER_PW AS userPw
+		SELECT USER_ID AS userId, USER_PW AS userPw, USER_NICKNAME AS userNickname
 		FROM KOCO_USERS
 		WHERE USER_EMAIL = #{userEmail}
 	</select>

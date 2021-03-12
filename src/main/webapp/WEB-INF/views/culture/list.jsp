@@ -109,7 +109,7 @@ font-size: 0.8rem;
 											<option style="background-color: white;" value="NICKNAME">작성자</option>
 										</select>
 									</div>
-									<input type="text" class="form-control" placeholder="SERCH"
+									<input type="text" class="form-control" placeholder="SEARCH"
 										style="border: 1px solid #ced4da;" name="searchKeyword">
 									<div class="input-group-append">
 										<button class="input-group-text" type="submit">
