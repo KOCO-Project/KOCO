@@ -111,25 +111,27 @@ div.card-body {
 			</div>
 		</div>
 		<br> <br>
-		<!-- 댓글 -->
 
 
+		<!--댓글 입력 창 -->
 		<div id="comment" style="text-align: -webkit-center;">
-				<div>
-			<form action="" method="post" style="width: 100%;place-content: center;">
-				<div class="toast show" role="alert" aria-live="assertive"aria-atomic="true" style="max-width: 95%;">
-					<input type="text" class="toast-body" placeholder="댓글입력" style="text-align: left;border-radius: 15px;width: 100%; height: 100px;">
-					<div>
-					<input type="submit" class="btn btn-success" value="전송" style="box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);float: right;position: relative;top: -65px;right: 10px;">
-				</div>
-				</div>
-			</form>
-			
-			<br><br>
-		</div>
+			<div>
+				<form action="" method="post"
+					style="width: 100%; place-content: center;">
+					<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="max-width: 95%;">
+						<input type="text" class="toast-body" placeholder="댓글입력" style="text-align: left; border-radius: 15px; width: 100%; height: 100px;">
+						<div>
+							<input type="submit" class="btn btn-success" value="전송" style="box-shadow: 0 0.25rem 0.75rem rgb(0 0 0/ 10%); float: right; position: relative; top: -65px; right: 10px;">
+						</div>
+					</div>
+				</form>
+				<br>
+				<br>
+			</div>
+
+			<!-- 댓글 -->
 			<c:forEach items="${commentList}" var="comment">
-				<div class="toast show" role="alert" aria-live="assertive"
-					aria-atomic="true" style="width: 95%; max-width: 100%;">
+				<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="width: 95%; max-width: 100%;">
 					<div class="toast-header">
 						<strong class="mr-auto">${comment.userNo}</strong> <small>${comment.commentRegdate}</small>
 					</div>
