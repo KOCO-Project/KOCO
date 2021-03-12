@@ -19,9 +19,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import co.kr.koco.service.CommentService;
 import co.kr.koco.service.CultureService;
+import co.kr.koco.service.EventBoardService;
+import co.kr.koco.service.FreeBoardService;
 import co.kr.koco.service.QnaBoardService;
 import co.kr.koco.service.UserService;
+import co.kr.koco.vo.BoardVO;
 import co.kr.koco.vo.CommentVO;
+import co.kr.koco.vo.Criteria;
+import co.kr.koco.vo.PageDTO;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
@@ -35,6 +40,12 @@ public class AdminController {
 	@Autowired
 	private QnaBoardService qnaBoardService;
 
+	@Autowired
+	private FreeBoardService freeBoardService;
+	
+	@Autowired
+	private EventBoardService eventBoardService;
+	
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	
@@ -55,17 +66,55 @@ public class AdminController {
 	}
 
 	@RequestMapping("/adminQnaList")
-	public String qnaList() {
+	public String qnaList(@RequestParam(value = "infoNo", defaultValue = "2") int infoNo,
+			  @RequestParam(value = "page", defaultValue = "1") int page,@ModelAttribute BoardVO vo,@RequestParam(value="searchKeyword" ,required=false)String searchKeyword,@RequestParam(value="searchCondition" ,required=false)String searchCondition, Model model) {
+		model.addAttribute("infoNo", infoNo);
+		String infoName = qnaBoardService.getBoardInfoName(infoNo);
+		model.addAttribute("infoName", infoName);
+		
+		List<BoardVO> qnaList = qnaBoardService.getQnaBoardList(vo, page);
+		model.addAttribute("qnaList",qnaList);
+
+		PageVO pageVO = qnaBoardService.getQnaBoardCnt(vo, page);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("page", page);
+
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("searchCondition", searchCondition);
+		
 		return "admin/adminQnaList";
 	}
 
 	@RequestMapping("/adminFreeList")
-	public String adminFreeList() {
+	public String adminFreeList(@RequestParam(value = "infoNo", defaultValue = "1") int infoNo, @RequestParam(value = "page", defaultValue = "1") int page, 
+			BoardVO freeBoardVO, Model model, @RequestParam(value="searchKeyword" ,required=false)String searchKeyword, @RequestParam(value="searchCondition", defaultValue="TITLE")String searchCondition) {
+		
+		model.addAttribute("infoNo", infoNo);
+		String infoName = freeBoardService.getBoardInfoName(infoNo);
+		model.addAttribute("infoName", infoName);
+		//freeBoardVO.setBoardCategory(infoNo);
+		
+		List<BoardVO> freeBoardList = freeBoardService.freeBoardList(page, freeBoardVO);
+		model.addAttribute("freeBoardList", freeBoardList);
+		
+		PageVO pageVO = freeBoardService.getfreeBoardCnt(page, freeBoardVO);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("page", page);
+		
+		model.addAttribute("searchCondition", searchCondition);
+		model.addAttribute("searchKeyword", searchKeyword);
+		
 		return "admin/adminFreeList";
 	}
 
 	@RequestMapping("/adminEventList")
-	public String adminEventList() {
+	public String adminEventList(Criteria cri, Model model) {
+		model.addAttribute("infoNo", 3);
+//		model.addAttribute("infoName", service.getBoardInfoName(infoNo));
+		model.addAttribute("eventBoardList", eventBoardService.getListWithPaging(cri));
+		int total = eventBoardService.getTotal(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 		return "admin/adminEventList";
 	}
 

@@ -109,7 +109,10 @@
 	
 	<select id="getQnaBoardCnt" resultType="java.lang.Integer">
 	
-		SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = 2
+		SELECT COUNT(*) 
+		FROM KOCO_BOARD B LEFT JOIN KOCO_USERS U
+		ON B.USER_NO = U.USER_NO
+		WHERE BOARD_CATEGORY = 2
 		<if test="searchCondition == 'TITLE'">
 			AND BOARD_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
 		</if>
