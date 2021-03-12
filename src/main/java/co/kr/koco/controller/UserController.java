@@ -173,7 +173,8 @@ public class UserController {
 
 		String fromFollow = (String) session.getAttribute("from");
 		String toFollow = userNickname;
-
+		//System.out.println(fromFollow);
+		//System.out.println(toFollow);
 		if (fromFollow.equals(toFollow)) {
 			model.addAttribute("selectUser", userVO);
 			model.addAttribute("followerCnt", followService.followerCnt(userNickname));

@@ -17,11 +17,13 @@
 	
 	<!-- 팔로우 여부 확인 -->
 	<select id="followyn" resultType="java.lang.Integer">
-		<![CDATA[
-			SELECT DISTINCT(FOLLOW_YN)
-			FROM KOCO_FOLLOW
-			WHERE FROM_FOLLOW = #{fromFollow} AND TO_FOLLOW = #{toFollow}
-		]]>
+<!-- 		SELECT DISTINCT(FOLLOW_YN) -->
+		SELECT CASE 
+		WHEN COUNT(*) = 0 THEN 0
+		ELSE 1
+		END AS FOLLOW_YN 
+		FROM KOCO_FOLLOW
+		WHERE FROM_FOLLOW = #{fromFollow} AND TO_FOLLOW = #{toFollow}
 	</select>
 	
 	<!-- 언팔로우 -->
