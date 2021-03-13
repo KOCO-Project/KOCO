@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>KOCO - Korea Offer Culture Organizaion</title>
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/qna.css">
+<link rel="stylesheet" href="css/bootstrap.css?v=3">
+<link rel="stylesheet" href="css/event.css?v=9">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -18,14 +18,20 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <script src="ckeditor/ckeditor.js"></script>
+<!--  <style>
+.form-inline form-group label {
+font-weight: bold;
+}
 
+</style> -->
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/event_top.jsp" />
-	<div id="qna" class="container">
+	<div id="event" class="container">
 		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">Board Register</h1>
+			<div class="col-md-12 mb-3" style="text-align: center;">
+				<h2>New Event !! </h2>
+				<p style="color: #939393;">새로운 이벤트를 작성해주세요 :)</p>
 			</div>
 		</div>
 
@@ -35,12 +41,21 @@
 					<div class="panel-body">
 						<form role="form" action="/KOCO/eventRegister" method="post" enctype="multipart/form-data">
 							<%-- <form:hidden path="3"/> --%>
-							<div class="form-group">
-								<label>제목</label> <input name="boardTitle" class="form-control" />
+							<div class="form-inline form-group">
+								<label style="font-weight: bolder; font-size: 18px;">제목&nbsp;&nbsp;&nbsp;</label>
+								<div class="col-sm-10">
+								<input type="text" name="boardTitle" class="form-control" size="100"/> 
+								</div>
+							</div>
+							<div class="form-inline form-group">
+								<label style="font-weight: bolder; font-size: 18px;">마감일</label> 
+								<div class="col-sm-10">
+								<input type="date" name="boardRegdate" class="form-control" size="100"/>
+								</div>
 							</div>
 
 							<div class="form-group">
-								<label>내용</label>
+								<label style="font-weight: bolder; font-size: 18px;">내용</label><br><br>
 								<textarea class="form-control" id='boardContent' name='boardContent' rows="20"></textarea>
 								<script>
 									var ckeditor_config = {
@@ -58,7 +73,8 @@
 								<input name="fileName" class="form-control" type="file" accept="image/*" />
 							</div> -->
 							<div class="inputArea">
-								<label for="fileName">첨부파일</label> <input type="file" id="fileName" name="uploadFile" /><br>
+								<label for="fileName" style="font-weight: bolder; font-size: 18px;">썸네일&nbsp; &nbsp; &nbsp; &nbsp;</label> 
+								<input type="file" id="fileName" name="uploadFile" /><br><br>
 								<div class="select_img">
 									<img src="" />
 								</div>

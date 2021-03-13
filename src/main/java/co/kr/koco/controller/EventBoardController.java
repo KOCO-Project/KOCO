@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +28,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import co.kr.koco.service.EventBoardService;
 import co.kr.koco.utils.UploadFileUtils;
 import co.kr.koco.vo.BoardVO;
-import co.kr.koco.vo.Criteria;
-import co.kr.koco.vo.PageDTO;
+import co.kr.koco.vo.PageVO;
+import co.kr.koco.vo.UserVO;
 
 @Controller		
 //@RequestMapping(value="/eventboard")		
@@ -35,6 +37,10 @@ public class EventBoardController {
 
 	@Autowired
 	private EventBoardService service;
+	
+	@Resource(name="userVO")
+	@Lazy
+	private UserVO userVO;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -118,67 +124,81 @@ public class EventBoardController {
     }
     
 //	@GetMapping("/list")
-	@RequestMapping(value="/eventList", method=RequestMethod.GET)
-	public String list(Criteria cri, Model model) {
-		model.addAttribute("infoNo", 3);
-//		model.addAttribute("infoName", service.getBoardInfoName(infoNo));
-		model.addAttribute("list", service.getListWithPaging(cri));
-		int total = service.getTotal(cri);
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
+//	@RequestMapping(value="/eventList", method=RequestMethod.GET)
+//	public String list(Criteria cri, Model model) {
+//		model.addAttribute("infoNo", 3);
+//		model.addAttribute("list", service.getListWithPaging(cri));
+//		int total = service.getTotal(cri);
+//		model.addAttribute("pageMaker", new PageDTO(cri, total));
+//		return "eventboard/list3";
+//	}
+    @GetMapping("/eventList")
+	public String list(@RequestParam(value = "page", defaultValue = "1") int page,
+						   Model model) {
+		
+		List<BoardVO> list = service.getListWithPaging(page);
+		model.addAttribute("list",list);
+
+		PageVO pageVO = service.getEventBoardCnt(page);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("page", page);
+
 		return "eventboard/list3";
 	}
 
     @GetMapping({"/eventGet"})
-    public String get(@RequestParam("boardNo")int bno,@ModelAttribute("cri") Criteria cri,Model model) {
+    public String eventGet(@RequestParam("boardNo")int bno,@RequestParam("page") int page,Model model) {
+//		model.addAttribute("boardNo", bno);
+    	model.addAttribute("userVO", userVO);
+    	model.addAttribute("page", page);
  	   model.addAttribute("event",service.getEventBoard(bno));
+		
  	  return "eventboard/get";
     }
     @GetMapping({"/getEventUpdate"})
-    public String update(@RequestParam("boardNo")int bno,@ModelAttribute("cri") Criteria cri,Model model) {
+    public String update(@RequestParam("boardNo")int bno,
+    		@ModelAttribute("event") BoardVO event,
+//			 @RequestParam("page") int page,
+			 Model model) {
+    	model.addAttribute("boardNo", bno);
+//		model.addAttribute("page", page);
  	   model.addAttribute("event",service.getEventBoardUpdate(bno));
  	  return "eventboard/update";
     }
 
-    @PostMapping("/postEvnetUpdate")
-	public String update(@RequestParam("pageNum")int pageNum,@RequestParam("amount")int amount,BoardVO event,Criteria cri, RedirectAttributes rttr) {
-		
-		int count = service.postEventBoardUpdate(event);
-		
-		if(count == 1) {
-			rttr.addFlashAttribute("result", "success");
-		}
-		rttr.addAttribute("pageNum",cri.getPageNum());
-		rttr.addAttribute("amount",cri.getAmount());
-		return "redirect:eventboard/list";
+    @PostMapping("/postEventUpdate")
+	public String postEventUpdate(
+//			 @RequestParam("boardNo") int bno,
+			@ModelAttribute("event")BoardVO event,
+			Model model) {
+    	
+//    	model.addAttribute("boardNo", bno);
+//    	model.addAttribute("page", page);
+		service.postEventUpdate(event);
+//		return "eventboard/update_pro";
+		return "redirect:/eventboard/list3";
 //		return "redirect:/eventboard/list?pageNum={pageNum}&amount={amount}";
 		
 	}
 
-//    @PostMapping("/eventDelete")
-////    @RequestMapping(value="/eventDelete", method=RequestMethod.POST)
-//	public String delete(@RequestParam("boardNo") int bno,Criteria cri, RedirectAttributes rttr) {
-//		
-//		int count = service.eventBoardDelete(bno);
-//		
-//		if(count == 1) {
-//			rttr.addFlashAttribute("result", "success");
-//		}
+    @PostMapping("/eventDelete")
+//    @RequestMapping(value="/eventDelete", method=RequestMethod.POST)
+	public String delete(@RequestParam("boardNo") int bno) {
+		
+		service.eventBoardDelete(bno);
 //		rttr.addAttribute("pageNum",cri.getPageNum());
 //		rttr.addAttribute("amount",cri.getAmount());
 //		return "redirect:eventboard/list3";
-//	}
-    
-    @GetMapping("/eventDelete")
-//  @RequestMapping(value="/eventDelete", method=RequestMethod.POST)
-	public String delete(@RequestParam("boardNo") int bno,Criteria cri, RedirectAttributes rttr) {
-		
-		int count = service.eventBoardDelete(bno);
-		
-		if(count == 1) {
-			rttr.addFlashAttribute("result", "success");
-		}
-		rttr.addAttribute("pageNum",cri.getPageNum());
-		rttr.addAttribute("amount",cri.getAmount());
-		return "eventboard/delete";
+//		return "redirect:/KOCO/eventList";
+		return "redirect:/KOCO/eventList?page=${page}";
 	}
+    
+//    @GetMapping("/eventDelete")
+////    @RequestMapping(value="/eventDelete", method=RequestMethod.GET)
+//	public String delete(@RequestParam("boardNo")int bno,Criteria cri, RedirectAttributes rttr) {
+//    	service.eventBoardDelete(bno);
+//		rttr.addAttribute("pageNum",cri.getPageNum());
+//		rttr.addAttribute("amount",cri.getAmount());
+//		return "eventboard/delete";
+//	}
 }

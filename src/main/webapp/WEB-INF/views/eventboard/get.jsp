@@ -15,8 +15,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	<script src="ckeditor/ckeditor.js"></script>
 	<style>
-	.boardContent {height: auto; text-align: center; min-height: 300px;}
-	.boardContent img { max-width:600px; height:auto; float; align:center;}
+	.boardContent {text-align: center;}
+	.boardContent img { max-width:600px; height:auto; text-align:center;}
 	.thumbImg {max-width:600px; height:auto; }
 	</style>
 </head>
@@ -32,60 +32,46 @@
 		<!-- /.row -->
 		<div class="row">
 			<div class="col-lg-12">
-				<!-- <div class="card  border-light mb-3 cc_cursor"> -->
-					<!-- <div class="panel-heading">Event Read Page</div> -->
-					<!-- /.panel-heading -->
 					<div class="panel-body">
 						<div class="form-group">
 							<hr>
-							<label>제목&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<c:out
-									value="${event.boardTitle}" /></label> <br> 
-							<label>마감일&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<c:out
-									value="${event.boardRegdate}" /></label> <br>
+							<label>&nbsp;&nbsp;제목&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+								<c:out value="${event.boardTitle}" /></label> <br><br> 
+							<label>&nbsp;&nbsp;마감일&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+								<c:out value="${event.boardRegdate}" /></label> <br>
 							<hr>
 						</div>
-
+						<br>
 						<div class="form-group">
-							<label>내용</label>
 							<div class="boardContent">
-								<!-- <textarea class="form-control" rows="3" name='boardContent' readonly="readonly" style="background-color: #FFF7DD;"> -->
 								${event.boardContent}
 								<%-- <c:out value="${event.boardContent}"/> --%>
-								<!-- </textarea> -->
-							</div><hr>
+							</div>
+							<br>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-7">
+								<label>&nbsp;&nbsp;작성자&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+									<c:out value="${event.writer}" />
+								</label> 
+							</div>
+						</div>
+						<div class="form-group">
+							<hr>
+							<label>&nbsp;&nbsp;첨부파일&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<c:out value="${event.fileName}"/></label>
+							<hr>
 							<div class="inputArea">
-								<!-- <label for="fileName">이미지</label> -->
-								<%-- p>원본 이미지</p>
-								<img src="${event.fileName}" class="oriImg" /> --%>
-
-								<p>썸네일(시험용 보기)</p>
+								<p>&nbsp;&nbsp;썸네일 (썸네일 시험용 보기. 없어질 영역.)</p>
 								<img src="${event.thumbnail}" class="thumbImg" />
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-7">
-								<label>작성자</label> <input class="form-control" name='userNo'
-									value='<c:out value="${event.writer}"/>' readonly="readonly"
-									style="background-color: #FFF7DD;">
-							</div>
-							<div class="col-md-5">
-								<label>최근수정일</label> <input class="form-control"
-									name='boardRegDate'
-									value='<c:out value="${event.boardRegdate}"/>'
-									readonly="readonly" style="background-color: #FFF7DD;"><br>
-								<br>
-							</div>
-
-						</div>
-						<div class="form-group">
-						<hr>
-							<label>첨부파일&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<c:out value="${event.fileName}"/></label>
-						<hr>
-						</div>
 						<div class="form-group float-right">
-							<button data-oper='update' class="btn btn-success" sty>Modify</button>
-							<button type="submit" data-oper='delete' class="btn btn-danger">Remove</button>
-							<button data-oper='list' class="btn btn-info">Go List</button>
+							<button data-oper='update' class="btn btn-success">수정하기</button>
+							<%-- <a href="getEventUpdate?boardNo=${event.boardNo}&page=${page}" class="btn btn-success" style="width: 100px;">수정하기</a> --%> 
+							<button type="submit" data-oper='delete' class="btn btn-danger">삭제하기</button>
+							<%-- <a href="eventDelete?boardNo=${event.boardNo}" class="btn btn-danger" style="width: 100px;">삭제하기</a> --%>
+							<button data-oper='list' class="btn btn-info">리스트</button>
 						</div>
 						<form id='operForm' action="/eventboard/update" method="get">
 							<input type='hidden' id='boardNo' name='boardNo'
@@ -99,14 +85,13 @@
 	<footer>
 	<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 </footer>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		
 		var operForm = $("#operForm");
 
 		$("button[data-oper='update']").on("click", function(e) {
-			operForm.attr("action", "/KOCO/getEventUpdate").submit();
+			operForm.attr("action", "/KOCO/getEventUpdate?page=${page}").submit();
 			});
 		
 		var formObj = $("form");
@@ -117,10 +102,11 @@
 			console.log(operation);
 			
 			if(operation === 'list'){
-				self.location ="/KOCO/eventList?pageNum=${cri.pageNum}&amount=${cri.amount}";
+				self.location ="/KOCO/eventList?page=${page}";
 			}else if(operation === 'delete'){
+				/* formObj.attr("action", "/KOCO/eventDelete"); */    
 				formObj.attr("action","/KOCO/eventDelete")
-				.attr("method", "get");
+				.attr("method", "post");
 				formObj.submit();
 				}
 			})

@@ -35,7 +35,6 @@
 			<button id='regBtn' type="button" class="btn btn-primary btn-lg pull-right" style="font-size: 10px; float: right;">New Event</button>
 		</div>
 	</div>
-	<!-- /.row -->
     <div class="row">
 	<c:forEach items="${list}" var="event">
       <div class="col-md-4 mb-5">
@@ -44,15 +43,12 @@
           <img class="card-img-top" src="${event.thumbnail}" alt="">
           <div class="card-body">
             <h4 class="card-title">
-            	<a class='move' href='<c:out value="${event.boardNo}"/>'>
+            	<a class='move' href='/KOCO/eventGet?boardNo=<c:out value="${event.boardNo}"/>&page=${page}'>
 						<c:out value="${event.boardTitle}" />
 				</a>
 			</h4>
             <p class="card-text" style="color: #939393;"><c:out value="${event.writer}" /></p>
           </div>
-          <!-- <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div> -->
         </div>
       </div>
       
@@ -63,9 +59,6 @@
             <h4 class="card-title">코코 X BC카드 즉시할인 이벤트</h4>
             <p class="card-text" style="color: #939393;">경영지원팀장_LEE</p>
           </div>
-          <!-- <div class="card-footer">
-            <a href="#" class="btn btn-primary">ㅇㅇ</a>
-          </div> -->
         </div>
       </div>
       
@@ -80,8 +73,52 @@
       </div>
       </c:forEach>
 </div>
-<div class="row">
-			<div class='center-block' style="width: 500px;padding:15px;">
+<!-- <div class="row"> -->
+<div class="d-none d-md-block">
+	<ul class="pagination justify-content-center">
+	<c:choose>
+		<c:when test="${pageVO.prevPage <= 0 }">
+			<li class="page-item disabled">
+			<a href="#" class="page-link">이전</a>
+			</li>
+		</c:when>
+		<c:otherwise>
+			<li class="page-item">
+			<a href="/KOCO/eventList?page=${pageVO.prevPage}" class="page-link">이전</a>
+			</li>
+		</c:otherwise>
+		</c:choose>
+
+		<c:forEach var='idx' begin="${pageVO.min }" end='${pageVO.max }'>
+		<c:choose>
+			<c:when test="${idx == pageVO.currentPage }">
+				<li class="page-item active">
+				<a href="/KOCO/eventList?page=${idx}" class="page-link">${idx }</a>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item">
+					<a href="/KOCO/eventList?page=${idx}" class="page-link">${idx }</a>
+				</li>
+			</c:otherwise>
+		</c:choose>
+		</c:forEach>
+				
+		<c:choose>
+			<c:when test="${pageVO.max >= pageVO.pageCnt }">
+				<li class="page-item disabled">
+					<a href="#" class="page-link">다음</a>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item">
+					<a href="/KOCO/eventList?page=${pageVO.nextPage}" class="page-link">다음</a>
+				</li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
+<!-- </div> -->
+			<%-- <div class='center-block' style="width: 500px;padding:15px;">
 				<ul class="pagination" >
 					<c:if test="${pageMaker.prev}">
 						<li class="paginate_button previous"><a
@@ -105,7 +142,7 @@
 		<input type="hidden" name="pageNum"
 			value="${pageMaker.cri.pageNum }"> <input type="hidden"
 			name="amount" value="${pageMaker.cri.amount }">
-	</form>
+	</form> --%>
 </div>
 
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
@@ -129,6 +166,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 
   <!-- Footer -->
@@ -156,20 +194,20 @@ function checkModal(result) {
 	if (result === '' || history.state) {
 		return;
 	}
-		if (result === 'success') {
-			$(".modal-body").html("정상적으로 처리되었습니다.");
-			} else if (parseInt(result) > 0) {
-				$(".modal-body").html("게시글 " + parseInt(result)+ " 번이 등록되었습니다.");
-				}
+	if (result === 'success') {
+		$(".modal-body").html("정상적으로 처리되었습니다.");
+		} else if (parseInt(result) > 0) {
+			$(".modal-body").html("게시글 " + parseInt(result)+ " 번이 등록되었습니다.");
+			}
 		$("#myModal").modal("show");
-		}
+	}
 	$("#regBtn").on("click", function() {
 		self.location = "/KOCO/eventRegister";
 		});
 	
 	var actionForm = $("#actionForm");
 	
-	$(".page-link").on("click", function(e) {
+	/* $(".page-link").on("click", function(e) {
 		e.preventDefault();//기본동작을 제한
 		console.log("click");
 		var targetPage = $(this).attr("href");//href(a태그)
@@ -177,13 +215,13 @@ function checkModal(result) {
 		actionForm.find("input[name='pageNum']")
 		.val($(this).attr("href"));//val(값을 전달해줌)
 		actionForm.submit();//값이 전송돼서 날아감
-		});
-	$(".move").on("click",function(e) {
+		});  */
+	/* $(".move").on("click",function(e) {
 		e.preventDefault();
 		actionForm.append("<input type='hidden' name='boardNo' value='"+ $(this).attr("href")+ "'>");
 		actionForm.attr("action","/KOCO/eventGet");	//컨트롤러 매핑
 		actionForm.submit();
-		});
+		}); */
 	
 	$(".paginate_button a").on("click",function(e) {
 		e.preventDefault();
@@ -191,7 +229,7 @@ function checkModal(result) {
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
 		});
-	});
+	}); 
 </script>
 </body>
 
