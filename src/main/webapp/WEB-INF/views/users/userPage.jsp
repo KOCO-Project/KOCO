@@ -396,12 +396,11 @@ $(function(){
 </div>
 
 </div>
+
 <footer>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 </footer>
 </c:when>
-<c:otherwise>
-</c:otherwise>
 </c:choose>
 </div>
 </body>

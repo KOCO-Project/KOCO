@@ -11,17 +11,10 @@
 h1.card-title{	font-weight: bold;float: left;}
 body{text-align: -webkit-center;}
 div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80%;}
-.body1 {
-	background-image: url('images/top_main.11.png');
-	background-size: 100%;
-	background-repeat: no-repeat;
-	height: 200px;
-}
 </style>
 <meta charset="UTF-8">
 <title>공지사항</title>
 <link rel="stylesheet" href="css/bootstrap.css?v=1">
-<!-- <link rel="stylesheet" href="css/footer.css"> -->
 <link rel="stylesheet" href="css/qna.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -42,7 +35,7 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 		}
 	}
 </script>
-<body class="body1">
+<body class="suk">
 <fmt:formatDate value="${now }" pattern="yyyy-MM-dd" var="today"/>
 <c:import url="/WEB-INF/views/include/top_menu.jsp" /><br><br><br>
 	<div id="qna" class="container">
@@ -65,7 +58,7 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 	<tr>		
 		<td></td>
 		<td><a href="getNoticeBoard?noticeNo=${notice.noticeNo }">${notice.noticeTitle }</a></td>
-		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;"><a href="userPage?userNickname=${obj.writer}"onMouseover="this.style.fontWeight='bold'"
+		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;"><a href="userPage?userNickname=${notice.userNickname}"onMouseover="this.style.fontWeight='bold'"
 								onMouseout="this.style.fontWeight=''">${notice.userNickname }</a></td>
 		<td class="text-center d-none d-md-table-cell">${notice.noticeRegdate }</td>
 		<td class="text-center d-none d-md-table-cell">${notice.readcount }</td>

@@ -29,86 +29,61 @@ div#qna.container {
 div.card-body {
 	min-height: 200px;
 }
-.body1 {
-	background-image: url('images/top_main.11.png');
-	background-size: 100%;
-	background-repeat: no-repeat;
-	height: 200px;
-}
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>공지사항</title>
 <link rel="stylesheet" href="css/bootstrap.css">
-<!-- <link rel="stylesheet" href="css/footer.css"> -->
 <link rel="stylesheet" href="css/qna.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
-<body class="body1">
+<body class="suk">
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	<br>
-	<br>
-	<br>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<h1>
-					<a href="noticeList" class="header"
-						style="color: black; text-decoration: none; font-weight: bold;">공지사항</a>
-				</h1>
-			</div>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-1"></div>
-					<br>
-					<div class="col-md-10">
-						<table class="table table">
-							<th scope="col"></th>
-						</table>
-					</div>
-					<div class="col-md-1"></div>
-				</div>
-			</div>
-		</div>
-
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-10">
-					<div class="card border-light mb-12" style="max-width: 100%;">
-						<div class="card-header" style="font-weight: bold;">NoticeBoard</div>
-						<div class="card-body">
-							<h4 class="card-title">
-								<h9 style="font-size: 20px;font-weight: bold; ">${notice.noticeTitle}</h9>								
-							</h4>
-							<h4 class="card-title" style="font-size: 12px;">${notice.userNickname}&nbsp; ${notice.noticeRegdate }</h4>
-							<hr>
-							<p class="card-text">${notice.noticeContent }</p>
-							<div class="form-group">
-								<div class="text-right">
-									<button type="button" class="btn btn-primary" onclick="history.back()">목록보기</button>
-									<c:if test="${notice.userNickname == user.userNickname }">
-									<a href="updateNoticeView?noticeNo=${notice.noticeNo}" class="btn btn-info">수정하기</a> 
-									<a href="deleteNoticeBoard?noticeNo=${notice.noticeNo}" class="btn btn-danger">삭제하기</a>
-									</c:if>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-1"></div>
+	<div id="qna" class="container">
+		<a href="noticeList" class="header"	
+			style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">공지사항</a>
+		<div>
+			<div class="card-body">
+				<div class="card-header"
+					style="display: flex; padding: 0.75rem 0.75rem;">
+					
+					<div style="font-size: 20px; font-weight: bold; width: 100%;">
+						${notice.noticeTitle }
+						<div style="float: right; font-weight: normal; font-size: 12px; margin-top: 6px;">
+							조회수&nbsp;${notice.readcount }</div>
 					</div>
 				</div>
+				<div style="padding: 0.75rem;">
+					<a href="userPage?userNickname=${notice.userNickname}"
+						onMouseover="this.style.fontWeight='bold'"
+						onMouseout="this.style.fontWeight=''"
+						style="color: black; text-decoration: none;">${notice.userNickname }</a>&nbsp;&nbsp;${notice.noticeRegdate }
+				</div>	
+				
+				<div class="card-body" style="padding: 0.75rem;" row="10">
+					${notice.noticeContent }
+				</div>
 			</div>
+			
+			<div class="form-group" style="margin-left: auto; margin-right: 2rem;">
+				<div class="text-right">
+					<a href="noticeList?page=${page }" class="btn btn-primary" style="width: 100px;">글목록</a>
+					<c:if test="${notice.userNickname == user.userNickname }">
+						<a href="updateNoticeView?noticeNo=${notice.noticeNo}" class="btn btn-success" style="width: 100px;">수정하기</a>
+						<a href="deleteNoticeBoard?noticeNo=${notice.noticeNo}"	class="btn btn-danger" style="width: 100px;">삭제하기</a>
+					</c:if>
+					<br><br>
+				</div>
+			</div>
+			</div>
+			<br><br>		
 		</div>
-	</div>
-	<br>
-	<br>
-	<br>
-	<footer>
-		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
-	</footer>
+	<br><br><br>
 </body>
+<footer>
+	<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+</footer>
 </html>

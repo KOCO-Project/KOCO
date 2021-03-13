@@ -11,6 +11,13 @@ background-repeat: no-repeat;
 height: 200px;
 }
 
+.suk {
+	background-image: url('../images/top_main.9.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 200px;
+}
+
 main {
 	height: 100%;
 	width: 100%;
