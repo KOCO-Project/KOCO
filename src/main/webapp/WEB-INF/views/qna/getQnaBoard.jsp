@@ -37,10 +37,10 @@ div.card-body {
   border: solid 1px #c3c3c3;
 }
 
-#panel {
-  padding: 50px;
-  display: none;
-}
+/* #panel{ */
+/*   padding: 50px; */
+/*   display: none; */
+/* } */
 
 </style>
 <meta charset="UTF-8">
@@ -56,17 +56,9 @@ div.card-body {
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script> 
-$(document).ready(function(){
-  $("#flip").click(function(groupNo){
-    $("#panel"+groupNo).slideToggle("slow");
-  });
-});
-// function filp(a){
-// 	var b = a;
-// 	console.log(b);
-// 	//$('#panel').slideToggle('slow');
-// 	$('#panel'+b).slideToggle('slow');
-// }
+function filp(groupNo){
+	$('#panel'+groupNo).slideToggle('slow');
+}
 </script>
 </head>
 <body class="seopBody">
@@ -187,7 +179,8 @@ $(document).ready(function(){
 								</div>
 								<div class="toast-body" style="text-align: left;">${comment.commentContent}</div>
 									<div id="flip" onclick="filp(${comment.groupNo });">대댓글 입력</div>
-										<div id="panel${comment.groupNo }">
+										<div id="panel${comment.groupNo }" style="padding: 10px;padding-bottom: 30px;display: none;">
+										
 
 											<!-- 대댓글 입력창 -->
 											<div style="text-align: -webkit-center;">
