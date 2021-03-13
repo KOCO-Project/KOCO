@@ -33,7 +33,6 @@
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;">
           <a class="dropdown-item" href="cultureMain">Culture</a>
           <a class="dropdown-item" href="seasonMain">Seasons</a>
-          <a class="dropdown-item" href="getAdminTest">Admin Test</a>
         </div>
       </li>
 
