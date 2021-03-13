@@ -72,14 +72,14 @@ tbody tr.table-light th h5 {
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th scope="col">No</th>
-								<th scope="col">ID</th>
-								<th scope="col">Name</th>
-								<th scope="col">E-mail</th>
-								<th scope="col">Status</th>
-								<th scope="col">Case</th>
-								<th scope="col">Management</th>
-								<th scope="col"></th>
+								<th scope="col" style="width: 10%;">No</th>
+								<th scope="col" style="width: 15%;">ID</th>
+								<th scope="col" style="width: 15%;">Name</th>
+								<th scope="col" style="width: 20%;">E-mail</th>
+								<th scope="col" style="width: 10%;">Status</th>
+								<th scope="col" style="width: 10%;">Case</th>
+								<th scope="col" style="width: 10%;">Management</th>
+								<th scope="col" style="width: 10%;"></th>
 							</tr>
 						</thead>
 

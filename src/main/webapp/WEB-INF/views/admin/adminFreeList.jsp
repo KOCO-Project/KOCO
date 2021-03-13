@@ -15,7 +15,20 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-</head>
+	<script type="text/javascript">
+	function del() {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		 var cnt = $("input[name='check']:checked").length;
+		var form = document.freeDeleteList;
+		if(cnt == 0){
+            alert("선택된 글이 없습니다.");
+		}else{
+		if (chk) {
+			form.submit();
+		}
+		}
+	}
+	</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
@@ -40,31 +53,30 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
-							<th scope="col">작성일</th>
-							<th scope="col">5</th>
+							<th style="width: 10%;">선택</th>
+							<th scope="col" style="width: 10%;">번호</th>
+							<th scope="col" style="width: 40%;">제목</th>
+							<th scope="col" style="width: 20%;">작성자</th>
+							<th scope="col" style="width: 20%;">작성일</th>
 						</tr>
 					</thead>
-					<c:forEach items="${freeBoardList }" var="freeBoard">
-						<tr class="table-light">
-							<th scope="row">${freeBoard.boardNo }</th>
-							<td>${freeBoard.boardTitle }</td>
-							<td>${freeBoard.writer }</td>
-							<td>${freeBoard.boardRegdate }</td>
-							<td>Column content</td>
-						</tr>
-					</c:forEach>
+					<form action="freeDeleteList" method="post" name="freeDeleteList">
+						<c:forEach items="${freeBoardList }" var="freeBoard">
+							<tr class="table-light">
+							<th><input type="checkbox" name="check" value="${freeBoard.boardNo }"/></th>
+								<th scope="row">${freeBoard.boardNo }</th>
+								<td>${freeBoard.boardTitle }</td>
+								<td>${freeBoard.writer }</td>
+								<td>${freeBoard.boardRegdate }</td>
+							</tr>
+						</c:forEach>
+					</form>
 				</table>
 				<br>
 				<table style="width: 100%">
 					<tr>
-						<td>
-<!-- 							<div class="page-item"> -->
-<!-- 								<a href="cultureRegisterForm" class="input-group-text" -->
-<!-- 									style="width: 100px; justify-content: center;">글 쓰기</a> -->
-<!-- 							</div> -->
+						<td style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;">
+							<input type="button" class="input-group-text" value="선택 삭제" style="width: 10%;justify-content: center;padding: 0;" onclick="del()">
 						</td>
 						<!-- 검색 영역 -->
 						<td style="width: 40%;">

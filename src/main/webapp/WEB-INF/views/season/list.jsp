@@ -59,12 +59,12 @@ font-size: 0.8rem;
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">메인</th>
-							<th scope="col">제목</th>
-							<th scope="col">계절</th>
-							<th scope="col">작성자</th>
-							<th scope="col">등록일</th>
+							<th scope="col" style="width: 10%;">번호</th>
+							<th scope="col" style="width: 10%;">메인</th>
+							<th scope="col" style="width: 30%;">제목</th>
+							<th scope="col" style="width: 10%;">계절</th>
+							<th scope="col" style="width: 20%;">작성자</th>
+							<th scope="col" style="width: 20%;">등록일</th>
 						</tr>
 					</thead>
 

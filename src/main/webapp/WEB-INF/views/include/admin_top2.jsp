@@ -24,7 +24,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;"> 
           <a class="dropdown-item" href="adminFreeList">Board</a>
           <a class="dropdown-item" href="adminQnaList">QnA</a>
-          <a class="dropdown-item" href="adminEventList">Event</a>
+		<!--<a class="dropdown-item" href="adminEventList">Event</a> -->
         </div>
       </li>
       
@@ -33,7 +33,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown08" style="top: 30px;"> 
           <a class="dropdown-item" href="cultureList">Culture</a>
           <a class="dropdown-item" href="seasonList">Season</a>
-          <a class="dropdown-item" href="adminNotiList">Noti</a>
+		<!--<a class="dropdown-item" href="adminNotiList">Noti</a> -->
         </div>
       </li>
       <li class="nav-item active">

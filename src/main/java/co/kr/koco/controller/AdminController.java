@@ -246,4 +246,27 @@ public class AdminController {
 		
 		return "main";
 	}
+	
+	@RequestMapping("qnaDeleteList")
+	public String qnaDeleteList(@RequestParam("check") List<Integer> ids) throws Exception{
+		
+		for(Integer id : ids) {
+		System.out.println(id);	
+		qnaBoardService.deleteQnaBoard(id);
+		}
+
+		return "redirect:adminQnaList";
+	}
+	
+	@RequestMapping("freeDeleteList")
+	public String deleteList(@RequestParam("check") List<Integer> ids) throws Exception{
+		
+		for(Integer id : ids) {
+		System.out.println(id);	
+		freeBoardService.freeBoardDelete(id);
+		}
+
+		return "redirect:adminFreeList";
+	}
+	
 }
