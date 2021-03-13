@@ -31,16 +31,14 @@ div.card-body {
 }
 
 #panel, #flip {
-  padding: 5px;
-  text-align: center;
-
+	padding: 5px;
+	text-align: center;
 }
 
 /* #panel{ */
 /*   padding: 50px; */
 /*   display: none; */
 /* } */
-
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,6 +57,15 @@ div.card-body {
 function filp(groupNo){
 	$('#panel'+groupNo).slideToggle('slow');
 }
+
+function check(userNo){
+	if(userNo == null){
+		alert("로그인 후에 댓글기능을 사용하실수 있습니다.");
+		window.location.reload();
+		return false;
+	}
+}
+
 </script>
 </head>
 <body class="seopBody">
@@ -84,7 +91,8 @@ function filp(groupNo){
 		<a href="qnalist?infoNo=${infoNo }&page=${page}" class="header"
 			style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">Q&A</a>
 		<div>
-			<div class="card-body" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;">
+			<div class="card-body"
+				style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;">
 				<div class="card-header"
 					style="display: flex; padding: 0.75rem 0.75rem;">
 
@@ -95,11 +103,15 @@ function filp(groupNo){
 							조회수&nbsp;${readContentBean.boardReadcount }</div>
 					</div>
 				</div>
-				<div style="padding: 0.75rem;"><a href="userPage?userNickname=${readContentBean.writer }"onMouseover="this.style.color='gray'"onMouseout="this.style.color='black'" style="color: black; text-decoration: none; font-weight: bold;">${readContentBean.writer }</a>&nbsp;&nbsp;${readContentBean.boardRegdate }
+				<div style="padding: 0.75rem;">
+					<a href="userPage?userNickname=${readContentBean.writer }"
+						onMouseover="this.style.color='gray'"
+						onMouseout="this.style.color='black'"
+						style="color: black; text-decoration: none; font-weight: bold;">${readContentBean.writer }</a>&nbsp;&nbsp;${readContentBean.boardRegdate }
 				</div>
 
 				<div class="card-body" style="padding: 0.75rem;" row="10">
-					${readContentBean.boardContent } 
+					${readContentBean.boardContent }
 					<c:if test="${readContentBean.fileName !=null }">
 						<div class="form-group">
 							<label for="board_file">IMAGE</label> <img
@@ -133,7 +145,9 @@ function filp(groupNo){
 		<!--댓글 입력 창 -->
 		<div id="comment" style="text-align: -webkit-center;">
 			<div>
-				<form action="QnaCommentRegister" method="post"
+				<form name="frm"
+					onSubmit="return check(${sessionScope.user.userNo })"
+					action="QnaCommentRegister" method="post"
 					style="width: 100%; place-content: center;">
 					<input type="hidden" name="depth" value="0"> <input
 						type="hidden" name="boardCategory" value="2"> <input
@@ -144,7 +158,8 @@ function filp(groupNo){
 					<div class="toast show" role="alert" aria-live="assertive"
 						aria-atomic="true" style="max-width: 95%;">
 						<input type="text" class="toast-body" name="commentContent"
-							placeholder="댓글입력" required="required"style="text-align: left;border-radius: 15px;width: 100%;height: 100px;font-size: 13px;">
+							placeholder="댓글입력" required="required"
+							style="text-align: left; border-radius: 15px; width: 100%; height: 100px; font-size: 13px;">
 						<div>
 							<input type="submit" class="btn btn-success" value="작성완료"
 								style="box-shadow: 0 0.25rem 0.75rem rgb(0 0 0/ 10%); float: right; position: relative; top: -65px; right: 10px;">
@@ -166,15 +181,23 @@ function filp(groupNo){
 							<div class="toast show" role="alert" aria-live="assertive"
 								aria-atomic="true" style="width: 95%; max-width: 100%;">
 								<div class="toast-header">
-									<strong class="mr-auto"> <a href="userPage?userNickname=${comment.userNickname}"onMouseover="this.style.color='black'"onMouseout="this.style.color='gray'" style="color: gray; text-decoration: none; font-weight: bold;">${comment.userNickname}</a></strong>
-									
-										<c:if test="${sessionScope.user.userNo == comment.userNo}">
-									 <small><a href="qnaCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }" style="color: gray; text-decoration: none;">수정</a>
-									<a href="qnaCommentDelete?groupNo=${comment.groupNo}&boardNo=${readContentBean.boardNo }" style="color: gray; text-decoration: none;">삭제</a></small>
+									<strong class="mr-auto"> <a
+										href="userPage?userNickname=${comment.userNickname}"
+										onMouseover="this.style.color='black'"
+										onMouseout="this.style.color='gray'"
+										style="color: gray; text-decoration: none; font-weight: bold;">${comment.userNickname}</a></strong>
+
+									<c:if test="${sessionScope.user.userNo == comment.userNo}">
+										<small><a
+											href="qnaCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }"
+											style="color: gray; text-decoration: none;">수정</a> <a
+											href="qnaCommentDelete?groupNo=${comment.groupNo}&boardNo=${readContentBean.boardNo }"
+											style="color: gray; text-decoration: none;">삭제</a></small>
 									</c:if>
 								</div>
-								<div class="toast-body" style="text-align: left;margin-left: 10px;">
-									${comment.commentContent} <small style="float:right;">${comment.commentRegdate}</small> 
+								<div class="toast-body"
+									style="text-align: left; margin-left: 10px;">
+									${comment.commentContent} <small style="float: right;">${comment.commentRegdate}</small>
 								</div>
 								<!-- 대댓글 리스트 -->
 								<c:forEach items="${commentList}" var="comcomment">
@@ -183,48 +206,61 @@ function filp(groupNo){
 									<c:if test="${depth eq 1 }">
 										<c:if test="${GroupNo eq GroupNo2 }">
 											<div class="toast-header">
-												<strong class="mr-auto" style="margin-left: 20px;">→ <a href="userPage?userNickname=${comcomment.userNickname}"onMouseover="this.style.color='black'"onMouseout="this.style.color='gray'" style="color: gray; text-decoration: none; font-weight: bold;">${comcomment.userNickname}</a></strong>
- 														<c:if test="${sessionScope.user.userNo == comcomment.userNo}">
-													<small>
-														<a href = "qnaCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }" style="color: gray; text-decoration: none;">수정</a>
-														<a href = "qnaComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${readContentBean.boardNo }" style="color: gray; text-decoration: none;">삭제</a>
+												<strong class="mr-auto" style="margin-left: 20px;">→
+													<a href="userPage?userNickname=${comcomment.userNickname}"
+													onMouseover="this.style.color='black'"
+													onMouseout="this.style.color='gray'"
+													style="color: gray; text-decoration: none; font-weight: bold;">${comcomment.userNickname}</a>
+												</strong>
+												<c:if
+													test="${sessionScope.user.userNo == comcomment.userNo}">
+													<small> <a
+														href="qnaCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }"
+														style="color: gray; text-decoration: none;">수정</a> <a
+														href="qnaComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${readContentBean.boardNo }"
+														style="color: gray; text-decoration: none;">삭제</a>
 													</small>
-													</c:if>
-											</div>		
-												 
-											
-											<div class="toast-body" style="text-align: left;margin-left: 45px;">${comcomment.commentContent}<small style="float:right;">${comcomment.commentRegdate}</small></div>
+												</c:if>
+											</div>
+
+
+											<div class="toast-body"
+												style="text-align: left; margin-left: 45px;">${comcomment.commentContent}<small
+													style="float: right;">${comcomment.commentRegdate}</small>
+											</div>
 										</c:if>
 									</c:if>
 								</c:forEach>
-								<div id="flip" onclick="filp(${comment.groupNo });" style="font-size: 10px;">대댓글 입력</div>
-										<div id="panel${comment.groupNo }" style="padding: 10px;padding-bottom: 30px;display: none;">
-	
-											<!-- 대댓글 입력창 -->
-											<div style="text-align: -webkit-center;">
-												<form action="qnaComcommentRegister" method="post"
-													style="width: 100%; place-content: center;">
-													<input type="hidden" name="depth" value="1"> <input
-														type="hidden" name="boardCategory" value="2"> <input
-														type="hidden" name="boardNo" value="${comment.boardNo }">
-													<input type="hidden" name="userNo"
-														value="${sessionScope.user.userNo }"> <input type="hidden"
-														name="groupNo" value="${comment.groupNo }">
-													<div class="toast show" role="alert" aria-live="assertive"
-														aria-atomic="true" style="max-width: 95%;">
-														<input type="text" class="toast-body"
-															name="commentContent" placeholder="대댓글입력"
-															required="required"
-															style="text-align: left;border-radius: 15px;width: 100%;height: 100px;font-size: 10px;">
-														<div>
-															<input type="submit" class="btn btn-success" value="작성완료"
-																style="box-shadow: 0 0.25rem 0.75rem rgb(0 0 0/ 10%); float: right; position: relative; top: -65px; right: 10px;">
-														</div>
-													</div>
-												</form>
+								<div id="flip" onclick="filp(${comment.groupNo });"
+									style="font-size: 11px;">대댓글 입력</div>
+								<div id="panel${comment.groupNo }"
+									style="padding: 10px; padding-bottom: 30px; display: none;">
+
+									<!-- 대댓글 입력창 -->
+									<div style="text-align: -webkit-center;">
+										<form name="frm"
+											onSubmit="return check(${sessionScope.user.userNo })"
+											action="qnaComcommentRegister" method="post"
+											style="width: 100%; place-content: center;">
+											<input type="hidden" name="depth" value="1"> <input
+												type="hidden" name="boardCategory" value="2"> <input
+												type="hidden" name="boardNo" value="${comment.boardNo }">
+											<input type="hidden" name="userNo"
+												value="${sessionScope.user.userNo }"> <input
+												type="hidden" name="groupNo" value="${comment.groupNo }">
+											<div class="toast show" role="alert" aria-live="assertive"
+												aria-atomic="true" style="max-width: 95%;">
+												<input type="text" class="toast-body" name="commentContent"
+													placeholder="대댓글입력" required="required"
+													style="text-align: left; border-radius: 15px; width: 100%; height: 100px; font-size: 11px;">
+												<div>
+													<input type="submit" class="btn btn-success" value="작성완료"
+														style="box-shadow: 0 0.25rem 0.75rem rgb(0 0 0/ 10%); float: right; position: relative; top: -65px; right: 10px;">
+												</div>
 											</div>
-										</div>
-									
+										</form>
+									</div>
+								</div>
 							</div>
 						</c:if>
 					</c:if>
@@ -233,7 +269,9 @@ function filp(groupNo){
 			</c:forEach>
 		</div>
 	</div>
-<br><br><br>
+	<br>
+	<br>
+	<br>
 </body>
 <footer>
 	<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
