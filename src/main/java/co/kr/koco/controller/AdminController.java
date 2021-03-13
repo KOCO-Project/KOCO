@@ -111,7 +111,7 @@ public class AdminController {
 	public String adminEventList(Criteria cri, Model model) {
 		model.addAttribute("infoNo", 3);
 //		model.addAttribute("infoName", service.getBoardInfoName(infoNo));
-		model.addAttribute("eventBoardList", eventBoardService.getListWithPaging(cri));
+//		model.addAttribute("eventBoardList", eventBoardService.getListWithPaging(cri));
 		int total = eventBoardService.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
