@@ -57,10 +57,16 @@ div.card-body {
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script> 
 $(document).ready(function(){
-  $("#flip").click(function(){
-    $("#panel").slideToggle("slow");
+  $("#flip").click(function(groupNo){
+    $("#panel"+groupNo).slideToggle("slow");
   });
 });
+// function filp(a){
+// 	var b = a;
+// 	console.log(b);
+// 	//$('#panel').slideToggle('slow');
+// 	$('#panel'+b).slideToggle('slow');
+// }
 </script>
 </head>
 <body class="seopBody">
@@ -176,12 +182,12 @@ $(document).ready(function(){
 										href="qnaCommentDelete?groupNo=${comment.groupNo}&boardNo=${readContentBean.boardNo }">삭제</a>
 										
 										
-
+<%-- <input type="hidden" value="${comment.groupNo }"> --%>
 									</strong> <small>${comment.commentRegdate}</small>
 								</div>
 								<div class="toast-body" style="text-align: left;">${comment.commentContent}</div>
-									<div id="flip">대댓글 입력</div>
-										<div id="panel">
+									<div id="flip" onclick="filp(${comment.groupNo });">대댓글 입력</div>
+										<div id="panel${comment.groupNo }">
 
 											<!-- 대댓글 입력창 -->
 											<div style="text-align: -webkit-center;">
