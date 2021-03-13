@@ -179,8 +179,6 @@ function filp(groupNo){
 								<div class="toast-header">
 									<strong class="mr-auto"> <a href="userPage?userNickname=${comment.userNickname}"onMouseover="this.style.color='black'"onMouseout="this.style.color='gray'" style="color: gray; text-decoration: none; font-weight: bold;">${comment.userNickname}</a></strong>
 									
-										
-										
 										<c:if test="${sessionScope.user.userNo == comment.userNo}">
 									 <small><a href="qnaCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }" style="color: gray; text-decoration: none;">수정</a>
 									<a href="qnaCommentDelete?groupNo=${comment.groupNo}&boardNo=${readContentBean.boardNo }" style="color: gray; text-decoration: none;">삭제</a></small>
@@ -243,7 +241,7 @@ function filp(groupNo){
 						</c:if>
 					</c:if>
 				</c:if>
-				<br>
+
 				<!-- 				대댓글 리스트출력 -->
 				<%-- 				<c:if test="${depth eq 1 }"> --%>
 				<%-- 					<c:if test="${BoardCATE eq 2 }"> --%>
