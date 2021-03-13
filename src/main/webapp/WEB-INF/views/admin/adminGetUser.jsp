@@ -5,31 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <style type="text/css">
-div.card.border-light.mb-12 div.card-body h5 {
-	margin: 0;
-	font-size: 0.8rem;
-	display: inline-flex;
-}
-
-html, body {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-}
-
-.seopLabel {
-	align-self: center;
-	width: 30%;
-}
-
-.seopBody {
-text-align: -webkit-center;
-}
-
-label {
-float: left;
-}
+div.card.border-light.mb-12 div.card-body h5 {margin: 0;font-size: 0.8rem;display: inline-flex;}
+html, body {position: absolute;height: 100%;width: 100%;}
+.seopLabel {align-self: center;width: 30%;}
+.seopBody {text-align: -webkit-center;}
+label {float: left;}
 </style>
 
 <script type="text/javascript">
@@ -54,18 +36,18 @@ float: left;
 		}
 	}
 </script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>admin get user</title>
-<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.css?v=1">
 <link rel="stylesheet" href="css/footer.css">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
@@ -141,18 +123,15 @@ float: left;
 									</div>
 								</div>
 
+								<!--↓ 권한과 계정 상태에 따른 최초 select 값을 불러들여온 값에 맞게 출력할 수 있도록 조건문 설정 ↓-->
 								<div class="form-group">
 									<div class="seopLabel">
 										<label>User STATUS</label> 
 										<c:if test="${getUser.userStatus == 1}">
-										<input type="text"
-											class="form-control" value="활성 계정"
-											readonly="readonly" style="font-size: 10px;" />
+											<input type="text"class="form-control" value="활성 계정" readonly="readonly" style="font-size: 10px;" />
 										</c:if>
 										<c:if test="${getUser.userStatus == 2}">
-										<input type="text"
-											class="form-control" value="비활성 계정"
-											readonly="readonly" style="font-size: 10px;" />
+											<input type="text" class="form-control" value="비활성 계정" readonly="readonly" style="font-size: 10px;" />
 										</c:if>
 									</div>
 								</div>
@@ -191,8 +170,8 @@ float: left;
 	<br>
 	<br>
 	<br>
+</body>
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 	</footer>
-</body>
 </html>

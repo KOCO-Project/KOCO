@@ -5,16 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>adminEventList</title>
-<link rel="stylesheet" href="css/bootstrap.css">
+<title>adminEventList // 현재 구현되지 않은 페이지</title>
+<link rel="stylesheet" href="css/bootstrap.css?v=1">
 <link rel="stylesheet" href="css/footer.css">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 </head>
 </head>
 <body>
@@ -44,7 +43,6 @@
 							<th scope="col">제목</th>
 							<th scope="col">작성자</th>
 							<th scope="col">작성일</th>
-							<th scope="col">5</th>
 						</tr>
 					</thead>
 					<c:forEach items="${eventBoardList }" var="event">
@@ -53,19 +51,13 @@
 							<td>${event.boardTitle }</td>
 							<td>${event.writer }</td>
 							<td>${event.boardRegdate }</td>
-							<td>Column content</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<br>
 				<table style="width: 100%">
 					<tr>
-						<td>
-<!-- 							<div class="page-item"> -->
-<!-- 								<a href="cultureRegisterForm" class="input-group-text" -->
-<!-- 									style="width: 100px; justify-content: center;">글 쓰기</a> -->
-<!-- 							</div> -->
-						</td>
+						<td></td>
 						<!-- 검색 영역 -->
 						<td style="width: 40%;">
 							<form class="navbar-form" action="adminEventList" method="post">
@@ -87,8 +79,7 @@
 											<svg xmlns="http://www.w3.org/2000/svg" width="16"
 												height="16" fill="currentColor" class="bi bi-search"
 												viewBox="0 0 16 16">
-  									<path
-													d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
+  									<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" /></svg>
 										</button>
 									</div>
 								</div>

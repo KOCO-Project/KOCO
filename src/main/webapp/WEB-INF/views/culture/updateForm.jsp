@@ -108,12 +108,9 @@ $(function(){
 				<div class="col-sm-1"></div>
 			</div>
 		</div>
-	</div>
-	<br>
-	<br>
-	<br>
+	</div><br><br><br>
+</body>
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 	</footer>
-</body>
 </html>

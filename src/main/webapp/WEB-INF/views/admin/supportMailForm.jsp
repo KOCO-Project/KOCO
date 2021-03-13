@@ -5,64 +5,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <style type="text/css">
-.test {
-height: 100%;
-width: 100%;
-}
-
-form{
-text-align: -webkit-center;
-}
-
-label{
-float: left;
-}
-
-small{
-float: left;
-}
-
-fieldset{
-width: 50%;
-}
-
-div.form-group{
-margin-bottom : 3rem;
-}
-
-legend{
-font-weight: bold;
-font-size: 2rem;
-}
-
-html body form{
-line-height: 2;
-}
-
-.jb-wrap {
-position: relative;
-}
-
-.jb-wrap img {
-width: 100%;
-vertical-align: middle;
-}
-
-.jb-text {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate( -50%, -50% );
-color: white;
-z-index: 20;
-letter-spacing: 10px;
-}
-
-img{
-height: 200px;
-}
+.test {height: 100%;width: 100%;}
+form{text-align: -webkit-center;}
+label{float: left;}
+small{float: left;}
+fieldset{width: 50%;}
+div.form-group{margin-bottom : 3rem;}
+legend{font-weight: bold;font-size: 2rem;}
+html body form{line-height: 2;}
+.jb-wrap {position: relative;}
+.jb-wrap img {width: 100%;vertical-align: middle;}
+.jb-text {position: absolute;top: 50%;left: 50%;transform: translate( -50%, -50% );color: white;z-index: 20;letter-spacing: 10px;}
+img{height: 200px;}
 </style>
+
 <meta charset="UTF-8">
 <title>문의 메일</title>
 <link rel="stylesheet" href="css/bootstrap.css?v=1">

@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <script type="text/javascript">
 function check(){
     var editorValue = CKEDITOR.instances.editor.getData();
@@ -20,8 +21,6 @@ function check(){
 	function goBack() {
 		window.history.back();
 	}  
-	
-
 </script>
 <meta charset="UTF-8">
 <title>Culture Register Form</title>
@@ -34,6 +33,8 @@ function check(){
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 </head>
+
+<!--↓ summerNote 사용을 위한 자바스크립트 구문 구분 ↓-->
 <script type="text/javascript">
 $(function(){
 	var setting = {
@@ -44,12 +45,10 @@ $(function(){
 	$('.summernote').summernote(setting);
 });
 </script>
+
 <body>
 	<c:import url="/WEB-INF/views/include/admin_top2.jsp" />
-	<br>
-	<br>
-	<br>
-
+	<br><br><br>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
@@ -82,18 +81,19 @@ $(function(){
 						<form action='cultureRegister' method='post'>
 							
 							<input type="hidden" name="userNo" value="${sessionScope.user.userNo}">
+							
 							<div class="form-group">
-
-							<label>제목</label> 
-							<input type="text" class="form-control" name="cultureTitle" placeholder="제목을 입력하세요" required="required" mexlength="50" />
+								<label>제목</label> 
+								<input type="text" class="form-control" name="cultureTitle" placeholder="제목을 입력하세요" required="required" mexlength="50" />
 							</div>
-
+							
+							<!--↓ summerNote 구현 ↓-->
 							<div class="form-group">
 								<label>내용</label>
 								<textarea class="summernote" id="editor" name="cultureContent"  rows="12"></textarea>
-
 							</div>
-
+							
+							<!--↓ 게시글 main 노출 여부 ↓-->
 							<div class="form-group">
 								<label>메인 여부&nbsp;</label>
 								<input type="radio" name="culturePick" value="1">등록&nbsp;
@@ -112,12 +112,9 @@ $(function(){
 			</div>
 			<div class="col-sm-1"></div>
 		</div>
-	</div>
-	<br>
-	<br>
-	<br>
-	<footer>
-		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
-	</footer>
+	</div><br><br><br>
 </body>
+<footer>
+	<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+</footer>
 </html>

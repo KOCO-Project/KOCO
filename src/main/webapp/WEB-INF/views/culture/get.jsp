@@ -5,26 +5,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-div.card.border-light.mb-12 div.card-body h5{
-margin: 0;
-font-size: 0.8rem;
-display: inline-flex;
-}
 
-html, body {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-}
+<style type="text/css">
+div.card.border-light.mb-12 div.card-body h5{margin: 0;font-size: 0.8rem;display: inline-flex;}
+html, body {position: absolute;height: 100%;width: 100%;}
 </style>
 
 <script type="text/javascript">
-<!--뒤로가기기능-->
+	<!--↓ 뒤로가기 ↓-->
 	function goBack() {
 		window.history.back();
 	}
 </script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Culture getBoard</title>
@@ -105,8 +98,8 @@ html, body {
 	<br>
 	<br>
 	<br>
+</body>
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 	</footer>
-</body>
 </html>

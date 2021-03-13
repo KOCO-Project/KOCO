@@ -13,6 +13,7 @@ import co.kr.koco.vo.PageVO;
 @Service("CultureService")
 public class CultureServiceImpl implements CultureService {
 
+	//페이징 관련 변수 선언
 	private int pageListcnt = 10; // 페이지당 글 개수
 	private int pagePaginationcnt = 10;
 	

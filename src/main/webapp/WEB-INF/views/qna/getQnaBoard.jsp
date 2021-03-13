@@ -130,17 +130,14 @@ function check(userNo){
 						href="${root }ansRegister?infoNo=${infoNo }&boardNo=${boardNo }&page=${page}"
 						class="btn btn-primary" style="width: 100px;">답글달기</a>
 					<c:if test="${sessionScope.user.userNo == readContentBean.userNo }">
-						<a
-							href="${root }qnaupdate?infoNo=${infoNo }&boardNo=${boardNo }&page=${page}"
-							class="btn btn-success" style="width: 100px;">수정하기</a>
-						<a href="${root }qnadelete?infoNo=${infoNo }&boardNo=${boardNo }"
-							class="btn btn-danger" style="width: 100px;">삭제하기</a>
+						<a href="${root }qnaupdate?infoNo=${infoNo }&boardNo=${boardNo }&page=1" class="btn btn-success" style="width: 100px;">수정하기</a>
+						<a href="${root }qnadelete?infoNo=${infoNo }&boardNo=${boardNo }" class="btn btn-danger" style="width: 100px;">삭제하기</a>
 					</c:if>
-					<br> <br>
+					<br><br>
 				</div>
 			</div>
 		</div>
-		<br> <br>
+		<br><br>
 
 		<!--댓글 입력 창 -->
 		<div id="comment" style="text-align: -webkit-center;">

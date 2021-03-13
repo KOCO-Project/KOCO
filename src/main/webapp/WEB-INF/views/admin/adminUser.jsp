@@ -6,11 +6,9 @@
 <html>
 <head>
 <style type="text/css">
-tbody tr.table-light th h5 {
-	margin: 0;
-	font-size: 0.8rem;
-}
+tbody tr.table-light th h5 {margin: 0;font-size: 0.8rem;}
 </style>
+
 <script type="text/javascript">
 <!--뒤로가기기능-->
 	function goBack() {
@@ -32,18 +30,17 @@ tbody tr.table-light th h5 {
 		}
 	}
 </script>
+
 <meta charset="UTF-8">
 <title>Culture List</title>
 <link rel="stylesheet" href="css/bootstrap.css?v=1">
 <link rel="stylesheet" href="css/footer.css">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 </head>
 <body>
 
@@ -216,8 +213,8 @@ tbody tr.table-light th h5 {
 	<br>
 	<br>
 	<br>
+</body>
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 	</footer>
-</body>
 </html>
