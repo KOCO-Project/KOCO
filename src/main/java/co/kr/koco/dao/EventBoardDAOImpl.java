@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.BookMarkVO;
 import co.kr.koco.vo.Criteria;
 
 @Repository
@@ -45,13 +46,18 @@ public class EventBoardDAOImpl implements EventBoardDAO{
 		return sql.selectOne("evnetDAO.postEventBoardUpdate", event);
 	 }
 	@Override
-	 public int eventBoardDelete(int boardNo) {
-		return sql.selectOne("evnetDAO.eventBoardDelete", boardNo);
+	 public void eventBoardDelete(int boardNo) {
+		sql.selectOne("evnetDAO.eventBoardDelete", boardNo);
 	 }
 	@Override
 	 public int getTotalCount(Criteria cri) {
 		return sql.selectOne("evnetDAO.getTotalCount", cri);
 	 }
+	@Override
+	 public void bookmarkRegister(BookMarkVO book) {
+		sql.insert("evnetDAO.bookmarkRegister", book);
+	}
+	 
 //	 public int boardSearch(Long boardNo);
 //	 public void insertSelectKey(EventVO event);
 }

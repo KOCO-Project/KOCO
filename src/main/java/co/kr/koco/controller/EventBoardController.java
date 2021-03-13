@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import co.kr.koco.service.EventBoardService;
 import co.kr.koco.utils.UploadFileUtils;
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.BookMarkVO;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
 
@@ -56,7 +57,7 @@ public class EventBoardController {
 	}
 	
     @PostMapping("/eventRegister")	// 등록에 대한 처리
-    public String register(BoardVO event, MultipartFile uploadFile, RedirectAttributes rttr) throws IOException, Exception {
+    public String register(@RequestParam("userNo") int userNo, @ModelAttribute("event") BoardVO event, MultipartFile uploadFile, RedirectAttributes rttr) throws IOException, Exception {
     	
     	String imgUploadPath = uploadPath + File.separator + "imgUpload";
     	String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
@@ -70,9 +71,12 @@ public class EventBoardController {
 
     	event.setThumbnail("imgUpload" + ymdPath + File.separator + thumbFileName);
     	event.setFileName(thumbFileName);
+//    	userVO.setUserNo(userNo);
+//    	event.setUserNo(userVO.getUserNo());
+    	event.setUserNo(userNo);
     	
-    	service.eventBoardRegister(event);
-    	rttr.addFlashAttribute("result", event.getBoardNo());
+//    	service.eventBoardRegister(event);
+//    	rttr.addFlashAttribute("result", event.getBoardNo());
     	return "redirect:/eventList";
     }
 
@@ -172,15 +176,31 @@ public class EventBoardController {
 		
 	}
 
-    @PostMapping("/eventDelete")
-	public String delete(BoardVO event, @RequestParam("boardNo") int bno, RedirectAttributes rttr) {
+//    @PostMapping("/eventDelete")
+//	public String delete(BoardVO event, @RequestParam("boardNo") int bno, RedirectAttributes rttr) {
+//		service.eventBoardDelete(bno);
+//		rttr.addFlashAttribute("result", event.getBoardNo());
+//		return "redirect:/eventList";
+////		return "redirect:eventboard/list3";
+////		return "redirect:/KOCO/eventList";
+////		return "redirect:/KOCO/eventList?page=${page}";
+//	}
+    @GetMapping("/eventDelete")
+//    @RequestMapping(value="/eventDelete", method=RequestMethod.GET)
+    public String eventDelete(@RequestParam("boardNo") int bno, Model model) {
 		service.eventBoardDelete(bno);
-		rttr.addFlashAttribute("result", event.getBoardNo());
-		return "redirect:/eventList";
-//		return "redirect:eventboard/list3";
-//		return "redirect:/KOCO/eventList";
-//		return "redirect:/KOCO/eventList?page=${page}";
-	}
+		return "eventboard/delete";
+}
+    
+    @GetMapping({"/bookmark"})
+    public String bookmark(BookMarkVO book, @RequestParam(value="userNo", defaultValue="28") int userNo, @RequestParam(value="boardNo", defaultValue="752") int bno, MultipartFile uploadFile, RedirectAttributes rttr) throws IOException, Exception {
+    	book.setBoardNo(bno);
+    	book.setBoardCategory(3);
+    	book.setUserNo(userNo);
+    	service.bookmarkRegister(book);
+    	rttr.addFlashAttribute("result", book.getBoardNo());
+    	return "redirect:/eventList";
+    }
     
 //    @GetMapping("/eventDelete")
 ////    @RequestMapping(value="/eventDelete", method=RequestMethod.GET)

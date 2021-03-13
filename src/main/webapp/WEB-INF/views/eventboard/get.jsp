@@ -90,6 +90,8 @@
 							<%-- <a href="eventDelete?boardNo=${event.boardNo}" class="btn btn-danger" style="width: 100px;">삭제하기</a> --%>
 						</c:if>
 							<button data-oper='list' class="btn" style="background-color: #EDB95F; color: white;">돌아가기</button>
+							<button data-oper='remove' class="btn" style="background-color: #EDB95F; color: white;">삭제하기</button>
+							<%-- <a href="/KOCO/eventDelete?boardNo=${boardNo}" class="btn btn-danger" style="width: 100px;">삭제하기</a> --%>
 						</div>
 						<form id='operForm' action="/eventboard/update" method="get">
 							<input type='hidden' id='boardNo' name='boardNo'
@@ -131,6 +133,8 @@
     			} else{
     				return false;
     			}
+			}else if(operation === 'remove'){
+				self.location ="/KOCO/eventDelete?boardNo=${boardNo}";
 			}
 		})
 	});

@@ -58,7 +58,17 @@
 						<c:out value="${event.boardTitle}" /> 
 					</a>
 				</h4>
-      			<p class="card-text" style="color: #939393; font-size: 0.8rem;"><c:out value="${event.writer}" /></p>
+				<a href="userPage?userNickname=${event.writer}">
+      				<p class="card-text" style="color: #939393; font-size: 0.8rem;"><c:out value="${event.writer}" /></p>
+      			</a>
+      			<c:if test="${sessionScope.user.userCase == 1}">
+      			<input type="hidden" id="userNo" name="userNo" value="${sessionScope.user.userNo }"/>
+      			<%-- <a href="/KOCO/bookmark?boardNo=<c:out value="${event.boardNo}"/>&userNo=${sessionScope.user.userNo}" style="text-align: right;"> --%>
+      			<a href="/KOCO/bookmark?boardNo=<c:out value="${event.boardNo}"/>" style="text-align: right;">
+      			마음
+      			</a>
+      			<a href="userPage?userNickname=${user.userNickname}#bookmark" style="text-align: right;">마음</a>
+      			</c:if>
       		</div>
       	</div>
     </div>

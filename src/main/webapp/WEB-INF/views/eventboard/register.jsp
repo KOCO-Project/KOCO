@@ -44,8 +44,8 @@ font-weight: bold;
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<form role="form" action="/KOCO/eventRegister" method="post" enctype="multipart/form-data">
-							<%-- <form:hidden path="3"/> --%>
+						<form role="form" action="/KOCO/eventRegister" method="post" modelAttribute="event" enctype="multipart/form-data">
+						<input type="hidden" id="userNo" name="userNo" value="${sessionScope.user.userNo }"/>
 							<div class="form-inline form-group">
 								<label style="font-weight: bolder; font-size: 18px;">제목&nbsp;&nbsp;&nbsp;</label>
 								<div class="col-sm-10">
@@ -73,10 +73,6 @@ font-weight: bold;
 									CKEDITOR.replace("boardContent", ckeditor_config);
 								</script>
 							</div>
-							<!-- <div class="form-group">
-								<label>첨부파일</label> 
-								<input name="fileName" class="form-control" type="file" accept="image/*" />
-							</div> -->
 							<div class="inputArea">
 								<label for="fileName" style="font-weight: bolder; font-size: 18px;">썸네일&nbsp; &nbsp; &nbsp; &nbsp;</label> 
 								<input type="file" id="fileName" name="uploadFile" required/><br><br>
