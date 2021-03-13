@@ -14,14 +14,29 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	<script src="ckeditor/ckeditor.js"></script>
+	<script>	
+	function loginCheck(){
+		var loginyn = $('#loginyn').val();
+		
+		console.log(loginyn);
+		
+		if(loginyn == ''){
+			alert('로그인 해주세요.');
+			location.href = 'loginView';
+			return false;
+		} else {
+			return true;
+		}
+	}
+	</script>
 	<style>
 	.boardContent {text-align: center;}
-	.boardContent img { max-width:600px; height:auto; text-align:center;}
+	.boardContent img { max-width:600px; height:auto;}
 	.thumbImg {max-width:600px; height:auto; }
 	</style>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/include/event_top.jsp" />
+	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div id="event" class="container">
 		<div class="row">
 			<div class="col-md-12 mb-3" style="text-align: center;">
@@ -59,19 +74,22 @@
 						</div>
 						<div class="form-group">
 							<hr>
-							<label>&nbsp;&nbsp;첨부파일&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<c:out value="${event.fileName}"/></label>
+							<label>&nbsp;&nbsp;첨부파일&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+							<c:out value="${event.fileName}"/></label>
 							<hr>
-							<div class="inputArea">
+							<%-- <div class="inputArea">
 								<p>&nbsp;&nbsp;썸네일 (썸네일 시험용 보기. 없어질 영역.)</p>
 								<img src="${event.thumbnail}" class="thumbImg" />
-							</div>
+							</div> --%>
 						</div>
-						<div class="form-group float-right">
-							<button data-oper='update' class="btn btn-success">수정하기</button>
+						<div class="form-group" style="text-align: center;">
+						<c:if test="${sessionScope.user.userCase == 1}">
+							<button data-oper='update' class="btn btn-success" style="background-color: #2172AF;">수정하기</button>
 							<%-- <a href="getEventUpdate?boardNo=${event.boardNo}&page=${page}" class="btn btn-success" style="width: 100px;">수정하기</a> --%> 
 							<button type="submit" data-oper='delete' class="btn btn-danger">삭제하기</button>
 							<%-- <a href="eventDelete?boardNo=${event.boardNo}" class="btn btn-danger" style="width: 100px;">삭제하기</a> --%>
-							<button data-oper='list' class="btn btn-info">리스트</button>
+						</c:if>
+							<button data-oper='list' class="btn" style="background-color: #EDB95F; color: white;">돌아가기</button>
 						</div>
 						<form id='operForm' action="/eventboard/update" method="get">
 							<input type='hidden' id='boardNo' name='boardNo'
@@ -104,20 +122,25 @@
 			if(operation === 'list'){
 				self.location ="/KOCO/eventList?page=${page}";
 			}else if(operation === 'delete'){
-				/* formObj.attr("action", "/KOCO/eventDelete"); */    
-				formObj.attr("action","/KOCO/eventDelete")
-				.attr("method", "post");
-				formObj.submit();
-				}
-			})
-		});
-	function test() { 
+				/* formObj.attr("action", "/KOCO/eventDelete"); */  
+				result = confirm('삭제 하시겠습니까');
+    			if(result == true){
+					formObj.attr("action","/KOCO/eventDelete")
+					.attr("method", "post");
+					formObj.submit();
+    			} else{
+    				return false;
+    			}
+			}
+		})
+	});
+	/* function test() { 
 		txt = document.getElementById("userNo"); 
 		if( txt.readOnly == true ) { 
 		txt.style.backgroundColor = "#505050"; 
 		return false; 
 		} 
-		} 
+		}  */
 </script>
 </body>
 </html>

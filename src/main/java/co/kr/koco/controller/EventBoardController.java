@@ -123,15 +123,6 @@ public class EventBoardController {
      return; 
     }
     
-//	@GetMapping("/list")
-//	@RequestMapping(value="/eventList", method=RequestMethod.GET)
-//	public String list(Criteria cri, Model model) {
-//		model.addAttribute("infoNo", 3);
-//		model.addAttribute("list", service.getListWithPaging(cri));
-//		int total = service.getTotal(cri);
-//		model.addAttribute("pageMaker", new PageDTO(cri, total));
-//		return "eventboard/list3";
-//	}
     @GetMapping("/eventList")
 	public String list(@RequestParam(value = "page", defaultValue = "1") int page,
 						   Model model) {
@@ -182,15 +173,13 @@ public class EventBoardController {
 	}
 
     @PostMapping("/eventDelete")
-//    @RequestMapping(value="/eventDelete", method=RequestMethod.POST)
-	public String delete(@RequestParam("boardNo") int bno) {
-		
+	public String delete(BoardVO event, @RequestParam("boardNo") int bno, RedirectAttributes rttr) {
 		service.eventBoardDelete(bno);
-//		rttr.addAttribute("pageNum",cri.getPageNum());
-//		rttr.addAttribute("amount",cri.getAmount());
+		rttr.addFlashAttribute("result", event.getBoardNo());
+		return "redirect:/eventList";
 //		return "redirect:eventboard/list3";
 //		return "redirect:/KOCO/eventList";
-		return "redirect:/KOCO/eventList?page=${page}";
+//		return "redirect:/KOCO/eventList?page=${page}";
 	}
     
 //    @GetMapping("/eventDelete")

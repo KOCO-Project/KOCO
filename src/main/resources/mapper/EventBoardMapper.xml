@@ -40,9 +40,9 @@
 		<!-- set BOARD_TITLE=#{boardTitle},BOARD_CONTENT=#{boardContent},BOARD_REGDATE=NOW(),USER_NO=#{userNo} where BOARD_NO=#{boardNo} -->
 		set BOARD_TITLE=#{boardTitle},BOARD_CONTENT=#{boardContent},BOARD_REGDATE=NOW(),FILE_NAME=#{fileName},THUMBNAIL=#{thumbnail},user.USER_NICKNAME=#{writer} where BOARD_NO=#{boardNo}
 	</update>
-	<delete id="eventBoardDelete" parameterType="board">
+	<select id="eventBoardDelete" parameterType="java.lang.Integer" resultMap="boardResult">
 		delete from KOCO_BOARD where BOARD_NO=#{boardNo}
-	</delete>
+	</select>
 	<select id="getListWithPaging" resultType="board" resultMap="boardResult">
 		select BOARD_NO, BOARD_TITLE, user.USER_NICKNAME as writer, BOARD_REGDATE, READCOUNT
 		from KOCO_BOARD as board

@@ -37,7 +37,7 @@
             <div class="container">
                 <div class="masthead-subheading" style="color: black;">Welcome To KOCO!</div>
                 <div class="masthead-heading text-uppercase" style="color: black;">Our Amazing Team</div>
-                <a class="btn btn-dark btn-xl text-uppercase js-scroll-trigger" href="#contact" style="background-color: #301B00;">Would you contact us?</a>
+                <a class="btn btn-dark btn-xl text-uppercase js-scroll-trigger" href="supportMailForm" style="background-color: #301B00;">Would you contact us?</a>
                 
             </div>
         </header>
@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/zzang4.jpeg" alt="" />
+                            <img class="mx-auto rounded-circle" src="images/team/teaseop.png" alt="" />
                             <h4>TeaSeop-Kim</h4>
                             <p class="text-muted">Project Manager</p>
                             <a class="btn btn-dark btn-social mx-2" href="https://github.com/tseop"><i class="fab fa-github"></i></a>
@@ -62,52 +62,52 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/zzang3.jpg" alt="" />
-                            <h4>MinSuk-Ryu</h4>
+                            <img class="mx-auto rounded-circle" src="images/team/minseuk.jpeg" alt="" />
+                            <h4>MinSeuk-Yoo</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn btn-dark btn-social mx-2" href="https://github.com/sukmuzi"><i class="fab fa-github"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/sukmuzi/"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/danbi.jpg" alt="" />
+                            <img class="mx-auto rounded-circle" src="images/team/jiwon.jpeg" alt="" />
                             <h4>JiWon-Oh</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn btn-dark btn-social mx-2" href="https://github.com/trydoit9"><i class="fab fa-github"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/gee_wonny/"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/miso.jpg" alt="" />
+                            <img class="mx-auto rounded-circle" src="images/team/sanga.jpeg" alt="" />
                             <h4>SangA-Lee</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn btn-dark btn-social mx-2" href="https://github.com/stkddks"><i class="fab fa-github"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/ivovrysanga/"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/ari.jpg" alt="" />
+                            <img class="mx-auto rounded-circle" src="images/team/ahyoung.jpeg" alt="" />
                             <h4>AhYoung-Lee</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn btn-dark btn-social mx-2" href="https://github.com/ARONGLEE"><i class="fab fa-github"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/lylykymm/"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/zzang2.jpg" alt="" />
+                            <img class="mx-auto rounded-circle" src="images/team/yongwon.png" alt="" />
                             <h4>YongWon-Cho</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn btn-dark btn-social mx-2" href="https://github.com/dyddnjs524"><i class="fab fa-github"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/be_quiet_o/"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
         </section>
         
         <!-- Contact-->
-        <section class="page-section" id="contact">
+        <!-- <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Contact Developer</h2>
@@ -157,10 +157,10 @@
                     </div>
                 </form>
             </div>
-        </section>
+        </section> -->
         <footer>
-	<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
-</footer>
+			<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+		</footer>
         
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

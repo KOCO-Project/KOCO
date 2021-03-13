@@ -24,9 +24,14 @@ font-weight: bold;
 }
 
 </style> -->
+<style>
+	#input{
+	width: 115%;
+	}
+	</style>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/include/event_top.jsp" />
+	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div id="event" class="container">
 		<div class="row">
 			<div class="col-md-12 mb-3" style="text-align: center;">
@@ -44,19 +49,19 @@ font-weight: bold;
 							<div class="form-inline form-group">
 								<label style="font-weight: bolder; font-size: 18px;">제목&nbsp;&nbsp;&nbsp;</label>
 								<div class="col-sm-10">
-								<input type="text" name="boardTitle" class="form-control" size="100"/> 
+								<input type="text" id="input" name="boardTitle" class="form-control" required/> 
 								</div>
 							</div>
 							<div class="form-inline form-group">
 								<label style="font-weight: bolder; font-size: 18px;">마감일</label> 
 								<div class="col-sm-10">
-								<input type="date" name="boardRegdate" class="form-control" size="100"/>
+								<input type="date" id="input" name="boardRegdate" class="form-control" required/>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label style="font-weight: bolder; font-size: 18px;">내용</label><br><br>
-								<textarea class="form-control" id='boardContent' name='boardContent' rows="20"></textarea>
+								<textarea class="form-control" id='boardContent' name='boardContent' rows="20" required></textarea>
 								<script>
 									var ckeditor_config = {
 										resize_enaleb : false,
@@ -74,7 +79,7 @@ font-weight: bold;
 							</div> -->
 							<div class="inputArea">
 								<label for="fileName" style="font-weight: bolder; font-size: 18px;">썸네일&nbsp; &nbsp; &nbsp; &nbsp;</label> 
-								<input type="file" id="fileName" name="uploadFile" /><br><br>
+								<input type="file" id="fileName" name="uploadFile" required/><br><br>
 								<div class="select_img">
 									<img src="" />
 								</div>
@@ -93,10 +98,8 @@ font-weight: bold;
 								<%-- <%=request.getRealPath("/") %> --%>
 								<!-- /Users/isang-a/Documents/workspace-sts-3.9.15.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/KOCO/ -->
 							</div>
-							<button type="reset" style="float: right" class="btn btn-default">Reset
-								Button</button>
-							<button type="submit" style="float: right"
-								class="btn btn-default">등록하기</button>
+							<button type="reset" style="float: right; margin-left: 5px;" class="btn btn-danger">되돌리기</button>
+							<button type="submit" style="float: right; background-color: #2172AF;" class="btn btn-info">등록하기</button>
 						</form>
 						</div>
 					</div>

@@ -30,7 +30,10 @@ main {
 #event table a{color: #3e3f3a;}
 #searcharea{display: flex;justify-content: space-between;}
 
-
+#event .btn{
+	background-color: blue;
+	
+}
 footer {
 	text-align: center;
 	padding: 3rem;

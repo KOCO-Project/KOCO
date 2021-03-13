@@ -23,36 +23,47 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<style>
+		#thumbImg{width: 100%; height: 180px;}
+	/* .card img{width: 240px; height: 180px;} */
+	</style>
 </head>
 
 <body>
-<c:import url="/WEB-INF/views/include/event_top.jsp" />
+<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <div id="event" class="container">
 	<div class="row">
 		<div class="col-md-12 mb-5" style="text-align: center;">
 			<h2>Event</h2>
 			<p style="color: #939393;">이벤트 게시판 입니다 :)</p>
-			<button id='regBtn' type="button" class="btn btn-primary btn-lg pull-right" style="font-size: 10px; float: right;">New Event</button>
+			<c:if test="${sessionScope.user.userCase == 1}">
+			<button id='regBtn' type="button" onclick="return loginCheck();" class="btn btn-primary btn-lg pull-right" style="font-size: 10px; float: right;">New Event</button>
+		</c:if>
 		</div>
 	</div>
     <div class="row">
 	<c:forEach items="${list}" var="event">
-      <div class="col-md-4 mb-5">
-        <div class="card h-80">
-          <!-- <img class="card-img-top" src="imgUpload/2021/03/12/4497c2f4-294a-413f-912f-ce4e25825091_신세계 물류관리.png" alt=""> -->
-          <img class="card-img-top" src="${event.thumbnail}" alt="">
-          <div class="card-body">
-            <h4 class="card-title">
-            	<a class='move' href='/KOCO/eventGet?boardNo=<c:out value="${event.boardNo}"/>&page=${page}'>
-						<c:out value="${event.boardTitle}" />
-				</a>
-			</h4>
-            <p class="card-text" style="color: #939393;"><c:out value="${event.writer}" /></p>
-          </div>
-        </div>
-      </div>
+    <div class="col-md-4 mb-5">
+      	<div class="card h-100">
+       		<div class="card">
+	       		<a class='move' href='/KOCO/eventGet?boardNo=<c:out value="${event.boardNo}"/>&page=${page}'>
+	         		<img class="card-img-top" id="thumbImg" src="imgUpload/2021/03/13/fd147ac8-e0e2-476e-8cfe-e5119f11db65_showtime.jpg" alt="">
+	       			<%-- <img src="<c:out value="${event.thumbnail}"/>" class="card-img-top" id="thumbImg" /> --%>
+	       			<%-- <img src="${event.thumbnail}" class="card-img-top" id="thumbImg" /> --%> 
+	         	</a>
+	        </div>
+       		<div class="card-body">
+		       	<h4 class="card-title">
+		           	<a class='move' style="color: black; font-size: 1.1rem;" href='/KOCO/eventGet?boardNo=<c:out value="${event.boardNo}"/>&page=${page}'>
+						<c:out value="${event.boardTitle}" /> 
+					</a>
+				</h4>
+      			<p class="card-text" style="color: #939393; font-size: 0.8rem;"><c:out value="${event.writer}" /></p>
+      		</div>
+      	</div>
+    </div>
       
-      <div class="col-md-4 mb-5">
+     <!--  <div class="col-md-4 mb-5">
         <div class="card h-80">
           <img class="card-img-top" src="images/2.jpeg" alt="">
           <div class="card-body">
@@ -70,7 +81,7 @@
             <p class="card-text" style="color: #939393;">경영지원팀장_LEE</p>
           </div>
         </div>
-      </div>
+      </div> -->
       </c:forEach>
 </div>
 <!-- <div class="row"> -->
