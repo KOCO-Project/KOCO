@@ -94,7 +94,7 @@ function filp(groupNo){
 		<a href="qnalist?infoNo=${infoNo }&page=${page}" class="header"
 			style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">Q&A</a>
 		<div>
-			<div class="card-body">
+			<div class="card-body" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;">
 				<div class="card-header"
 					style="display: flex; padding: 0.75rem 0.75rem;">
 
