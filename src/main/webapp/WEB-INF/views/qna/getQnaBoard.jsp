@@ -56,6 +56,14 @@ div.card-body {
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script> 
+
+function qnaCommentUpdatForm(commentNo){
+	   window.name = "댓글 수정";
+	   window.open("qnaCommentUpdateForm?commentNo="+commentNo, "updateForm" , 
+	   "width=570,height = 350, resizable = no , scrollbars = no");
+	}
+
+
 function filp(groupNo){
 	$('#panel'+groupNo).slideToggle('slow');
 }
@@ -168,20 +176,41 @@ function filp(groupNo){
 							<div class="toast show" role="alert" aria-live="assertive"
 								aria-atomic="true" style="width: 95%; max-width: 100%;">
 								<div class="toast-header">
-									<strong class="mr-auto"> ${comment.userNickname} <a
-										href="qnaCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }">수정</a>
-										<a
-										href="qnaCommentDelete?groupNo=${comment.groupNo}&boardNo=${readContentBean.boardNo }">삭제</a>
+									<strong class="mr-auto"> ${comment.userNickname}</strong>
+									
 										
 										
 <%-- <input type="hidden" value="${comment.groupNo }"> --%>
-									</strong> <small>${comment.commentRegdate}</small>
+									 <small><a href="qnaCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }">수정</a>
+									<a href="qnaCommentDelete?groupNo=${comment.groupNo}&boardNo=${readContentBean.boardNo }">삭제</a></small>
 								</div>
-								<div class="toast-body" style="text-align: left;">${comment.commentContent}</div>
-									<div id="flip" onclick="filp(${comment.groupNo });">대댓글 입력</div>
+								<div class="toast-body" style="text-align: left;">
+									${comment.commentContent} <small style="float:right;">${comment.commentRegdate}</small> 
+								</div>
+								<!-- 대댓글 리스트 -->
+								<c:forEach items="${commentList}" var="comcomment">
+									<c:set var="depth" value="${comcomment.depth }" />
+									<c:set var="GroupNo2" value="${comcomment.groupNo }" />
+									<c:if test="${depth eq 1 }">
+										<c:if test="${GroupNo eq GroupNo2 }">
+											<div class="toast-header">
+												<strong class="mr-auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${comcomment.userNickname}</strong>
+													<small>
+<%-- 													<c:if test="${comment.userNo } eq ${sessionScope.user.userNo }"> --%>
+													<a href = "qnaCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }">수정</a>
+													<a href = "#" coClick = "qnaCommentUpdatForm(${comment.commentNo})">수정(미완성)</a>
+													<a href = "qnaComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${readContentBean.boardNo }">삭제</a>
+<%-- 													</c:if> --%>
+											</div>		
+												 
+											
+											<div class="toast-body" style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${comcomment.commentContent}<small style="float:right;">${comcomment.commentRegdate}</small></small></div>
+										</c:if>
+									</c:if>
+								</c:forEach>
+								<div id="flip" onclick="filp(${comment.groupNo });">대댓글 입력</div>
 										<div id="panel${comment.groupNo }" style="padding: 10px;padding-bottom: 30px;display: none;">
-										
-
+	
 											<!-- 대댓글 입력창 -->
 											<div style="text-align: -webkit-center;">
 												<form action="qnaComcommentRegister" method="post"
@@ -206,26 +235,7 @@ function filp(groupNo){
 												</form>
 											</div>
 										</div>
-
-								<!-- 대댓글 리스트 -->
-								<c:forEach items="${commentList}" var="comcomment">
-									<c:set var="depth" value="${comcomment.depth }" />
-									<c:set var="GroupNo2" value="${comcomment.groupNo }" />
-									<c:if test="${depth eq 1 }">
-										<c:if test="${GroupNo eq GroupNo2 }">
-											<div class="toast-header">
-												<strong class="mr-auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${comcomment.userNickname}
-													<a href = "qnaCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }">수정</a>
-													<a href = "qnaComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${readContentBean.boardNo }">삭제</a>
-													
-												</strong> <small>${comcomment.commentRegdate}</small>
-											</div>
-											<div class="toast-body" style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${comcomment.commentContent}</div>
-										</c:if>
-									</c:if>
-								</c:forEach>
 							</div>
-
 						</c:if>
 					</c:if>
 				</c:if>
