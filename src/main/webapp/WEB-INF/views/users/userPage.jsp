@@ -10,14 +10,11 @@
 	height: 100%;
 	width: 100%;
 }
-
-
 .row{
 height: 100%;
 padding:2rem;
 background-color: #fff;}
 .col-md-4{text-align: center;}
-
 ul{
 list-style: none; padding: 0px;
 }
@@ -34,7 +31,6 @@ padding-left: 40%;
     height: 3rem;
     width: 100%;
 } */
-
 body{height: 100%;}
 html{height: 100%;}
 .text.active{opacity: 1;}
@@ -137,7 +133,6 @@ $(function(){
 	
 	$('#userNickname').on('blur', function userNicknameExist(){
 		var userNickname = $('#userNickname').val();
-
 		if(userNickname == ""){
 			$('#nickCheck').text('NickName을 입력해주세요.');
 			$('#nickCheck').css('color', '#55B836');
@@ -175,7 +170,6 @@ $(function(){
 			}
 		});
 	});
-
 // 	$('#userEmail').on('blur', function userEmailExist(){
 // 		var userEmail = $('#userEmail').val();
 		
@@ -334,6 +328,15 @@ $(function(){
 		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;">지원이</td>
 		<td class="text-center d-none d-md-table-cell">날짜</td>
 	</tr>
+	<%-- <c:forEach items="${bookmarklist}" var="bookmark">
+	<tr>
+		<th class="text-center d-none d-md-table-cell"><c:out value="${bookmark.boardCategory}"/></th>
+		<!-- <td class="text-center d-none d-md-table-cell">1</td> -->
+		<td><a href=''><c:out value="${bookmark.boardTitle}"/></a></td>
+		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;"><c:out value="${bookmark.writer}"/></td>
+		<!-- <td class="text-center d-none d-md-table-cell">날짜</td> -->
+	</tr>
+	</c:forEach> --%>
 	<%-- </c:forEach> --%>
 	</tbody>
 </table>		

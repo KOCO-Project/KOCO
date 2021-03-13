@@ -12,6 +12,7 @@
 		<typeAlias alias="notice" type="co.kr.koco.vo.NoticeVO"></typeAlias>
 		<typeAlias alias="follow" type="co.kr.koco.vo.FollowVO"></typeAlias>
 		<typeAlias alias="profile" type="co.kr.koco.vo.ProfileImgVO"></typeAlias>
+		<typeAlias alias="bookmark" type="co.kr.koco.vo.BookMarkVO"></typeAlias>
 	</typeAliases>
 
 	<mappers>

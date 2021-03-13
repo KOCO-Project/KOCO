@@ -55,7 +55,8 @@
         </property>
     </bean>
     
-	<bean class="co.kr.koco.vo.UserVO" id='userVO' scope='session'/>	
+	<bean class="co.kr.koco.vo.UserVO" id='userVO' scope='session'/>
+	<bean class="co.kr.koco.vo.BookMarkVO" id='bookmarkVO' scope='session'/>	
 	<context:component-scan base-package="co.kr.koco"></context:component-scan>
 	
 </beans>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import co.kr.koco.dao.EventBoardDAO;
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.BookMarkVO;
 import co.kr.koco.vo.Criteria;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
@@ -32,7 +33,7 @@ public class EventBoardServiceImpl implements EventBoardService {
 	@Override
 	public void eventBoardRegister(BoardVO event) {
 //		String userNickname = userVO.getUserNickname();
-		event.setUserNo(userVO.getUserNo());
+//		event.setUserNo(userVO.getUserNo());
 		eventBoardDAO.eventBoardRegister(event);
 	}	
 
@@ -54,8 +55,8 @@ public class EventBoardServiceImpl implements EventBoardService {
 	}
 
 	@Override
-	public int eventBoardDelete(int bno) {
-		return eventBoardDAO.eventBoardDelete(bno);
+	public void eventBoardDelete(int bno) {
+		eventBoardDAO.eventBoardDelete(bno);
 
 	}
 	
@@ -80,6 +81,10 @@ public class EventBoardServiceImpl implements EventBoardService {
 		return pageVO;
 	}
 
+	public void bookmarkRegister(BookMarkVO book){
+		book.setUserNo(userVO.getUserNo());
+		eventBoardDAO.bookmarkRegister(book);
+	}
 //	@Override
 //	public List<EventVO> getList() {
 //

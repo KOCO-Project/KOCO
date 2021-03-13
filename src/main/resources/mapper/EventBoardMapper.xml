@@ -15,9 +15,16 @@
 		<result property="thumbnail" column="THUMBNAIL" />
 		<result property="userNo" column="USER_NO" />
 	</resultMap>
+	<resultMap type="bookmark" id="bookmarkResult">
+		<result property="boardNo" column="BOARD_NO"/>
+		<result property="boardCategory" column="BOARD_CATEGORY" />
+		<result property="userNo" column="USER_NO" />
+	</resultMap>
 	<insert parameterType="board" id="eventBoardRegister">
-		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO)
-		VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName}, #{thumbnail}, 28)
+		<![CDATA[
+		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO ,parent,depth,sequence)
+		VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName}, #{thumbnail}, 28,NULL,NULL,NULL)
+	]]>
 		<!-- VALUES(3, #{boardTitle}, #{boardContent}, NOW(), 0, #{fileName, jdbcType=VARCHAR}, NULL, 1) -->
 	</insert>
 	<!-- <select parameterType="java.lang.Integer" id="getBoardInfoName" resultType="java.lang.String">
@@ -41,7 +48,9 @@
 		set BOARD_TITLE=#{boardTitle},BOARD_CONTENT=#{boardContent},BOARD_REGDATE=NOW(),FILE_NAME=#{fileName},THUMBNAIL=#{thumbnail},user.USER_NICKNAME=#{writer} where BOARD_NO=#{boardNo}
 	</update>
 	<select id="eventBoardDelete" parameterType="java.lang.Integer" resultMap="boardResult">
+		<![CDATA[
 		delete from KOCO_BOARD where BOARD_NO=#{boardNo}
+		]]>
 	</select>
 	<select id="getListWithPaging" resultType="board" resultMap="boardResult">
 		select BOARD_NO, BOARD_TITLE, user.USER_NICKNAME as writer, BOARD_REGDATE, READCOUNT
@@ -76,4 +85,22 @@
 		SELECT COUNT(*) FROM KOCO_BOARD WHERE BOARD_CATEGORY = 3
 	]]>
 	</select>
+	
+	 <insert parameterType="bookmark" id="bookmarkRegister">
+		INSERT INTO KOCO_BOOKMARK(USER_NO, BOARD_CATEGORY, BOARD_NO)
+		VALUES (${userNo}, 3, ${boardNo})
+		<!-- VALUES (${userNo}, ${boardCategory}, ${boardNo}) -->
+	</insert>
+	
+	<!-- <select id="bookmarkList" resultType="bookmark" resultMap="bookmarkResult" parameterType="java.lang.Integer">
+		select KOCO_BOOKMARK.BOARD_NO, KOCO_BOOKMARK.BOARD_CATEGORY, KOCO_BOARD.BOARD_TITLE, KOCO_USERS.USER_NICKNAME as writer
+		from  KOCO_BOOKMARK join KOCO_BOARD on KOCO_BOARD.BOARD_NO=KOCO_BOOKMARK.BOARD_NO
+							join KOCO_USERS on KOCO_BOOKMARK.USER_NO=KOCO_USERS.USER_NO
+	</select> -->
+	<!-- <select id="bookmarkGet" resultType="board" resultMap="boardResult" parameterType="java.lang.Integer">
+		select *
+		from  KOCO_BOOKMARK join KOCO_BOARD on KOCO_BOARD.BOARD_NO=KOCO_BOOKMARK.BOARD_NO
+							join KOCO_USERS on KOCO_BOOKMARK.USER_NO=KOCO_USERS.USER_NO
+		where KOCO_BOARD.BAORD_NO=#{boardNo}
+	</select> -->
 </mapper>

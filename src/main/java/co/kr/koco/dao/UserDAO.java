@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.kr.koco.vo.BookMarkVO;
 import co.kr.koco.vo.ProfileImgVO;
 import co.kr.koco.vo.UserVO;
 
@@ -105,6 +106,9 @@ public class UserDAO {
 //		System.out.println(vo.getUserStatus());
 //		System.out.println(vo.getUserCase());
 		sql.update("userMapper.adminUserUpdate",vo);
+	}
+	public List<UserVO> bookmarkList(BookMarkVO bookmark) {
+		return sql.selectList("userMapper.bookmarkList",bookmark);
 	}
 }
 
