@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import co.kr.koco.service.CommentService;
 /*import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +36,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 */
 import co.kr.koco.service.FreeBoardService;
 import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.CommentVO;
 import co.kr.koco.vo.HeartVO;
 import co.kr.koco.vo.PageVO;
 import co.kr.koco.vo.UserVO;
@@ -45,12 +47,13 @@ public class FreeBoardController {
 	
 	@Autowired
 	private FreeBoardService freeBoardService; 
-	
+	@Resource(name = "CommentService")
+	private CommentService commentService;
 	@Resource(name="userVO")
 	@Lazy
 	private UserVO userVO;	
 	
-	//글 등록 폼
+	//湲� �벑濡� �뤌
 	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.GET)
 	public String freeBoardRegisterView(@RequestParam("infoNo") int infoNo, @ModelAttribute("freeBoardVO") BoardVO freeBoardVO) {
 		/* freeBoardService.freeBoardRegister(freeBoardVO); */
@@ -59,7 +62,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardRegister";
 	}
 	
-	//글 등록
+	//湲� �벑濡�
 	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.POST)
 	public String freeBoardRegister(@Valid @ModelAttribute("freeBoardVO") BoardVO freeBoardVO,  BindingResult result, @RequestParam("userNo") int userNo) {
 		freeBoardVO.setUserNo(userNo);
@@ -68,7 +71,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardRegister_pro";
 	}
 	
-	//글 수정 폼
+	//湲� �닔�젙 �뤌
 	@RequestMapping(value="/freeBoardUpdate", method=RequestMethod.GET)
 	public String freeBoardUpdateView(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, 
 			@ModelAttribute("freeBoardVO") BoardVO freeBoardVO, @RequestParam("page") int page, Model model) {
@@ -86,7 +89,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardUpdate";
 	}
 	
-	//글 수정 
+	//湲� �닔�젙 
 	@RequestMapping(value="/freeBoardUpdate", method=RequestMethod.POST)
 	public String freeBoardUpdate(@ModelAttribute("freeBoardVO") BoardVO freeBoardVO, @RequestParam("page") int page, Model model,  @RequestParam(value = "boardNo") int boardNo, @RequestParam(value = "infoNo") int infoNo) {
 		model.addAttribute("page", page);
@@ -103,7 +106,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardUpdate_pro";
 	}
 	
-	// 글 삭제 
+	// 湲� �궘�젣 
 	@RequestMapping("/freeBoardDelete")
 	public String freeBoardDelete(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, Model model) {
 		freeBoardService.freeBoardDelete(boardNo);
@@ -112,9 +115,9 @@ public class FreeBoardController {
 		return "freeboard/freeBoardDelete";
 	}
 	
-	// 글 상세 조회
+	// 湲� �긽�꽭 議고쉶
 	@RequestMapping("/getFreeBoard")
-	public String getFreeBoard(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO,  @RequestParam("page") int page, Model model) {
+	public String getFreeBoard(@ModelAttribute CommentVO vo,@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO, Model model) {
 		
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);
@@ -123,7 +126,7 @@ public class FreeBoardController {
 		model.addAttribute("readContentBean", readContent);
 		
 		model.addAttribute("userVO", userVO);
-		model.addAttribute("page", page);
+		//model.addAttribute("page", page);
 		
 		/*
 		 * HeartVO vo = new HeartVO(); vo.setBoardNO(boardNO); vo.setUserNo(userNo);
@@ -134,29 +137,32 @@ public class FreeBoardController {
 		/* model.addAttribute("freeBoard", freeBoardService.getFreeBoard(boardNo)); */
 		
 		/*
-		 * //좋아요 업데이트 else if(command.equals("/RecUpdate.do")){ try { action = new
+		 * //醫뗭븘�슂 �뾽�뜲�씠�듃 else if(command.equals("/RecUpdate.do")){ try { action = new
 		 * RecUpdate(); action.execute(request, response); } catch(Exception e) {
 		 * e.printStackTrace(); } }
 		 * 
-		 * //좋아요 검색 else if(command.equals("/RecCount.do")) { try { action = new
+		 * //醫뗭븘�슂 寃��깋 else if(command.equals("/RecCount.do")) { try { action = new
 		 * RecCount(); action.execute(request, response); } catch(Exception e) {
 		 * e.printStackTrace(); } }
 		 */
+		List<CommentVO> commentList = commentService.commentList(vo);
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("groupNo", (Integer)commentService.commentGetGroupNo());
 		
 		return "freeboard/getFreeBoard";
 	}
 	
-	// 검색 조건 목록 설정
-	@ModelAttribute("conditionMap") //2가지 기능이 있는데 그 중 하나가 RequestMapping보다 먼저 실행!
+	// 寃��깋 議곌굔 紐⑸줉 �꽕�젙
+	@ModelAttribute("conditionMap") //2媛�吏� 湲곕뒫�씠 �엳�뒗�뜲 洹� 以� �븯�굹媛� RequestMapping蹂대떎 癒쇱� �떎�뻾!
 	public Map<String, String> searchConditionMap(){
 		Map<String, String> conditionMap = new HashMap<String, String>();
-		conditionMap.put("제목", "TITLE");
-		conditionMap.put("내용", "CONTENT");
+		conditionMap.put("�젣紐�", "TITLE");
+		conditionMap.put("�궡�슜", "CONTENT");
 	
 		return conditionMap;
 	}
 	
-	// 글 목록 검색
+	// 湲� 紐⑸줉 寃��깋
 	@RequestMapping("/freeBoardList")
 	public String freeBoardList(@RequestParam(value = "infoNo", defaultValue = "1") int infoNo, @RequestParam(value = "page", defaultValue = "1") int page, 
 								BoardVO freeBoardVO, Model model, @RequestParam(value="searchKeyword" ,required=false)String searchKeyword, @RequestParam(value="searchCondition", defaultValue="TITLE")String searchCondition) {
@@ -185,41 +191,89 @@ public class FreeBoardController {
 		return "freeboard/freeBoardList";
 	}
 	
+	@RequestMapping("/freeCommentRegister")
+	public String commentRegister(@ModelAttribute CommentVO vo, @RequestParam("boardNo") int boardNo,
+			 Model model) {
+		commentService.commentRegister(vo);
+		model.addAttribute("infoNo", 1);
+		model.addAttribute("boardNo", boardNo);
+		//model.addAttribute("page", 1);
+
+		return "redirect:getFreeBoard";
+	}
+	@RequestMapping("/freeCommentDelete")
+	public String commentDelete(int groupNo,Model model,int boardNo) {
+		commentService.commentDelete(groupNo);
+		model.addAttribute("infoNo", 1);
+		model.addAttribute("boardNo", boardNo);
+		return "redirect:getFreeBoard";
+	}
+	
+	@RequestMapping("/freeComcommentDelete")
+	public String comcommentDelete(Model model,int boardNo,int commentNo) {
+		commentService.comcommentDelete(commentNo);
+		model.addAttribute("infoNo", 1);
+		model.addAttribute("boardNo", boardNo);
+		return "redirect:getFreeBoard";
+	}
+	
+	@RequestMapping("/freeCommentUpdateForm")
+	public String commentUpdateForm(int commentNo,Model model) {
+		model.addAttribute("comment", commentService.commentGet(commentNo));
+		return "freeboard/commentUpdateForm";
+	}
+	@RequestMapping("freeCommentUpdate")
+	public String commentUpdate(@ModelAttribute("comment") CommentVO vo,Model model,int boardNo) {
+		commentService.commentUpdate(vo);	
+		model.addAttribute("infoNo", 1);
+		model.addAttribute("boardNo", boardNo);
+		return "redirect:getFreeBoard";
+	}
+	@RequestMapping("/freeComcommentRegister")
+	public String comcommentRegister(@ModelAttribute CommentVO vo, @RequestParam("boardNo") int boardNo,
+			 Model model) {
+		commentService.comcommentRegister(vo);
+		model.addAttribute("infoNo", 1);
+		model.addAttribute("boardNo", boardNo);
+		//model.addAttribute("page", 1);
+		return "redirect:getFreeBoard";
+	}
+	
 }
 	/*
-	 * //CKEditor4 이미지 업로드
+	 * //CKEditor4 �씠誘몄� �뾽濡쒕뱶
 	 * 
 	 * @RequestMapping(value="/main/imageUpload.do", method = RequestMethod.POST)
 	 * public void imageUpload(HttpServletRequest request,HttpServletResponse
 	 * response, MultipartHttpServletRequest multiFile, @RequestParam MultipartFile
 	 * upload) throws Exception{
 	 * 
-	 * //랜덤 문자 생성 UUID uid = UUID.randomUUID();
+	 * //�옖�뜡 臾몄옄 �깮�꽦 UUID uid = UUID.randomUUID();
 	 * 
 	 * OutputStream out = null; PrintWriter printWriter = null;
 	 * 
-	 * //인코딩 response.setCharacterEncoding("utf-8");
+	 * //�씤肄붾뵫 response.setCharacterEncoding("utf-8");
 	 * response.setContentType("text/html;charset-utf-8");
 	 * 
 	 * try {
 	 * 
-	 * //파일 이름 가져오기 String fileName = upload.getOriginalFilename(); byte[] bytes =
+	 * //�뙆�씪 �씠由� 媛��졇�삤湲� String fileName = upload.getOriginalFilename(); byte[] bytes =
 	 * upload.getBytes();
 	 * 
-	 * //이미지 경로 생성 String path = ? "ckImage/"; //fileDir는 전역변수라 그냥 이미지 저장되는 경로 설정해주면
-	 * 된다. String ckUploadPath = path + uid + "_" + fileName; File folder = new
+	 * //�씠誘몄� 寃쎈줈 �깮�꽦 String path = ? "ckImage/"; //fileDir�뒗 �쟾�뿭蹂��닔�씪 洹몃깷 �씠誘몄� ���옣�릺�뒗 寃쎈줈 �꽕�젙�빐二쇰㈃
+	 * �맂�떎. String ckUploadPath = path + uid + "_" + fileName; File folder = new
 	 * File(path);
 	 * 
-	 * //해당 디렉토리 확인 if(!folder.exists()) { try { folder.mkdirs(); // 폴더 생성
+	 * //�빐�떦 �뵒�젆�넗由� �솗�씤 if(!folder.exists()) { try { folder.mkdirs(); // �뤃�뜑 �깮�꽦
 	 * }catch(Exception e) { e.getStackTrace(); } } out = new FileOutputStream(new
-	 * File(ckUploadPath)); out.write(bytes); out.flush(); //outputStream에 저장된 데이터를
-	 * 전송하고 초기화
+	 * File(ckUploadPath)); out.write(bytes); out.flush(); //outputStream�뿉 ���옣�맂 �뜲�씠�꽣瑜�
+	 * �쟾�넚�븯怨� 珥덇린�솕
 	 * 
 	 * String callback = request.getParameter("CKEditorFuncNum"); printWriter =
 	 * response.getWriter(); String fileUrl = "/ckImgSubmit.do?uid=" + uid +
-	 * "&fileName=" + fileName; //작성화면
+	 * "&fileName=" + fileName; //�옉�꽦�솕硫�
 	 * 
-	 * //업로드시 메시지 출력 printWriter.println("{\"+filename\":\""+
+	 * //�뾽濡쒕뱶�떆 硫붿떆吏� 異쒕젰 printWriter.println("{\"+filename\":\""+
 	 * fileName+"\",\"uploaded\"+1, \"url\":\""+fileUrl+"\"}"); printWriter.flush();
 	 * }catch(IOException e) { e.printStackTrace(); } finally { try { if(out !=
 	 * null) {out.close();} if(printWriter != null) {printWriter.close();} }

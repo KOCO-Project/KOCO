@@ -58,9 +58,12 @@ div.card-body {
 <script> 
 
 function qnaCommentUpdatForm(commentNo){
-	   window.name = "댓글 수정";
+	   window.name = "parentForm";
 	   window.open("qnaCommentUpdateForm?commentNo="+commentNo, "updateForm" , 
-	   "width=570,height = 350, resizable = no , scrollbars = no");
+	   "width=570,height = 350, resizable = no , scrollbars = no");   // 업데이트폼 열고 입력받고 
+	   																	//자식창으로부터 commentContent받는다
+	   self.location.href="qnaCommentUpdate?commentNo=${comcomment.commentNo}&boardNo=${readContentBean.boardNo }";
+	   
 	}
 
 
@@ -180,9 +183,10 @@ function filp(groupNo){
 									
 										
 										
-<%-- <input type="hidden" value="${comment.groupNo }"> --%>
+										<c:if test="${sessionScope.user.userNo == comment.userNo}">
 									 <small><a href="qnaCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }">수정</a>
 									<a href="qnaCommentDelete?groupNo=${comment.groupNo}&boardNo=${readContentBean.boardNo }">삭제</a></small>
+									</c:if>
 								</div>
 								<div class="toast-body" style="text-align: left;">
 									${comment.commentContent} <small style="float:right;">${comment.commentRegdate}</small> 
@@ -197,10 +201,12 @@ function filp(groupNo){
 												<strong class="mr-auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${comcomment.userNickname}</strong>
 													<small>
 <%-- 													<c:if test="${comment.userNo } eq ${sessionScope.user.userNo }"> --%>
+ 														<c:if test="${sessionScope.user.userNo == comcomment.userNo}">
+
 													<a href = "qnaCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }">수정</a>
 													<a href = "#" coClick = "qnaCommentUpdatForm(${comment.commentNo})">수정(미완성)</a>
 													<a href = "qnaComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${readContentBean.boardNo }">삭제</a>
-<%-- 													</c:if> --%>
+													</c:if>
 											</div>		
 												 
 											
@@ -219,7 +225,7 @@ function filp(groupNo){
 														type="hidden" name="boardCategory" value="2"> <input
 														type="hidden" name="boardNo" value="${comment.boardNo }">
 													<input type="hidden" name="userNo"
-														value="${comment.userNo }"> <input type="hidden"
+														value="${sessionScope.user.userNo }"> <input type="hidden"
 														name="groupNo" value="${comment.groupNo }">
 													<div class="toast show" role="alert" aria-live="assertive"
 														aria-atomic="true" style="max-width: 95%;">
