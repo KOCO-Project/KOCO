@@ -32,8 +32,6 @@ div.card-body {
 #panel, #flip {
 	padding: 5px;
 	text-align: center;
-	background-color: #e5eecc;
-	border: solid 1px #c3c3c3;
 }
 </style>
 <meta charset="UTF-8">
@@ -48,42 +46,6 @@ div.card-body {
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-<!-- <script type="text/javascript">
-/* 좋아요 */
-function like_func(){
-  var frm_read = $('#frm_read');
-  var boardno = $('#boardno', frm_read).val();
-  var userno = $('#userno', frm_read).val();
-  console.log("boardno, userno : " + boardno +","+ userno);
-  
-  $.ajax({
-    url: "../liketo/like.do",
-    type: "GET",
-    cache: false,
-    dataType: "json",
-    data: 'boardno=' +boardno+ '&userno=' +userno,
-    success: function(data) {
-      var msg = '';
-      var like_img = '';
-      msg += data.msg;
-      alert(msg);
-      
-      if(data.like_check == 0){
-        like_img = "../images/emptyheart.png";
-      } else {
-        like_img = "../images/heart.png";
-      }      
-      $('#like_img', frm_read).attr('src', like_img);
-      $('#like_cnt').html(data.like_cnt);
-      $('#like_check').html(data.like_check);
-    },
-    error: function(request, status, error){
-      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    }
-  });
-}
-
-</script> -->
 
 <script type="text/javascript">
 
@@ -100,7 +62,7 @@ function filp(groupNo){
 		<a href="freeBoardList?infoNo=1" class="header"
 			style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">자유게시판</a>
 		<div>
-			<div class="card-body">
+			<div class="card-body" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;">
 				<div class="card-header"
 					style="display: flex; padding: 0.75rem 0.75rem;">
 
@@ -115,9 +77,7 @@ function filp(groupNo){
 					</div>
 				</div>
 				<div style="padding: 0.75rem;">
-					<a href="userPage?userNickname=${readContentBean.writer}"
-						onMouseover="this.style.fontWeight='bold'"
-						onMouseout="this.style.fontWeight=''"
+					<a href="userPage?userNickname=${readContentBean.writer}" onMouseover="this.style.fontWeight='bold'" onMouseout="this.style.fontWeight=''"
 						style="color: black; text-decoration: none;">${readContentBean.writer }</a>&nbsp;&nbsp;${readContentBean.boardRegdate }
 				</div>
 
@@ -160,7 +120,7 @@ function filp(groupNo){
 						aria-atomic="true" style="max-width: 95%;">
 						<input type="text" class="toast-body" name="commentContent"
 							placeholder="댓글입력" required="required"
-							style="text-align: left; border-radius: 15px; width: 100%; height: 100px;">
+							style="text-align: left; border-radius: 15px; width: 100%; height: 100px; font-size: 13px;">
 						<div>
 							<input type="submit" class="btn btn-success" value="작성완료"
 								style="box-shadow: 0 0.25rem 0.75rem rgb(0 0 0/ 10%); float: right; position: relative; top: -65px; right: 10px;">
@@ -182,7 +142,7 @@ function filp(groupNo){
 							<div class="toast show" role="alert" aria-live="assertive"
 								aria-atomic="true" style="width: 95%; max-width: 100%;">
 								<div class="toast-header">
-									<strong class="mr-auto"> ${comment.userNickname}</strong>
+									<strong class="mr-auto"> <a href="userPage?userNickname=${comment.userNickname}"onMouseover="this.style.color='black'"onMouseout="this.style.color='gray'" style="color: gray; text-decoration: none; font-weight: bold;">${comment.userNickname}</a></strong>
 
 
 
@@ -190,12 +150,12 @@ function filp(groupNo){
 									<c:if test="${sessionScope.user.userNo == comment.userNo}">
 
 										<small><a
-											href="freeCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }">수정</a>
+											href="freeCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }" style="color: gray; text-decoration: none;">수정</a>
 											<a
-											href="freeCommentDelete?groupNo=${comment.groupNo}&boardNo=${boardNo}">삭제</a></small>
+											href="freeCommentDelete?groupNo=${comment.groupNo}&boardNo=${boardNo}"style="color: gray; text-decoration: none;">삭제</a></small>
 									</c:if>
 								</div>
-								<div class="toast-body" style="text-align: left;">
+								<div class="toast-body" style="text-align: left; margin-left: 10px;">
 									${comment.commentContent} <small style="float: right;">${comment.commentRegdate}</small>
 								</div>
 								<!-- 대댓글 리스트 -->
@@ -205,29 +165,24 @@ function filp(groupNo){
 									<c:if test="${depth eq 1 }">
 										<c:if test="${GroupNo eq GroupNo2 }">
 											<div class="toast-header">
-												<strong class="mr-auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${comcomment.userNickname}</strong>
+												<strong class="mr-auto"style="margin-left: 20px;">→ <a href="userPage?userNickname=${comcomment.userNickname}"onMouseover="this.style.color='black'"onMouseout="this.style.color='gray'" style="color: gray; text-decoration: none; font-weight: bold;">${comcomment.userNickname}</a></strong>
 												<c:if
 													test="${sessionScope.user.userNo == comcomment.userNo}">
 
-													<small> <%-- 													<c:if test="${comment.userNo } eq ${sessionScope.user.userNo }"> --%>
+													<small> 
 														<a
-														href="freeCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }">수정</a>
-														<a href="#"
-														coClick="freeCommentUpdatForm(${comment.commentNo})">수정(미완성)</a>
+														href="freeCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }" style="color: gray; text-decoration: none;">수정</a>
 														<a
-														href="freeComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${boardNo}">삭제</a>
+														href="freeComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${boardNo}" style="color: gray; text-decoration: none;">삭제</a>
 												</c:if>
 											</div>
 
 
-											<div class="toast-body" style="text-align: left;">
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${comcomment.commentContent}<small
-													style="float: right;">${comcomment.commentRegdate}</small></small>
-											</div>
+											<div class="toast-body" style="text-align: left;font-size: 0.875rem;margin-left: 45px;">${comcomment.commentContent}<small style="float:right;">${comcomment.commentRegdate}</small></div>
 										</c:if>
 									</c:if>
 								</c:forEach>
-								<div id="flip" onclick="filp(${comment.groupNo });">대댓글 입력</div>
+								<div id="flip" onclick="filp(${comment.groupNo });" style="font-size: 10px;">대댓글 입력</div>
 								<div id="panel${comment.groupNo }"
 									style="padding: 10px; padding-bottom: 30px; display: none;">
 
@@ -245,7 +200,7 @@ function filp(groupNo){
 												aria-atomic="true" style="max-width: 95%;">
 												<input type="text" class="toast-body" name="commentContent"
 													placeholder="대댓글입력" required="required"
-													style="text-align: left; border-radius: 15px; width: 100%; height: 100px;">
+													style="text-align: left;border-radius: 15px;width: 100%;height: 100px;font-size: 10px;">
 												<div>
 													<input type="submit" class="btn btn-success" value="작성완료"
 														style="box-shadow: 0 0.25rem 0.75rem rgb(0 0 0/ 10%); float: right; position: relative; top: -65px; right: 10px;">
@@ -258,7 +213,6 @@ function filp(groupNo){
 						</c:if>
 					</c:if>
 				</c:if>
-				<br>
 			</c:forEach>
 		</div>
 	</div>

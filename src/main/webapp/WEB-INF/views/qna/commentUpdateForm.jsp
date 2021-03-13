@@ -21,12 +21,26 @@
 
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	<form action="qnaCommentUpdate" method="get">
-		<input type="text" name="commentContent" required="required"
-			placeholder="no=${comment.commentNo } content= ${comment.commentContent } ${comment.boardNo}">
-		<input type="hidden" name="commentNo" value="${comment.commentNo }">
-		<input type="hidden" name="boardNo" value="${comment.boardNo }">
-		<input type="submit" value="수정 완료">
-	</form>
+<!-- 	<form action="qnaCommentUpdate" method="get"> -->
+<%-- 		<input type="hidden" name="commentNo" value="${comment.commentNo }"> --%>
+<%-- 		<input type="hidden" name="boardNo" value="${comment.boardNo }"> --%>
+<!-- 		<input type="text" name="commentContent" required="required" -->
+<%-- 			placeholder="no=${comment.commentNo } content= ${comment.commentContent } ${comment.boardNo}"> --%>
+<!-- 		<input type="submit" value="수정 완료"> -->
+<!-- 	</form> -->
+			<br><br><br>
+			<div>
+				<form action="qnaCommentUpdate" method="get" style="width: 100%; place-content: center;">
+					<input type="hidden" name="commentNo" value="${comment.commentNo }">
+					<input type="hidden" name="boardNo" value="${comment.boardNo }">
+					<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="max-width: 95%;">
+						<input type="text" class="toast-body" name="commentContent" placeholder="${comment.commentContent }" required="required"
+						style="text-align: left;border-radius: 15px;width: 100%;height: 100px;font-size: 13px;">
+						<div>
+							<input type="submit" class="btn btn-success" value="수정완료" 	style="box-shadow: 0 0.25rem 0.75rem rgb(0 0 0/ 10%); float: right; position: relative; top: -65px; right: 10px;">
+						</div>
+					</div>
+				</form>
+			</div>
 </body>
 </html>

@@ -56,16 +56,6 @@ div.card-body {
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script> 
 
-function qnaCommentUpdatForm(commentNo){
-	   window.name = "parentForm";
-	   window.open("qnaCommentUpdateForm?commentNo="+commentNo, "updateForm" , 
-	   "width=570,height = 350, resizable = no , scrollbars = no");   // 업데이트폼 열고 입력받고 
-	   																	//자식창으로부터 commentContent받는다
-	   self.location.href="qnaCommentUpdate?commentNo=${comcomment.commentNo}&boardNo=${readContentBean.boardNo }";
-	   
-	}
-
-
 function filp(groupNo){
 	$('#panel'+groupNo).slideToggle('slow');
 }
@@ -109,8 +99,7 @@ function filp(groupNo){
 				</div>
 
 				<div class="card-body" style="padding: 0.75rem;" row="10">
-					${readContentBean.boardContent } ${sessionScope.user.userNo }
-					${readContentBean.boardNo } ${groupNo }
+					${readContentBean.boardContent } 
 					<c:if test="${readContentBean.fileName !=null }">
 						<div class="form-group">
 							<label for="board_file">IMAGE</label> <img
@@ -198,14 +187,13 @@ function filp(groupNo){
  														<c:if test="${sessionScope.user.userNo == comcomment.userNo}">
 													<small>
 														<a href = "qnaCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }" style="color: gray; text-decoration: none;">수정</a>
-														<%--<a href = "#" coClick = "qnaCommentUpdatForm(${comment.commentNo})">수정(미완성)</a> --%>
 														<a href = "qnaComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${readContentBean.boardNo }" style="color: gray; text-decoration: none;">삭제</a>
 													</small>
 													</c:if>
 											</div>		
 												 
 											
-											<div class="toast-body" style="text-align: left;margin-left: 45px;">${comcomment.commentContent}<small style="float:right;">${comcomment.commentRegdate}</small></small></div>
+											<div class="toast-body" style="text-align: left;margin-left: 45px;">${comcomment.commentContent}<small style="float:right;">${comcomment.commentRegdate}</small></div>
 										</c:if>
 									</c:if>
 								</c:forEach>
@@ -242,34 +230,10 @@ function filp(groupNo){
 					</c:if>
 				</c:if>
 
-				<!-- 				대댓글 리스트출력 -->
-				<%-- 				<c:if test="${depth eq 1 }"> --%>
-				<%-- 					<c:if test="${BoardCATE eq 2 }"> --%>
-				<%-- 						<c:if test="${BoardNumber eq BoardNumber2 }"> --%>
-
-				<!-- 							<div class="toast show" role="alert" aria-live="assertive" -->
-				<!-- 								aria-atomic="true" style="width: 95%; max-width: 100%;"> -->
-				<!-- 								<div class="toast-header"> -->
-				<%-- 									<strong class="mr-auto">${comment.userNickname}</strong> <small>${comment.commentRegdate}</small> --%>
-				<!-- 								</div> -->
-				<!-- 								<div class="toast-body" style="text-align: left;">대댓글입니다아 -->
-				<%-- 									~~ // ${comment.commentContent}</div> --%>
-
-				<!-- 								<button type="button" -->
-				<%-- 									onclick="self.location.href='qnaCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }'" --%>
-				<!-- 									class="btn btn-info">수정</button> -->
-
-				<!-- 								<button type="button" -->
-				<%-- 									onclick="self.location.href='qnaComcommentDelete?commentNo=${comment.commentNo}&boardNo=${readContentBean.boardNo }'" --%>
-				<!-- 									class="btn btn-danger">삭제</button> -->
-				<!-- 							</div> -->
-				<%-- 						</c:if> --%>
-				<%-- 					</c:if> --%>
-				<%-- 				</c:if> --%>
 			</c:forEach>
 		</div>
 	</div>
-
+<br><br><br>
 </body>
 <footer>
 	<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
