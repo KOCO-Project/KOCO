@@ -38,7 +38,7 @@ h1.display-3{font-size: 2rem; font-weight: bold;}
 
 	<div class="jb-wrap">
 		<div class="jb-image">
-			<img src="${root }/images/mailBackImage.png" />
+			<img src="images/mailBackImage.png" />
 		</div>
 		<div class="jb-text">
 			<legend>KOCO ID & PW 찾기</legend>

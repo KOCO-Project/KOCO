@@ -28,7 +28,7 @@ div.jb-wrap div.jb-text h6{font-size: 30px; font-weight: bold;}
 	
 	
 	<div class="jb-wrap">
-		<div class="jb-image"><img src="${root }/images/top_main.1.png" style="width: 100%; height: 100%;"/></div>
+		<div class="jb-image"><img src="images/top_main.1.png" style="width: 100%; height: 100%;"/></div>
 			<div class="jb-text" >
 				<h6>대한민국 문화</h6>
 			</div>

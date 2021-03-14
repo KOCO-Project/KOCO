@@ -45,7 +45,7 @@ $(function(){
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<div class="jb-wrap">
-	<div class="jb-image"><img src="${root }/images/mailBackImage.png"/></div>
+	<div class="jb-image"><img src="images/mailBackImage.png"/></div>
 	<div class="jb-text" >
 	<legend>KOCO 이메일 문의</legend>
 	</div>

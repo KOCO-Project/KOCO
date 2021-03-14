@@ -103,7 +103,7 @@ legend {font-weight: bold;font-size: 2rem;}
 
 	<div class="jb-wrap">
 		<div class="jb-image">
-			<img src="${root }/images/mailBackImage.png" />
+			<img src="images/mailBackImage.png" />
 		</div>
 		<div class="jb-text">
 			<legend>휴면 계정 활성화</legend>

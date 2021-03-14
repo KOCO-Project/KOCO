@@ -115,7 +115,7 @@ label {
 					<div class="form-group">
 						<label for="board_file">이미지</label>
 						<c:if test="${qnaUpdateBoardVO.fileName != null }">
-							<img src="${root }upload/${qnaUpdateBoardVO.fileName}"
+							<img src="upload/${qnaUpdateBoardVO.fileName}"
 								width="100%" />
 							<form:hidden path="fileName" />
 							<!-- 기존 첨부 파일 -->

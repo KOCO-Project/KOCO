@@ -57,7 +57,7 @@ footer ul li a>img {
 		<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	</header>
 	<main> <img
-		src="${root }/gif/KOCO_SPRING(30s).gif" style="width: 100%; height: 100%;" /> <%-- <c:import url="/WEB-INF/views/${ }.jsp"/> --%>
+		src="gif/KOCO_SPRING(30s).gif" style="width: 100%; height: 100%;" /> <%-- <c:import url="/WEB-INF/views/${ }.jsp"/> --%>
 	</main>
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />

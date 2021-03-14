@@ -115,7 +115,7 @@ function check(userNo){
 					<c:if test="${readContentBean.fileName !=null }">
 						<div class="form-group">
 							<label for="board_file">IMAGE</label> <img
-								src="${root }upload/${readContentBean.fileName }" width="100%" />
+								src="upload/${readContentBean.fileName }" width="100%" />
 						</div>
 					</c:if>
 
