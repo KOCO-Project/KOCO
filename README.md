@@ -1,6 +1,6 @@
 # KOCO 💻
 hi
-2021 Semi&Final Project (KH정보교육원)
+2021 Final Project (KH정보교육원)
 <br/>
 
 ## 목차
