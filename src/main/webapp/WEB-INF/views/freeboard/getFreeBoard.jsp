@@ -59,16 +59,56 @@ function check(userNo){
 		return false;
 	}
 }
+
+/* 좋아요 */
+/*  var boardNo = ${boardNo};
+var userNo = ${userNo};
+
+var btn_like = document.getElementById("btn_like");
+btn_like.onclick = function() {
+	changeHeart();
+}
+
+function changeHeart() {
+	$.ajax({
+		url : "/clickLike",
+		type : "POST",
+		dataType : "json",
+		data : "boardNo=" + boardNo + "&userNo=" + userNo,
+		error : function() {
+			Rnd.alert("통신 에러", "error", "확인", function() {
+			});
+		},
+		success : function(jdata) {
+			if (jdata.resultCode == -1) {
+				Rnd.alert("좋아요 오류", "error", "확인", function() {
+				});
+			} else {
+				if (jdata.likeCheck == 1) {
+					$("#btn_like").attr("src", "images/heart.PNG");
+					$("#likecnt").empty();
+					$("#likecnt").append(jdata.likecnt);
+				} else if (jdata.likeCheck == 0) {
+					$("#btn_like").attr("src", "images/emptyheart.PNG");
+					$("#likecnt").empty();
+					$("#likecnt").append(jdata.likecnt);
+				}
+			}
+		}
+	});
+} */
 </script>
 </head>
 <body class="seopBody">
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-
+	<c:import url="/WEB-INF/views/include/top_menu.jsp" /> 
+	<br><br><br>
+	
 	<div id="qna" class="container">
 		<a href="freeBoardList?infoNo=1" class="header"
 			style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">자유게시판</a>
 		<div>
-			<div class="card-body" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;">
+			<div class="card-body"
+				style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;">
 				<div class="card-header"
 					style="display: flex; padding: 0.75rem 0.75rem;">
 
@@ -83,14 +123,30 @@ function check(userNo){
 					</div>
 				</div>
 				<div style="padding: 0.75rem;">
-					<a href="userPage?userNickname=${readContentBean.writer}" onMouseover="this.style.fontWeight='bold'" onMouseout="this.style.fontWeight=''"
+					<a href="userPage?userNickname=${readContentBean.writer}"
+						onMouseover="this.style.fontWeight='bold'"
+						onMouseout="this.style.fontWeight=''"
 						style="color: black; text-decoration: none;">${readContentBean.writer }</a>&nbsp;&nbsp;${readContentBean.boardRegdate }
 				</div>
 
 				<div class="card-body" style="padding: 0.75rem;" row="10">
 					${readContentBean.boardContent }</div>
 			</div>
+			
+			<%-- <c:choose>
+				<c:when test="${likeCheck eq '0' or empty likeCheck }">
+					<!-- likeCheck가 0이면 빈하트 -->
+					<img id="btn_like" align="left"
+						style="cursor: pointer; width: 20px;" src="images/emptyheart.PNG">
+				</c:when>
 
+				<c:otherwise>
+					<!-- likeCheck가 1이면 빨간 하트 -->
+					<img id="btn_like" align="left"
+						style="cursor: pointer; width: 20px;" src="images/heart.PNG">
+				</c:otherwise>
+			</c:choose>
+			<dd id="likecnt" style="margin-left: 5px;">${boardLikeCnt }</dd> --%>
 
 			<div class="form-group"
 				style="margin-left: auto; margin-right: 2rem;">
@@ -113,12 +169,14 @@ function check(userNo){
 
 		<div id="comment" style="text-align: -webkit-center;">
 			<div>
-				<form name = "frm" onSubmit = "return check(${sessionScope.user.userNo })" action="freeCommentRegister"  method="post"
+				<form name="frm"
+					onSubmit="return check(${sessionScope.user.userNo })"
+					action="freeCommentRegister" method="post"
 					style="width: 100%; place-content: center;">
-					<input type="hidden" name="depth" value="0"> 
-					<input type="hidden" name="boardCategory" value="1"> 
-					<input type="hidden" name="boardNo" value="${boardNo}"> 
-					<input type="hidden" name="userNo" value="${sessionScope.user.userNo }">
+					<input type="hidden" name="depth" value="0"> <input
+						type="hidden" name="boardCategory" value="1"> <input
+						type="hidden" name="boardNo" value="${boardNo}"> <input
+						type="hidden" name="userNo" value="${sessionScope.user.userNo }">
 					<input type="hidden" name="groupNo" value="${groupNo }">
 					<div class="toast show" role="alert" aria-live="assertive"
 						aria-atomic="true" style="max-width: 95%;">
@@ -146,7 +204,11 @@ function check(userNo){
 							<div class="toast show" role="alert" aria-live="assertive"
 								aria-atomic="true" style="width: 95%; max-width: 100%;">
 								<div class="toast-header">
-									<strong class="mr-auto"> <a href="userPage?userNickname=${comment.userNickname}"onMouseover="this.style.color='black'"onMouseout="this.style.color='gray'" style="color: gray; text-decoration: none; font-weight: bold;">${comment.userNickname}</a></strong>
+									<strong class="mr-auto"> <a
+										href="userPage?userNickname=${comment.userNickname}"
+										onMouseover="this.style.color='black'"
+										onMouseout="this.style.color='gray'"
+										style="color: gray; text-decoration: none; font-weight: bold;">${comment.userNickname}</a></strong>
 
 
 
@@ -154,12 +216,14 @@ function check(userNo){
 									<c:if test="${sessionScope.user.userNo == comment.userNo}">
 
 										<small><a
-											href="freeCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }" style="color: gray; text-decoration: none;">수정</a>
-											<a
-											href="freeCommentDelete?groupNo=${comment.groupNo}&boardNo=${boardNo}"style="color: gray; text-decoration: none;">삭제</a></small>
+											href="freeCommentUpdateForm?commentNo=${comment.commentNo}&commentContent=${comment.commentContent }"
+											style="color: gray; text-decoration: none;">수정</a> <a
+											href="freeCommentDelete?groupNo=${comment.groupNo}&boardNo=${boardNo}"
+											style="color: gray; text-decoration: none;">삭제</a></small>
 									</c:if>
 								</div>
-								<div class="toast-body" style="text-align: left; margin-left: 10px;">
+								<div class="toast-body"
+									style="text-align: left; margin-left: 10px;">
 									${comment.commentContent} <small style="float: right;">${comment.commentRegdate}</small>
 								</div>
 								<!-- 대댓글 리스트 -->
@@ -169,43 +233,54 @@ function check(userNo){
 									<c:if test="${depth eq 1 }">
 										<c:if test="${GroupNo eq GroupNo2 }">
 											<div class="toast-header">
-												<strong class="mr-auto"style="margin-left: 20px;">→ <a href="userPage?userNickname=${comcomment.userNickname}"onMouseover="this.style.color='black'"onMouseout="this.style.color='gray'" style="color: gray; text-decoration: none; font-weight: bold;">${comcomment.userNickname}</a></strong>
+												<strong class="mr-auto" style="margin-left: 20px;">→
+													<a href="userPage?userNickname=${comcomment.userNickname}"
+													onMouseover="this.style.color='black'"
+													onMouseout="this.style.color='gray'"
+													style="color: gray; text-decoration: none; font-weight: bold;">${comcomment.userNickname}</a>
+												</strong>
 												<c:if
 													test="${sessionScope.user.userNo == comcomment.userNo}">
 
-													<small> 
-														<a
-														href="freeCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }" style="color: gray; text-decoration: none;">수정</a>
-														<a
-														href="freeComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${boardNo}" style="color: gray; text-decoration: none;">삭제</a>
+													<small> <a
+														href="freeCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }"
+														style="color: gray; text-decoration: none;">수정</a> <a
+														href="freeComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${boardNo}"
+														style="color: gray; text-decoration: none;">삭제</a>
 													</small>
 												</c:if>
 											</div>
 
 
-											<div class="toast-body" style="text-align: left;font-size: 0.875rem;margin-left: 45px;">${comcomment.commentContent}<small style="float:right;">${comcomment.commentRegdate}</small></div>
+											<div class="toast-body"
+												style="text-align: left; font-size: 0.875rem; margin-left: 45px;">${comcomment.commentContent}<small
+													style="float: right;">${comcomment.commentRegdate}</small>
+											</div>
 										</c:if>
 									</c:if>
 								</c:forEach>
-								<div id="flip" onclick="filp(${comment.groupNo });" style="font-size: 11px;">대댓글 입력</div>
+								<div id="flip" onclick="filp(${comment.groupNo });"
+									style="font-size: 11px;">대댓글 입력</div>
 								<div id="panel${comment.groupNo }"
 									style="padding: 10px; padding-bottom: 30px; display: none;">
 
 									<!-- 대댓글 입력창 -->
 									<div style="text-align: -webkit-center;">
-										<form name = "frm" onSubmit = "return check(${sessionScope.user.userNo })" action="freeComcommentRegister" method="post"
+										<form name="frm"
+											onSubmit="return check(${sessionScope.user.userNo })"
+											action="freeComcommentRegister" method="post"
 											style="width: 100%; place-content: center;">
 											<input type="hidden" name="depth" value="1"> <input
 												type="hidden" name="boardCategory" value="1"> <input
 												type="hidden" name="boardNo" value="${comment.boardNo }">
-											<input type="hidden" name="userNo" value="${sessionScope.user.userNo }">
-											<input type="hidden" name="groupNo"
-												value="${comment.groupNo }">
+											<input type="hidden" name="userNo"
+												value="${sessionScope.user.userNo }"> <input
+												type="hidden" name="groupNo" value="${comment.groupNo }">
 											<div class="toast show" role="alert" aria-live="assertive"
 												aria-atomic="true" style="max-width: 95%;">
 												<input type="text" class="toast-body" name="commentContent"
 													placeholder="대댓글입력" required="required"
-													style="text-align: left;border-radius: 15px;width: 100%;height: 100px;font-size: 11px;">
+													style="text-align: left; border-radius: 15px; width: 100%; height: 100px; font-size: 11px;">
 												<div>
 													<input type="submit" class="btn btn-success" value="작성완료"
 														style="box-shadow: 0 0.25rem 0.75rem rgb(0 0 0/ 10%); float: right; position: relative; top: -65px; right: 10px;">

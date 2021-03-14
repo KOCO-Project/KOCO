@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import co.kr.koco.service.CommentService;
@@ -40,7 +41,7 @@ public class FreeBoardController {
 	@Lazy
 	private UserVO userVO;	
 	
-	//湲� �벑濡� �뤌
+	// 글 등록 폼
 	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.GET)
 	public String freeBoardRegisterView(@RequestParam("infoNo") int infoNo, @ModelAttribute("freeBoardVO") BoardVO freeBoardVO) {
 		/* freeBoardService.freeBoardRegister(freeBoardVO); */
@@ -49,7 +50,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardRegister";
 	}
 	
-	//湲� �벑濡�
+	// 글 등록 
 	@RequestMapping(value="/freeBoardRegister", method=RequestMethod.POST)
 	public String freeBoardRegister(@Valid @ModelAttribute("freeBoardVO") BoardVO freeBoardVO,  BindingResult result, @RequestParam("userNo") int userNo) {
 		freeBoardVO.setUserNo(userNo);
@@ -58,7 +59,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardRegister_pro";
 	}
 	
-	//湲� �닔�젙 �뤌
+	// 글 수정 폼
 	@RequestMapping(value="/freeBoardUpdate", method=RequestMethod.GET)
 	public String freeBoardUpdateView(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, 
 			@ModelAttribute("freeBoardVO") BoardVO freeBoardVO, @RequestParam("page") int page, Model model) {
@@ -76,7 +77,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardUpdate";
 	}
 	
-	//湲� �닔�젙 
+	// 글 수정
 	@RequestMapping(value="/freeBoardUpdate", method=RequestMethod.POST)
 	public String freeBoardUpdate(@ModelAttribute("freeBoardVO") BoardVO freeBoardVO, @RequestParam("page") int page, Model model,  @RequestParam(value = "boardNo") int boardNo, @RequestParam(value = "infoNo") int infoNo) {
 		model.addAttribute("page", page);
@@ -93,7 +94,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardUpdate_pro";
 	}
 	
-	// 湲� �궘�젣 
+	// 글 삭제
 	@RequestMapping("/freeBoardDelete")
 	public String freeBoardDelete(@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, Model model) {
 		freeBoardService.freeBoardDelete(boardNo);
@@ -102,7 +103,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardDelete";
 	}
 	
-	// 湲� �긽�꽭 議고쉶
+	// 글 상세 조회
 	@RequestMapping("/getFreeBoard")
 	public String getFreeBoard(@ModelAttribute CommentVO vo, @RequestParam("page") int page, @RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO, Model model) {
 		
@@ -122,27 +123,22 @@ public class FreeBoardController {
 		return "freeboard/getFreeBoard";
 	}
 	
-	// 寃��깋 議곌굔 紐⑸줉 �꽕�젙
-	@ModelAttribute("conditionMap") //2媛�吏� 湲곕뒫�씠 �엳�뒗�뜲 洹� 以� �븯�굹媛� RequestMapping蹂대떎 癒쇱� �떎�뻾!
+	// 검색 조건 목록 설정
+	@ModelAttribute("conditionMap") //2가지 기능이 있는데 그 중 하나가 RequestMapping보다 먼저 실행!
 	public Map<String, String> searchConditionMap(){
 		Map<String, String> conditionMap = new HashMap<String, String>();
-		conditionMap.put("�젣紐�", "TITLE");
-		conditionMap.put("�궡�슜", "CONTENT");
+		conditionMap.put("제목", "TITLE");
+		conditionMap.put("내용", "CONTENT");
+		conditionMap.put("작성자", "NICKNAME");
 	
 		return conditionMap;
 	}
 	
-	// 湲� 紐⑸줉 寃��깋
+	// 글 목록
 	@RequestMapping("/freeBoardList")
 	public String freeBoardList(@RequestParam(value = "infoNo", defaultValue = "1") int infoNo, @RequestParam(value = "page", defaultValue = "1") int page, 
 								BoardVO freeBoardVO, Model model, @RequestParam(value="searchKeyword" ,required=false)String searchKeyword, @RequestParam(value="searchCondition", defaultValue="TITLE")String searchCondition) {
-	
-	
-		 //null check if(freeBoardVO.getSearchCondition() == null)
-		// freeBoardVO.setSearchCondition("TITLE"); 
-		// if(freeBoardVO.getSearchKeyword() == null) freeBoardVO.setSearchKeyword("");
-		 
-		
+	 		
 		model.addAttribute("infoNo", infoNo);
 		String infoName = freeBoardService.getBoardInfoName(infoNo);
 		model.addAttribute("infoName", infoName);
@@ -161,6 +157,7 @@ public class FreeBoardController {
 		return "freeboard/freeBoardList";
 	}
 	
+	// 댓글
 	@RequestMapping("/freeCommentRegister")
 	public String commentRegister(@ModelAttribute CommentVO vo, @RequestParam("boardNo") int boardNo,
 			 Model model) {
@@ -209,5 +206,46 @@ public class FreeBoardController {
 		return "redirect:getFreeBoard";
 	}
 	
+		// 좋아요 눌렀을때
+	/*	@RequestMapping("/clickLike")
+		@ResponseBody
+		public Map<String, Object> clickLike(@RequestParam Map<String, Object> commandMap){
+			int resultCode = 1;
+			int likeCheck = 1;
+			Map<String, Object> map = new HashMap<>();
+			Map<String, Object> likecntMap = new HashMap<>();
+			Map<String, Object> resultMap = new HashMap<>();
+			try {
+				map = freeBoardService.likeCheck(commandMap);
+				if(map == null) {
+					//처음 좋아요 누른것 likeCheck = 1, 좋아요 빨간색
+					freeBoardService.insertLikeBtn(commandMap);
+					freeBoardService.updateLikeCntPlus(commandMap);
+					resultCode = 1;
+				}
+				else if(Integer.parseInt(map.get("likeCheck").toString())==0) {
+					//좋아요 처음은 아니고 취소했다가 다시 눌렀을때 likeCheck = 1, 좋아요 빨간색
+					commandMap.put("likeCheck",likeCheck);
+					freeBoardService.updateLikeCheck(commandMap);
+					freeBoardService.updateLikeCntPlus(commandMap);
+					resultCode = 1;
+				}
+				else {
+					//좋아요 취소한거 likeCheck=0, 빈하트
+					likeCheck = 0;
+					commandMap.put("likeCheck", likeCheck);
+					freeBoardService.updateLikeCheck(commandMap);
+					freeBoardService.updateLikeCntMinus(commandMap);
+					resultCode = 0;
+				}
+				resultMap = freeBoardService.getLikeCnt(commandMap);
+				resultMap.put("likeCheck", likeCheck);
+			} catch(Exception e) {
+				resultCode = -1;
+			}
+			resultMap.put("resultCode", resultCode);
+			
+			return resultMap;
+		}*/
 }
 	

@@ -85,7 +85,8 @@ label {
 </head>
 <body class="seopBody">
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-
+	<br><br><br>
+	
 	<div id="qna" class="container">
 			<a href="freeBoardList?infoNo=1" class="header"style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">자유게시판</a>
 			<table class="table table">
