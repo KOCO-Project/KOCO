@@ -281,7 +281,7 @@ $(function(){
 	<div class="col-md-2 cc_cursor" style="height: 100%;"></div>
 	<div class="col-md-8 cc_cursor" style="height: 100%;">
 
-<table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca; margin-left: 50px; width: 650px;">
+<table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca; margin-left: 50px; width: 100%;">
 	<thead>
 	<tr>
 		<th class="text-center d-none d-md-table-cell">카테고리</th>	

@@ -52,8 +52,8 @@
        		<div class="card">
 	       		<a class='move' href='/KOCO/eventGet?boardNo=<c:out value="${event.boardNo}"/>&page=${page}'>
 	         		<!-- <img class="card-img-top" id="thumbImg" src="images/bts.jpg" alt=""> -->
-	       			<img src="<c:out value="${event.thumbnail}"/>" class="card-img-top" id="thumbImg" />
-	       			<%-- <img src="${event.thumbnail}" class="card-img-top" id="thumbImg" /> --%> 
+	       			<%-- <img src="<c:out value="${event.thumbnail}"/>" class="card-img-top" id="thumbImg" /> --%>
+	       			<img src="${event.thumbnail}" class="card-img-top" id="thumbImg" /> 
 	         	</a>
 	        </div>
        		<div class="card-body">
