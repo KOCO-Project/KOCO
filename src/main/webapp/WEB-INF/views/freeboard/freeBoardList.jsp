@@ -39,6 +39,8 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 </script>
 <body class="seopBody">
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+	<br><br><br>
+	
 	<input type="hidden" value="${user.userNo }" id="loginyn">
 	
 	<div id="qna" class="container">
