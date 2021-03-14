@@ -56,20 +56,31 @@ $(function(){
 			
 			<br><br>
 			<div class="form-group">
-				<label for="exampleInputEmail1">Email address</label> 
-				<input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${user.userEmail}" readonly="readonly"> 
+				<label for="exampleInputEmail1">Email address</label>
+				<c:if test="${sessionScope.user == null }"> 
+				<input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${user.userEmail}">
+				</c:if> 
+				<c:if test="${sessionScope.user != null }"> 
+				<input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${user.userEmail}" readonly="readonly">
+				</c:if> 
 				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 			</div>
 
 			<div class="form-group">
 				<label for="exampleSelect1">Example select</label> 
 				<select class="form-control" id="exampleSelect1" name="example">
+				<c:if test="${sessionScope.user == null }"> 
+					<option>관리자 관련 문의</option>
+					<option>연락처 문의</option>
+				</c:if> 
+				<c:if test="${sessionScope.user != null }"> 
 					<option>홈페이지 관련 문의</option>
 					<option>관리자 관련 문의</option>
 					<option>회원 문의</option>
 					<option>광고 문의</option>
 					<option>연락처 문의</option>
 					<option>기타</option>
+				</c:if> 
 				</select>
 			</div>
 

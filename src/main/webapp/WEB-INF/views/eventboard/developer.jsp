@@ -33,37 +33,37 @@
 <body id="page-top">
    	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
         <!-- Masthead-->
-        <header class="masthead">
-            <div class="container">
-                <div class="masthead-subheading" style="color: black;">Welcome To KOCO!</div>
-                <div class="masthead-heading text-uppercase" style="color: black;">Our Amazing Team</div>
-                <a class="btn btn-dark btn-xl text-uppercase js-scroll-trigger" href="supportMailForm" style="background-color: #301B00;">Would you contact us?</a>
+        <header class="deSeop">
+            <div style="text-align-last: center;padding: 41px;">
+<!--                 <div class="masthead-subheading" style="color: black;">Welcome To KOCO!</div> -->
+                <div class="masthead-heading text-uppercase" style="color: white;font-weight: bold;font-size: 50px;letter-spacing: 10px;">Our Amazing Team</div>
+                <a class="btn btn-dark btn-xl text-uppercase js-scroll-trigger" href="supportMailForm" style="background-color: white;border-radius: 50px;border: none;color: black;font-size: 10px;letter-spacing: 1px;margin-top: 10px;">Would you contact us?</a>
                 
             </div>
         </header>
         
         <!-- Team-->
-        <section class="page-section bg-light" id="team">
+        <section class="page-section bg-light" id="team" style="background-color: white !important;">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">우리 팀 KOCO의 팀원을 소개합니다</h2>
-                    <h3 class="section-subheading text-muted">Introducing the team members of our team KOCO</h3>
+                    <h2 class="section-heading text-uppercase"style="font-weight: bold;font-size: 30px;">KOCO의 팀원을 소개합니다</h2>
+<!--                     <h3 class="section-subheading text-muted">Introducing the team members of our team KOCO</h3> -->
                 </div>
-                <div class="row">
+                <div class="row" style="padding: 7%;">
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/teaseop.png" alt="" />
-                            <h4>TaeSeop-Kim</h4>
+                            <img class="mx-auto rounded-circle" src="images/team/developer_seop.jpg" alt=""  style="box-shadow: 1px 2px 10px 2px grey;"/>
+                            <h4 style="font-weight: bold;">TaeSeop-Kim</h4>
                             <p class="text-muted">Project Manager</p>
                             <a class="btn" href="https://github.com/tseop"><i class="fab fa-github" style="width: 30px; height: 30px;"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
-                            <a class="btn" href="#!"><i class="fab fa-instagram" style="width: 30px; height: 30px;"></i></a>
+                            <a class="btn" href="https://www.instagram.com/seop_tae/"><i class="fab fa-instagram" style="width: 30px; height: 30px;"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/minseuk.jpeg" alt="" />
-                            <h4>MinSuk-Ryu</h4>
+                            <img class="mx-auto rounded-circle" src="images/team/minseuk.jpeg" alt=""  style="box-shadow: 1px 2px 10px 2px grey;"/>
+                            <h4 style="font-weight: bold;">MinSuk-Ryu</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn" href="https://github.com/sukmuzi"><i class="fab fa-github" style="width: 30px; height: 30px;"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
@@ -72,8 +72,8 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/jiwon.jpeg" alt="" />
-                            <h4>JiWon-Oh</h4>
+                            <img class="mx-auto rounded-circle" src="images/team/jiwon.jpeg" alt=""  style="box-shadow: 1px 2px 10px 2px grey;"/>
+                            <h4 style="font-weight: bold;">JiWon-Oh</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn" href="https://github.com/trydoit9"><i class="fab fa-github" style="width: 30px; height: 30px;"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
@@ -82,8 +82,8 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/sanga.jpeg" alt="" />
-                            <h4>SangA-Lee</h4>
+                            <img class="mx-auto rounded-circle" src="images/team/sanga.jpeg" alt=""  style="box-shadow: 1px 2px 10px 2px grey;"/>
+                            <h4 style="font-weight: bold;">SangA-Lee</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn" href="https://github.com/stkddks"><i class="fab fa-github" style="width: 30px; height: 30px;"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
@@ -92,8 +92,8 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/ahyoung.jpeg" alt="" />
-                            <h4>AYoung-Lee</h4>
+                            <img class="mx-auto rounded-circle" src="images/team/developer_Ayoung.jpg" alt="" style="box-shadow: 1px 2px 10px 2px grey;"/>
+                            <h4 style="font-weight: bold;">AYoung-Lee</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn" href="https://github.com/ARONGLEE"><i class="fab fa-github" style="width: 30px; height: 30px;"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
@@ -102,8 +102,8 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="images/team/yongwon.png" alt="" />
-                            <h4>YongWon-Cho</h4>
+                            <img class="mx-auto rounded-circle" src="images/team/yongwon.png" alt="" style="box-shadow: 1px 2px 10px 2px grey;"/>
+                            <h4 style="font-weight: bold;">YongWon-Cho</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn" href="https://github.com/dyddnjs524"><i class="fab fa-github" style="width: 30px; height: 30px;"></i></a>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a> -->
@@ -113,10 +113,16 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 mx-auto text-center">
-                        <p class="large text-muted">안녕하세요, 저희는 지난 9월 KH정보교육원에서 만나 팀을 이룬 KOCO입니다.
-                            <br>각자가 다른 환경에서 지내온 이들이 개발자라는 목표 하나로 모였습니다. 
-                            <br>COVID-19로 만나기 힘든 상황속에서도 서로 존중하며 약 2개월동안 팀을 이뤄 진행한 프로젝트 입니다.
-                            <br>많은 외국인들이 KOCO를 통해서 대한민국이란 국가의 아름다움을 더 알았으면 하는 바램을 전해봅니다.</p></div>
+                        <p class="large text-muted" style="font-size: 10px;letter-spacing: 1px;">
+                        	2020년 9월 KH정보교육원에서 만나 6개월간의 웹개발자 과정에서 맺어진 인연 입니다.
+                            <br>서로 다른 직종에서 개발자의 꿈을 이루고자 모여 
+                            <br>코로나19의 어려운 상황에서 4개월간 2개의 프로젝트를 진행하였으며
+                            <br>파이널 프로젝트인 KOCO가 완성이 되었습니다.
+                            <br>KOCO는 한국문화커뮤니티로 한국에 대한 문화, 여행등의 정보를 교류할 수 있는 페이지로 
+                            <br>많은 국내외 사람들이 대한민국이란 국가의 아름다움을 더 알았으면 하는 마음에 기획을 하게 되었습니다.
+                            </p>
+                            
+                            </div>
                 </div>
             </div>
         </section>
