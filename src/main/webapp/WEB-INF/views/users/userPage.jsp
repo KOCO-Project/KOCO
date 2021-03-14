@@ -84,9 +84,7 @@ table.infobox tbody tr td a:hover{text-decoration: none;}
 <script>
 $(function(){
 	var nickCheck = "true";
-	//var emailCheck = "true";
 	var nickname = $('#currentNick').val();
-	//var email = $('#currentEmail').val();
 	
 	$('a[href^="#"]').on('click', function (e){
 		e.preventDefault();
@@ -170,46 +168,6 @@ $(function(){
 			}
 		});
 	});
-// 	$('#userEmail').on('blur', function userEmailExist(){
-// 		var userEmail = $('#userEmail').val();
-		
-// 		if(userEmail == ""){
-// 			$('#emailCheck').text('E-Mail을 입력해주세요.');
-// 			$('#emailCheck').css('color', '#55B836');
-// 			return false;
-// 		}
-		
-// 		$.ajax({
-// 			url: 'userEmailExist',
-// 			type: 'post',
-// 			data: {
-// 				'userEmail': userEmail
-// 			},
-// 			dataType: 'text',
-// 			success: function(data){
-// 				console.log(data);
-// 				if(data == 1){
-// 					$('#emailCheck').text('사용 가능한 E-Mail 입니다.');
-// 					$('#emailCheck').css('color', '#55B836');
-// 					emailCheck = "true";
-// 				} else {
-// 					if(email == userEmail){
-// 						emailCheck = "true";
-// 					} else {
-// 						$('#emailCheck').text('이미 존재하는 E-Mail 입니다.');
-// 						$('#emailCheck').css('color', 'red');
-// 						emailCheck = "false";
-// 					}
-// 				}
-// 			},
-// 			error: function(data){
-// 				console.log('error');
-// 			},
-// 			failure: function(data){
-// 				console.log('fail');
-// 			}
-// 		});
-// 	});
 	
 	$('#userUpdate').on('click', function userUpdate(){
 		if(nickCheck == "true"){
@@ -257,7 +215,21 @@ $(function(){
 	<div class="col-md-7 cc_cursor" style="padding-top: 5rem;">
 	<div class="row"style="padding: 0;height: auto;">
 		<div class="col-md-5" style="height: 40%;">
-		<img src="images/profile.png" class="rounded-circle cc_cursor" style="height: 200px;width: 200px;"/>
+		<c:if test="${selectUser.userNo == '1' or selectUser.userNo == '26'}">
+			<img src="images/profile.png" class="rounded-circle cc_cursor" style="height: 200px;width: 200px;"/>
+		</c:if>
+		<c:if test="${selectUser.userNo == '32' }">
+			<img src="images/team/developer_seop.jpg" class="rounded-circle cc_cursor" style="height: 200px;width: 200px;"/>
+		</c:if>
+		<c:if test="${selectUser.userNo == '27' }">
+			<img src="images/team/jiwon.jpeg" class="rounded-circle cc_cursor" style="height: 200px;width: 200px;"/>
+		</c:if>
+		<c:if test="${selectUser.userNo == '36' }">
+			<img src="images/team/developer_Ayoung.jpg" class="rounded-circle cc_cursor" style="height: 200px;width: 200px;"/>
+		</c:if>
+		<c:if test="${selectUser.userNo == '28' }">
+			<img src="images/team/sanga.jpeg" class="rounded-circle cc_cursor" style="height: 200px;width: 200px;"/>
+		</c:if>
 		</div>
 		<div class="col-md-7" style="height: 40%;">
 			<ul>
