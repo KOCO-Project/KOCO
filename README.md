@@ -32,8 +32,8 @@ KOCO는 대한민국 소개 및 여행을 위한 콘텐츠를 제공하는 웹 �
 <br/>
 
 ## <a name="logo">로고 소개</a>
-![kocologo](https://user-images.githubusercontent.com/19661533/103808339-2b355300-509b-11eb-8b58-842d8b79ec12.png)<br/>
-![로고](https://user-images.githubusercontent.com/19661533/111074674-78182880-8527-11eb-8e10-71f2d026ab0f.png)
+<img src=https://user-images.githubusercontent.com/19661533/103808339-2b355300-509b-11eb-8b58-842d8b79ec12.png" width="60%" height="40%">
+<img src=https://user-images.githubusercontent.com/19661533/111074674-78182880-8527-11eb-8e10-71f2d026ab0f.png" width="60%" height="40%"><br/>
 > Korean offer culture organization, ‘한국의 문화를 제공하는 단체’를 뜻하며, 그 앞글자를 따서 ‘KOCO, 코코’가 탄생했습니다.<br/>
 또한 어느 누가 봐도 한국을 소개하는 웹 사이트라는것을 보여주기위해 대한민국의 상징적인 색과 같은 태극기의 빨강과 파랑을 사용하여 색을 입혔습니다. 
 
@@ -47,28 +47,27 @@ KOCO는 대한민국 소개 및 여행을 위한 콘텐츠를 제공하는 웹 �
 <br/>
 
 ## <a name="schedule">일정 관리 🗓</a>
-<img width="600" alt="sheet" src="https://user-images.githubusercontent.com/19661533/103805171-916ba700-5096-11eb-8f05-217dbc58bef4.png">
+<img alt="sheet" src="https://user-images.githubusercontent.com/19661533/103805171-916ba700-5096-11eb-8f05-217dbc58bef4.png" width="60%" height="40%">
 
 <br/>
 
 ## <a name="settings">개발 환경 🔧</a>
-<img width="425" alt="roqkf" src="https://user-images.githubusercontent.com/51870028/92555289-47b6af80-f2a2-11ea-9367-8ec1f00fe7e9.PNG">
+<img alt="roqkf" src="https://user-images.githubusercontent.com/51870028/92555289-47b6af80-f2a2-11ea-9367-8ec1f00fe7e9.PNG" width="60%" height="40%">
 
 <br/>
 
 ## <a name="db">DB 설계 (ERD+UML)</a>
 - Logical
 
-<img src="https://user-images.githubusercontent.com/19661533/111074579-eb6d6a80-8526-11eb-852e-e419a1ffafd5.png" width="40%" height="30%">
-
+<img src="https://user-images.githubusercontent.com/19661533/111074579-eb6d6a80-8526-11eb-852e-e419a1ffafd5.png" width="60%" height="40%">
+<br/>
 - Physical
 
-<img src="https://user-images.githubusercontent.com/19661533/111074603-0e981a00-8527-11eb-95d7-bccb0edf0259.png" width="40%" height="30%">
-
+<img src="https://user-images.githubusercontent.com/19661533/111074603-0e981a00-8527-11eb-95d7-bccb0edf0259.png" width="60%" height="40%">
+<br/>
 - UML
 
-![DB(최종수정본)_UML](https://user-images.githubusercontent.com/19661533/111074610-1ce63600-8527-11eb-8247-88d449d51360.png)
-
+<img src="https://user-images.githubusercontent.com/19661533/111074610-1ce63600-8527-11eb-8247-88d449d51360.png" width="60%" height="40%">
 <br/>
 
 ## <a name="pageintro">페이지 소개</a>
