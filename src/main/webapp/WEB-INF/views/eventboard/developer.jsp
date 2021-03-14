@@ -36,7 +36,7 @@
         <header class="deSeop">
             <div style="text-align-last: center;padding: 41px;">
 <!--                 <div class="masthead-subheading" style="color: black;">Welcome To KOCO!</div> -->
-                <div class="masthead-heading text-uppercase" style="color: white;font-weight: bold;font-size: 50px;letter-spacing: 10px;">Our Amazing Team</div>
+                <div class="masthead-heading text-uppercase" style="color: white;font-weight: bold;font-size: 50px;letter-spacing: 20px;">Our Team</div>
                 <a class="btn btn-dark btn-xl text-uppercase js-scroll-trigger" href="supportMailForm" style="background-color: white;border-radius: 50px;border: none;color: black;font-size: 10px;letter-spacing: 1px;margin-top: 10px;">Would you contact us?</a>
                 
             </div>
