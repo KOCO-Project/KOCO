@@ -60,7 +60,7 @@ div.jb-wrap div.jb-text h6 {
 				style="width: 100%; height: 100%;" />
 		</div>
 		<div class="jb-text">
-			<h6>대한민국 4계절</h6>
+			<h6>대한민국 계절</h6>
 		</div>
 	</div>
 
