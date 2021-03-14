@@ -30,7 +30,6 @@
 		span {width: 100px;height: 30px;}
 		.flt {float: left;}
 		.frt {float: right; text-align: right;}
-	/* .card img{width: 240px; height: 180px;} */
 	</style>
 </head>
 
@@ -52,8 +51,8 @@
       	<div class="card h-100">
        		<div class="card">
 	       		<a class='move' href='/KOCO/eventGet?boardNo=<c:out value="${event.boardNo}"/>&page=${page}'>
-	         		<img class="card-img-top" id="thumbImg" src="imgUpload/2021/03/13/fd147ac8-e0e2-476e-8cfe-e5119f11db65_showtime.jpg" alt="">
-	       			<%-- <img src="<c:out value="${event.thumbnail}"/>" class="card-img-top" id="thumbImg" /> --%>
+	         		<!-- <img class="card-img-top" id="thumbImg" src="images/bts.jpg" alt=""> -->
+	       			<img src="<c:out value="${event.thumbnail}"/>" class="card-img-top" id="thumbImg" />
 	       			<%-- <img src="${event.thumbnail}" class="card-img-top" id="thumbImg" /> --%> 
 	         	</a>
 	        </div>
@@ -68,13 +67,16 @@
       				<p class="card-text" style="color: #939393; font-size: 0.8rem;"><c:out value="${event.writer}" /></p>
       			</a>
       			</span>
-      			<span class="frt">
+      			<!-- 즐겨찾기 별 모형 시험-->
+      			<!-- <span class="frt">
       			<a href="/KOCO/bookmark">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
   						<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
 					</svg>
-				</a>
-      			</span>
+				</a> 
+      			</span> -->
+				<!-- ./ -->
+				<span class="frt">
       			<c:if test="${sessionScope.user.userCase == 1}">
       			<form role="form" class="bookmark" action="/KOCO/bookmark" method="post" modelAttribute="bookmark" enctype="multipart/form-data">
       				<input type="hidden" id="userNo" name="userNo" value="${sessionScope.user.userNo }"/>
@@ -85,30 +87,11 @@
 					</button>
       			</form>
       			</c:if>
+      			</span>
       		</div>
       	</div>
     </div>
-      
-     <!--  <div class="col-md-4 mb-5">
-        <div class="card h-80">
-          <img class="card-img-top" src="images/2.jpeg" alt="">
-          <div class="card-body">
-            <h4 class="card-title">코코 X BC카드 즉시할인 이벤트</h4>
-            <p class="card-text" style="color: #939393;">경영지원팀장_LEE</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-4 mb-5">
-        <div class="card h-80">
-          <img class="card-img-top" src="images/chul.jpeg" alt="">
-          <div class="card-body">
-            <h4 class="card-title">KOCO 출석체크 이벤트 OPEN!</h4>
-            <p class="card-text" style="color: #939393;">경영지원팀장_LEE</p>
-          </div>
-        </div>
-      </div> -->
-      </c:forEach>
+    </c:forEach> 
 </div>
 <!-- <div class="row"> -->
 <div class="d-none d-md-block">

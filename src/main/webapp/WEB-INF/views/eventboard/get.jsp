@@ -96,10 +96,10 @@
 							<input type='hidden' id='boardNo' name='boardNo'
 								value='<c:out value="${event.boardNo}"/>'>
 						</form>
-						<form id='operForm' action="/KOCO/eventDelete" method="post" modelAttribute="event" enctype="multipart/form-data">
+						<%-- <form id='operForm' action="/KOCO/eventDelete" method="post" modelAttribute="event" enctype="multipart/form-data">
 							<input type='hidden' id='boardNo' name='boardNo' value='<c:out value="${event.boardNo}"/>'>
 							<button type="submit" data-oper='delete' class="btn btn-danger">삭제하기</button>
-						</form>
+						</form> --%>
 					</div>
 				<!-- </div> -->
 			</div>

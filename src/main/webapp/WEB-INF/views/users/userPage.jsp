@@ -281,7 +281,7 @@ $(function(){
 	<div class="col-md-2 cc_cursor" style="height: 100%;"></div>
 	<div class="col-md-8 cc_cursor" style="height: 100%;">
 
-<table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca;">
+<table class="table table-hover" id='board_list' style="border-bottom: 1px solid #dfd7ca; margin-left: 50px; width: 650px;">
 	<thead>
 	<tr>
 		<th class="text-center d-none d-md-table-cell">카테고리</th>	
@@ -292,21 +292,19 @@ $(function(){
 	</tr>
 	</thead>
 	<tbody>
-	<%-- <c:forEach var='' items=""> --%>
 	<c:forEach items="${bookmarklist}" var="bookmark">
 	<tr>
 		<td class="text-center d-none d-md-table-cell"><c:out value="${bookmark.categoryName}"/></td>
 		<c:if test="${bookmark.categoryName == '이벤트게시판' }">
-			<td><a href='/KOCO/eventGet?boardNo=${bookmark.boardNo}'><c:out value="${bookmark.boardTitle}"/></a></td>
+			<td><a href='/KOCO/eventGet?boardNo=${bookmark.boardNo}' style="color: #325d88; font-weight: 500;"><c:out value="${bookmark.boardTitle}"/></a></td>
 		</c:if>
 		<c:if test="${bookmark.categoryName == '자유게시판' }">
-			<td><a href='getFreeBoard?boardNo=${bookmark.boardNo}'><c:out value="${bookmark.boardTitle}"/></a></td>
+			<td><a href='getFreeBoard?boardNo=${bookmark.boardNo}' style="color: #325d88; font-weight: 500;"><c:out value="${bookmark.boardTitle}"/></a></td>
 		</c:if>
-		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;"><a href="userPage?userNickname=${bookmark.writer }" style="color: #325d88"><c:out value="${bookmark.writer}"/></a></td>
+		<td class="text-center d-none d-md-table-cell"><a href="userPage?userNickname=${bookmark.writer }" style="color: black;"><c:out value="${bookmark.writer}"/></a></td>
 		<td class="text-center d-none d-md-table-cell"><a href="#" style="color: red;font-weight: 500;">삭제</a></td>
 	</tr>
 	</c:forEach>
-	<%-- </c:forEach> --%>
 	</tbody>
 </table>		
 		
