@@ -33,7 +33,7 @@ KOCO는 대한민국 소개 및 여행을 위한 콘텐츠를 제공하는 웹 �
 
 ## <a name="logo">로고 소개</a>
 <img src="https://user-images.githubusercontent.com/19661533/103808339-2b355300-509b-11eb-8b58-842d8b79ec12.png" width="60%" height="40%">
-<img src="https://user-images.githubusercontent.com/19661533/111074674-78182880-8527-11eb-8e10-71f2d026ab0f.png" width="60%" height="40%"><br/>
+<img src="https://user-images.githubusercontent.com/19661533/111074674-78182880-8527-11eb-8e10-71f2d026ab0f.png" width="30%" height="30%"><br/>
 > Korean offer culture organization, ‘한국의 문화를 제공하는 단체’를 뜻하며, 그 앞글자를 따서 ‘KOCO, 코코’가 탄생했습니다.<br/>
 또한 어느 누가 봐도 한국을 소개하는 웹 사이트라는것을 보여주기위해 대한민국의 상징적인 색과 같은 태극기의 빨강과 파랑을 사용하여 색을 입혔습니다. 
 
