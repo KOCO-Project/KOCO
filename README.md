@@ -56,6 +56,17 @@ KOCO는 대한민국 소개 및 여행을 위한 콘텐츠를 제공하는 웹 �
 <br/>
 
 ## <a name="db">DB 설계 (ERD+UML)</a>
+- Logical
+
+![DB(최종본수정)_Logical](https://user-images.githubusercontent.com/19661533/111074579-eb6d6a80-8526-11eb-852e-e419a1ffafd5.png)
+
+- Physical
+
+![DB(최종수정본)_Phsical](https://user-images.githubusercontent.com/19661533/111074603-0e981a00-8527-11eb-95d7-bccb0edf0259.png)
+
+- UML
+
+![DB(최종수정본)_UML](https://user-images.githubusercontent.com/19661533/111074610-1ce63600-8527-11eb-8247-88d449d51360.png)
 
 <br/>
 
