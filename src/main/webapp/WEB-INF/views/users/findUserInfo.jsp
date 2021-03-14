@@ -16,7 +16,7 @@ form {width: 30%;}
 .jb-text {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;z-index: 20;letter-spacing: 10px;}
 img {height: 200px;}
 legend {font-weight: bold;font-size: 2rem;}
-.seopBody{height: 17rem;margin-top: 5%;margin-bottom: 5%;}
+.seopBody{height: 17rem;margin-top: 5%;margin-bottom: 5%;  min-height 860px;}
 </style>
 <meta charset="UTF-8">
 <title>ID & Password 찾기</title>
@@ -144,6 +144,7 @@ legend {font-weight: bold;font-size: 2rem;}
 			</form>
 		</div>
 	</div>
+<br><br><br>
 
 </body>
 	<footer>

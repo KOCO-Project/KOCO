@@ -13,7 +13,7 @@ img {height: 200px;}
 legend {font-weight: bold;font-size: 2rem;}
 div.jumbotron{background-color:white; text-align: -webkit-center;}
 h1.display-3{font-size: 2rem; font-weight: bold;}
-.seopBody{width: 70%}
+.seopBody{width: 70%;}
 </style>
 <meta charset="UTF-8">
 <title>ID & Password</title>
@@ -57,7 +57,8 @@ h1.display-3{font-size: 2rem; font-weight: bold;}
 			</p>
 		</div>
 	</div>
-
+	
+	
 </body>
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />

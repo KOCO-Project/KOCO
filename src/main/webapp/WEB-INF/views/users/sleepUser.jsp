@@ -138,7 +138,8 @@ legend {font-weight: bold;font-size: 2rem;}
 			</form>
 		</div>
 	</div>
-
+	<br><br><br>
+	
 </body>
 	<footer>
 		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
