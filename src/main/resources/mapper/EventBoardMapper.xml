@@ -19,6 +19,8 @@
 		<result property="boardNo" column="BOARD_NO"/>
 		<result property="boardCategory" column="BOARD_CATEGORY" />
 		<result property="userNo" column="USER_NO" />
+		<result property="categoryName" column="INFO_NAME" />
+		<result property="boardTitle" column="BOARD_TITLE" />
 	</resultMap>
 	<insert parameterType="board" id="eventBoardRegister">
 		<![CDATA[
@@ -93,9 +95,12 @@
 	</insert>
 	
 	<select id="bookmarkList" resultType="bookmark" resultMap="bookmarkResult" parameterType="java.lang.Integer">
-		select KOCO_BOOKMARK.BOARD_NO, KOCO_BOOKMARK.BOARD_CATEGORY, KOCO_BOARD.BOARD_TITLE, KOCO_USERS.USER_NICKNAME as writer
+		select KOCO_BOOKMARK.BOARD_NO, KOCO_BOOKMARK.BOARD_CATEGORY, KOCO_BOARD_INFO.INFO_NAME, KOCO_BOARD.BOARD_TITLE, KOCO_USERS.USER_NICKNAME as writer
 		from  KOCO_BOOKMARK join KOCO_BOARD on KOCO_BOARD.BOARD_NO=KOCO_BOOKMARK.BOARD_NO
 							join KOCO_USERS on KOCO_BOOKMARK.USER_NO=KOCO_USERS.USER_NO
+							join KOCO_BOARD_INFO on KOCO_BOOKMARK.BOARD_CATEGORY=KOCO_BOARD_INFO.INFO_NO
+		
+		<!-- where KOCO_BOOKMARK.USER_NO=#{userNo} -->
 	</select>
 	<!-- <select id="bookmarkGet" resultType="board" resultMap="boardResult" parameterType="java.lang.Integer">
 		select *

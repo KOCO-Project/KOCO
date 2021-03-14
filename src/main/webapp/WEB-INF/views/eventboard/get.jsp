@@ -86,7 +86,7 @@
 						<c:if test="${sessionScope.user.userCase == 1}">
 							<button data-oper='update' class="btn btn-success" style="background-color: #2172AF;">수정하기</button>
 							<%-- <a href="getEventUpdate?boardNo=${event.boardNo}&page=${page}" class="btn btn-success" style="width: 100px;">수정하기</a> --%> 
-							<button type="submit" data-oper='delete' class="btn btn-danger">삭제하기</button>
+							<button type="submit" data-oper='delete' class="btn btn-danger" style="background-color: #CB0927">삭제하기</button>
 							<%-- <a href="eventDelete?boardNo=${event.boardNo}" class="btn btn-danger" style="width: 100px;">삭제하기</a> --%>
 						</c:if>
 							<button data-oper='list' class="btn" style="background-color: #EDB95F; color: white;">돌아가기</button>

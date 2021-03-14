@@ -1,6 +1,7 @@
 package co.kr.koco.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Resource;
@@ -22,8 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.kr.koco.service.EventBoardService;
 import co.kr.koco.service.FollowService;
+import co.kr.koco.service.QnaBoardService;
 import co.kr.koco.service.UserService;
+import co.kr.koco.vo.BoardVO;
+import co.kr.koco.vo.BookMarkVO;
 import co.kr.koco.vo.FollowVO;
 import co.kr.koco.vo.ProfileImgVO;
 import co.kr.koco.vo.UserVO;
@@ -35,6 +40,12 @@ public class UserController {
 
 	@Autowired
 	private FollowService followService;
+	
+	@Autowired
+	private EventBoardService eventService;
+	
+	@Autowired
+	private QnaBoardService qnaService;
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
@@ -205,17 +216,18 @@ public class UserController {
 	// 회원정보페이지(마이페이지, 다른유저페이지 통합)
 	@GetMapping("/userPage")
 	public String userPage(@RequestParam(value = "userNickname", required = false) String userNickname, UserVO userVo,
-			Model model, HttpSession session, FollowVO followVo) throws Exception {
+			Model model, HttpSession session, FollowVO followVo, BookMarkVO bookmark, BoardVO board) throws Exception {
 		UserVO userVO = service.userPage(userNickname);
 
 		String fromFollow = (String) session.getAttribute("from");
 		String toFollow = userNickname;
-
-		if (fromFollow.equals(toFollow)) { // 마이페이지일 때
+		//System.out.println(fromFollow);
+		//System.out.println(toFollow);
+		if (fromFollow.equals(toFollow)) {
 			model.addAttribute("selectUser", userVO);
 			model.addAttribute("followerCnt", followService.followerCnt(userNickname));
 			model.addAttribute("followingCnt", followService.followingCnt(userNickname));
-		} else { // 다른 유저페이지일 때 팔로우 여부도 같이 체크
+		} else {
 			followVo.setFromFollow(fromFollow);
 			followVo.setToFollow(toFollow);
 
@@ -224,6 +236,13 @@ public class UserController {
 			model.addAttribute("followerCnt", followService.followerCnt(userNickname));
 			model.addAttribute("followingCnt", followService.followingCnt(userNickname));
 		}
+		
+//		model.addAttribute("boardCategory", boardCategory);
+//		model.addAttribute("infoName", infoName);
+		
+		List<BookMarkVO> list = eventService.bookmarkList(bookmark);
+		bookmark.setCategoryName(qnaService.getBoardInfoName(bookmark.getBoardCategory()));
+		model.addAttribute("bookmarklist",list);
 
 		return "users/userPage";
 	}

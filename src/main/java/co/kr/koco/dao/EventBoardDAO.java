@@ -21,5 +21,5 @@ public interface EventBoardDAO {
 //	 public int boardSearch(Long boardNo);
 //	 public void insertSelectKey(EventVO event);
 	 public void bookmarkRegister(BookMarkVO book);
-	 public List<BoardVO> bookmarkList(BoardVO event);
+	 public List<BookMarkVO> bookmarkList(BookMarkVO book);
 }

@@ -188,11 +188,11 @@ public class EventBoardController {
    
     
     @PostMapping({"/bookmark"})
-    public String bookmark(@RequestParam("userNo") int userNo, @RequestParam("boardCategory") int boardCategory, @ModelAttribute("bookmark") BookMarkVO book, @RequestParam(value="boardNo") int bno, RedirectAttributes rttr){
-    	book.setBoardNo(bno);
-    	book.setBoardCategory(boardCategory);
-    	book.setUserNo(userNo);
-    	service.bookmarkRegister(book);
+    public String bookmark(@RequestParam("userNo") int userNo, @RequestParam("boardCategory") int boardCategory, @ModelAttribute("bookmark") BookMarkVO bookmark, @RequestParam(value="boardNo") int bno, RedirectAttributes rttr){
+    	bookmark.setBoardNo(bno);
+    	bookmark.setBoardCategory(boardCategory);
+    	bookmark.setUserNo(userNo);
+    	service.bookmarkRegister(bookmark);
 //    	rttr.addFlashAttribute("result", book.getBoardNo());
     	return "eventboard/bookmark";
 //    	return "redirect:/userPage";
@@ -200,15 +200,11 @@ public class EventBoardController {
     }
     
     @GetMapping("/bookmarkList")
-	public String bookmarkList(@RequestParam(value = "page", defaultValue = "1") int page,@ModelAttribute BoardVO event,
+	public String bookmarkList(@RequestParam(value = "page", defaultValue = "1") int page,@ModelAttribute BookMarkVO bookmark,
 						   Model model) {
 		
-		List<BoardVO> list = service.bookmarkList(event);
+		List<BookMarkVO> list = service.bookmarkList(bookmark);
 		model.addAttribute("bookmarklist",list);
-
-		PageVO pageVO = service.getEventBoardCnt(page);
-		model.addAttribute("pageVO", pageVO);
-		model.addAttribute("page", page);
 
 		return "users/userPage";
 	}

@@ -316,25 +316,17 @@ $(function(){
 		<!-- <th class="text-center d-none d-md-table-cell">글번호</th> -->
 		<th class="w-50">제목</th>
 		<th class="text-center d-none d-md-table-cell">작성자</th>
-		<th class="text-center d-none d-md-table-cell">작성날짜</th>
+		<th class="text-center d-none d-md-table-cell">삭제</th>
 	</tr>
 	</thead>
 	<tbody>
 	<%-- <c:forEach var='' items=""> --%>
-	<!-- <tr>
-		<th class="text-center d-none d-md-table-cell">이벤트</th>
-		<td class="text-center d-none d-md-table-cell">1</td>
-		<td><a href=''>글 제목</a></td>
-		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;">지원이</td>
-		<td class="text-center d-none d-md-table-cell">날짜</td>
-	</tr> -->
 	<c:forEach items="${bookmarklist}" var="bookmark">
 	<tr>
-		<th class="text-center d-none d-md-table-cell"><c:out value="${bookmark.boardCategory}"/></th>
-		<!-- <td class="text-center d-none d-md-table-cell">1</td> -->
+		<td class="text-center d-none d-md-table-cell"><c:out value="${bookmark.categoryName}"/></td>
 		<td><a href=''><c:out value="${bookmark.boardTitle}"/></a></td>
 		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;"><c:out value="${bookmark.writer}"/></td>
-		<!-- <td class="text-center d-none d-md-table-cell">날짜</td> -->
+		<td class="text-center d-none d-md-table-cell"><a href="#" style="color: red;font-weight: 500;">삭제</a></td>
 	</tr>
 	</c:forEach>
 	<%-- </c:forEach> --%>
@@ -399,13 +391,14 @@ $(function(){
 </div>
 
 </div>
-
+<br><br><br>
 <footer>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 </footer>
 </c:when>
 </c:choose>
 </div>
+<br><br><br>
 </body>
 <footer>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
