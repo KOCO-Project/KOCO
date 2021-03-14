@@ -221,9 +221,13 @@ public class UserController {
 
 		String fromFollow = (String) session.getAttribute("from");
 		String toFollow = userNickname;
-		//System.out.println(fromFollow);
-		//System.out.println(toFollow);
+
 		if (fromFollow.equals(toFollow)) {
+			bookmark.setUserNo(userVO.getUserNo());
+			List<BookMarkVO> list = eventService.bookmarkList(bookmark);
+			bookmark.setCategoryName(qnaService.getBoardInfoName(bookmark.getBoardCategory()));
+			model.addAttribute("bookmarklist",list);
+			
 			model.addAttribute("selectUser", userVO);
 			model.addAttribute("followerCnt", followService.followerCnt(userNickname));
 			model.addAttribute("followingCnt", followService.followingCnt(userNickname));
@@ -236,13 +240,6 @@ public class UserController {
 			model.addAttribute("followerCnt", followService.followerCnt(userNickname));
 			model.addAttribute("followingCnt", followService.followingCnt(userNickname));
 		}
-		
-//		model.addAttribute("boardCategory", boardCategory);
-//		model.addAttribute("infoName", infoName);
-		bookmark.setUserNo(userVo.getUserNo());
-		List<BookMarkVO> list = eventService.bookmarkList(bookmark);
-		bookmark.setCategoryName(qnaService.getBoardInfoName(bookmark.getBoardCategory()));
-		model.addAttribute("bookmarklist",list);
 
 		return "users/userPage";
 	}

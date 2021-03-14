@@ -105,7 +105,7 @@ public class FreeBoardController {
 	
 	// 글 상세 조회
 	@RequestMapping("/getFreeBoard")
-	public String getFreeBoard(@ModelAttribute CommentVO vo, @RequestParam("page") int page, @RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO, Model model) {
+	public String getFreeBoard(@ModelAttribute CommentVO vo, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "infoNo", defaultValue = "1") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO, Model model) {
 		
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);

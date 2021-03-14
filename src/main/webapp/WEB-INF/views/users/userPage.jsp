@@ -296,8 +296,13 @@ $(function(){
 	<c:forEach items="${bookmarklist}" var="bookmark">
 	<tr>
 		<td class="text-center d-none d-md-table-cell"><c:out value="${bookmark.categoryName}"/></td>
-		<td><a href=''><c:out value="${bookmark.boardTitle}"/></a></td>
-		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;"><c:out value="${bookmark.writer}"/></td>
+		<c:if test="${bookmark.categoryName == '이벤트게시판' }">
+			<td><a href='/KOCO/eventGet?boardNo=${bookmark.boardNo}'><c:out value="${bookmark.boardTitle}"/></a></td>
+		</c:if>
+		<c:if test="${bookmark.categoryName == '자유게시판' }">
+			<td><a href='getFreeBoard?boardNo=${bookmark.boardNo}'><c:out value="${bookmark.boardTitle}"/></a></td>
+		</c:if>
+		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;"><a href="userPage?userNickname=${bookmark.writer }" style="color: #325d88"><c:out value="${bookmark.writer}"/></a></td>
 		<td class="text-center d-none d-md-table-cell"><a href="#" style="color: red;font-weight: 500;">삭제</a></td>
 	</tr>
 	</c:forEach>

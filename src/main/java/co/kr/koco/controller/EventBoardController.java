@@ -139,7 +139,7 @@ public class EventBoardController {
 	}
 
     @GetMapping({"/eventGet"})
-    public String eventGet(@RequestParam("boardNo")int bno,@RequestParam("page") int page,Model model) {
+    public String eventGet(@RequestParam("boardNo")int bno,@RequestParam(value = "page", defaultValue = "1") int page,Model model) {
 //		model.addAttribute("boardNo", bno);
     	model.addAttribute("userVO", userVO);
     	model.addAttribute("page", page);
