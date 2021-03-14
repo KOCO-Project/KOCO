@@ -16,6 +16,7 @@ public class UserDAO {
 	@Autowired
 	private SqlSessionTemplate sql;
 
+	// 유효성 검사(ID, 닉네임, 이메일) -----------------------------------------------
 	public String userIdExist(String userId) {
 		return sql.selectOne("userMapper.userIdExist", userId);
 	}
@@ -27,27 +28,39 @@ public class UserDAO {
 	public String userEmailExist(String userEmail) {
 		return sql.selectOne("userMapper.userEmailExist", userEmail);
 	}
+	// ----------------------------------------------------------------------
 
+	// 회원가입
 	public void userRegister(UserVO userVo) throws Exception {
 		sql.insert("userMapper.register", userVo);
 	}
 
+	// 로그인
 	public UserVO login(UserVO userVo) throws Exception {
 		return (UserVO) sql.selectOne("userMapper.loginCheck", userVo);
 	}
 
+	// ID, PW 찾기
 	public UserVO findIdPw(String userEmail) throws Exception {
 		return (UserVO) sql.selectOne("userMapper.findIdPw", userEmail);
 	}
 	
+	// 회원정보수정(닉네임)
 	public void userUpdate(UserVO userVo) throws Exception {
 		sql.update("userMapper.userUpdate", userVo);
 	}
 	
+	// 회원정보수정(비밀번호)
 	public void pwUpdate(UserVO userVo) throws Exception {
 		sql.update("userMapper.pwUpdate", userVo);
 	}
 	
+	// 휴면계정 활성화
+	public void sleepUserActivate(String userEmail) throws Exception {
+		sql.update("userMapper.sleepUserActivate", userEmail);
+	}
+	
+	// 유저페이지
 	public UserVO userPage(String userNickname) throws Exception{
 		return (UserVO) sql.selectOne("userMapper.userPage", userNickname);
 	}

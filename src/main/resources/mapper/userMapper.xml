@@ -82,6 +82,12 @@
 		WHERE USER_ID = #{userId} AND USER_PW = #{currentPw}
 	</update>
 	
+	<!-- 휴면 계정 활성화 -->
+	<update id="sleepUserActivate">
+		UPDATE KOCO_USERS SET USER_STATUS = 1
+		WHERE USER_EMAIL = #{userEmail}
+	</update>
+	
 	<!-- 유저페이지 -->
 	<select id="userPage" resultType="users" parameterType="java.lang.String">
 		SELECT U.USER_NO AS userNo, U.USER_ID AS userId, U.USER_PW AS userPw, U.USER_NICKNAME AS userNickname, 

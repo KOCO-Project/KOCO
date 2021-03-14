@@ -43,6 +43,7 @@ public class UserController {
 	@Lazy
 	private UserVO userVO;
 
+	// ID 중복검사
 	@PostMapping("/userIdExist")
 	public void userIdExist(@RequestParam(value = "userId") String userId, HttpServletResponse response)
 			throws Exception {
@@ -57,6 +58,7 @@ public class UserController {
 		}
 	}
 
+	// 닉네임 중복검사
 	@PostMapping("/userNicknameExist")
 	public void userNicknameExist(@RequestParam(value = "userNickname") String userNickname,
 			HttpServletResponse response) throws Exception {
@@ -71,6 +73,7 @@ public class UserController {
 		}
 	}
 
+	// 이메일 중복검사
 	@PostMapping("/userEmailExist")
 	public void userEmailExist(@RequestParam(value = "userEmail") String userEmail, HttpServletResponse response)
 			throws Exception {
@@ -84,7 +87,8 @@ public class UserController {
 			out.println("0"); // 이메일 중복
 		}
 	}
-
+	
+	// 회원가입
 	@PostMapping("/userRegister")
 	public String userRegister(UserVO userVo) throws Exception {
 		service.userRegister(userVo);
@@ -92,6 +96,7 @@ public class UserController {
 		return "users/login";
 	}
 
+	// 로그인
 	@PostMapping("/userLogin")
 	public String login(UserVO userVo, HttpServletRequest request, HttpSession session) throws Exception {
 		session = request.getSession();
@@ -99,25 +104,33 @@ public class UserController {
 		UserVO login = service.login(userVo);
 
 		if (login != null) {
-			session.setAttribute("user", login);
-			session.setAttribute("from", login.getUserNickname());
-			session.setAttribute("userNo", login.getUserNo());
+			if (login.getUserStatus().equals("2")) { // 계정 휴면 상태일 때
+				session.setAttribute("sleepUserEmail", login.getUserEmail());
 
-			return "redirect:main";
+				return "users/loginfail_sleep";
+			} else {
+				session.setAttribute("user", login);
+				session.setAttribute("from", login.getUserNickname());
+				session.setAttribute("userNo", login.getUserNo());
+
+				return "redirect:main";
+			}
 		} else {
 			session.setAttribute("user", null);
-			
+
 			return "users/loginfail";
 		}
 	}
 
+	// 로그아웃
 	@RequestMapping("/userLogout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 
 		return "main";
 	}
-
+	
+	// 화면 이동 --------------------------------------------
 	@RequestMapping("/loginView")
 	public String loginView() {
 		return "users/login";
@@ -143,22 +156,33 @@ public class UserController {
 		return "users/findUserInfo";
 	}
 
+	@RequestMapping("/sleepUserView")
+	public String sleepUserView() {
+		return "users/sleepUser";
+	}
+	// ------------------------------------------------
+	
+	// 회원정보수정(닉네임)
 	@RequestMapping("/userUpdate")
-	public String userUpdate(@RequestParam(value = "oldNick") String oldNick, @RequestParam(value = "newNick") String newNick, @RequestParam(value = "userId") String userId, UserVO userVo, FollowVO followVo, HttpSession session) throws Exception {
+	public String userUpdate(@RequestParam(value = "oldNick") String oldNick,
+			@RequestParam(value = "newNick") String newNick, @RequestParam(value = "userId") String userId,
+			UserVO userVo, FollowVO followVo, HttpSession session) throws Exception {
 		userVo.setUserNickname(newNick);
-		userVo.setUserId(userId);		
+		userVo.setUserId(userId);
 		service.userUpdate(userVo);
-		
+
+		// 팔로우 테이블 닉네임도 같이 수정
 		followVo.setNewNick(newNick);
 		followVo.setOldNick(oldNick);
 		followService.updateFromFollow(followVo);
 		followService.updateToFollow(followVo);
-		
+
 		session.invalidate();
 
 		return "redirect:/";
 	}
 
+	// 회원정보수정(비밀번호)
 	@RequestMapping("/pwUpdate")
 	public String pwUpdate(@RequestParam(value = "currentPw") String currentPw,
 			@RequestParam(value = "newPw") String newPw, UserVO userVo, HttpSession session) throws Exception {
@@ -168,6 +192,17 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	// 휴면계정 활성화
+	@RequestMapping("/sleepUserActivate")
+	public String sleepUserActivate(@RequestParam(value = "userEmail") String userEmail, HttpSession session)
+			throws Exception {
+		service.sleepUserActivate(userEmail);
+		session.invalidate();
+
+		return "redirect:/";
+	}
+
+	// 회원정보페이지(마이페이지, 다른유저페이지 통합)
 	@GetMapping("/userPage")
 	public String userPage(@RequestParam(value = "userNickname", required = false) String userNickname, UserVO userVo,
 			Model model, HttpSession session, FollowVO followVo) throws Exception {
@@ -175,13 +210,12 @@ public class UserController {
 
 		String fromFollow = (String) session.getAttribute("from");
 		String toFollow = userNickname;
-		//System.out.println(fromFollow);
-		//System.out.println(toFollow);
-		if (fromFollow.equals(toFollow)) {
+
+		if (fromFollow.equals(toFollow)) { // 마이페이지일 때
 			model.addAttribute("selectUser", userVO);
 			model.addAttribute("followerCnt", followService.followerCnt(userNickname));
 			model.addAttribute("followingCnt", followService.followingCnt(userNickname));
-		} else {
+		} else { // 다른 유저페이지일 때 팔로우 여부도 같이 체크
 			followVo.setFromFollow(fromFollow);
 			followVo.setToFollow(toFollow);
 
@@ -194,6 +228,7 @@ public class UserController {
 		return "users/userPage";
 	}
 
+	// 메일 인증번호 발송
 	@RequestMapping("/sendAuthMail")
 	public void sendAuthMail(@RequestParam(value = "userEmail") String email, HttpServletResponse response)
 			throws Exception {
@@ -218,12 +253,13 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		String authKey = Integer.toString(num);
 
 		out.println(authKey);
 	}
 
+	// ID, PW 찾기
 	@GetMapping("/findIdPwd")
 	public ModelAndView findIdPw(@RequestParam(value = "userEmail") String userEmail) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -232,18 +268,19 @@ public class UserController {
 
 		return mav;
 	}
-	
+
+	// 프로필사진 업로드 (사용안함)
 	@RequestMapping("/imgRegister")
 	public String imgRegister(ProfileImgVO profileVo, HttpSession session) throws Exception {
 		MultipartFile file = profileVo.getFile();
-		
+
 		profileVo.setImgName(file.getOriginalFilename());
 		profileVo.setImgSize(file.getSize());
 		profileVo.setImgType(file.getContentType());
 		profileVo.setImgData(file.getBytes());
-		
+
 		service.imgRegister(profileVo);
-		
+
 		return "main";
 	}
 

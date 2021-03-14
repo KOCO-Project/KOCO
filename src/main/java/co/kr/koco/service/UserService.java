@@ -81,6 +81,10 @@ public class UserService {
 		dao.pwUpdate(userVo);
 	}
 	
+	public void sleepUserActivate(String userEmail) throws Exception {
+		dao.sleepUserActivate(userEmail);
+	}
+	
 	public UserVO userPage(String userNickname) throws Exception {
 		return (UserVO) dao.userPage(userNickname);
 	}
