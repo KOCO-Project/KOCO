@@ -391,13 +391,14 @@ $(function(){
 </div>
 
 </div>
-
+<br><br><br>
 <footer>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 </footer>
 </c:when>
 </c:choose>
 </div>
+<br><br><br>
 </body>
 <footer>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
