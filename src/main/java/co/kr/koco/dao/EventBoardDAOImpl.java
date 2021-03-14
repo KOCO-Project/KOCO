@@ -58,8 +58,8 @@ public class EventBoardDAOImpl implements EventBoardDAO{
 		sql.insert("evnetDAO.bookmarkRegister", book);
 	}
 	@Override
-	 public List<BoardVO> bookmarkList(BoardVO event){
-		return sql.selectList("evnetDAO.bookmarkList", event);
+	 public List<BookMarkVO> bookmarkList(BookMarkVO book){
+		return sql.selectList("evnetDAO.bookmarkList", book);
 	}
 
 	 

@@ -10,4 +10,5 @@ public class BookMarkVO {
 //	private int bookMarkAdd;
 	private String boardTitle;
 	private String writer;
+	private String categoryName;
 }

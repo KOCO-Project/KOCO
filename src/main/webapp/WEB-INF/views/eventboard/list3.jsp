@@ -25,6 +25,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	<style>
 		#thumbImg{width: 100%; height: 180px;}
+		div#event.container{box-shadow: 3px 3px 15px 0px grey;}
+		#event svg:hover{wifth: 20px; height: 20px; fill: blue; transform:scale(1.5); align: "right"}
+		span {width: 100px;height: 30px;}
+		.flt {float: left;}
+		.frt {float: right; text-align: right;}
 	/* .card img{width: 240px; height: 180px;} */
 	</style>
 </head>
@@ -37,7 +42,7 @@
 			<h2>Event</h2>
 			<p style="color: #939393;">이벤트 게시판 입니다 :)</p>
 			<c:if test="${sessionScope.user.userCase == 1}">
-			<button id='regBtn' type="button" onclick="return loginCheck();" class="btn btn-primary btn-lg pull-right" style="font-size: 10px; float: right;">New Event</button>
+			<button id='regBtn' type="button" onclick="return loginCheck();" class="btn btn-primary btn-lg" style="width: 100px; color: #fff; float: right;">New Event</button>
 		</c:if>
 		</div>
 	</div>
@@ -58,17 +63,26 @@
 						<c:out value="${event.boardTitle}" /> 
 					</a>
 				</h4>
+				<span class="flt">
 				<a href="userPage?userNickname=${event.writer}">
       				<p class="card-text" style="color: #939393; font-size: 0.8rem;"><c:out value="${event.writer}" /></p>
       			</a>
-      			
+      			</span>
+      			<span class="frt">
+      			<a href="/KOCO/bookmark">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="blue" class="bi bi-star" viewBox="0 0 16 16">
+  						<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+					</svg>
+				</a>
+      			</span>
       			<c:if test="${sessionScope.user.userCase == 1}">
-      			<form role="form" action="/KOCO/bookmark" method="post" modelAttribute="bookmark" enctype="multipart/form-data">
+      			<form role="form" class="bookmark" action="/KOCO/bookmark" method="post" modelAttribute="bookmark" enctype="multipart/form-data">
       				<input type="hidden" id="userNo" name="userNo" value="${sessionScope.user.userNo }"/>
       				<%-- <input type="hidden" id="userNickname" name="userNickname" value="${user.userNickname}"/> --%>
       				<input type="hidden" id="boardNo" name="boardNo" value="${event.boardNo}"/>
       				<input type="hidden" id="boardCategory" name="boardCategory" value="3"/>
-      				<button type="submit" style="float: right; background-color: #2172AF;" class="btn btn-info">마음</button>
+      				<button type="submit" style="float: right; background-color: #CB0927; color: white;" class="btn">마음
+					</button>
       			</form>
       			</c:if>
       		</div>
@@ -140,34 +154,7 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
-<!-- </div> -->
-			<%-- <div class='center-block' style="width: 500px;padding:15px;">
-				<ul class="pagination" >
-					<c:if test="${pageMaker.prev}">
-						<li class="paginate_button previous"><a
-							href="${pageMaker.startPage -1}">Previous</a></li>
-					</c:if>
-					<c:forEach var="num" begin="${pageMaker.startPage}"
-						end="${pageMaker.endPage}">
-						<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
-							<a href="${num}">${num}</a>
-						</li>
-					</c:forEach>
-
-					<c:if test="${pageMaker.next}">
-						<li class="paginate_button next"><a
-							href="${pageMaker.endPage +1 }">Next</a></li>
-					</c:if>
-				</ul>
-			</div>
-	</div>
-	<form id="actionForm" action="/KOCO/eventList" method="get">
-		<input type="hidden" name="pageNum"
-			value="${pageMaker.cri.pageNum }"> <input type="hidden"
-			name="amount" value="${pageMaker.cri.amount }">
-	</form> --%>
 </div>
-
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -213,17 +200,17 @@ $(document).ready(function() {
 	checkModal(result);
 	history.replaceState({}, null, null);
 
-function checkModal(result) {
-	if (result === '' || history.state) {
-		return;
-	}
-	if (result === 'success') {
-		$(".modal-body").html("정상적으로 처리되었습니다.");
-		} else if (parseInt(result) > 0) {
-			$(".modal-body").html("게시글 " + parseInt(result)+ " 번이 등록되었습니다.");
-			}
-		$("#myModal").modal("show");
-	}
+	function checkModal(result) {
+		if (result === '' || history.state) {
+			return;
+		}
+		if (result === 'success') {
+			$(".modal-body").html("정상적으로 처리되었습니다.");
+			} else if (parseInt(result) > 0) {
+				$(".modal-body").html("게시글 " + parseInt(result)+ " 번이 등록되었습니다.");
+				}
+			$("#myModal").modal("show");
+		}
 	$("#regBtn").on("click", function() {
 		self.location = "/KOCO/eventRegister";
 		});

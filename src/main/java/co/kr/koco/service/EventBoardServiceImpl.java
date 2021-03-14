@@ -79,8 +79,8 @@ public class EventBoardServiceImpl implements EventBoardService {
 		eventBoardDAO.bookmarkRegister(book);
 	}
 	
-	public List<BoardVO> bookmarkList(BoardVO event){
-		return eventBoardDAO.bookmarkList(event);
+	public List<BookMarkVO> bookmarkList(BookMarkVO book){
+		return eventBoardDAO.bookmarkList(book);
 	}
 	
 //	@Override

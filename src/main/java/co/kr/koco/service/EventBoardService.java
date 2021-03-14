@@ -18,6 +18,6 @@ public interface EventBoardService {
 	public PageVO getEventBoardCnt(int currentPage);
 	public int getTotal(Criteria cri);
 	public void bookmarkRegister(BookMarkVO book);
-	public List<BoardVO> bookmarkList(BoardVO event);
+	public List<BookMarkVO> bookmarkList(BookMarkVO book);
 
 }
