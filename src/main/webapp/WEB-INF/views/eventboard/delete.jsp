@@ -11,7 +11,7 @@
 <script>
 swal({text: "삭제되었습니다"
 }).then((result) => {
-	location.href='eventboard/list3'
+	location.href='/KOCO/eventList'
 });
 </script>
 </body>

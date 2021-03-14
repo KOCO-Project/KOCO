@@ -83,7 +83,7 @@
       				<%-- <input type="hidden" id="userNickname" name="userNickname" value="${user.userNickname}"/> --%>
       				<input type="hidden" id="boardNo" name="boardNo" value="${event.boardNo}"/>
       				<input type="hidden" id="boardCategory" name="boardCategory" value="3"/>
-      				<button type="submit" style="float: right; background-color: #CB0927; color: white;" class="btn">마음
+      				<button type="submit" style="float: right; background-color: #CB0927; color: white;" class="btn">즐찾
 					</button>
       			</form>
       			</c:if>

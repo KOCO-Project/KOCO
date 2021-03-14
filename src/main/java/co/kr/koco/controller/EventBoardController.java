@@ -106,7 +106,8 @@ public class EventBoardController {
       
       String callback = req.getParameter("CKEditorFuncNum");
       printWriter = res.getWriter();
-      String fileUrl = "/KOCO/ckUpload/" + uid + "_" + fileName; // 작성화면
+//      String fileUrl = "/KOCO/ckUpload/" + uid + "_" + fileName; // 작성화면
+      String fileUrl = "ckUpload/" + uid + "_" + fileName; // 작성화면
       
       // 업로드시 메시지 출력
       printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
@@ -175,17 +176,9 @@ public class EventBoardController {
 
     @PostMapping("/eventDelete")
 	public String delete(@ModelAttribute("event") BoardVO event, @RequestParam(value="boardNo") int bno, RedirectAttributes rttr, Model model) {
-//		event.setBoardNo(bno);
     	service.eventBoardDelete(bno); 
 		return "eventboard/delete";
 	}
-//    @GetMapping("/eventDelete")
-////  @RequestMapping(value="/eventDelete", method=RequestMethod.GET)
-//    public String eventDelete(@RequestParam("boardNo") int bno, Model model) {
-//		service.eventBoardDelete(bno);
-//		return "eventboard/delete";
-//	}
-   
     
     @PostMapping({"/bookmark"})
     public String bookmark(@RequestParam("userNo") int userNo, @RequestParam("boardCategory") int boardCategory, @ModelAttribute("bookmark") BookMarkVO bookmark, @RequestParam(value="boardNo") int bno, RedirectAttributes rttr){
