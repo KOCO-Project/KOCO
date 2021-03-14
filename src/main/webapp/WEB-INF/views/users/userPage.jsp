@@ -321,14 +321,14 @@ $(function(){
 	</thead>
 	<tbody>
 	<%-- <c:forEach var='' items=""> --%>
-	<tr>
+	<!-- <tr>
 		<th class="text-center d-none d-md-table-cell">이벤트</th>
-		<!-- <td class="text-center d-none d-md-table-cell">1</td> -->
+		<td class="text-center d-none d-md-table-cell">1</td>
 		<td><a href=''>글 제목</a></td>
 		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;">지원이</td>
 		<td class="text-center d-none d-md-table-cell">날짜</td>
-	</tr>
-	<%-- <c:forEach items="${bookmarklist}" var="bookmark">
+	</tr> -->
+	<c:forEach items="${bookmarklist}" var="bookmark">
 	<tr>
 		<th class="text-center d-none d-md-table-cell"><c:out value="${bookmark.boardCategory}"/></th>
 		<!-- <td class="text-center d-none d-md-table-cell">1</td> -->
@@ -336,7 +336,7 @@ $(function(){
 		<td class="text-center d-none d-md-table-cell" style="color: #325d88;font-weight: 500;"><c:out value="${bookmark.writer}"/></td>
 		<!-- <td class="text-center d-none d-md-table-cell">날짜</td> -->
 	</tr>
-	</c:forEach> --%>
+	</c:forEach>
 	<%-- </c:forEach> --%>
 	</tbody>
 </table>		

@@ -25,8 +25,8 @@ public class EventBoardDAOImpl implements EventBoardDAO{
 //		return sql.selectList("evnetDAO.getListWithPaging", cri);
 //	}
 	@Override
-	public List<BoardVO> getListWithPaging( RowBounds rowBounds) {
-		return sql.selectList("evnetDAO.getListWithPaging",rowBounds);
+	public List<BoardVO> getListWithPaging(BoardVO event, RowBounds rowBounds) {
+		return sql.selectList("evnetDAO.getListWithPaging",event,rowBounds);
 	}
 	@Override
 	public int getEventBoardCnt() {
@@ -57,6 +57,11 @@ public class EventBoardDAOImpl implements EventBoardDAO{
 	 public void bookmarkRegister(BookMarkVO book) {
 		sql.insert("evnetDAO.bookmarkRegister", book);
 	}
+	@Override
+	 public List<BoardVO> bookmarkList(BoardVO event){
+		return sql.selectList("evnetDAO.bookmarkList", event);
+	}
+
 	 
 //	 public int boardSearch(Long boardNo);
 //	 public void insertSelectKey(EventVO event);

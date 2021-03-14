@@ -14,9 +14,10 @@ public interface EventBoardService {
 	public int postEventUpdate(BoardVO event);
 	public void eventBoardDelete(int bno);
 //	public List<BoardVO> getListWithPaging(Criteria cri);
-	public List<BoardVO> getListWithPaging(int page);
+	public List<BoardVO> getListWithPaging(BoardVO event, int page);
 	public PageVO getEventBoardCnt(int currentPage);
 	public int getTotal(Criteria cri);
 	public void bookmarkRegister(BookMarkVO book);
+	public List<BoardVO> bookmarkList(BoardVO event);
 
 }

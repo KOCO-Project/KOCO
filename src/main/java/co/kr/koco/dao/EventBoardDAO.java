@@ -11,7 +11,7 @@ import co.kr.koco.vo.Criteria;
 public interface EventBoardDAO {
 	 public void eventBoardRegister(BoardVO event);
 //	 public List<BoardVO> getListWithPaging(Criteria cri);
-	 public List<BoardVO> getListWithPaging(RowBounds rowBounds);
+	 public List<BoardVO> getListWithPaging(BoardVO event, RowBounds rowBounds);
 	 public int getEventBoardCnt();
 	 public BoardVO getEventBoard(int boardNo);
 	 public BoardVO getEventBoardUpdate(int boardNo);
@@ -21,4 +21,5 @@ public interface EventBoardDAO {
 //	 public int boardSearch(Long boardNo);
 //	 public void insertSelectKey(EventVO event);
 	 public void bookmarkRegister(BookMarkVO book);
+	 public List<BoardVO> bookmarkList(BoardVO event);
 }

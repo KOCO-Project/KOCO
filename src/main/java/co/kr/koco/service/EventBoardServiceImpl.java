@@ -20,8 +20,8 @@ import co.kr.koco.vo.UserVO;
 @Service
 public class EventBoardServiceImpl implements EventBoardService {
 
-	private int pageListcnt = 10; // 페이지당 글 개수
-	private int pagePaginationcnt = 10;
+	private int pageListcnt = 6; // 페이지당 글 개수
+	private int pagePaginationcnt = 6;
 	
 	@Autowired
 	private EventBoardDAO eventBoardDAO;
@@ -32,8 +32,6 @@ public class EventBoardServiceImpl implements EventBoardService {
 
 	@Override
 	public void eventBoardRegister(BoardVO event) {
-//		String userNickname = userVO.getUserNickname();
-//		event.setUserNo(userVO.getUserNo());
 		eventBoardDAO.eventBoardRegister(event);
 	}	
 
@@ -60,14 +58,10 @@ public class EventBoardServiceImpl implements EventBoardService {
 
 	}
 	
-//	@Override
-//	public List<BoardVO> getListWithPaging(Criteria cri) {
-//		return eventBoardDAO.getListWithPaging(cri);
-//	}
-	public List<BoardVO> getListWithPaging(int page) {
+	public List<BoardVO> getListWithPaging(BoardVO event, int page) {
 		int start = (page-1)*pageListcnt;
 		RowBounds rowBounds = new RowBounds(start, pageListcnt);//pageListcnt-페이지당 글 개수
-		return eventBoardDAO.getListWithPaging(rowBounds);
+		return eventBoardDAO.getListWithPaging(event, rowBounds);
 	}
 	
 	@Override
@@ -82,9 +76,13 @@ public class EventBoardServiceImpl implements EventBoardService {
 	}
 
 	public void bookmarkRegister(BookMarkVO book){
-		book.setUserNo(userVO.getUserNo());
 		eventBoardDAO.bookmarkRegister(book);
 	}
+	
+	public List<BoardVO> bookmarkList(BoardVO event){
+		return eventBoardDAO.bookmarkList(event);
+	}
+	
 //	@Override
 //	public List<EventVO> getList() {
 //

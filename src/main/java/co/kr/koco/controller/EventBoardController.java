@@ -71,11 +71,8 @@ public class EventBoardController {
 
     	event.setThumbnail("imgUpload" + ymdPath + File.separator + thumbFileName);
     	event.setFileName(thumbFileName);
-//    	userVO.setUserNo(userNo);
-//    	event.setUserNo(userVO.getUserNo());
     	event.setUserNo(userNo);
-    	
-//    	service.eventBoardRegister(event);
+    	service.eventBoardRegister(event);
 //    	rttr.addFlashAttribute("result", event.getBoardNo());
     	return "redirect:/eventList";
     }
@@ -128,10 +125,10 @@ public class EventBoardController {
     }
     
     @GetMapping("/eventList")
-	public String list(@RequestParam(value = "page", defaultValue = "1") int page,
+	public String list(@RequestParam(value = "page", defaultValue = "1") int page,@ModelAttribute BoardVO event,
 						   Model model) {
 		
-		List<BoardVO> list = service.getListWithPaging(page);
+		List<BoardVO> list = service.getListWithPaging(event, page);
 		model.addAttribute("list",list);
 
 		PageVO pageVO = service.getEventBoardCnt(page);
@@ -176,38 +173,44 @@ public class EventBoardController {
 		
 	}
 
-//    @PostMapping("/eventDelete")
-//	public String delete(BoardVO event, @RequestParam("boardNo") int bno, RedirectAttributes rttr) {
-//		service.eventBoardDelete(bno);
-//		rttr.addFlashAttribute("result", event.getBoardNo());
-//		return "redirect:/eventList";
-////		return "redirect:eventboard/list3";
-////		return "redirect:/KOCO/eventList";
-////		return "redirect:/KOCO/eventList?page=${page}";
-//	}
-    @GetMapping("/eventDelete")
-//    @RequestMapping(value="/eventDelete", method=RequestMethod.GET)
-    public String eventDelete(@RequestParam("boardNo") int bno, Model model) {
-		service.eventBoardDelete(bno);
+    @PostMapping("/eventDelete")
+	public String delete(@ModelAttribute("event") BoardVO event, @RequestParam(value="boardNo") int bno, RedirectAttributes rttr, Model model) {
+//		event.setBoardNo(bno);
+    	service.eventBoardDelete(bno); 
 		return "eventboard/delete";
-}
-    
-    @GetMapping({"/bookmark"})
-    public String bookmark(BookMarkVO book, @RequestParam(value="userNo", defaultValue="28") int userNo, @RequestParam(value="boardNo", defaultValue="752") int bno, MultipartFile uploadFile, RedirectAttributes rttr) throws IOException, Exception {
-    	book.setBoardNo(bno);
-    	book.setBoardCategory(3);
-    	book.setUserNo(userNo);
-    	service.bookmarkRegister(book);
-    	rttr.addFlashAttribute("result", book.getBoardNo());
-    	return "redirect:/eventList";
-    }
-    
+	}
 //    @GetMapping("/eventDelete")
-////    @RequestMapping(value="/eventDelete", method=RequestMethod.GET)
-//	public String delete(@RequestParam("boardNo")int bno,Criteria cri, RedirectAttributes rttr) {
-//    	service.eventBoardDelete(bno);
-//		rttr.addAttribute("pageNum",cri.getPageNum());
-//		rttr.addAttribute("amount",cri.getAmount());
+////  @RequestMapping(value="/eventDelete", method=RequestMethod.GET)
+//    public String eventDelete(@RequestParam("boardNo") int bno, Model model) {
+//		service.eventBoardDelete(bno);
 //		return "eventboard/delete";
 //	}
+   
+    
+    @PostMapping({"/bookmark"})
+    public String bookmark(@RequestParam("userNo") int userNo, @RequestParam("boardCategory") int boardCategory, @ModelAttribute("bookmark") BookMarkVO book, @RequestParam(value="boardNo") int bno, RedirectAttributes rttr){
+    	book.setBoardNo(bno);
+    	book.setBoardCategory(boardCategory);
+    	book.setUserNo(userNo);
+    	service.bookmarkRegister(book);
+//    	rttr.addFlashAttribute("result", book.getBoardNo());
+    	return "eventboard/bookmark";
+//    	return "redirect:/userPage";
+//    	return "userPage?userNicknameuserNickname#bookmark";
+    }
+    
+    @GetMapping("/bookmarkList")
+	public String bookmarkList(@RequestParam(value = "page", defaultValue = "1") int page,@ModelAttribute BoardVO event,
+						   Model model) {
+		
+		List<BoardVO> list = service.bookmarkList(event);
+		model.addAttribute("bookmarklist",list);
+
+		PageVO pageVO = service.getEventBoardCnt(page);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("page", page);
+
+		return "users/userPage";
+	}
+
 }

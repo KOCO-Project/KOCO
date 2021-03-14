@@ -61,13 +61,15 @@
 				<a href="userPage?userNickname=${event.writer}">
       				<p class="card-text" style="color: #939393; font-size: 0.8rem;"><c:out value="${event.writer}" /></p>
       			</a>
+      			
       			<c:if test="${sessionScope.user.userCase == 1}">
-      			<input type="hidden" id="userNo" name="userNo" value="${sessionScope.user.userNo }"/>
-      			<%-- <a href="/KOCO/bookmark?boardNo=<c:out value="${event.boardNo}"/>&userNo=${sessionScope.user.userNo}" style="text-align: right;"> --%>
-      			<a href="/KOCO/bookmark?boardNo=<c:out value="${event.boardNo}"/>" style="text-align: right;">
-      			마음
-      			</a>
-      			<a href="userPage?userNickname=${user.userNickname}#bookmark" style="text-align: right;">마음</a>
+      			<form role="form" action="/KOCO/bookmark" method="post" modelAttribute="bookmark" enctype="multipart/form-data">
+      				<input type="hidden" id="userNo" name="userNo" value="${sessionScope.user.userNo }"/>
+      				<%-- <input type="hidden" id="userNickname" name="userNickname" value="${user.userNickname}"/> --%>
+      				<input type="hidden" id="boardNo" name="boardNo" value="${event.boardNo}"/>
+      				<input type="hidden" id="boardCategory" name="boardCategory" value="3"/>
+      				<button type="submit" style="float: right; background-color: #2172AF;" class="btn btn-info">마음</button>
+      			</form>
       			</c:if>
       		</div>
       	</div>
