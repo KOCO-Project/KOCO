@@ -99,8 +99,7 @@
 		from  KOCO_BOOKMARK join KOCO_BOARD on KOCO_BOARD.BOARD_NO=KOCO_BOOKMARK.BOARD_NO
 							join KOCO_USERS on KOCO_BOOKMARK.USER_NO=KOCO_USERS.USER_NO
 							join KOCO_BOARD_INFO on KOCO_BOOKMARK.BOARD_CATEGORY=KOCO_BOARD_INFO.INFO_NO
-		
-		<!-- where KOCO_BOOKMARK.USER_NO=#{userNo} -->
+		where KOCO_BOOKMARK.USER_NO=#{userNo}
 	</select>
 	<!-- <select id="bookmarkGet" resultType="board" resultMap="boardResult" parameterType="java.lang.Integer">
 		select *

@@ -239,7 +239,7 @@ public class UserController {
 		
 //		model.addAttribute("boardCategory", boardCategory);
 //		model.addAttribute("infoName", infoName);
-		
+		bookmark.setUserNo(userVo.getUserNo());
 		List<BookMarkVO> list = eventService.bookmarkList(bookmark);
 		bookmark.setCategoryName(qnaService.getBoardInfoName(bookmark.getBoardCategory()));
 		model.addAttribute("bookmarklist",list);
