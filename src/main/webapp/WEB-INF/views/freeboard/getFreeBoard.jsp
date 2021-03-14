@@ -92,13 +92,11 @@ function check(userNo){
 			</div>
 
 
-
-
 			<div class="form-group"
 				style="margin-left: auto; margin-right: 2rem;">
 				<div class="text-right">
 					<a href="freeBoardList?infoNo=1&page=${page }"
-						class="btn btn-primary" style="width: 100px;">글목록</a>
+						class="btn btn-primary" style="width: 100px;">목록보기</a>
 					<c:if test="${sessionScope.user.userNo == readContentBean.userNo }">
 						<a href="freeBoardUpdate?infoNo=1&boardNo=${boardNo}&page=${page}"
 							class="btn btn-success" style="width: 100px;">수정하기</a>
@@ -180,6 +178,7 @@ function check(userNo){
 														href="freeCommentUpdateForm?commentNo=${comcomment.commentNo}&commentContent=${comcomment.commentContent }" style="color: gray; text-decoration: none;">수정</a>
 														<a
 														href="freeComcommentDelete?commentNo=${comcomment.commentNo}&boardNo=${boardNo}" style="color: gray; text-decoration: none;">삭제</a>
+													</small>
 												</c:if>
 											</div>
 

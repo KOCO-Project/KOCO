@@ -5,11 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <script>
-	alert('수정되었습니다')
+swal({
+	  title: "Good job!",
+	  text: "수정되었습니다",
+	  icon: "success"
+}).then((result) => {
 	location.href = 'getFreeBoard?infoNo=${freeBoardVO.boardCategory}&boardNo=${freeBoardVO.boardNo}&page=1'
+});
 </script>
 </body>
 </html>

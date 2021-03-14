@@ -29,7 +29,8 @@ public class BoardVO {
 	private int depth;
 	private int sequence;
 	
-	
+	private int boardLikeCnt; //  좋아요 관련
+		
 	public String getFileName() {
 		return fileName;
 	}
@@ -126,7 +127,13 @@ public class BoardVO {
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
 	}
-
+	public int getBoardLikeCnt() {
+		return boardLikeCnt;
+	}
+	public void setBoardLikeCnt(int boardLikeCnt) {
+		this.boardLikeCnt = boardLikeCnt;
+	}
+	
 	
 	
 }

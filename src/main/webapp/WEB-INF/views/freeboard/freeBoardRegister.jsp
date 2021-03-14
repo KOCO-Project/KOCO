@@ -119,9 +119,9 @@ $(function(){
 	<br>
 	<br>
 	<br>
-		
-	<footer>
-		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
-	</footer>
+	
 </body>
+<footer>
+		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+</footer>
 </html>

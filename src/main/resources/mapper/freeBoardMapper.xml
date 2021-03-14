@@ -115,35 +115,24 @@
 	</select>
 	
 	<update id="updateRcnt">
-	
 			UPDATE KOCO_BOARD
 			SET READCOUNT = READCOUNT+1
-			WHERE BOARD_NO = #{boardNo}
-	
+			WHERE BOARD_NO = #{boardNo}	
 	</update>
 	
 	<!-- boardLike -->
-	
-<!-- 	<insert id = "createBoardLike">
-		INSERT INTO KOCO_HEART (BOARD_NO, USER_NO) 
-		VALUES (#{boardNo}, #{userNo})
-	</insert>
-	
-	<delete id="deleteBoardLike">
-		DELETE FROM KOCO_HEART 
-		WHERE BOARD_NO = #{boardNo} AND USER_NO = #{userNo}
-	</delete>
-	
-	<select id="updateBoardLike">
-		UPDATE KOCO_HEART
-		SET 
-		BOARD_LIKECNT = (SELECT COUNT (*)
-		FROM KOCO_HEART
-		WHERE BOARD_NO = #{boardNo})
-		WHERE BOARD_NO = #{boardNo}
+<!--  <select id="communityDetail" resultType="map">
+		SELECT
+		FROM KOCO_BOARD 
+		WHERE 1=1
+		AND 
 	</select>
 	
-	<select id="getBoardLike" resultType="int">
-		SELECT COUNT(BOARD_LIKE_NO) FROM BOARD_HEART WHERE BOARD_NO = #{boardNo} AND USER_NO = #{userNo} 
+	<select id="likeCheck" resultType="map">
+		SELECT LIKE_CHECK
+		FROM KOCO_HEART 
+		WHERE BOARD_NO = #{boardNo}
+		AND USER_NO =#{userNo}
 	</select> -->
+ 
 </mapper>

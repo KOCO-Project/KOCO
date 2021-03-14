@@ -1,17 +1,8 @@
 package co.kr.koco.controller;
 
-/*import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;*/
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-/*import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;*/
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -29,11 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import co.kr.koco.service.CommentService;
-/*import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-*/
+
 import co.kr.koco.service.FreeBoardService;
 import co.kr.koco.vo.BoardVO;
 import co.kr.koco.vo.CommentVO;
@@ -117,7 +104,7 @@ public class FreeBoardController {
 	
 	// 湲� �긽�꽭 議고쉶
 	@RequestMapping("/getFreeBoard")
-	public String getFreeBoard(@ModelAttribute CommentVO vo,@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO, Model model) {
+	public String getFreeBoard(@ModelAttribute CommentVO vo, @RequestParam("page") int page, @RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo, BoardVO freeBoardVO, Model model) {
 		
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);
@@ -126,25 +113,8 @@ public class FreeBoardController {
 		model.addAttribute("readContentBean", readContent);
 		
 		model.addAttribute("userVO", userVO);
-		//model.addAttribute("page", page);
-		
-		/*
-		 * HeartVO vo = new HeartVO(); vo.setBoardNO(boardNO); vo.setUserNo(userNo);
-		 * 
-		 * int boardlike = service.getHeart(vo);
-		 */
-		
-		/* model.addAttribute("freeBoard", freeBoardService.getFreeBoard(boardNo)); */
-		
-		/*
-		 * //醫뗭븘�슂 �뾽�뜲�씠�듃 else if(command.equals("/RecUpdate.do")){ try { action = new
-		 * RecUpdate(); action.execute(request, response); } catch(Exception e) {
-		 * e.printStackTrace(); } }
-		 * 
-		 * //醫뗭븘�슂 寃��깋 else if(command.equals("/RecCount.do")) { try { action = new
-		 * RecCount(); action.execute(request, response); } catch(Exception e) {
-		 * e.printStackTrace(); } }
-		 */
+		model.addAttribute("page", page);
+	
 		List<CommentVO> commentList = commentService.commentList(vo);
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("groupNo", (Integer)commentService.commentGetGroupNo());
@@ -240,43 +210,4 @@ public class FreeBoardController {
 	}
 	
 }
-	/*
-	 * //CKEditor4 �씠誘몄� �뾽濡쒕뱶
-	 * 
-	 * @RequestMapping(value="/main/imageUpload.do", method = RequestMethod.POST)
-	 * public void imageUpload(HttpServletRequest request,HttpServletResponse
-	 * response, MultipartHttpServletRequest multiFile, @RequestParam MultipartFile
-	 * upload) throws Exception{
-	 * 
-	 * //�옖�뜡 臾몄옄 �깮�꽦 UUID uid = UUID.randomUUID();
-	 * 
-	 * OutputStream out = null; PrintWriter printWriter = null;
-	 * 
-	 * //�씤肄붾뵫 response.setCharacterEncoding("utf-8");
-	 * response.setContentType("text/html;charset-utf-8");
-	 * 
-	 * try {
-	 * 
-	 * //�뙆�씪 �씠由� 媛��졇�삤湲� String fileName = upload.getOriginalFilename(); byte[] bytes =
-	 * upload.getBytes();
-	 * 
-	 * //�씠誘몄� 寃쎈줈 �깮�꽦 String path = ? "ckImage/"; //fileDir�뒗 �쟾�뿭蹂��닔�씪 洹몃깷 �씠誘몄� ���옣�릺�뒗 寃쎈줈 �꽕�젙�빐二쇰㈃
-	 * �맂�떎. String ckUploadPath = path + uid + "_" + fileName; File folder = new
-	 * File(path);
-	 * 
-	 * //�빐�떦 �뵒�젆�넗由� �솗�씤 if(!folder.exists()) { try { folder.mkdirs(); // �뤃�뜑 �깮�꽦
-	 * }catch(Exception e) { e.getStackTrace(); } } out = new FileOutputStream(new
-	 * File(ckUploadPath)); out.write(bytes); out.flush(); //outputStream�뿉 ���옣�맂 �뜲�씠�꽣瑜�
-	 * �쟾�넚�븯怨� 珥덇린�솕
-	 * 
-	 * String callback = request.getParameter("CKEditorFuncNum"); printWriter =
-	 * response.getWriter(); String fileUrl = "/ckImgSubmit.do?uid=" + uid +
-	 * "&fileName=" + fileName; //�옉�꽦�솕硫�
-	 * 
-	 * //�뾽濡쒕뱶�떆 硫붿떆吏� 異쒕젰 printWriter.println("{\"+filename\":\""+
-	 * fileName+"\",\"uploaded\"+1, \"url\":\""+fileUrl+"\"}"); printWriter.flush();
-	 * }catch(IOException e) { e.printStackTrace(); } finally { try { if(out !=
-	 * null) {out.close();} if(printWriter != null) {printWriter.close();} }
-	 * catch(IOException e) { e.printStackTrace();} } return; }
-	 */
-
+	

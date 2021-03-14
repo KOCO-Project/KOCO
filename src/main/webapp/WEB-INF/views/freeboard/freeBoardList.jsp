@@ -40,9 +40,10 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 <body class="seopBody">
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<input type="hidden" value="${user.userNo }" id="loginyn">
+	
 	<div id="qna" class="container">
 		<a href="freeBoardList?infoNo=1" class="header"style="color: black; text-decoration: none; font-weight: bold; font-size: 2rem;">자유게시판</a>
-<br><br>
+	<br><br>
 		<table class="table table-hover" id='board_list'
 			style="border-bottom: 1px solid #dfd7ca;">
 			<tr>
@@ -67,7 +68,7 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 				</tr>
 			</c:forEach>
 		</table>
-		<br>
+	
 		<table style="width: 100%">
 			<tr>
 				<td>
@@ -89,7 +90,7 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 								</select>
 							</div>
 							<input name="searchKeyword" type="text" class="form-control"
-								placeholder="SEARCH" style="border: 1px solid #ced4da;" />
+								placeholder="검색" style="border: 1px solid #ced4da;" />
 							<div class="input-group-append" style="height: fit-content;">
 								<button class="btn btn btn-primary" type="submit">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -107,8 +108,7 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 
 		<br>
 		<br>
-		<br>
-
+		
 
 		<div class="d-none d-md-block">
 			<ul class="pagination justify-content-center">
@@ -154,11 +154,10 @@ div#qna.container{box-shadow: 3px 3px 15px 0px grey;margin-top: 5%;max-width: 80
 		</div>
 		<br>
 	</div>
-	<br><br>
+	<br><br><br>
 	
-	<footer>
-		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
-	</footer>
-
 </body>
+<footer>
+		<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+</footer>
 </html>
