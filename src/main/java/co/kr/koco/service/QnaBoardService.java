@@ -42,10 +42,7 @@ public class QnaBoardService {
 	}
 	
 	public void getQnaBoardRegister(BoardVO regQnaBoardVO) {
-		for(int i =0; i<100; i++)
-		{
 			qnaBoardDAO.getQnaBoardRegister(regQnaBoardVO);
-		}
 	}
 	
 	public String getBoardInfoName(int infoNo) {
