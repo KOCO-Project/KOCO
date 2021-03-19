@@ -63,15 +63,13 @@ public class QnaBoardDAOImpl implements QnaBoardDAO {
 	}
 
 	@Override
-	public void getAnswerRegister(Model model) {
-		sqlSessionTemplate.insert("qnaBoard.getAnswerRegister", model);
+	public void getAnswerRegister(BoardVO ansQnaBoardVO) {
+		System.out.println("dao"+ansQnaBoardVO.getBoardCategory());
+		System.out.println("dao"+ansQnaBoardVO.getBoardTitle());
+		System.out.println("dao"+ansQnaBoardVO.getParent());
+		sqlSessionTemplate.insert("qnaBoard.getAnsRegister", ansQnaBoardVO);
 		
 	}
 
-	@Override
-	public void getAnswerRegView(Model model) {
-		sqlSessionTemplate.selectOne("qnaBoard.answerRegView", model);
-		
-	}
 
 }

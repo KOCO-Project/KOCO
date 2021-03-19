@@ -19,8 +19,6 @@ public class CheckWriterInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-//		System.out.println(session.getAttribute("userNo"));
-//		System.out.println(Integer.parseInt(session.getAttribute("userNo").toString()));
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		BoardVO currBoard = qnaBoardService.getQnaBoard(boardNo);
 		if(currBoard.getUserNo() != Integer.parseInt(session.getAttribute("userNo").toString())) {

@@ -66,10 +66,11 @@ public class QnaBoardController {
 
 	@GetMapping("/getQna")
 	public String getQnaBoard(@ModelAttribute CommentVO vo, @RequestParam("infoNo") int infoNo,
-			@RequestParam("boardNo") int boardNo, Model model) {
+			@RequestParam("boardNo") int boardNo, @RequestParam("page") int page, Model model) {
 		model.addAttribute("infoNo", infoNo);
 		model.addAttribute("boardNo", boardNo);
-
+		model.addAttribute("page", page);
+		
 		BoardVO readContent = qnaBoardService.getQnaBoard(boardNo);
 		model.addAttribute("readContentBean", readContent);
 
@@ -104,23 +105,27 @@ public class QnaBoardController {
 
 	@GetMapping("/ansRegister")
 	public String ansRegister(@ModelAttribute("ansQnaBoardVO") BoardVO ansQnaBoardVO,
-			@RequestParam("infoNo") int infoNo, @RequestParam("boardNo") int boardNo) {
+			@RequestParam("infoNo") int infoNo, @RequestParam("page") int page, @RequestParam("boardNo") int boardNo, Model model) {
 		System.out.println("ansRegister");
+		model.addAttribute("page", page);
 		ansQnaBoardVO.setBoardCategory(infoNo);
 		ansQnaBoardVO.setParent(boardNo);
-
+		ansQnaBoardVO.setSequence(1);
+		ansQnaBoardVO.setDepth(1);
 		return "qna/answer_register";
 	}
 
 	@PostMapping("/ansRegister_pro")
 	public String ansRegisterPro(@ModelAttribute("ansQnaBoardVO") BoardVO ansQnaBoardVO,
-			@RequestParam("userNo") int userNo, HttpServletRequest request, Model model) {
+			@RequestParam("userNo") int userNo,@RequestParam("page") int page,@RequestParam("boardNo") int boardNo, HttpServletRequest request, Model model) {
 		System.out.println("ansRegister Pro");
+		model.addAttribute("page", page);
 		ansQnaBoardVO.setUserNo(userNo);
-		ansQnaBoardVO.setSequence(1);
+		System.out.println(ansQnaBoardVO.getDepth()+"-"+ansQnaBoardVO.getSequence()+"-"+ansQnaBoardVO.getParent());
+		
 		model.addAttribute("ansQnaBoardVO", ansQnaBoardVO);
 		model.addAttribute("userVO", userVO);
-		qnaBoardService.getQnaBoardRegister(ansQnaBoardVO);
+		qnaBoardService.getAnswerRegister(ansQnaBoardVO);
 		return "qna/answer_register_pro";
 	}
 

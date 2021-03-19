@@ -13,7 +13,7 @@ swal({
 	  text: "새 답글이 등록되었습니다",
 	  icon: "success"
 }).then((result) => {
-	location.href = '${root}qnalist?infoNo=${regQnaBoardVO.boardCategory}&page=1'
+	location.href = '${root}qnalist?infoNo=2&page=${page}'
 });
 </script>
 </body>

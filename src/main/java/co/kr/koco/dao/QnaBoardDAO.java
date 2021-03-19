@@ -17,6 +17,6 @@ public interface QnaBoardDAO {
 	public String getBoardInfoName(int infoNo);
 	public int getQnaBoardCnt(BoardVO vo);
 	public void setQnaBoardRcnt(int boardNo);
-	public void getAnswerRegister(Model model);
-	public void getAnswerRegView(Model model);
+	public void getAnswerRegister(BoardVO ansQnaBoardVO);
+
 }

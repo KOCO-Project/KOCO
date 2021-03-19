@@ -15,15 +15,18 @@
 	</resultMap>
 
 	<insert parameterType="board" id="getQnaBoardRegister">
-	<!-- <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="boardNo">
-		select 
-	</selectKey> -->
 	<![CDATA[
 		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO ,parent,depth,sequence)
-		VALUES(#{boardCategory}, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo},#{sequence},#{depth},#{sequence})
+		VALUES(#{boardCategory}, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo},#{parent},#{depth},#{sequence})
 	]]>
 	</insert>
 	
+	<insert parameterType="board" id="getAnsRegister">
+	<![CDATA[
+		INSERT INTO KOCO_BOARD(BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_REGDATE, READCOUNT, FILE_NAME, THUMBNAIL, USER_NO ,parent,depth,sequence)
+		VALUES(#{boardCategory}, #{boardTitle}, #{boardContent}, NOW(), #{boardReadcount}, #{fileName, jdbcType=VARCHAR}, NULL, #{userNo},#{parent},#{depth},#{sequence})
+	]]>
+	</insert>
 	
 	
 	

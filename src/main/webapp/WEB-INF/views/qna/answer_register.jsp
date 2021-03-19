@@ -26,13 +26,13 @@
 			<h2>답변 작성</h2><br>
 			<div class="card border-light mb-3 cc_cursor">
 				<div class="card-body">
-					<form:form action='${root }regQna_pro' method='post' modelAttribute="ansQnaBoardVO" enctype="multipart/form-data">
+					<form:form action='${root }ansRegister_pro' method='post' modelAttribute="ansQnaBoardVO" enctype="multipart/form-data">
 						<form:hidden path="boardCategory"/>
+						<input type="hidden" name="page" value="${page}">
 						<input type="hidden" name="boardNo" value="${ansQnaBoardVO.boardNo}">
 						<input type="hidden" name="parent" value="${ansQnaBoardVO.parent}">
 						<input type="hidden" name="depth" value="${ansQnaBoardVO.depth}">
 						<input type="hidden" name="sequence" value="${ansQnaBoardVO.sequence}">
-						<%-- <form:hidden path="${sessionScope.user.userNo }"/> --%>
 						<input id="userNo" name="userNo" type="hidden" value="${sessionScope.user.userNo }"/>
 						<div class="form-group">
 						<form:label path="boardTitle">제목</form:label>

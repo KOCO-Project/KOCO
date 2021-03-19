@@ -42,15 +42,10 @@ public class QnaBoardService {
 	}
 	
 	public void getQnaBoardRegister(BoardVO regQnaBoardVO) {
-//		System.out.println(regQnaBoardVO.getBoardTitle());
-//		System.out.println(regQnaBoardVO.getBoardContent());
-//		System.out.println(regQnaBoardVO.getUploadFile().getSize());
-		MultipartFile uploadFile = regQnaBoardVO.getUploadFile();
-		if(uploadFile.getSize()>0) {
-			String fileName = saveUploadFile(uploadFile);
-			regQnaBoardVO.setFileName(fileName);
+		for(int i =0; i<100; i++)
+		{
+			qnaBoardDAO.getQnaBoardRegister(regQnaBoardVO);
 		}
-		qnaBoardDAO.getQnaBoardRegister(regQnaBoardVO);
 	}
 	
 	public String getBoardInfoName(int infoNo) {
@@ -87,10 +82,13 @@ public class QnaBoardService {
 		return pageVO;
 	}
 
-	public void getAnswerRegView(Model model) {
-		
-		qnaBoardDAO.getAnswerRegView(model);
+	public void getAnswerRegister(BoardVO ansQnaBoardVO) {
+		System.out.println("service"+ansQnaBoardVO.getBoardCategory());
+		System.out.println("service"+ansQnaBoardVO.getBoardTitle());
+		System.out.println("service"+ansQnaBoardVO.getParent());
+		qnaBoardDAO.getAnswerRegister(ansQnaBoardVO);
 	}
+
 }
 
 
