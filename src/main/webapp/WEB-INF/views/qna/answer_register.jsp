@@ -13,9 +13,23 @@
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="css/bootstrap.css?v=1">
 <link rel="stylesheet" href="css/qna.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var setting = {
+		height: 250,
+		lang: "ko-KR"
+	};
+	
+	$('.summernote').summernote(setting);
+});
+</script>
+
 <body>
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
@@ -41,7 +55,7 @@
 					</div>
 					<div class="form-group">
 						<form:label path="boardContent">내용</form:label>
-						<form:textarea path="boardContent" class="form-control" rows="10" style="resize:none"/>
+						<form:textarea path="boardContent" class="summernote" id="editor" rows="12" style="resize:none"/>
 						<form:errors path="boardContent" style="color:red"/>
 					</div>
 					<div class="form-group">

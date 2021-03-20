@@ -94,22 +94,18 @@ label {
 				<form:form action='${root }qnaUpdate_pro' method='post'
 					modelAttribute="qnaUpdateBoardVO" enctype="multipart/form-data">
 					<form:hidden path="boardNo" />
-					
-					<!-- 글 번호 -->
 					<form:hidden path="boardCategory" />
-					
-					<!-- 게시판 번호 -->
 					<input type="hidden" name="page" value="${page }">
-
 					<div class="form-group">
 						<form:label path="boardTitle">제목</form:label>
 						<form:input path="boardTitle" class='form-control' />
+						<form:errors path="boardTitle" style="color:red"/>
 
 					</div>
 					<div class="form-group">
 						<form:label path="boardContent">내용</form:label>
-						<form:textarea path="boardContent" class="summernote" id="editor" rows="12"
-							style="resize:none" />
+						<form:textarea path="boardContent" class="summernote" id="editor" rows="12" style="resize:none" />
+						<form:errors path="boardContent" style="color:red"/>
 
 					</div>
 					<div class="form-group">
@@ -120,8 +116,7 @@ label {
 							<form:hidden path="fileName" />
 							<!-- 기존 첨부 파일 -->
 						</c:if>
-						<form:input path="uploadFile" type='file' class="form-control"
-							accept="image/*" />
+						<form:input path="uploadFile" type='file' class="form-control" accept="image/*" />
 					</div>
 					<br><br><br>
 					<div class="form-group">
